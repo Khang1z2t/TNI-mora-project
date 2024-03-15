@@ -51,10 +51,5 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE160</version>
         </dependency>
-      <dependency>
-         <groupId>PRO1041</groupId>
-         <artifactId>PRO1041</artifactId>
-         <version>0.0.1-SNAPSHOT</version>
-      </dependency>
    </dependencies>
 </project>
