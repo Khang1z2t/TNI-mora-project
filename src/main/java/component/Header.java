@@ -95,7 +95,7 @@ public class Header extends javax.swing.JPanel {
     }//GEN-LAST:event_lblExitMouseClicked
 
     private void lblSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSettingsMouseClicked
-        new SettingJDialog((java.awt.Frame)getParent(), true).setVisible(true);
+
     }//GEN-LAST:event_lblSettingsMouseClicked
 
 
