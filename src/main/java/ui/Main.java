@@ -31,6 +31,7 @@ public class Main extends javax.swing.JFrame {
     private TacGiaForm tg;
     private TheLoaiForm tl;
     private DoiMKForm dmk;
+    private XuatPhieu xp;
     //ton hang
     //doanh thu
     //tao hoa don
@@ -47,6 +48,7 @@ public class Main extends javax.swing.JFrame {
         tg = new TacGiaForm();
         tl = new TheLoaiForm();
         dmk = new DoiMKForm();
+        xp = new XuatPhieu();
         
         menu1.initMoving(Main.this);
         menu1.addEventMenuSelected(new EventMenuSelected() {
@@ -64,7 +66,9 @@ public class Main extends javax.swing.JFrame {
                     setForm(tl);
                 } else if (index == 5){
                     setForm(tg);
-                } 
+                } else if(index == 7){
+                    setForm(xp);
+                }
                 else if (index == 8) {
                     setForm(dmk);
                 }
@@ -95,16 +99,14 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         panelBorder1 = new swing.PanelBorder();
-        menu1 = new component.Menu();
         header2 = new component.Header();
         mainPanel = new javax.swing.JPanel();
+        menu1 = new component.Menu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         panelBorder1.setBackground(new java.awt.Color(231, 231, 231));
-
-        menu1.setForeground(new java.awt.Color(153, 153, 255));
 
         header2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -116,19 +118,21 @@ public class Main extends javax.swing.JFrame {
         panelBorder1Layout.setHorizontalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(header2, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
+                    .addComponent(header2, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                     .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, Short.MAX_VALUE)
             .addGroup(panelBorder1Layout.createSequentialGroup()
                 .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelBorder1Layout.createSequentialGroup()
+                .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
