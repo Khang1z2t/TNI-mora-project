@@ -51,7 +51,7 @@ public class Header extends javax.swing.JPanel {
             }
         });
 
-        lblSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/settings (2).png"))); // NOI18N
+        lblSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/8a.png"))); // NOI18N
         lblSettings.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblSettingsMouseClicked(evt);
