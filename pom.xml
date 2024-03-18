@@ -51,5 +51,35 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE160</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.jhlabs/filters -->
+        <dependency>
+            <groupId>com.jhlabs</groupId>
+            <artifactId>filters</artifactId>
+            <version>2.0.235</version>
+        </dependency> 
+        <!-- https://mvnrepository.com/artifact/org.jdesktop/swing-worker -->
+        <dependency>
+            <groupId>org.jdesktop</groupId>
+            <artifactId>swing-worker</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.swinglabs/swingx -->
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swingx</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.java.dev.timingframework/timingframework -->
+        <dependency>
+            <groupId>net.java.dev.timingframework</groupId>
+            <artifactId>timingframework</artifactId>
+            <version>1.0</version>
+        </dependency>
+      <dependency>
+         <groupId>net.java.timingframework</groupId>
+         <artifactId>timingframework-core</artifactId>
+         <version>5.0.0</version>
+         <type>jar</type>
+      </dependency>
    </dependencies>
 </project>
