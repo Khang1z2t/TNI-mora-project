@@ -20,10 +20,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="searchText1" pref="390" max="32767" attributes="0"/>
+              <Component id="searchText1" pref="386" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="lblSettings" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="lblExit" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -38,7 +38,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="searchText1" max="32767" attributes="0"/>
+                          <Component id="searchText1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblExit" max="32767" attributes="0"/>
                           <Component id="lblSettings" max="32767" attributes="0"/>
                       </Group>
@@ -72,7 +72,7 @@
     <Component class="javax.swing.JLabel" name="lblSettings">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icon/settings (2).png"/>
+          <Image iconType="3" name="/icon/sett.png"/>
         </Property>
       </Properties>
       <Events>

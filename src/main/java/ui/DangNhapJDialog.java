@@ -104,19 +104,19 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         lblFB = new javax.swing.JLabel();
         lblGmail = new javax.swing.JLabel();
         lblQR = new javax.swing.JLabel();
-        txtPass = new swing.PasswordField();
         txtUser = new swing.TextField();
+        txtPass = new swing.PasswordField();
         jPanel2 = new javax.swing.JPanel();
         lblHinh = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ĐĂNG NHẬP");
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(66, 180, 253));
         jPanel1.setToolTipText("");
 
         jLabel3.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 153));
         jLabel3.setText("ĐĂNG NHẬP");
 
         chkRemember.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -138,7 +138,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
-        btnLogin.setBackground(new java.awt.Color(32, 136, 203));
+        btnLogin.setBackground(new java.awt.Color(13, 86, 133));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("ĐĂNG NHẬP");
@@ -166,13 +166,15 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
-        txtPass.setBackground(new java.awt.Color(255, 153, 0));
-        txtPass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtPass.setLabelText("MẬT KHẨU");
-
-        txtUser.setBackground(new java.awt.Color(255, 153, 0));
+        txtUser.setBackground(new java.awt.Color(66, 180, 253));
+        txtUser.setForeground(new java.awt.Color(255, 255, 255));
         txtUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtUser.setLabelText("TÊN ĐĂNG NHẬP");
+
+        txtPass.setBackground(new java.awt.Color(66, 180, 253));
+        txtPass.setForeground(new java.awt.Color(255, 255, 255));
+        txtPass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtPass.setLabelText("MẬT KHẨU");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -206,9 +208,9 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 .addContainerGap(10, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
-                    .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
                 .addGap(31, 31, 31))
         );
         jPanel1Layout.setVerticalGroup(
@@ -218,9 +220,9 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 .addComponent(jLabel3)
                 .addGap(36, 36, 36)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(24, 24, 24)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkRemember)
                     .addComponent(lblFP))

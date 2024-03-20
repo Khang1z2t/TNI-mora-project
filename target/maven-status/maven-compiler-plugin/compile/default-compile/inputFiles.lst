@@ -1,6 +1,7 @@
 E:\DUAN1\NhaSach2\src\main\java\entities\NguoiDung.java
 E:\DUAN1\NhaSach2\src\main\java\ui\QuanLySachJDialog.java
 E:\DUAN1\NhaSach2\src\main\java\ui\NhanVienJDialog.java
+E:\DUAN1\NhaSach2\src\main\java\form\HoaDonForm.java
 E:\DUAN1\NhaSach2\src\main\java\ui\SettingJDialog.java
 E:\DUAN1\NhaSach2\src\main\java\component\Menu.java
 E:\DUAN1\NhaSach2\src\main\java\ui\QuenMatKhauJDialog.java
@@ -16,6 +17,7 @@ E:\DUAN1\NhaSach2\src\main\java\model\ComboBoxSuggestion.java
 E:\DUAN1\NhaSach2\src\main\java\swing\MenuItem.java
 E:\DUAN1\NhaSach2\src\main\java\ui\tacgiaJDialog.java
 E:\DUAN1\NhaSach2\src\main\java\ui\DoiMatKhauJDialog.java
+E:\DUAN1\NhaSach2\src\main\java\entities\Giohang.java
 E:\DUAN1\NhaSach2\src\main\java\form\NguoiDungForm.java
 E:\DUAN1\NhaSach2\src\main\java\swing\TableStatus.java
 E:\DUAN1\NhaSach2\src\main\java\dao\TheLoaiDAO.java
@@ -57,10 +59,17 @@ E:\DUAN1\NhaSach2\src\main\java\dao\TacGiaDAO.java
 E:\DUAN1\NhaSach2\src\main\java\entities\ChiTietHoaDon.java
 E:\DUAN1\NhaSach2\src\main\java\model\Model_Card.java
 E:\DUAN1\NhaSach2\src\main\java\form\DoiMKForm.java
+E:\DUAN1\NhaSach2\src\main\java\dao\GiohangDAO.java
 E:\DUAN1\NhaSach2\src\main\java\dao\KhoDAO.java
 E:\DUAN1\NhaSach2\src\main\java\event\EventMenuSelected.java
 E:\DUAN1\NhaSach2\src\main\java\swing\ListMenu.java
 E:\DUAN1\NhaSach2\src\main\java\swing\ComboSuggestionUI.java
 E:\DUAN1\NhaSach2\src\main\java\ui\ScrollBar.java
 E:\DUAN1\NhaSach2\src\main\java\form\XuatPhieu.java
-E:\DUAN1\NhaSach2\src\main\java\enti
+E:\DUAN1\NhaSach2\src\main\java\entities\NhanVien.java
+E:\DUAN1\NhaSach2\src\main\java\utils\DialogHelper.java
+E:\DUAN1\NhaSach2\src\main\java\utils\XImage.java
+E:\DUAN1\NhaSach2\src\main\java\entities\TheLoai.java
+E:\DUAN1\NhaSach2\src\main\java\form\FormTemplate.java
+E:\DUAN1\NhaSach2\src\main\java\swing\ScrollBarCustom.java
+E:\DUAN1\NhaSach2\src\main\java\entities\Sach.java

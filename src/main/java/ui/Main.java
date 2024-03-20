@@ -32,6 +32,7 @@ public class Main extends javax.swing.JFrame {
     private TheLoaiForm tl;
     private DoiMKForm dmk;
     private XuatPhieu xp;
+    private HoaDonForm hd;
     //ton hang
     //doanh thu
     //tao hoa don
@@ -49,8 +50,10 @@ public class Main extends javax.swing.JFrame {
         tl = new TheLoaiForm();
         dmk = new DoiMKForm();
         xp = new XuatPhieu();
+        hd = new HoaDonForm();
         
         menu1.initMoving(Main.this);
+        if(utils.Auth.isManager()){
         menu1.addEventMenuSelected(new EventMenuSelected() {
             @Override
             public void selected(int index) {
@@ -72,13 +75,50 @@ public class Main extends javax.swing.JFrame {
                 else if (index == 8) {
                     setForm(dmk);
                 }
+                else if (index == 10){
+                    setForm(hd);
+                } 
                  else if (index == 12) {
                     utils.Auth.clear();
-                    new DangNhapJDialog((java.awt.Frame)getParent(), true).setVisible(true);
-                    dispose();
+                    System.exit(0);
                 }
             }
         });
+        }else{
+        menu1.addEventMenuSelected(new EventMenuSelected() {
+            @Override
+            public void selected(int index) {
+                if (index == 0) {
+                    setForm(home);
+                } 
+//                else if (index == 1) {
+//                    setForm(qlnv);
+//                } 
+//               else if (index == 2) {
+//                    setForm(qltt);
+//                } 
+                else if (index == 3) {
+                    setForm(qls);
+                } else if (index == 4) {
+                    setForm(tl);
+                } else if (index == 5){
+                    setForm(tg);
+                } else if(index == 7){
+                    setForm(xp);
+                }
+                else if (index == 8) {
+                    setForm(dmk);
+                }
+                else if (index == 10){
+                    setForm(hd);
+                } 
+                 else if (index == 12) {
+                    utils.Auth.clear();
+                    System.exit(0);
+                }
+            }
+        });
+        }
         //  set when system open start with home form
         setForm(new Form_Home());
     }

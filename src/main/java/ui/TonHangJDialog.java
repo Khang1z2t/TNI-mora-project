@@ -21,10 +21,10 @@ import utils.XDate;
  * @author NGUYEN THI NGUYET VY
  */
 public class TonHangJDialog extends javax.swing.JDialog {
-    DefaultTableModel tblModel;
-    DefaultComboBoxModel cbxModel;
-    int index = 0;
-    ArrayList <Sach> temp = new ArrayList<>();
+//    DefaultTableModel tblModel;
+//    DefaultComboBoxModel cbxModel;
+//    int index = 0;
+//    ArrayList <Sach> temp = new ArrayList<>();
     /**
      * Creates new form TonKhoJDialog
      */
@@ -32,9 +32,9 @@ public class TonHangJDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        initTable();
-        initComboBox();
-        DBFillToList();
+//        initTable();
+//        initComboBox();
+//        DBFillToList();
     }
 //    private void chooseCBX(){
 //        Sach sach = (Sach) cbxNgayton.getSelectedItem();
@@ -43,19 +43,19 @@ public class TonHangJDialog extends javax.swing.JDialog {
 //        txtSoLuong.setText(String.valueOf(sach.getSoluong()));
 //        txtDate.setText(XDate.toString(sach.getNgayton(), "dd-MM-yyyy"));
 //    }
-    private void initComboBox() {
-        cbxModel = new DefaultComboBoxModel();
-        cbxModel.removeAllElements();
-        List<Sach> lst = new SachDAO().SelectAll();
-        for (Sach sach : lst) {
-            cbxModel.addElement(sach);
-        }
-        cbxSach.setModel(cbxModel);
-    }
-        private void DBFillToList() {
-        SachDAO cdd = new SachDAO();
-        temp = (ArrayList<Sach>) cdd.SelectAll();
-    }
+//    private void initComboBox() {
+//        cbxModel = new DefaultComboBoxModel();
+//        cbxModel.removeAllElements();
+//        List<Sach> lst = new SachDAO().SelectAll();
+//        for (Sach sach : lst) {
+//            cbxModel.addElement(sach);
+//        }
+//        cbxSach.setModel(cbxModel);
+//    }
+//        private void DBFillToList() {
+//        SachDAO cdd = new SachDAO();
+//        temp = (ArrayList<Sach>) cdd.SelectAll();
+//    }
 //private void initCBXDates() {
 //    cbxModel = new DefaultComboBoxModel();
 //    
@@ -75,110 +75,110 @@ public class TonHangJDialog extends javax.swing.JDialog {
 //    }
 //    cbxDate.setModel(cbxModel);
 //}
-    
-    void showDetail(int index) {
-        Sach sach = (Sach) cbxSach.getSelectedItem();
-        txtNgayton.setText(XDate.toString(sach.getNgayton(), "dd-MM-yyyy"));
-        txtSoluong.setText(String.valueOf(sach.getSoluong()));
-        txtSoluong.requestFocus();
-    }
-    private void initTable() {
-        tblModel = new DefaultTableModel();
-        tblModel.setColumnIdentifiers(new String[]{
-            "STT",
-            "Mã sách",
-            "Tên sách",
-            "Số lượng",
-            "Ngày tồn",
-        });
-        tblTon.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        tblTon.getTableHeader().setOpaque(false);
-        tblTon.getTableHeader().setBackground(new Color(240, 183, 28));
-        tblTon.getTableHeader().setForeground(new Color(255, 255, 255));
-        tblTon.setRowHeight(25);
-        tblTon.setModel(tblModel);
-    }
-
-public void addHang() {
-    
-        try {
-            // Lấy dữ liệu từ các trường nhập liệu
-            Sach sach =  (Sach) cbxSach.getSelectedItem();
-            int soLuong = 0;
-            sach.setSoluong(soLuong);
-            // Thêm hàng vào bảng
-            temp.add(sach);
-            new SachDAO().update(sach);
-            fillToTable();
-        } catch (NumberFormatException e) {
-            utils.DialogHelper.alert(this, "Số lượng không hợp lệ!");
-        }
-    }
-
-public void removeHang() {
-        DefaultTableModel model = (DefaultTableModel) tblTon.getModel();
-        int selectedRow = tblTon.getSelectedRow();
-        if (selectedRow != -1) {
-            if (utils.DialogHelper.confirm(this, "Bạn muốn xóa mục hàng đã được chọn?")) {
-                for (int i = 0; i < model.getRowCount(); i++) {
-                    String masach = (String) tblTon.getValueAt(i,0);
-                    Sach sach = new SachDAO().selectById(masach);
-                    sach.setSoluong(0);
-                    new SachDAO().update(sach);
-//                    model.setValueAt(i + 1, i, 0);
-                }
-                temp.remove(selectedRow);
-                model.removeRow(selectedRow);
-            }
-        } else {
-            utils.DialogHelper.alert(this, "Vui lòng chọn một hàng để xóa.");
-        }
-    }
-
-    public void fillToTable() {
-        DefaultTableModel model = (DefaultTableModel) tblTon.getModel();
-        model.setRowCount(0);
-            try {
-                   for(int i=0;i<temp.size();i++){
-                       Object[] row = {
-                           i+1,
-                           temp.get(i).getMaSach(),
-                           temp.get(i).getTenSach(),
-                           temp.get(i).getSoluong(),
-                           XDate.toString(temp.get(i).getNgayton(),"dd-MM-yyyy"),
-                       };
-                       model.addRow(row);
-                   }
-            } catch (Exception e) {
-        }
-    }
-    public void updateSoLuong() {
-        try {
-            Sach sachh = (Sach) cbxSach.getSelectedItem();
-            for (int i = 0; i < tblTon.getRowCount(); i++) {
-                String ma = (String) tblTon.getValueAt(i, 1);
-                if(ma.equalsIgnoreCase(sachh.getMaSach())){
-
-                    // Sử dụng ArrayList để chứa kết quả từ selectById
-                    Sach sach = new SachDAO().selectById(ma);
-
-                    // Kiểm tra xem danh sách có phần tử không trước khi thực hiện các thao tác
-                    if (sach != null) {
-                        sach.setSoluong(Integer.parseInt(String.valueOf(tblTon.getValueAt(i, 3))));
-                        new SachDAO().updateSL(sach);
-                        fillToTable();
-                    }
-                }else {
-                    // Xử lý khi không tìm thấy đối tượng với mã tương ứng
-                    System.out.println("Không tìm thấy đối tượng với mã: " + ma);
-                }
-                
-            }
-            utils.DialogHelper.alert(this, "Cập nhật thành công!");
-        } catch (NumberFormatException e) {
-            utils.DialogHelper.alert(this, "Số lượng không hợp lệ!");
-        }
-    }
+//    
+//    void showDetail(int index) {
+//        Sach sach = (Sach) cbxSach.getSelectedItem();
+//        txtNgayton.setText(XDate.toString(sach.getNgayton(), "dd-MM-yyyy"));
+//        txtSoluong.setText(String.valueOf(sach.getSoluong()));
+//        txtSoluong.requestFocus();
+//    }
+//    private void initTable() {
+//        tblModel = new DefaultTableModel();
+//        tblModel.setColumnIdentifiers(new String[]{
+//            "STT",
+//            "Mã sách",
+//            "Tên sách",
+//            "Số lượng",
+//            "Ngày tồn",
+//        });
+//        tblTon.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        tblTon.getTableHeader().setOpaque(false);
+//        tblTon.getTableHeader().setBackground(new Color(240, 183, 28));
+//        tblTon.getTableHeader().setForeground(new Color(255, 255, 255));
+//        tblTon.setRowHeight(25);
+//        tblTon.setModel(tblModel);
+//    }
+//
+//public void addHang() {
+//    
+//        try {
+//            // Lấy dữ liệu từ các trường nhập liệu
+//            Sach sach =  (Sach) cbxSach.getSelectedItem();
+//            int soLuong = 0;
+//            sach.setSoluong(soLuong);
+//            // Thêm hàng vào bảng
+//            temp.add(sach);
+//            new SachDAO().update(sach);
+//            fillToTable();
+//        } catch (NumberFormatException e) {
+//            utils.DialogHelper.alert(this, "Số lượng không hợp lệ!");
+//        }
+//    }
+//
+//public void removeHang() {
+//        DefaultTableModel model = (DefaultTableModel) tblTon.getModel();
+//        int selectedRow = tblTon.getSelectedRow();
+//        if (selectedRow != -1) {
+//            if (utils.DialogHelper.confirm(this, "Bạn muốn xóa mục hàng đã được chọn?")) {
+//                for (int i = 0; i < model.getRowCount(); i++) {
+//                    String masach = (String) tblTon.getValueAt(i,0);
+//                    Sach sach = new SachDAO().selectById(masach);
+//                    sach.setSoluong(0);
+//                    new SachDAO().update(sach);
+////                    model.setValueAt(i + 1, i, 0);
+//                }
+//                temp.remove(selectedRow);
+//                model.removeRow(selectedRow);
+//            }
+//        } else {
+//            utils.DialogHelper.alert(this, "Vui lòng chọn một hàng để xóa.");
+//        }
+//    }
+//
+//    public void fillToTable() {
+//        DefaultTableModel model = (DefaultTableModel) tblTon.getModel();
+//        model.setRowCount(0);
+//            try {
+//                   for(int i=0;i<temp.size();i++){
+//                       Object[] row = {
+//                           i+1,
+//                           temp.get(i).getMaSach(),
+//                           temp.get(i).getTenSach(),
+//                           temp.get(i).getSoluong(),
+//                           XDate.toString(temp.get(i).getNgayton(),"dd-MM-yyyy"),
+//                       };
+//                       model.addRow(row);
+//                   }
+//            } catch (Exception e) {
+//        }
+//    }
+//    public void updateSoLuong() {
+//        try {
+//            Sach sachh = (Sach) cbxSach.getSelectedItem();
+//            for (int i = 0; i < tblTon.getRowCount(); i++) {
+//                String ma = (String) tblTon.getValueAt(i, 1);
+//                if(ma.equalsIgnoreCase(sachh.getMaSach())){
+//
+//                    // Sử dụng ArrayList để chứa kết quả từ selectById
+//                    Sach sach = new SachDAO().selectById(ma);
+//
+//                    // Kiểm tra xem danh sách có phần tử không trước khi thực hiện các thao tác
+//                    if (sach != null) {
+//                        sach.setSoluong(Integer.parseInt(String.valueOf(tblTon.getValueAt(i, 3))));
+//                        new SachDAO().updateSL(sach);
+//                        fillToTable();
+//                    }
+//                }else {
+//                    // Xử lý khi không tìm thấy đối tượng với mã tương ứng
+//                    System.out.println("Không tìm thấy đối tượng với mã: " + ma);
+//                }
+//                
+//            }
+//            utils.DialogHelper.alert(this, "Cập nhật thành công!");
+//        } catch (NumberFormatException e) {
+//            utils.DialogHelper.alert(this, "Số lượng không hợp lệ!");
+//        }
+//    }
 
    /**
      * This method is called from within the constructor to initialize the form.
@@ -392,17 +392,17 @@ public void removeHang() {
 
     private void cbxSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSachActionPerformed
         // TODO add your handling code here:
-        DBFillToList();
+//        DBFillToList();
     }//GEN-LAST:event_cbxSachActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        removeHang();
+//        removeHang();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        updateSoLuong();
+//        updateSoLuong();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**

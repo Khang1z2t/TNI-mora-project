@@ -84,7 +84,7 @@ public class TheLoaiForm extends javax.swing.JPanel {
     void showDetail(int index) {
         txtMaTheLoai.setEditable(false);
         TheLoai tl = listTL.get(index);
-        txtMaTheLoai.setText(tl.getTenTheLoai());
+        txtMaTheLoai.setText(tl.getMaTheLoai());
         txtTenTheLoai.setText(tl.getTenTheLoai());
     }
     private void fillToTable(List<TheLoai> lst) {

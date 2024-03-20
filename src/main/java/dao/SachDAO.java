@@ -23,7 +23,7 @@ import utils.XDate;
  */
 public class SachDAO {
    public void insert(Sach model){
-       String sql="Insert into sach values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+       String sql="Insert into sach values(?,?,?,?,?,?,?,?,?,?,?)";
        utils.JDBCHelper.update(sql, 
                model.getMaSach(),
                model.getTenSach(),
@@ -35,12 +35,10 @@ public class SachDAO {
                model.getGhiChu(),
                 model.getHinh(),
                 model.getMaTheLoai(),
-                model.getMaTacGia(),
-                model.getSoluong(),
-                model.getNgayton());
+                model.getMaTacGia());
    }
    public void update(Sach model){
-        String sql="UPDATE sach SET tensach = ?, namXB = ?, nhaXB = ?, tentacgia = ?,theloai =?, GhiChu = ?,hinh = ?,matheloai =?,matacgia=? ,soluong=?,ngayton = getdate() WHERE masach = ?";
+        String sql="UPDATE sach SET tensach = ?, namXB = ?, nhaXB = ?, tentacgia = ?,theloai =?, GhiChu = ?,hinh = ?,matheloai =?,matacgia=? WHERE masach = ?";
         utils.JDBCHelper.update(sql, 
                 model.getTenSach(), 
                 model.getNamXB(), 
@@ -51,19 +49,17 @@ public class SachDAO {
                 model.getHinh(),
                 model.getMaTheLoai(),
                 model.getMaTacGia(),
-                model.getSoluong(),
-                model.getNgayton(),
                 //
                 model.getMaSach());
     }
     //Update so luong
-   public void updateSL(Sach model){
-       String sql = "update sach set soluong = ?,ngayton = getdate() where masach = ?";
-       utils.JDBCHelper.update(sql, 
-               model.getNgayton(),
-               model.getSoluong(),
-               model.getMaSach());
-   }
+//   public void updateSL(Sach model){
+//       String sql = "update sach set soluong = ?,ngayton = getdate() where masach = ?";
+//       utils.JDBCHelper.update(sql, 
+//               model.getNgayton(),
+//               model.getSoluong(),
+//               model.getMaSach());
+//   }
     public void delete(String MaNV){
         String sql="DELETE FROM sach WHERE masach = ?";
         utils.JDBCHelper.update(sql, MaNV);
@@ -94,8 +90,6 @@ public class SachDAO {
                     st.setHinh(rs.getString(9));
                     st.setMaTheLoai(rs.getString(10));
                     st.setMaTacGia(rs.getString(11));
-                    st.setSoluong(rs.getInt(12));
-                    st.setNgayton(rs.getDate(13));
                     listS.add(st);
                 }
             } finally {
@@ -110,28 +104,28 @@ public class SachDAO {
         String sql = "SELECT * FROM sach";
         return SelectBySQL(sql);
     }
-           public List<String> getNgayton() {
-            String sql = "SELECT DISTINCT ngayton FROM sach ORDER BY ngayton DESC";
-            List<String> list = new ArrayList<>();
-            try {
-                ResultSet rs = null;
-                try {
-                    rs = utils.JDBCHelper.query(sql);
-                    while (rs.next()) {
-                        Date ngayton = rs.getDate("ngayton");
-                        list.add(XDate.toString(ngayton, "dd-MM-yyyy"));
-                    }
-                } finally {
-                    if (rs != null) {
-                        rs.getStatement().getConnection().close();
-                    }
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                throw new RuntimeException(ex);
-            }
-            return list;
-        }
+//           public List<String> getNgayton() {
+//            String sql = "SELECT DISTINCT ngayton FROM sach ORDER BY ngayton DESC";
+//            List<String> list = new ArrayList<>();
+//            try {
+//                ResultSet rs = null;
+//                try {
+//                    rs = utils.JDBCHelper.query(sql);
+//                    while (rs.next()) {
+//                        Date ngayton = rs.getDate("ngayton");
+//                        list.add(XDate.toString(ngayton, "dd-MM-yyyy"));
+//                    }
+//                } finally {
+//                    if (rs != null) {
+//                        rs.getStatement().getConnection().close();
+//                    }
+//                }
+//            } catch (SQLException ex) {
+//                ex.printStackTrace();
+//                throw new RuntimeException(ex);
+//            }
+//            return list;
+//        }
     public List<Sach> SelectByKeyword(String keyword) {
         String sql = "SELECT * FROM sach WHERE tensach LIKE ?";
         return SelectBySQL(sql, "%" + keyword + "%");
@@ -140,56 +134,56 @@ public class SachDAO {
         String sql = "SELECT * FROM Sach WHERE theloai = ?";
         return SelectBySQL(sql, Matl);
     }
-    private List<Object[]> getListOfArray(String sql, String[] cols, Object...args){
-        try {
-            List<Object[]> list=new ArrayList<>();
-            ResultSet rs = JDBCHelper.query(sql, args);
-            while(rs.next()){
-                Object[] vals = new Object[cols.length];
-                for(int i=0; i<cols.length; i++){
-                    vals[i] = rs.getObject(cols[i]);
-                }
-                list.add(vals);
-            }
-            rs.getStatement().getConnection().close();
-            return list;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-public List<Object[]> saveHangTon(List<Sach> sachList) {
-    String sql = "{CALL TenProc (?, ?, ?, ?)}";
-    String[] cols = {"masach", "tensach", "soluong", "ngayton"};
-
-    List<Object[]> resultList = new ArrayList<>();
-
-    try {
-        for (Sach sach : sachList) {
-            ResultSet rs = JDBCHelper.query(sql, sach.getMaSach(), sach.getTenSach(), sach.getSoluong(), new java.sql.Date(sach.getNgayton().getTime()));
-
-            while (rs.next()) {
-                Object[] vals = new Object[cols.length];
-                for (int i = 0; i < cols.length; i++) {
-                    vals[i] = rs.getObject(cols[i]);
-                }
-                resultList.add(vals);
-            }
-
-            rs.getStatement().getConnection().close();
-        }
-    } catch (Exception e) {
-        throw new RuntimeException(e);
-    }
-
-    return resultList;
-}
-        public List<Object[]> getHangTon(Date ngayton) {
-            String sql = "{CALL sp_HangTon (?)}";
-            String[] cols = {"masach", "tensach", "soluong"};
-            return this.getListOfArray(sql, cols, ngayton);
-        }
-        public List<Sach> getHang(Date ngayton){
-            String sql = "select masach,tensach,soluong from sach where ngayton = ?";
-            return SelectBySQL(sql, ngayton);
-        }
+//    private List<Object[]> getListOfArray(String sql, String[] cols, Object...args){
+//        try {
+//            List<Object[]> list=new ArrayList<>();
+//            ResultSet rs = JDBCHelper.query(sql, args);
+//            while(rs.next()){
+//                Object[] vals = new Object[cols.length];
+//                for(int i=0; i<cols.length; i++){
+//                    vals[i] = rs.getObject(cols[i]);
+//                }
+//                list.add(vals);
+//            }
+//            rs.getStatement().getConnection().close();
+//            return list;
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//public List<Object[]> saveHangTon(List<Sach> sachList) {
+//    String sql = "{CALL TenProc (?, ?, ?, ?)}";
+//    String[] cols = {"masach", "tensach", "soluong", "ngayton"};
+//
+//    List<Object[]> resultList = new ArrayList<>();
+//
+//    try {
+//        for (Sach sach : sachList) {
+//            ResultSet rs = JDBCHelper.query(sql, sach.getMaSach(), sach.getTenSach(), sach.getSoluong(), new java.sql.Date(sach.getNgayton().getTime()));
+//
+//            while (rs.next()) {
+//                Object[] vals = new Object[cols.length];
+//                for (int i = 0; i < cols.length; i++) {
+//                    vals[i] = rs.getObject(cols[i]);
+//                }
+//                resultList.add(vals);
+//            }
+//
+//            rs.getStatement().getConnection().close();
+//        }
+//    } catch (Exception e) {
+//        throw new RuntimeException(e);
+//    }
+//
+//    return resultList;
+//}
+//        public List<Object[]> getHangTon(Date ngayton) {
+//            String sql = "{CALL sp_HangTon (?)}";
+//            String[] cols = {"masach", "tensach", "soluong"};
+//            return this.getListOfArray(sql, cols, ngayton);
+//        }
+//        public List<Sach> getHang(Date ngayton){
+//            String sql = "select masach,tensach,soluong from sach where ngayton = ?";
+//            return SelectBySQL(sql, ngayton);
+//        }
 }

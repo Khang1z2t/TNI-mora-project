@@ -17,9 +17,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import utils.XImage;
 
@@ -42,7 +46,6 @@ public class SachForm extends javax.swing.JPanel {
         setSelected(0);
         initComboBoxTG();
         initComboBoxTL();
-        
     }
     private void initTable() {
         tblModel = new DefaultTableModel();
@@ -231,7 +234,7 @@ public class SachForm extends javax.swing.JPanel {
         }
     }
 
-    private void deleteNhanVien(Sach sa) {
+    private void delete(Sach sa) {
         SachDAO sad = new SachDAO();
         sad.delete(sa.getMaSach());
         list.remove(sa);
@@ -508,10 +511,9 @@ public class SachForm extends javax.swing.JPanel {
         try {
             for (Sach sa : list) {
                 if (txtMasach.getText().equalsIgnoreCase(sa.getMaSach())) {
-
                     boolean choose = utils.DialogHelper.confirm(this, "Bạn có chắc chắn muốn xóa sách " + sa.getTenSach() + "' không?");
                     if (choose) {
-                        deleteNhanVien(sa);
+                        delete(sa);
                         setSelected(0);
                         utils.DialogHelper.alert(this, "Xóa thông tin sách thành công!");
                         if (list.isEmpty()) {
