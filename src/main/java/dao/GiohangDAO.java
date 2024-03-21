@@ -16,30 +16,31 @@ import java.util.List;
  */
 public class GiohangDAO {
        public void insert(Giohang model){
-       String sql="Insert into sach values(?,?,?,?,?,?)";
+       String sql="Insert into giohang values(?,?,?,?)";
        utils.JDBCHelper.update(sql, 
-               model.getGiohang(),
-               model.getMasach(),
                model.getTensach(),    
                model.getGia(),
                model.getSoluong(),
                model.getManv());
    }
    public void update(Giohang model){
-        String sql="UPDATE sach SET soluong = ? WHERE giohang = ?";
+        String sql="UPDATE giohang SET soluong = ? WHERE magiohang = ?";
         utils.JDBCHelper.update(sql, 
                 model.getSoluong(),
                 //
-                model.getGiohang());
+                model.getMagiohang());
     }
-    public void delete(String MaNV){
-        String sql="DELETE FROM giohang WHERE giohang = ?";
-        utils.JDBCHelper.update(sql, MaNV);
+    public void delete(int magiohang){
+        String sql="DELETE FROM giohang WHERE magiohang = ?";
+        utils.JDBCHelper.update(sql, magiohang);
     }
-    
-    public Giohang selectById(String masach){
-        String sql = "SELECT * FROM Giohang WHERE giohang = ?";
-        List<Giohang> list = this.SelectBySQL(sql, masach);
+    public void reset(){
+        String sql="delete from giohang";
+        utils.JDBCHelper.update(sql);
+    }
+    public Giohang selectById(int magiohang){
+        String sql = "SELECT * FROM Giohang WHERE magiohang = ?";
+        List<Giohang> list = this.SelectBySQL(sql, magiohang);
         return list.size() > 0 ? list.get(0) : null;
     }
 
@@ -51,12 +52,11 @@ public class GiohangDAO {
                 rs = utils.JDBCHelper.query(sql, args);
                 while (rs.next()) {
                     Giohang st = new Giohang();
-                    st.setGiohang(rs.getInt(1));
-                    st.setMasach(rs.getString(2));
-                    st.setTensach(rs.getString(3));
-                    st.setGia(rs.getInt(4));
-                    st.setSoluong(rs.getInt(5));
-                    st.setManv(rs.getString(6));
+                    st.setMagiohang(rs.getInt(1));
+                    st.setTensach(rs.getString(2));
+                    st.setGia(rs.getInt(3));
+                    st.setSoluong(rs.getInt(4));
+                    st.setManv(rs.getString(5));
                     listS.add(st);
                 }
             } finally {

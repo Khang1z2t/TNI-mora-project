@@ -10,8 +10,7 @@ package entities;
  * @author NGUYEN THI NGUYET VY
  */
 public class Giohang {
-    private int giohang;
-    private String masach;
+    private int magiohang;
     private String tensach;
     private int gia;
     private int soluong;
@@ -20,29 +19,20 @@ public class Giohang {
     public Giohang() {
     }
 
-    public Giohang(int giohang, String masach, String tensach, int gia, int soluong, String manv) {
-        this.giohang = giohang;
-        this.masach = masach;
+    public Giohang(int magiohang, String tensach, int gia, int soluong, String manv) {
+        this.magiohang = magiohang;
         this.tensach = tensach;
         this.gia = gia;
         this.soluong = soluong;
         this.manv = manv;
     }
 
-    public int getGiohang() {
-        return giohang;
+    public int getMagiohang() {
+        return magiohang;
     }
 
-    public void setGiohang(int giohang) {
-        this.giohang = giohang;
-    }
-
-    public String getMasach() {
-        return masach;
-    }
-
-    public void setMasach(String masach) {
-        this.masach = masach;
+    public void setMagiohang(int magiohang) {
+        this.magiohang = magiohang;
     }
 
     public String getTensach() {
@@ -76,5 +66,5 @@ public class Giohang {
     public void setManv(String manv) {
         this.manv = manv;
     }
-
+    
 }
