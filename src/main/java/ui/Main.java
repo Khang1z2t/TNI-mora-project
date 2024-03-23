@@ -13,6 +13,7 @@ import form.SachForm;
 import form.TacGiaForm;
 import java.awt.Color;
 import javax.swing.JComponent;
+import javax.swing.UIManager;
 
 /**
  *
@@ -69,16 +70,14 @@ public class Main extends javax.swing.JFrame {
                     setForm(tl);
                 } else if (index == 5){
                     setForm(tg);
-                } else if(index == 7){
-                    setForm(xp);
                 }
-                else if (index == 8) {
+                else if (index == 7) {
                     setForm(dmk);
                 }
-                else if (index == 10){
+                else if (index == 9){
                     setForm(hd);
                 } 
-                 else if (index == 12) {
+                 else if (index == 10) {
                     utils.Auth.clear();
                     System.exit(0);
                 }
@@ -103,16 +102,14 @@ public class Main extends javax.swing.JFrame {
                     setForm(tl);
                 } else if (index == 5){
                     setForm(tg);
-                } else if(index == 7){
-                    setForm(xp);
                 }
-                else if (index == 8) {
+                else if (index == 7) {
                     setForm(dmk);
                 }
-                else if (index == 10){
+                else if (index == 9){
                     setForm(hd);
                 } 
-                 else if (index == 12) {
+                 else if (index == 10) {
                     utils.Auth.clear();
                     System.exit(0);
                 }

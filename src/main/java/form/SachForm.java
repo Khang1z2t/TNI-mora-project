@@ -17,13 +17,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import utils.XImage;
 
@@ -46,6 +43,7 @@ public class SachForm extends javax.swing.JPanel {
         setSelected(0);
         initComboBoxTG();
         initComboBoxTL();
+        
     }
     private void initTable() {
         tblModel = new DefaultTableModel();
