@@ -38,14 +38,13 @@ CREATE TABLE Sach (
 	hinh varchar(50) null,
 	matheloai nvarchar(20) null,
 	matacgia nvarchar(20) null,
-	soluong int null,
-	ngayton date default getdate() not null
 );
+
 -- Tạo bảng đọc giả
 CREATE TABLE DocGia (
-    MaDocGia int PRIMARY KEY,
+    MaDocGia nvarchar(20) PRIMARY KEY,
     TenDocGia nvarchar(100) NULL,
-	mahoadon int null,
+	mahoadon nvarchar(20) null,
 	masach nvarchar(20) null,
     SDT nvarchar(13) NULL
 );
@@ -54,16 +53,18 @@ CREATE TABLE DocGia (
 CREATE TABLE HoaDon (
     MaHoaDon int identity(1,1) PRIMARY KEY,
 	masach nvarchar(20) null,
-    ngaytao date default getdate(),
-	madocgia int null,	
-    MaNV varchar(20) NULL
+    ngaytao date NULL,
+	madocgia nvarchar(20) null,
+    MaNV nvarchar(20) NULL
 );
+
 -- Tạo bảng chi tiết hóa đơn bán sách
 CREATE TABLE ChiTietHoaDon (
     MaHoaDon int primary key,
     SoLuong int,
     gia money
 );
+
 -- Tạo bảng kho sách
 CREATE TABLE KhoSach (
 	makho nvarchar(100) primary key,
@@ -83,6 +84,16 @@ create table qlTheLoai(
 	matheloai nvarchar(20) primary key,
 	tentheloai nvarchar(100) null
 );
+
+create table giohang(
+    magiohang INT PRIMARY KEY IDENTITY(1,1),
+	tensach nvarchar(100) null,
+	gia money null,
+	soluong int null,
+	maNV varchar(20) null
+);
+delete from giohang
+select * from giohang
 /*
 drop table khosach
 drop table ChiTietHoaDon
@@ -108,21 +119,20 @@ add constraint FK_khosach_NhanVien foreign key (maNV) references nhanvien(maNV)
 alter table ChiTietHoaDon
 add constraint FK_chitiethoadon_hoadon foreign key (mahoadon) references hoadon(mahoadon)
 
+alter table giohang
+add constraint FK_giohang_sach foreign key (masach) references sach(masach)
+
 alter table docgia
 add constraint FK_docgia_sach foreign key (masach) references sach(masach)
 
 alter table hoadon
 add constraint FK_hoadon_sach foreign key (masach) references sach(masach)
-
-alter table hoadon
-add constraint FK_hoadon_NhanVien foreign key (manv) references NhanVien(maNV)
 -- Thêm dữ liệu
 insert into NHANVIEN(MANV,MATKHAU,HOTEN,EMAIL,VAITRO) values 
 ('ADMIN','ADMIN',N'Nguyen Dinh Tuan','tuanndps36835@fpt.edu.vn',2)
 INSERT INTO NGUOIDUNG VALUES 
 ('ADMIN', N'Nguyen Dinh Tuan', 0, '08-16-2004', '0783955138', 'tuanndps36835@fpt.edu.vn', 'ADMIN', GETDATE())
-INSERT INTO NGUOIDUNG VALUES 
-('NV1', N'Trần Đăng Khoa', 0, '08-20-2004', '079654321', 'tyngominer@gmail.com', 'NV2', GETDATE())
+
 select * from sach
 
 -- Thêm dữ liệu vào bảng qlTheLoai
@@ -211,3 +221,23 @@ set soluong = null ,ngayton = getdate()
 DECLARE @NgayTon DATE = '2024-02-24';
 EXEC sp_HangTon @ngayton = @NgayTon;
 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_TongTienGioHang] 
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    DECLARE @TongTien money;
+
+    SELECT @TongTien = SUM(TongTienMoiMon)
+    FROM (
+        SELECT (gia * soluong) AS TongTienMoiMon
+        FROM giohang
+    ) AS TongTienMoiMonChoMoiMon;
+
+    SELECT @TongTien AS TongTienGioHang;
+END
+GO

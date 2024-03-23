@@ -115,8 +115,9 @@ public class HoaDonForm extends javax.swing.JPanel {
             boolean ex =false;
             for(Giohang it : list){
                 if(it.getTensach().equalsIgnoreCase(gh.getTensach())){
-                    it.setSoluong(it.getSoluong()+gh.getSoluong());
-                    ghd.update(gh);
+                    int newSL = it.getSoluong() + gh.getSoluong() ;
+                    it.setSoluong(newSL);
+                    ghd.update(it);
                     ex=true;
                     break;
                     //end
