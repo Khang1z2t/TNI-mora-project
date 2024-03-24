@@ -244,6 +244,7 @@ public class NhanVienForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grpRole = new javax.swing.ButtonGroup();
         panelBorder1 = new swing.PanelBorder();
         tabNV = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -299,10 +300,12 @@ public class NhanVienForm extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(153, 153, 153));
         jLabel6.setText("VAI TRÒ");
 
+        grpRole.add(rdoQuanLy);
         rdoQuanLy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rdoQuanLy.setForeground(new java.awt.Color(153, 153, 255));
         rdoQuanLy.setText("QUẢN LÝ");
 
+        grpRole.add(rdoNhanVien);
         rdoNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rdoNhanVien.setForeground(new java.awt.Color(153, 153, 255));
         rdoNhanVien.setText("Thủ thư");
@@ -632,6 +635,7 @@ public class NhanVienForm extends javax.swing.JPanel {
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.ButtonGroup grpRole;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
