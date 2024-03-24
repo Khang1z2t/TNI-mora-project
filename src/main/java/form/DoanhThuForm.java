@@ -5,17 +5,36 @@
  */
 package form;
 
+import chart.ModelChart;
+import java.awt.Color;
+
 /**
  *
  * @author NGUYEN THI NGUYET VY
  */
-public class FormTemplate extends javax.swing.JPanel {
+public class DoanhThuForm extends javax.swing.JPanel {
 
     /**
      * Creates new form FormTemplate
      */
-    public FormTemplate() {
+    public DoanhThuForm() {
         initComponents();
+        chart.addLegend("Chi phí($)", new Color(245, 189, 135));
+        chart.addLegend("Lợi nhuận($)", new Color(135, 189, 245));
+        chart.addLegend("Tỉ lệ lợi nhuận(%)", new Color(189, 135, 245));
+        chart.addLegend("Lượng bán cao nhất(Bản)", new Color(139, 229, 222));
+        chart.addData(new ModelChart("Tháng 1", new double[]{500, 700, 60, 780}));
+        chart.addData(new ModelChart("Tháng 2", new double[]{550, 750, 65, 800}));
+        chart.addData(new ModelChart("Tháng 3", new double[]{600, 700, 66.67, 920}));
+        chart.addData(new ModelChart("Tháng 4", new double[]{480, 750, 62.5, 520 }));
+        chart.addData(new ModelChart("Tháng 5", new double[]{350, 540, 63.04, 210}));
+        chart.addData(new ModelChart("Tháng 6", new double[]{190, 280, 64.29, 220}));
+        chart.addData(new ModelChart("Tháng 7", new double[]{190, 280, 65.71, 230}));
+        chart.addData(new ModelChart("Tháng 8", new double[]{190, 280, 67.01, 240}));
+        chart.addData(new ModelChart("Tháng 9", new double[]{190, 280, 68.18, 250}));
+        chart.addData(new ModelChart("Tháng 10", new double[]{190, 280, 70, 260}));
+        chart.addData(new ModelChart("Tháng 11", new double[]{190, 280, 71.05, 270}));
+        chart.addData(new ModelChart("Tháng 12", new double[]{190, 280, 71.43, 280}));
     }
 
     /**
@@ -28,6 +47,7 @@ public class FormTemplate extends javax.swing.JPanel {
     private void initComponents() {
 
         panelBorder1 = new swing.PanelBorder();
+        chart = new component.Chart();
 
         setOpaque(false);
 
@@ -37,11 +57,17 @@ public class FormTemplate extends javax.swing.JPanel {
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
+            .addGroup(panelBorder1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 497, Short.MAX_VALUE)
+            .addGroup(panelBorder1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -58,6 +84,7 @@ public class FormTemplate extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private component.Chart chart;
     private swing.PanelBorder panelBorder1;
     // End of variables declaration//GEN-END:variables
 }
