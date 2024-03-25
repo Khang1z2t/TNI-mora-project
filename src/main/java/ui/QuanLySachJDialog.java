@@ -200,7 +200,6 @@ public class QuanLySachJDialog extends javax.swing.JDialog {
         sa.setTentacgia(tentg);
         sa.setTheloai(theloai);
         sa.setGhiChu(ghichu);
-        sa.setNgayton(ngayton);
         sa.setHinh(lblHinh.getToolTipText());
         return sa;
     }

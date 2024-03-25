@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package ui;
+import dao.LuongDAO;
+import entities.Luong;
 import form.*;
 import event.EventMenuSelected;
 import form.Form_Home;
@@ -12,6 +14,7 @@ import form.NhanVienForm;
 import form.SachForm;
 import form.TacGiaForm;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JComponent;
 
 /**
@@ -23,6 +26,7 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    ArrayList<Luong> ist = new ArrayList<>();
     //sap xep theo tt form
     private Form_Home home;
     private NhanVienForm qlnv;
@@ -32,6 +36,7 @@ public class Main extends javax.swing.JFrame {
     private TheLoaiForm tl;
     private DoiMKForm dmk;
     private DoanhThuForm dt;
+    private LuongForm lg;
     private HoaDonForm hd;
     //ton hang
     //doanh thu
@@ -52,6 +57,7 @@ public class Main extends javax.swing.JFrame {
         dmk = new DoiMKForm();
         dt = new DoanhThuForm();
         hd = new HoaDonForm();
+        lg = new LuongForm();
         
         menu1.initMoving(Main.this);
         if(utils.Auth.isManager()){
@@ -79,8 +85,10 @@ public class Main extends javax.swing.JFrame {
                 }
                 else if (index == 9){
                     setForm(hd);
+                }else if (index == 10){
+                    setForm(lg);
                 } 
-                 else if (index == 10) {
+                 else if (index == 11) {
                     utils.Auth.clear();
                     System.exit(0);
                 }
@@ -112,7 +120,7 @@ public class Main extends javax.swing.JFrame {
                 else if (index == 9){
                     setForm(hd);
                 } 
-                 else if (index == 10) {
+                 else if (index == 11) {
                     utils.Auth.clear();
                     System.exit(0);
                 }
@@ -121,6 +129,9 @@ public class Main extends javax.swing.JFrame {
         }
         //  set when system open start with home form
         setForm(new Form_Home());
+        
+        //Day data luong vao list
+        
     }
 
         private void setForm(JComponent com) {
@@ -129,6 +140,7 @@ public class Main extends javax.swing.JFrame {
         mainPanel.repaint();
         mainPanel.revalidate();
     }
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -27,19 +27,19 @@ public class TacGiaDAO {
                 model.getTentg(), 
                 model.getMatg());
                 }
-    public void delete(TacGia tl){
+    public void delete(TacGia tg){
         String sql="DELETE FROM qltacgia WHERE matacgia = ?";
-        utils.JDBCHelper.update(sql, tl);
+        utils.JDBCHelper.update(sql, tg);
     }
     
-    public TacGia selectById(String matl){
+    public TacGia selectById(String matg){
         String sql = "SELECT * FROM qltacgia WHERE matacgia = ?";
-        List<TacGia> list = this.SelectBySQL(sql, matl);
+        List<TacGia> list = this.SelectBySQL(sql, matg);
         return list.size() > 0 ? list.get(0) : null;
     }
-    public TacGia selectByName(TacGia tentl){
+    public TacGia selectByName(TacGia tentg){
         String sql = "SELECT * FROM qltacgia WHERE tentacgia = ?";
-        List<TacGia> list = this.SelectBySQL(sql, tentl);
+        List<TacGia> list = this.SelectBySQL(sql, tentg);
         return list.size() > 0 ? list.get(0) : null;
     }
 

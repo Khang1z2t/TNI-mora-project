@@ -303,6 +303,11 @@ public class TacGiaForm extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblList);
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
@@ -420,6 +425,18 @@ public class TacGiaForm extends javax.swing.JPanel {
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
         last();        // TODO add your handling code here:
     }//GEN-LAST:event_btnLastActionPerformed
+
+    private void tblListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListMouseClicked
+
+        try {
+            index = tblList.getSelectedRow();
+            String ma = (String) tblList.getValueAt(index, 0);
+            TacGia tg = new TacGiaDAO().selectById(ma);
+            txtMaTheLoai.setText(tg.getMatg());
+            txtTenTheLoai.setText(tg.getTentg());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_tblListMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
