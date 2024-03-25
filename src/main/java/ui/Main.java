@@ -13,7 +13,6 @@ import form.SachForm;
 import form.TacGiaForm;
 import java.awt.Color;
 import javax.swing.JComponent;
-import javax.swing.UIManager;
 
 /**
  *
@@ -32,7 +31,7 @@ public class Main extends javax.swing.JFrame {
     private TacGiaForm tg;
     private TheLoaiForm tl;
     private DoiMKForm dmk;
-    private XuatPhieu xp;
+    private DoanhThuForm dt;
     private HoaDonForm hd;
     //ton hang
     //doanh thu
@@ -42,6 +41,7 @@ public class Main extends javax.swing.JFrame {
     public Main(int index) {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
+
         //khai bao form
         home = new Form_Home();
         qlnv = new NhanVienForm();
@@ -50,7 +50,7 @@ public class Main extends javax.swing.JFrame {
         tg = new TacGiaForm();
         tl = new TheLoaiForm();
         dmk = new DoiMKForm();
-        xp = new XuatPhieu();
+        dt = new DoanhThuForm();
         hd = new HoaDonForm();
         
         menu1.initMoving(Main.this);
@@ -73,6 +73,9 @@ public class Main extends javax.swing.JFrame {
                 }
                 else if (index == 7) {
                     setForm(dmk);
+                }
+                else if (index == 8){
+                    setForm(dt);
                 }
                 else if (index == 9){
                     setForm(hd);
@@ -142,6 +145,11 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         panelBorder1.setBackground(new java.awt.Color(231, 231, 231));
 
@@ -186,6 +194,11 @@ public class Main extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

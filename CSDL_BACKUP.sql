@@ -9,7 +9,7 @@ create table NhanVien(
 	EMAIL nvarchar(50) not null,
 	VAITRO BIT DEFAULT 0
 );
-
+select * from NhanVien
 -- Tạo bảng nhân viên
 CREATE TABLE NguoiDung(
 	MAND VARCHAR(7) PRIMARY KEY,

@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import swing.FileChooser;
 import utils.XImage;
 
 /**
@@ -573,9 +574,9 @@ public class SachForm extends javax.swing.JPanel {
 
     private void lblHinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhMouseClicked
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
+        FileChooser fileChooser = new FileChooser();
         int res = fileChooser.showOpenDialog(this);
-        if (res == JFileChooser.APPROVE_OPTION) {
+        if (res == FileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             XImage.save(selectedFile);
             ImageIcon icon = XImage.read(selectedFile.getName(), lblHinh.getWidth(), lblHinh.getHeight());
