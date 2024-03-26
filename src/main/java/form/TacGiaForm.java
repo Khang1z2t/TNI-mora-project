@@ -12,6 +12,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import ui.ScrollBar;
 
 /**
  *
@@ -29,6 +30,7 @@ public class TacGiaForm extends javax.swing.JPanel {
         initTable();
         setSelected(0);
         DBFillToList();
+        spTable.setVerticalScrollBar(new ScrollBar());
     }
     private void initTable() {
         tblModel = new DefaultTableModel();
@@ -186,7 +188,7 @@ public class TacGiaForm extends javax.swing.JPanel {
         btnPre = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        spTable = new javax.swing.JScrollPane();
         tblList = new swing.Table();
 
         setOpaque(false);
@@ -308,7 +310,7 @@ public class TacGiaForm extends javax.swing.JPanel {
                 tblListMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblList);
+        spTable.setViewportView(tblList);
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
@@ -334,7 +336,7 @@ public class TacGiaForm extends javax.swing.JPanel {
                                 .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         panelBorder1Layout.setVerticalGroup(
@@ -361,7 +363,7 @@ public class TacGiaForm extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -451,8 +453,8 @@ public class TacGiaForm extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private swing.PanelBorder panelBorder1;
+    private javax.swing.JScrollPane spTable;
     private swing.Table tblList;
     private javax.swing.JTextField txtMaTheLoai;
     private javax.swing.JTextField txtTenTheLoai;

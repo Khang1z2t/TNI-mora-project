@@ -25,9 +25,7 @@ CREATE TABLE NguoiDung(
 create table Luong(
 	cap varchar(10) primary key,
 	luong int null,
-	thang int null,
 );
-
 -- Default là 0 -> Thủ thư
 -- 1 là Quản lý
 

@@ -90,7 +90,9 @@ public class Main extends javax.swing.JFrame {
                 } 
                  else if (index == 11) {
                     utils.Auth.clear();
-                    System.exit(0);
+                    Main.this.dispose();
+                    new DangNhapJDialog(Main.this, true).setVisible(true);
+//                    System.exit(0);
                 }
             }
         });
@@ -122,7 +124,8 @@ public class Main extends javax.swing.JFrame {
                 } 
                  else if (index == 11) {
                     utils.Auth.clear();
-                    System.exit(0);
+                    Main.this.dispose();
+                    new DangNhapJDialog(Main.this, true).setVisible(true);
                 }
             }
         });
