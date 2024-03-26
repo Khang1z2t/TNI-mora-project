@@ -92,11 +92,11 @@ public class SachForm extends javax.swing.JPanel {
         txtNamXB.setText(String.valueOf(sa.getNamXB()));
         txtNhaXB.setText(sa.getNhaXB());
         txtGiasach.setText(String.valueOf(sa.getGia()));
-        TacGia selectedTacGia = (TacGia) cboTheLoai.getSelectedItem();
+        TacGia selectedTacGia = (TacGia) cboTacgia.getSelectedItem();
         TheLoai selectedTheLoai = (TheLoai) cboTheLoai.getSelectedItem();
         selectedTacGia.setTentg(sa.getTentacgia());
         selectedTheLoai.setTenTheLoai(sa.getTheloai());
-        cboTheLoai.setSelectedItem(selectedTacGia.getTentg());
+        cboTacgia.setSelectedItem(selectedTacGia.getTentg());
         cboTheLoai.setSelectedItem(selectedTheLoai.getTenTheLoai());
         txtGhiChu.setText(sa.getGhiChu());
         if (!sa.getHinh().equals("")) {
@@ -585,11 +585,11 @@ public class SachForm extends javax.swing.JPanel {
             txtNamXB.setText(String.valueOf(s.getNamXB()));
             txtGiasach.setText(String.valueOf(s.getGia()));
             txtGhiChu.setText(s.getGhiChu());
-            TacGia selectedTacGia = (TacGia) cboTheLoai.getSelectedItem();
+            TacGia selectedTacGia = (TacGia) cboTacgia.getSelectedItem();
             TheLoai selectedTheLoai = (TheLoai) cboTheLoai.getSelectedItem();
             selectedTacGia.setTentg(s.getTentacgia());
             selectedTheLoai.setTenTheLoai(s.getTheloai());
-            cboTheLoai.setSelectedItem(selectedTacGia.getTentg());
+            cboTacgia.setSelectedItem(selectedTacGia.getTentg());
             cboTheLoai.setSelectedItem(selectedTheLoai.getTenTheLoai());
             if (!s.getHinh().equals("")) {
                 lblHinh.setIcon(XImage.read(s.getHinh(), lblHinh.getWidth(), lblHinh.getHeight()));
