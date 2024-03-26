@@ -16,10 +16,16 @@ CREATE TABLE NguoiDung(
 	HOTEN NVARCHAR(50) NOT NULL,
 	GIOITINH BIT DEFAULT 1,
 	NGAYSINH DATE NOT NULL,
-	DIENTHOAI VARCHAR(13),
-	EMAIL VARCHAR(50),
+	DIENTHOAI VARCHAR(13) null,
+	cap varchar(10) null,
 	MANV VARCHAR(20) NOT NULL,
 	NGAYDK DATE DEFAULT GETDATE()
+);	
+
+create table Luong(
+	cap varchar(10) primary key,
+	luong int null,
+	thang int null,
 );
 
 -- Default là 0 -> Thủ thư
@@ -100,10 +106,13 @@ drop table ChiTietHoaDon
 drop table HoaDon
 drop table DocGia
 drop table sach*/
-
 ALTER TABLE NGUOIDUNG
 ADD CONSTRAINT FK_NGUOIDUNG_NHANVIEN FOREIGN KEY (MANV) REFERENCES NHANVIEN(MANV)
 -- Phai co Tac gia va the loai truoc moi co thong tin du lieu Tac gia va the loai
+
+alter table nguoidung
+add constraint FK_nguoidung_luong foreign key (cap) references luong(cap)
+
 alter table sach
 add constraint FK_Sach_qltacgia foreign key (matacgia) references qltacgia(matacgia)
 
@@ -131,10 +140,10 @@ add constraint FK_hoadon_sach foreign key (masach) references sach(masach)
 insert into NHANVIEN(MANV,MATKHAU,HOTEN,EMAIL,VAITRO) values 
 ('ADMIN','ADMIN',N'Nguyen Dinh Tuan','tuanndps36835@fpt.edu.vn',2)
 INSERT INTO NGUOIDUNG VALUES 
-('ADMIN', N'Nguyen Dinh Tuan', 0, '08-16-2004', '0783955138', 'tuanndps36835@fpt.edu.vn', 'ADMIN', GETDATE())
-
-select * from sach
-
+('ADMIN', N'Nguyen Dinh Tuan', 0, '08-16-2004', '0783955138','O1', 'ADMIN', GETDATE())
+insert into luong values
+('O1','5000000'),
+('O2','10000000')
 -- Thêm dữ liệu vào bảng qlTheLoai
 INSERT INTO qlTheLoai (matheloai, tentheloai) VALUES
 ('TL1', N'Trinh thám'),
@@ -241,3 +250,34 @@ BEGIN
     SELECT @TongTien AS TongTienGioHang;
 END
 GO
+/*****************************************************************************************/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_BangLuong]
+    @thang INT
+AS
+BEGIN
+    SELECT 
+        NV.MANV AS 'Mã NV',
+        NV.HOTEN AS 'Tên NV',
+        CASE 
+            WHEN NV.VAITRO = 1 THEN N'Quản lý'
+            WHEN NV.VAITRO = 2 THEN N'Nhân viên'
+            ELSE 'Khác'
+        END AS 'Vai Trò',
+        ND.cap AS 'Cấp',
+        L.luong AS 'Lương'
+    FROM 
+        NhanVien NV
+    INNER JOIN 
+        NguoiDung ND ON NV.MANV = ND.MANV
+    INNER JOIN 
+        Luong L ON ND.cap = L.cap
+    WHERE 
+        MONTH(ND.NGAYDK) = @thang
+END;
+
+/*****************************************************************************************/
+SELECT DISTINCT MONTH(NGAYDK) MONTH FROM NguoiDung ORDER BY MONTH DESC

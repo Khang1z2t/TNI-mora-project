@@ -496,6 +496,11 @@ public class NhanVienForm extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblListMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblList);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -624,6 +629,25 @@ public class NhanVienForm extends javax.swing.JPanel {
         // TODO add your handling code here:
         first();
     }//GEN-LAST:event_btnFirstActionPerformed
+
+    private void tblListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListMouseClicked
+        try {
+            index = tblList.getSelectedRow();
+            String ma = (String) tblList.getValueAt(index, 0);
+            NhanVien nv = new NhanVienDAO().selectById(ma);
+            txtMaNV.setText(nv.getMaNhanVien());
+            txtTenNV.setText(nv.getHoVaTen());
+            txtMatKhau.setText(nv.getMatKhau());
+            txtEmail.setText(nv.getEmail());
+            if (nv.isVaiTro()) {
+                rdoNhanVien.setSelected(true);
+            } else {
+                rdoQuanLy.setSelected(true);
+            }
+            tabNV.setSelectedIndex(0);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_tblListMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

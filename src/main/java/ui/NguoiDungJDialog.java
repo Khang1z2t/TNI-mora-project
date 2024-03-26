@@ -71,7 +71,6 @@ public class NguoiDungJDialog extends javax.swing.JDialog {
         NguoiDung nd = listND.get(index);
         txtMaND.setText(nd.getMaNguoiDung());
         txtTenND.setText(nd.getTenNguoiDung());
-        txtEmail.setText(nd.getEmail());
         txtSDT.setText(nd.getDienThoai());
         txtDate.setText(utils.XDate.toString(nd.getNgaySinh(), "dd-MM-yyyy"));
         if (nd.isGioiTinh()) {
@@ -133,7 +132,6 @@ public class NguoiDungJDialog extends javax.swing.JDialog {
                 nd.isGioiTinh()? "Nam" : "Nữ",
                 utils.XDate.toString(nd.getNgaySinh(), "dd-MM-yyyy"),
                 nd.getDienThoai(),
-                nd.getEmail(),
             });
         }
     }
@@ -187,14 +185,13 @@ public class NguoiDungJDialog extends javax.swing.JDialog {
         String hoVaTen = txtTenND.getText();
         String ngaySinh = txtDate.getText();
         String dienThoai = txtSDT.getText();
-        String email = txtEmail.getText();
         Boolean gioiTinh = true;
 
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         boolean isValid = isValidDate(ngaySinh, "dd-MM-yyyy");
 
         if (maND.trim().length() == 0 || hoVaTen.trim().length() == 0
-                || email.trim().length() == 0 || ngaySinh.trim().length() == 0
+                || ngaySinh.trim().length() == 0
                 || dienThoai.trim().length() == 0) {
             utils.DialogHelper.alert(this, "Vui lòng nhập đầy đủ thông tin!");
             return null;
@@ -222,12 +219,6 @@ public class NguoiDungJDialog extends javax.swing.JDialog {
             utils.DialogHelper.alert(this, "Người dùng phải đủ 16 tuổi!");
             return null;
         }
-
-        if (txtEmail.getText().trim().matches(regex) == false) {
-            utils.DialogHelper.alert(this, "Email không đúng định dạng!");
-            return null;
-        }
-
         nd.setMaNguoiDung(maND);
         nd.setTenNguoiDung(hoVaTen);
         if (rdoNu.isSelected()) {
@@ -236,7 +227,7 @@ public class NguoiDungJDialog extends javax.swing.JDialog {
         nd.setGioiTinh(gioiTinh);
         nd.setNgaySinh(utils.XDate.toDate(ngaySinh, "dd-MM-yyyy"));
         nd.setDienThoai(dienThoai);
-        nd.setEmail(email);
+        
         return nd;
     }
 
@@ -244,7 +235,6 @@ public class NguoiDungJDialog extends javax.swing.JDialog {
         NhanVien nv = new NhanVien();
         txtMaND.setText("");
         txtTenND.setText("");
-        txtEmail.setText(nv.getEmail());
         txtMaND.setEditable(true);
         txtMaND.requestFocus();
         grpGender.clearSelection();
@@ -277,13 +267,12 @@ public class NguoiDungJDialog extends javax.swing.JDialog {
         DBFillToList();
     }
 
-    private void updateNguoiHoc(NguoiDung nd) {
+    private void updateNguoiDung(NguoiDung nd) {
         NguoiDungDAO ndd = new NguoiDungDAO();
         nd.setTenNguoiDung(txtTenND.getText());
         nd.setGioiTinh(rdoNam.isSelected());
         nd.setNgaySinh(utils.XDate.toDate(txtDate.getText(), "dd-MM-yyyy"));
         nd.setDienThoai(txtSDT.getText());
-        nd.setEmail(txtEmail.getText());
         nd.setMaNhanVien(utils.Auth.user.getMaNhanVien());
         ndd.update(nd);
         DBFillToList();
@@ -311,8 +300,6 @@ public class NguoiDungJDialog extends javax.swing.JDialog {
         rdoNu = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         txtDate = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtSDT = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -363,9 +350,6 @@ public class NguoiDungJDialog extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("NGÀY SINH (DD-MM-YYYY)");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("EMAIL");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("SỐ ĐIỆN THOẠI");
@@ -505,8 +489,6 @@ public class NguoiDungJDialog extends javax.swing.JDialog {
                             .addComponent(jLabel7)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtDate)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtEmail)
                             .addComponent(txtSDT))))
                 .addContainerGap(159, Short.MAX_VALUE))
         );
@@ -534,17 +516,13 @@ public class NguoiDungJDialog extends javax.swing.JDialog {
                             .addComponent(rdoNam)
                             .addComponent(rdoNu)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel6)
-                        .addGap(7, 7, 7)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(75, 75, 75)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         tabND.addTab("CẬP NHẬT", jPanel1);
@@ -710,7 +688,7 @@ public class NguoiDungJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
         for (NguoiDung nd : listND) {
             if (txtMaND.getText().equals(nd.getMaNguoiDung())) {
-                updateNguoiHoc(nd);
+                updateNguoiDung(nd);
                 utils.DialogHelper.alert(this, "Cập nhật thông tin thành công!");
             }
         }
@@ -742,7 +720,6 @@ previous();        // TODO add your handling code here:
             txtMaND.setText(nd.getMaNguoiDung());
             txtTenND.setText(nd.getTenNguoiDung());
             txtDate.setText(utils.XDate.toString(nd.getNgaySinh(), "dd-MM-yyyy"));
-            txtEmail.setText(nd.getEmail());
             txtSDT.setText(nd.getDienThoai());
             if (nd.isGioiTinh()) {
                 rdoNam.setSelected(true);
@@ -818,7 +795,6 @@ previous();        // TODO add your handling code here:
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
@@ -833,7 +809,6 @@ previous();        // TODO add your handling code here:
     private javax.swing.JTabbedPane tabND;
     private javax.swing.JTable tblList;
     private javax.swing.JTextField txtDate;
-    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMaND;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenND;

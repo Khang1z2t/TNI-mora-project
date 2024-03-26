@@ -17,20 +17,20 @@ public class NguoiDung {
     private boolean GioiTinh;
     private Date ngaySinh;
     private String DienThoai;
-    private String Email;
+    private String cap;
     private String MaNhanVien;
     private Date NgayDangKi = new Date();
 
     public NguoiDung() {
     }
 
-    public NguoiDung(String MaNguoiDung, String TenNguoiDung, boolean GioiTinh, Date ngaySinh, String DienThoai, String Email, String MaNhanVien) {
+    public NguoiDung(String MaNguoiDung, String TenNguoiDung, boolean GioiTinh, Date ngaySinh, String DienThoai, String cap, String MaNhanVien) {
         this.MaNguoiDung = MaNguoiDung;
         this.TenNguoiDung = TenNguoiDung;
         this.GioiTinh = GioiTinh;
         this.ngaySinh = ngaySinh;
         this.DienThoai = DienThoai;
-        this.Email = Email;
+        this.cap = cap;
         this.MaNhanVien = MaNhanVien;
     }
 
@@ -74,12 +74,12 @@ public class NguoiDung {
         this.DienThoai = DienThoai;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getCap() {
+        return cap;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setCap(String cap) {
+        this.cap = cap;
     }
 
     public String getMaNhanVien() {

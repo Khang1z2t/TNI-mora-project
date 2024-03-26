@@ -23,7 +23,7 @@ public class NguoiDungDAO {
                 nd.isGioiTinh(),
                 nd.getNgaySinh(),
                 nd.getDienThoai(),
-                nd.getEmail(),
+                nd.getCap(),
                 nd.getMaNhanVien(),
                 nd.getNgayDangKi()
         );
@@ -31,14 +31,14 @@ public class NguoiDungDAO {
     }
     
     public void update(NguoiDung nd) {
-        String sql = "UPDATE NGUOIDUNG SET HOTEN = ?, GIOITINH= ?, NGAYSINH = ?, DIENTHOAI = ?, EMAIL = ?, MANV = ? WHERE MAND = ?";
+        String sql = "UPDATE NGUOIDUNG SET HOTEN = ?, GIOITINH= ?, NGAYSINH = ?, DIENTHOAI = ?, CAP = ?,MANV = ? WHERE MAND = ?";
         
         utils.JDBCHelper.update(sql, 
                 nd.getTenNguoiDung(), 
                 nd.isGioiTinh(),
                 nd.getNgaySinh(),
                 nd.getDienThoai(),
-                nd.getEmail(),
+                nd.getCap(),
                 nd.getMaNhanVien(),
                 nd.getMaNguoiDung()
                 );
@@ -68,7 +68,8 @@ public class NguoiDungDAO {
                     st.setGioiTinh((rs.getInt(3) != 0));
                     st.setNgaySinh(rs.getDate(4));
                     st.setDienThoai(rs.getString(5));
-                    st.setEmail(rs.getString(6));
+                    st.setCap(rs.getString(6));
+                    st.setMaNhanVien(rs.getString(7));
                     lstNguoiDung.add(st);
                 }
             } finally {

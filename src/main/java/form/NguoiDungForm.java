@@ -5,7 +5,9 @@
  */
 package form;
 
+import dao.LuongDAO;
 import dao.NguoiDungDAO;
+import entities.Luong;
 import entities.NguoiDung;
 import entities.NhanVien;
 import java.awt.Color;
@@ -15,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 public class NguoiDungForm extends javax.swing.JPanel {
 
         DefaultTableModel tblModel;
+        DefaultComboBoxModel cboModel;
         int index = -1;
         List<NguoiDung> listND = new ArrayList<>();
         String path = null;
@@ -31,6 +35,7 @@ public class NguoiDungForm extends javax.swing.JPanel {
     public NguoiDungForm() {
         initComponents();
         initTable();
+        initCBXLuong();
         DBFillToList();
         setSelected(0);
         if(!utils.Auth.isManager()){
@@ -42,6 +47,15 @@ public class NguoiDungForm extends javax.swing.JPanel {
             txtMaND.requestFocus();
         }
     }
+    private void initCBXLuong(){
+        cboModel = new DefaultComboBoxModel();
+        cboModel.removeAllElements();
+        List<Luong> lst = new LuongDAO().SelectAll();
+        for (Luong l : lst) {
+            cboModel.addElement(l);
+        }
+        cbxLevel.setModel(cboModel);
+    }
     private void initTable() {
         tblModel = new DefaultTableModel();
         tblModel.setColumnIdentifiers(new String[]{
@@ -50,7 +64,7 @@ public class NguoiDungForm extends javax.swing.JPanel {
             "Giới tính",
             "Ngày sinh",
             "Số điện thoại",
-            "Email",
+            "Cấp",
         });
         tblList.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         tblList.getTableHeader().setOpaque(false);
@@ -65,7 +79,8 @@ public class NguoiDungForm extends javax.swing.JPanel {
         NguoiDung nd = listND.get(index);
         txtMaND.setText(nd.getMaNguoiDung());
         txtTenND.setText(nd.getTenNguoiDung());
-        txtEmail.setText(nd.getEmail());
+        Luong lg = (Luong) cbxLevel.getSelectedItem();
+        nd.setCap(lg.getCap());
         txtSDT.setText(nd.getDienThoai());
         txtDate.setText(utils.XDate.toString(nd.getNgaySinh(), "dd-MM-yyyy"));
         if (nd.isGioiTinh()) {
@@ -127,7 +142,7 @@ public class NguoiDungForm extends javax.swing.JPanel {
                 nd.isGioiTinh()? "Nam" : "Nữ",
                 utils.XDate.toString(nd.getNgaySinh(), "dd-MM-yyyy"),
                 nd.getDienThoai(),
-                nd.getEmail(),
+                nd.getCap(),
             });
         }
     }
@@ -159,28 +174,25 @@ public class NguoiDungForm extends javax.swing.JPanel {
     }
     public NguoiDung readForm() {
         NguoiDung nd = new NguoiDung();
-
+        NhanVien nv = new NhanVien();
         String maND = txtMaND.getText();
         String hoVaTen = txtTenND.getText();
         String ngaySinh = txtDate.getText();
         String dienThoai = txtSDT.getText();
-        String email = txtEmail.getText();
+        Luong lg = (Luong) cbxLevel.getSelectedItem();
+        String cap = lg.getCap();
         Boolean gioiTinh = true;
 
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         boolean isValid = isValidDate(ngaySinh, "dd-MM-yyyy");
 
         if (maND.trim().length() == 0 || hoVaTen.trim().length() == 0
-                || email.trim().length() == 0 || ngaySinh.trim().length() == 0
+                || ngaySinh.trim().length() == 0
                 || dienThoai.trim().length() == 0) {
             utils.DialogHelper.alert(this, "Vui lòng nhập đầy đủ thông tin!");
             return null;
         }
 
-        if (maND.trim().length() < 7) {
-            utils.DialogHelper.alert(this, "Mã người dùng phải ít nhất 7 kí tự!");
-            return null;
-        }
 
         if (!isValid) {
             utils.DialogHelper.alert(this, "Ngày sinh không hợp lệ!");
@@ -199,12 +211,7 @@ public class NguoiDungForm extends javax.swing.JPanel {
             utils.DialogHelper.alert(this, "Người dùng phải đủ 16 tuổi!");
             return null;
         }
-
-        if (txtEmail.getText().trim().matches(regex) == false) {
-            utils.DialogHelper.alert(this, "Email không đúng định dạng!");
-            return null;
-        }
-
+        
         nd.setMaNguoiDung(maND);
         nd.setTenNguoiDung(hoVaTen);
         if (rdoNu.isSelected()) {
@@ -213,15 +220,14 @@ public class NguoiDungForm extends javax.swing.JPanel {
         nd.setGioiTinh(gioiTinh);
         nd.setNgaySinh(utils.XDate.toDate(ngaySinh, "dd-MM-yyyy"));
         nd.setDienThoai(dienThoai);
-        nd.setEmail(email);
+        nd.setCap(cap);
+        nd.setMaNhanVien(utils.Auth.user.getMaNhanVien());
         return nd;
     }
 
     private void clearForm() {
-        NhanVien nv = new NhanVien();
         txtMaND.setText("");
         txtTenND.setText("");
-        txtEmail.setText(nv.getEmail());
         txtMaND.setEditable(true);
         txtMaND.requestFocus();
         grpGender.clearSelection();
@@ -254,13 +260,15 @@ public class NguoiDungForm extends javax.swing.JPanel {
         DBFillToList();
     }
 
-    private void updateNguoiHoc(NguoiDung nd) {
+    private void updateNguoiDung(NguoiDung nd) {
+        NhanVien nv = new NhanVien();
         NguoiDungDAO ndd = new NguoiDungDAO();
         nd.setTenNguoiDung(txtTenND.getText());
         nd.setGioiTinh(rdoNam.isSelected());
         nd.setNgaySinh(utils.XDate.toDate(txtDate.getText(), "dd-MM-yyyy"));
         nd.setDienThoai(txtSDT.getText());
-        nd.setEmail(txtEmail.getText());
+        Luong lg = (Luong) cbxLevel.getSelectedItem();
+        nd.setCap(lg.getCap());
         nd.setMaNhanVien(utils.Auth.user.getMaNhanVien());
         ndd.update(nd);
         DBFillToList();
@@ -288,8 +296,6 @@ public class NguoiDungForm extends javax.swing.JPanel {
         rdoNu = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         txtDate = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtSDT = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -301,6 +307,8 @@ public class NguoiDungForm extends javax.swing.JPanel {
         btnPre = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        cbxLevel = new model.ComboBoxSuggestion();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         txtTim = new javax.swing.JTextField();
@@ -319,6 +327,14 @@ public class NguoiDungForm extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("TÊN NGƯỜI DÙNG");
 
+        txtMaND.setMaximumSize(new java.awt.Dimension(64, 30));
+        txtMaND.setMinimumSize(new java.awt.Dimension(64, 30));
+        txtMaND.setPreferredSize(new java.awt.Dimension(64, 30));
+
+        txtTenND.setMaximumSize(new java.awt.Dimension(64, 30));
+        txtTenND.setMinimumSize(new java.awt.Dimension(64, 30));
+        txtTenND.setPreferredSize(new java.awt.Dimension(64, 30));
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("GIỚI TÍNH");
 
@@ -335,11 +351,16 @@ public class NguoiDungForm extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("NGÀY SINH (DD-MM-YYYY)");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("EMAIL");
+        txtDate.setMaximumSize(new java.awt.Dimension(64, 30));
+        txtDate.setMinimumSize(new java.awt.Dimension(64, 30));
+        txtDate.setPreferredSize(new java.awt.Dimension(64, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("SỐ ĐIỆN THOẠI");
+
+        txtSDT.setMaximumSize(new java.awt.Dimension(64, 30));
+        txtSDT.setMinimumSize(new java.awt.Dimension(64, 30));
+        txtSDT.setPreferredSize(new java.awt.Dimension(64, 30));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -451,6 +472,9 @@ public class NguoiDungForm extends javax.swing.JPanel {
                 .addGap(15, 15, 15))
         );
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setText("LEVEL");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -460,62 +484,63 @@ public class NguoiDungForm extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtTenND, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                                .addComponent(txtMaND)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTenND, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                            .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(rdoNam)
                                 .addGap(18, 18, 18)
-                                .addComponent(rdoNu)))
+                                .addComponent(rdoNu))
+                            .addComponent(jLabel2)
+                            .addComponent(txtMaND, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(73, 73, 73)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel7)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtDate)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtEmail)
-                            .addComponent(txtSDT))))
-                .addContainerGap(166, Short.MAX_VALUE))
+                            .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(cbxLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMaND, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMaND, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTenND, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(txtTenND, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbxLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rdoNam)
-                            .addComponent(rdoNu)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel6)
-                        .addGap(7, 7, 7)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28)
+                            .addComponent(rdoNu))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
 
         tabND.addTab("CẬP NHẬT", jPanel1);
@@ -552,6 +577,11 @@ public class NguoiDungForm extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblListMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblList);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -561,7 +591,7 @@ public class NguoiDungForm extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
             .addComponent(jScrollPane2)
         );
         jPanel2Layout.setVerticalGroup(
@@ -569,7 +599,7 @@ public class NguoiDungForm extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -629,7 +659,7 @@ public class NguoiDungForm extends javax.swing.JPanel {
         // TODO add your handling code here:
         for (NguoiDung nd : listND) {
             if (txtMaND.getText().equals(nd.getMaNguoiDung())) {
-                updateNguoiHoc(nd);
+                updateNguoiDung(nd);
                 utils.DialogHelper.alert(this, "Cập nhật thông tin thành công!");
             }
         }
@@ -662,6 +692,25 @@ public class NguoiDungForm extends javax.swing.JPanel {
         fillToTable(listND);
     }//GEN-LAST:event_txtTimKeyPressed
 
+    private void tblListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListMouseClicked
+        try {
+            index = tblList.getSelectedRow();
+            String ma = (String) tblList.getValueAt(index, 0);
+            NguoiDung nd= new NguoiDungDAO().selectById(ma);
+            txtMaND.setText(nd.getMaNguoiDung());
+            txtTenND.setText(nd.getTenNguoiDung());
+            txtDate.setText(utils.XDate.toString(nd.getNgaySinh(), "dd-MM-yyyy"));
+            txtSDT.setText(nd.getDienThoai());
+            if (nd.isGioiTinh()) {
+                rdoNam.setSelected(true);
+            } else {
+                rdoNu.setSelected(true);
+            }
+            tabND.setSelectedIndex(0);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_tblListMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
@@ -672,13 +721,14 @@ public class NguoiDungForm extends javax.swing.JPanel {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
+    private model.ComboBoxSuggestion cbxLevel;
     private javax.swing.ButtonGroup grpGender;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -690,7 +740,6 @@ public class NguoiDungForm extends javax.swing.JPanel {
     private javax.swing.JTabbedPane tabND;
     private javax.swing.JTable tblList;
     private javax.swing.JTextField txtDate;
-    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMaND;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenND;

@@ -165,7 +165,7 @@ public class SachForm extends javax.swing.JPanel {
         txtNamXB.setText("");
         txtNhaXB.setText("");
         txtGiasach.setText("");
-        cboTacgia.setSelectedIndex(0);
+        cboTheLoai.setSelectedIndex(0);
         cboTheLoai.setSelectedIndex(0);
         txtGhiChu.setText("");
         
@@ -182,7 +182,6 @@ public class SachForm extends javax.swing.JPanel {
         String tentg = String.valueOf(cboTacgia.getSelectedItem());
         String theloai = String.valueOf(cboTheLoai.getSelectedItem());
         String ghichu = txtGhiChu.getText();
-        Date ngayton = new Date();
    
         //valid
         if(ma.equalsIgnoreCase("") || ten.equalsIgnoreCase("") || namxb == 0 || gia.equals(0) || ghichu.equalsIgnoreCase("") || tentg.equals("") || theloai.equals("")){
@@ -197,7 +196,6 @@ public class SachForm extends javax.swing.JPanel {
         sa.setTentacgia(tentg);
         sa.setTheloai(theloai);
         sa.setGhiChu(ghichu);
-        sa.setNgayton(ngayton);
         sa.setHinh(lblHinh.getToolTipText());
         return sa;
     }
@@ -223,7 +221,6 @@ public class SachForm extends javax.swing.JPanel {
         list = (ArrayList<Sach>) nvd.SelectAll();
         fillToTable(list);
     }
-
     private void setSelected(int index) {
         try {
             tblList.setRowSelectionInterval(index, index);
@@ -268,8 +265,6 @@ public class SachForm extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         lblHinh = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cboTacgia = new javax.swing.JComboBox<>();
-        cboTheLoai = new javax.swing.JComboBox<>();
         txtNhaXB = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
@@ -279,6 +274,8 @@ public class SachForm extends javax.swing.JPanel {
         btnNext = new javax.swing.JButton();
         btnPre = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
+        cboTheLoai = new model.ComboBoxSuggestion();
+        cboTacgia = new model.ComboBoxSuggestion();
         tabDanhSach = new javax.swing.JScrollPane();
         tblList = new javax.swing.JTable();
 
@@ -360,17 +357,6 @@ public class SachForm extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("Nhà xuất bản");
         tabThongTin.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 191, -1, -1));
-
-        cboTacgia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboTacgia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboTacgiaActionPerformed(evt);
-            }
-        });
-        tabThongTin.add(cboTacgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 154, 171, 31));
-
-        cboTheLoai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        tabThongTin.add(cboTheLoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 154, 171, 31));
         tabThongTin.add(txtNhaXB, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 217, 171, 31));
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -449,6 +435,8 @@ public class SachForm extends javax.swing.JPanel {
             }
         });
         tabThongTin.add(btnLast, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 390, 42, 30));
+        tabThongTin.add(cboTheLoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 170, -1));
+        tabThongTin.add(cboTacgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 170, -1));
 
         tabSach.addTab("CẬP NHẬT", tabThongTin);
 
@@ -585,10 +573,6 @@ public class SachForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_lblHinhMouseClicked
 
-    private void cboTacgiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTacgiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboTacgiaActionPerformed
-
     private void tblListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListMouseClicked
         // TODO add your handling code here:
         try {
@@ -626,8 +610,8 @@ public class SachForm extends javax.swing.JPanel {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JComboBox<String> cboTacgia;
-    private javax.swing.JComboBox<String> cboTheLoai;
+    private model.ComboBoxSuggestion cboTacgia;
+    private model.ComboBoxSuggestion cboTheLoai;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
