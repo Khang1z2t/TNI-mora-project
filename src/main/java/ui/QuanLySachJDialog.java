@@ -14,16 +14,13 @@ import entities.TheLoai;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
-import utils.DialogHelper;
 import utils.XImage;
 
 /**

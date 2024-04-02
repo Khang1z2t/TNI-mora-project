@@ -49,6 +49,12 @@ public class NhanVienDAO {
         return list.size() > 0 ? list.get(0) : null;
     }
     
+    public NhanVien selectByGmail(String gmail){
+        String sql = "select * from Nhanvien where email = ?";
+        List<NhanVien> list = this.selectBySql(sql, gmail);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+    
     protected List<NhanVien> selectBySql(String sql, Object...args){
         List<NhanVien> list = new ArrayList<>();
         try {
