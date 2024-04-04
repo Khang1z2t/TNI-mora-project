@@ -17,6 +17,7 @@ import java.io.File;
 public class FileChooser extends JFileChooser{
 
     public FileChooser() {
+        super();
     }
 
 
@@ -38,6 +39,6 @@ public class FileChooser extends JFileChooser{
     }
 
     public FileChooser(String dir) {
-        setCurrentDirectory(new File(dir));
+        super(dir);
     }
 }
