@@ -32,6 +32,7 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
         Random random = new Random();
         int number;
         String user;
+        String gmail;
     /**
      * Creates new form QuenMatKhauJDialog
      */
@@ -39,11 +40,6 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-    }
-    void initData(){
-            user = txtUser.getText();
-            NhanVien nv = new NhanVienDAO().selectById(user);
-            utils.Auth.user = nv;
     }
    public static boolean isValidEmail(String email) {
         boolean isValid = true;
@@ -57,23 +53,15 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
     }
    //validdate
     private boolean checkForm() {
-        if(txtUser.getText().trim().length() ==  0){
-            DialogHelper.alert(this, "Vui lòng nhập đầy đủ thông tin!");
-            return false;
-        }
         if (txtCode.getText().trim().length() == 0) {
             DialogHelper.alert(this, "Vui lòng nhập mã xác nhận!");
             return false;
         }
 
-        NhanVien nv = new NhanVienDAO().selectById(txtUser.getText());
-        if (nv == null) {
-            utils.DialogHelper.alert(this, "Mã nhân viên không tồn tại!");
-            return false;
-        }
+        NhanVien nv = new NhanVienDAO().selectByGmail(txtGmail.getText());
         
-        if (!txtGmail.getText().equals(nv.getEmail())) {
-            utils.DialogHelper.alert(this, "Email không trùng khớp với Email nhân viên đã đăng ký!");
+        if (!txtGmail.getText().equals(nv.getEmail()) || nv==null) {
+            utils.DialogHelper.alert(this, "Email không trùng khớp!");
             return false;
         }
     String to = txtGmail.getText().trim();
@@ -103,8 +91,6 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
         txtCode = new javax.swing.JTextField();
         btnConfirm = new javax.swing.JButton();
         btnSend = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        txtUser = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -135,54 +121,49 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("Tên đăng nhập");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(138, 138, 138))
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addGap(117, 117, 117))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(17, 17, 17))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConfirm)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txtGmail)
-                        .addComponent(txtUser)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(146, 146, 146)
+                .addComponent(btnConfirm)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(txtGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
-                    .addComponent(txtCode))
-                .addGap(18, 18, 18)
+                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -195,7 +176,7 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -205,10 +186,14 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
         try{
             if(checkForm()){
                 if(Integer.valueOf(txtCode.getText())==number){
-                    initData();
+                    NhanVien nv = new NhanVienDAO().selectByGmail(txtGmail.getText());
+                    utils.Auth.user = nv;
+                    
                     DoiMatKhauJDialog doiMK = new DoiMatKhauJDialog((java.awt.Frame)getParent(),true);
                     dispose();
                     doiMK.setVisible(true);
+                }else{
+                    utils.DialogHelper.alert(this, "Mã xác nhận không chính xác!");
                 }
             }
         }catch(NumberFormatException e){
@@ -313,10 +298,8 @@ DialogHelper.alert(this, "mã xác nhận mật khẩu vừa được gửi về
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtGmail;
-    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

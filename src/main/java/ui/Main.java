@@ -28,16 +28,6 @@ public class Main extends javax.swing.JFrame {
      */
     ArrayList<Luong> ist = new ArrayList<>();
     //sap xep theo tt form
-    private Form_Home home;
-    private NhanVienForm qlnv;
-    private NguoiDungForm qltt;
-    private SachForm qls;
-    private TacGiaForm tg;
-    private TheLoaiForm tl;
-    private DoiMKForm dmk;
-    private DoanhThuForm dt;
-    private LuongForm lg;
-    private HoaDonForm hd;
     //ton hang
     //doanh thu
     //tao hoa don
@@ -48,16 +38,6 @@ public class Main extends javax.swing.JFrame {
         setBackground(new Color(0, 0, 0, 0));
 
         //khai bao form
-        home = new Form_Home();
-        qlnv = new NhanVienForm();
-        qltt = new NguoiDungForm();
-        qls = new SachForm();
-        tg = new TacGiaForm();
-        tl = new TheLoaiForm();
-        dmk = new DoiMKForm();
-        dt = new DoanhThuForm();
-        hd = new HoaDonForm();
-        lg = new LuongForm();
         
         menu1.initMoving(Main.this);
         if(utils.Auth.isManager()){
@@ -65,34 +45,33 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-                    setForm(home);
+                    setForm(new Form_Home());
                 } else if (index == 1) {
-                    setForm(qlnv);
+                    setForm(new NhanVienForm());
                 } else if (index == 2) {
-                    setForm(qltt);
+                    setForm(new NguoiDungForm());
                 } else if (index == 3) {
-                    setForm(qls);
+                    setForm(new SachForm());
                 } else if (index == 4) {
-                    setForm(tl);
+                    setForm(new TheLoaiForm());
                 } else if (index == 5){
-                    setForm(tg);
+                    setForm(new TacGiaForm());
                 }
                 else if (index == 7) {
-                    setForm(dmk);
+                    setForm(new DoiMKForm());
                 }
                 else if (index == 8){
-                    setForm(dt);
+                    setForm(new DoanhThuForm());
                 }
                 else if (index == 9){
-                    setForm(hd);
+                    setForm(new HoaDonForm());
                 }else if (index == 10){
-                    setForm(lg);
+                    setForm(new LuongForm());
                 } 
                  else if (index == 11) {
                     utils.Auth.clear();
                     Main.this.dispose();
                     new DangNhapJDialog(Main.this, true).setVisible(true);
-//                    System.exit(0);
                 }
             }
         });
@@ -101,7 +80,7 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-                    setForm(home);
+                    setForm(new Form_Home());
                 } 
 //                else if (index == 1) {
 //                    setForm(qlnv);
@@ -110,17 +89,22 @@ public class Main extends javax.swing.JFrame {
 //                    setForm(qltt);
 //                } 
                 else if (index == 3) {
-                    setForm(qls);
+                    setForm(new SachForm());
                 } else if (index == 4) {
-                    setForm(tl);
+                    setForm(new TheLoaiForm());
                 } else if (index == 5){
-                    setForm(tg);
+                    setForm(new TacGiaForm());
                 }
                 else if (index == 7) {
-                    setForm(dmk);
+                    setForm(new DoiMKForm());
+                }
+                else if (index == 8){
+                    setForm(new DoanhThuForm());
                 }
                 else if (index == 9){
-                    setForm(hd);
+                    setForm(new HoaDonForm());
+                }else if (index == 10){
+                    setForm(new LuongForm());
                 } 
                  else if (index == 11) {
                     utils.Auth.clear();
