@@ -25,31 +25,10 @@ public class GiohangDAO {
                model.getManv());
    }
    public void update(Giohang model){
-    // Kiểm tra xem có mặt hàng trong giỏ hàng có tên giống với mặt hàng cần cập nhật không
-        String sqlCheck = "SELECT * FROM giohang WHERE masach = ?";
-        List<Giohang> list = this.SelectBySQL(sqlCheck, model.getMasach());
-
-        // Nếu có mặt hàng cùng tên trong giỏ hàng
-        if (!list.isEmpty()) {
-            // Lấy ra mặt hàng đầu tiên trong danh sách
-            Giohang existingItem = list.get(0);
-
-            // Cập nhật số lượng mới bằng cách cộng thêm số lượng mới vào số lượng hiện tại
-            int newQuantity = existingItem.getSoluong() + model.getSoluong();
-
-            // Cập nhật số lượng mới cho mặt hàng đã tồn tại
-            String sqlUpdate = "UPDATE giohang SET soluong = ? WHERE masach = ?";
-            utils.JDBCHelper.update(sqlUpdate, newQuantity, existingItem.getMasach());
-        } else {
-            // Nếu không có mặt hàng cùng tên trong giỏ hàng, thêm mặt hàng mới vào giỏ hàng
-            String sqlInsert = "INSERT INTO giohang (masach, tensach,gia, soluong, manv) VALUES (?, ?, ?, ?, ?)";
-            utils.JDBCHelper.update(sqlInsert, 
-                                    model.getMasach(),   
-                                    model.getTensach(),
-                                    model.getGia(),
-                                    model.getSoluong(),
-                                    model.getManv());
-        }
+       String sql = "update giohang set soluong = ? where masach = ?";
+       utils.JDBCHelper.update(sql, 
+               model.getSoluong(),
+               model.getMasach());
     }
     public void delete(int magiohang){
         String sql="DELETE FROM giohang WHERE magiohang = ?";

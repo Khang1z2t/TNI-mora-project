@@ -111,13 +111,12 @@ public class HoaDonForm extends javax.swing.JPanel {
     private void addCart() {
         Giohang gh = readForm();
         GiohangDAO ghd = new GiohangDAO();
-        int sl = Integer.parseInt(txtSoLuong.getText());
         if (gh != null) {
             //Neu them hang ma trung ten thi cap nhat so luong
             boolean ex =false;
             for(Giohang it : list){
                 if(it.getMasach().equalsIgnoreCase(gh.getMasach())){
-                    int newSL = sl + gh.getSoluong() ;
+                    int newSL = it.getSoluong() + gh.getSoluong() ;
                     it.setSoluong(newSL);
                     ghd.update(it);
                     ex=true;

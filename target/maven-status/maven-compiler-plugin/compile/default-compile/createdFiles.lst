@@ -246,7 +246,6 @@ ui\DangNhapJDialog$2.class
 ui\SettingJDialog.class
 form\NhanVienForm$11.class
 ui\theloaiJDialog$2.class
-form\DoiMKForm$2.class
 swing\ScrollBarCustom.class
 swing\ComboSuggestionUI$ArrowButton.class
 ui\NhanVienJDialog$4.class
