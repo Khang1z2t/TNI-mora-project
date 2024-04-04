@@ -51,8 +51,6 @@ public class DoiMKForm extends javax.swing.JPanel {
     private void initComponents() {
 
         panelBorder1 = new swing.PanelBorder();
-        jLabel4 = new javax.swing.JLabel();
-        txtUser = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
@@ -64,10 +62,6 @@ public class DoiMKForm extends javax.swing.JPanel {
         setOpaque(false);
 
         panelBorder1.setBackground(new java.awt.Color(229, 229, 229));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Tên đăng nhập");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,17 +98,13 @@ public class DoiMKForm extends javax.swing.JPanel {
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBorder1Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(jLabel4))
-                    .addGroup(panelBorder1Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
                         .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addComponent(jLabel5)
                             .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                             .addComponent(txtNewPass)
-                            .addComponent(txtConfirmPass)
-                            .addComponent(txtUser)))
+                            .addComponent(txtConfirmPass)))
                     .addGroup(panelBorder1Layout.createSequentialGroup()
                         .addGap(126, 126, 126)
                         .addComponent(btnDoiMK, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -123,11 +113,7 @@ public class DoiMKForm extends javax.swing.JPanel {
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(122, 122, 122)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,12 +164,10 @@ public class DoiMKForm extends javax.swing.JPanel {
     private javax.swing.JButton btnDoiMK;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private swing.PanelBorder panelBorder1;
     private javax.swing.JPasswordField txtConfirmPass;
     private javax.swing.JPasswordField txtNewPass;
     private javax.swing.JPasswordField txtPass;
-    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

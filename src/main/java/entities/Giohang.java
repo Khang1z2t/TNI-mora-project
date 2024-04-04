@@ -11,6 +11,7 @@ package entities;
  */
 public class Giohang {
     private int magiohang;
+    private String masach;
     private String tensach;
     private int gia;
     private int soluong;
@@ -19,8 +20,9 @@ public class Giohang {
     public Giohang() {
     }
 
-    public Giohang(int magiohang, String tensach, int gia, int soluong, String manv) {
+    public Giohang(int magiohang, String masach, String tensach, int gia, int soluong, String manv) {
         this.magiohang = magiohang;
+        this.masach = masach;
         this.tensach = tensach;
         this.gia = gia;
         this.soluong = soluong;
@@ -33,6 +35,14 @@ public class Giohang {
 
     public void setMagiohang(int magiohang) {
         this.magiohang = magiohang;
+    }
+
+    public String getMasach() {
+        return masach;
+    }
+
+    public void setMasach(String masach) {
+        this.masach = masach;
     }
 
     public String getTensach() {
@@ -66,5 +76,5 @@ public class Giohang {
     public void setManv(String manv) {
         this.manv = manv;
     }
-    
+
 }

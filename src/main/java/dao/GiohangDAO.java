@@ -16,17 +16,18 @@ import java.util.List;
  */
 public class GiohangDAO {
        public void insert(Giohang model){
-       String sql="Insert into giohang values(?,?,?,?)";
+       String sql="Insert into giohang values(?,?,?,?,?)";
        utils.JDBCHelper.update(sql, 
-               model.getTensach(),    
+               model.getMasach(),
+               model.getTensach(),
                model.getGia(),
                model.getSoluong(),
                model.getManv());
    }
    public void update(Giohang model){
     // Kiểm tra xem có mặt hàng trong giỏ hàng có tên giống với mặt hàng cần cập nhật không
-        String sqlCheck = "SELECT * FROM giohang WHERE tensach = ?";
-        List<Giohang> list = this.SelectBySQL(sqlCheck, model.getTensach());
+        String sqlCheck = "SELECT * FROM giohang WHERE masach = ?";
+        List<Giohang> list = this.SelectBySQL(sqlCheck, model.getMasach());
 
         // Nếu có mặt hàng cùng tên trong giỏ hàng
         if (!list.isEmpty()) {
@@ -37,13 +38,14 @@ public class GiohangDAO {
             int newQuantity = existingItem.getSoluong() + model.getSoluong();
 
             // Cập nhật số lượng mới cho mặt hàng đã tồn tại
-            String sqlUpdate = "UPDATE giohang SET soluong = ? WHERE magiohang = ?";
-            utils.JDBCHelper.update(sqlUpdate, newQuantity, existingItem.getMagiohang());
+            String sqlUpdate = "UPDATE giohang SET soluong = ? WHERE masach = ?";
+            utils.JDBCHelper.update(sqlUpdate, newQuantity, existingItem.getMasach());
         } else {
             // Nếu không có mặt hàng cùng tên trong giỏ hàng, thêm mặt hàng mới vào giỏ hàng
-            String sqlInsert = "INSERT INTO giohang (tensach, gia, soluong, manv) VALUES (?, ?, ?, ?)";
+            String sqlInsert = "INSERT INTO giohang (masach, tensach,gia, soluong, manv) VALUES (?, ?, ?, ?, ?)";
             utils.JDBCHelper.update(sqlInsert, 
-                                    model.getTensach(),    
+                                    model.getMasach(),   
+                                    model.getTensach(),
                                     model.getGia(),
                                     model.getSoluong(),
                                     model.getManv());
@@ -62,7 +64,13 @@ public class GiohangDAO {
         List<Giohang> list = this.SelectBySQL(sql, magiohang);
         return list.size() > 0 ? list.get(0) : null;
     }
-
+    
+    public Giohang selectbyMasach(String masach){
+        String sql = "select * from giohang where masach = ?";
+        List<Giohang> list = this.SelectBySQL(sql, masach);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+    
     public List<Giohang> SelectBySQL(String sql, Object... args) {
         List<Giohang> listS = new ArrayList<>();
         try {
@@ -72,10 +80,11 @@ public class GiohangDAO {
                 while (rs.next()) {
                     Giohang st = new Giohang();
                     st.setMagiohang(rs.getInt(1));
-                    st.setTensach(rs.getString(2));
-                    st.setGia(rs.getInt(3));
-                    st.setSoluong(rs.getInt(4));
-                    st.setManv(rs.getString(5));
+                    st.setMasach(rs.getString(2));
+                    st.setTensach(rs.getString(3));
+                    st.setGia(rs.getInt(4));
+                    st.setSoluong(rs.getInt(5));
+                    st.setManv(rs.getString(6));
                     listS.add(st);
                 }
             } finally {

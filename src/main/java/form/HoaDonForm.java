@@ -79,6 +79,7 @@ public class HoaDonForm extends javax.swing.JPanel {
             lblThongBao.setText("Vui lòng nhập số lượng là số!");
             lblThongBao.setForeground(Color.RED);
         }
+        gh.setMasach(sa.getMaSach());
         gh.setTensach(sa.getTenSach());
         gh.setGia(sa.getGia());
         gh.setManv(utils.Auth.user.getMaNhanVien());
@@ -110,12 +111,13 @@ public class HoaDonForm extends javax.swing.JPanel {
     private void addCart() {
         Giohang gh = readForm();
         GiohangDAO ghd = new GiohangDAO();
+        int sl = Integer.parseInt(txtSoLuong.getText());
         if (gh != null) {
             //Neu them hang ma trung ten thi cap nhat so luong
             boolean ex =false;
             for(Giohang it : list){
-                if(it.getTensach().equalsIgnoreCase(gh.getTensach())){
-                    int newSL = it.getSoluong() + gh.getSoluong() ;
+                if(it.getMasach().equalsIgnoreCase(gh.getMasach())){
+                    int newSL = sl + gh.getSoluong() ;
                     it.setSoluong(newSL);
                     ghd.update(it);
                     ex=true;
