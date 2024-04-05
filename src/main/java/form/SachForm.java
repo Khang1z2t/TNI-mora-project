@@ -20,6 +20,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import swing.FileChooser;
+import ui.ScrollBar;
+import utils.MoneyFormat;
 import utils.XImage;
 
 /**
@@ -62,6 +64,10 @@ public class SachForm extends javax.swing.JPanel {
         tblList.getTableHeader().setForeground(new Color(255, 255, 255));
         tblList.setRowHeight(25);
         tblList.setModel(tblModel);
+        
+        spTable.setVerticalScrollBar(new ScrollBar());
+        spTable.getVerticalScrollBar().setBackground(Color.white);
+        spTable.getViewport().setBackground(Color.white);
     }
     private void initComboBoxTL() {
         cboModel = new DefaultComboBoxModel();
@@ -148,7 +154,7 @@ public class SachForm extends javax.swing.JPanel {
                 s.getTenSach(),
                 s.getNamXB(),
                 s.getNhaXB(),
-                s.getGia(),
+                MoneyFormat.format(s.getGia()),
                 s.getTentacgia(),
                 s.getTheloai(),
                 s.getGhiChu(),
@@ -273,8 +279,9 @@ public class SachForm extends javax.swing.JPanel {
         btnLast = new javax.swing.JButton();
         cboTheLoai = new model.ComboBoxSuggestion();
         cboTacgia = new model.ComboBoxSuggestion();
-        tabDanhSach = new javax.swing.JScrollPane();
-        tblList = new javax.swing.JTable();
+        tabDanhSach = new javax.swing.JPanel();
+        spTable = new javax.swing.JScrollPane();
+        tblList = new swing.Table();
 
         setOpaque(false);
 
@@ -448,12 +455,24 @@ public class SachForm extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblListMouseClicked(evt);
-            }
-        });
-        tabDanhSach.setViewportView(tblList);
+        spTable.setViewportView(tblList);
+
+        javax.swing.GroupLayout tabDanhSachLayout = new javax.swing.GroupLayout(tabDanhSach);
+        tabDanhSach.setLayout(tabDanhSachLayout);
+        tabDanhSachLayout.setHorizontalGroup(
+            tabDanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabDanhSachLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(spTable, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        tabDanhSachLayout.setVerticalGroup(
+            tabDanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabDanhSachLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         tabSach.addTab("DANH SÁCH", tabDanhSach);
 
@@ -467,9 +486,9 @@ public class SachForm extends javax.swing.JPanel {
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+            .addGap(0, 485, Short.MAX_VALUE)
             .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(tabSach, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
+                .addComponent(tabSach, javax.swing.GroupLayout.PREFERRED_SIZE, 472, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -570,33 +589,6 @@ public class SachForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_lblHinhMouseClicked
 
-    private void tblListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListMouseClicked
-        // TODO add your handling code here:
-        try {
-            index = tblList.getSelectedRow();
-            String ma = (String) tblList.getValueAt(index, 0);
-            Sach s = new SachDAO().selectById(ma);
-            txtMasach.setText(s.getMaSach());
-            txtTensach.setText(s.getTenSach());
-            txtNhaXB.setText(s.getNhaXB());
-            txtNamXB.setText(String.valueOf(s.getNamXB()));
-            txtGiasach.setText(String.valueOf(s.getGia()));
-            txtGhiChu.setText(s.getGhiChu());
-            TacGia selectedTacGia = (TacGia) cboTacgia.getSelectedItem();
-            TheLoai selectedTheLoai = (TheLoai) cboTheLoai.getSelectedItem();
-            selectedTacGia.setTentg(s.getTentacgia());
-            selectedTheLoai.setTenTheLoai(s.getTheloai());
-            cboTacgia.setSelectedItem(selectedTacGia.getTentg());
-            cboTheLoai.setSelectedItem(selectedTheLoai.getTenTheLoai());
-            if (!s.getHinh().equals("")) {
-                lblHinh.setIcon(XImage.read(s.getHinh(), lblHinh.getWidth(), lblHinh.getHeight()));
-                lblHinh.setToolTipText(s.getHinh());
-            }
-            tabSach.setSelectedIndex(0);
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_tblListMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
@@ -621,10 +613,11 @@ public class SachForm extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblHinh;
     private swing.PanelBorder panelBorder1;
-    private javax.swing.JScrollPane tabDanhSach;
+    private javax.swing.JScrollPane spTable;
+    private javax.swing.JPanel tabDanhSach;
     private javax.swing.JTabbedPane tabSach;
     private javax.swing.JPanel tabThongTin;
-    private javax.swing.JTable tblList;
+    private swing.Table tblList;
     private javax.swing.JTextArea txtGhiChu;
     private javax.swing.JTextField txtGiasach;
     private javax.swing.JTextField txtMasach;
