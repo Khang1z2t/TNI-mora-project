@@ -15,13 +15,14 @@ import java.util.List;
  */
 public class SachDAO {
    public void insert(Sach model){
-       String sql="Insert into sach values(?,?,?,?,?,?,?,?,?,?,?)";
+       String sql="Insert into sach values(?,?,?,?,?,?,?,?,?,?,?,?)";
        utils.JDBCHelper.update(sql, 
                model.getMaSach(),
                model.getTenSach(),
                model.getNamXB(),    
                model.getNhaXB(),
                model.getGia(),
+               model.getSoLuong(),
                model.getTentacgia(),
                model.getTheloai(),
                model.getGhiChu(),
@@ -30,11 +31,13 @@ public class SachDAO {
                 model.getMaTacGia());
    }
    public void update(Sach model){
-        String sql="UPDATE sach SET tensach = ?, namXB = ?, nhaXB = ?, tentacgia = ?,theloai =?, GhiChu = ?,hinh = ?,matheloai =?,matacgia=? WHERE masach = ?";
+        String sql="UPDATE sach SET tensach = ?, namXB = ?, nhaXB = ?, gia = ?, soluong = ?, tentacgia = ?,theloai =?, GhiChu = ?,hinh = ?,matheloai =?,matacgia=? WHERE masach = ?";
         utils.JDBCHelper.update(sql, 
                 model.getTenSach(), 
                 model.getNamXB(), 
                 model.getNhaXB(),
+                model.getGia(),
+                model.getSoLuong(),
                 model.getTentacgia(),
                 model.getTheloai(),
                 model.getGhiChu(),
@@ -76,12 +79,13 @@ public class SachDAO {
                     st.setNamXB(rs.getInt(3));
                     st.setNhaXB(rs.getString(4));
                     st.setGia(rs.getInt(5));
-                    st.setTentacgia(rs.getString(6));
-                    st.setTheloai(rs.getString(7));
-                    st.setGhiChu(rs.getString(8));
-                    st.setHinh(rs.getString(9));
-                    st.setMaTheLoai(rs.getString(10));
-                    st.setMaTacGia(rs.getString(11));
+                    st.setSoLuong(rs.getInt(6));
+                    st.setTentacgia(rs.getString(7));
+                    st.setTheloai(rs.getString(8));
+                    st.setGhiChu(rs.getString(9));
+                    st.setHinh(rs.getString(10));
+                    st.setMaTheLoai(rs.getString(11));
+                    st.setMaTacGia(rs.getString(12));
                     listS.add(st);
                 }
             } finally {
@@ -118,9 +122,10 @@ public class SachDAO {
 //            }
 //            return list;
 //        }
-    public List<Sach> SelectByKeyword(String keyword) {
-        String sql = "SELECT * FROM sach WHERE tensach LIKE ?";
-        return SelectBySQL(sql, "%" + keyword + "%");
+    public List<Sach> selectByKeyword(String keyword) {
+        String sql = "SELECT * FROM sach WHERE (MaSach LIKE ? OR tensach LIKE ? OR NamXB LIKE ? OR NhaXB LIKE ? OR Gia LIKE ? OR TenTacGia LIKE ? OR TheLoai LIKE ?)";
+        String key = "%" + keyword + "%";
+        return SelectBySQL(sql, key, key, key, key, key, key, key);
     }
     public List<Sach> selectByTheLoai(String Matl) {
         String sql = "SELECT * FROM Sach WHERE theloai = ?";

@@ -16,6 +16,7 @@ public class Sach {
     private String maSach;
     private int namXB;
     private int gia;
+    private int soLuong;
     private String tentacgia;
     private String theloai;
     private String GhiChu;
@@ -32,16 +33,17 @@ public class Sach {
         return maSach + "-" + tenSach;
     }
 
-    public Sach(String tenSach, String maSach, int namXB, int gia, String tentacgia, String theloai, String GhiChu, String Hinh, String NhaXB, String maTheLoai, String maTacGia) {
+    public Sach(String tenSach, String maSach, int namXB, int gia, int soLuong, String tentacgia, String theloai, String ghiChu, String hinh, String nhaXB, String maTheLoai, String maTacGia) {
         this.tenSach = tenSach;
         this.maSach = maSach;
         this.namXB = namXB;
         this.gia = gia;
+        this.soLuong = soLuong;
         this.tentacgia = tentacgia;
         this.theloai = theloai;
-        this.GhiChu = GhiChu;
-        this.Hinh = Hinh;
-        this.NhaXB = NhaXB;
+        GhiChu = ghiChu;
+        Hinh = hinh;
+        NhaXB = nhaXB;
         this.maTheLoai = maTheLoai;
         this.maTacGia = maTacGia;
     }
@@ -78,6 +80,14 @@ public class Sach {
         this.gia = gia;
     }
 
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
     public String getTentacgia() {
         return tentacgia;
     }
@@ -98,24 +108,24 @@ public class Sach {
         return GhiChu;
     }
 
-    public void setGhiChu(String GhiChu) {
-        this.GhiChu = GhiChu;
+    public void setGhiChu(String ghiChu) {
+        GhiChu = ghiChu;
     }
 
     public String getHinh() {
         return Hinh;
     }
 
-    public void setHinh(String Hinh) {
-        this.Hinh = Hinh;
+    public void setHinh(String hinh) {
+        Hinh = hinh;
     }
 
     public String getNhaXB() {
         return NhaXB;
     }
 
-    public void setNhaXB(String NhaXB) {
-        this.NhaXB = NhaXB;
+    public void setNhaXB(String nhaXB) {
+        NhaXB = nhaXB;
     }
 
     public String getMaTheLoai() {
@@ -133,5 +143,4 @@ public class Sach {
     public void setMaTacGia(String maTacGia) {
         this.maTacGia = maTacGia;
     }
-
 }
