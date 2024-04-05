@@ -165,6 +165,7 @@ ui\QuenMatKhauJDialog$2.class
 ui\ScrollBar.class
 dao\NhaCungCapDAO.class
 ui\NguoiDungJDialog$1.class
+form\NhapHangForm$6.class
 ui\NhanVienJDialog$1.class
 entities\PhieuNhap.class
 ui\MainFrame$22.class
