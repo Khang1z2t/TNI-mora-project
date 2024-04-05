@@ -69,6 +69,30 @@ CREATE TABLE ChiTietHoaDon (
     gia money
 );
 
+CREATE TABLE NhaCungCap(
+	MaNhaCC nvarchar(20) primary key,
+	TenNhaCC nvarchar(100) null,
+	Sdt nvarchar(20) null,
+	DiaChi nvarchar(200) null
+);
+
+CREATE TABLE PhieuNhap(
+	MaNhap nvarchar(20) primary key,
+	NgayTao date null,
+	MaNV varchar(20) null,
+	MaNhaCC nvarchar(20) null,
+	Tongtien money
+);
+
+CREATE TABLE ChiTietPhieuNhap(
+	MaNhap nvarchar(20),
+	MaSach nvarchar(20) ,
+	SoLuong int null,
+	gia money,
+	primary key(MaNhap,MaSach)
+);
+
+/* bỏ 
 -- Tạo bảng kho sách
 CREATE TABLE KhoSach (
 	makho nvarchar(100) primary key,
@@ -78,7 +102,8 @@ CREATE TABLE KhoSach (
 	ghichu nvarchar(100),
 	maNV varchar(20) null,
 	ngayton date null
-);
+	drop table KhoSach
+);*/
 
 create table qltacgia(
 	matacgia nvarchar(20) primary key,
@@ -136,6 +161,19 @@ add constraint FK_docgia_sach foreign key (masach) references sach(masach)
 
 alter table hoadon
 add constraint FK_hoadon_sach foreign key (masach) references sach(masach)
+
+alter table PhieuNhap
+add constraint FK_PhieuNhap_NhanNien foreign key (MaNV) references NhanVien(MaNV)
+
+alter table PhieuNhap
+add constraint FK_PhieuNhap_NhaCungCap foreign key (MaNhaCC) references NhaCungCap(MaNhaCC)
+
+alter table ChiTietPhieuNhap
+add constraint FK_ChiTietPhieuNhap_PhieuNhap foreign key (MaNhap) references PhieuNhap(MaNhap)
+
+alter table ChiTietPhieuNhap
+add constraint FK_ChiTietPhieuNhap_Sach foreign key (MaSach) references Sach(MaSach)
+
 -- Thêm dữ liệu
 insert into NHANVIEN(MANV,MATKHAU,HOTEN,EMAIL,VAITRO) values 
 ('ADMIN','ADMIN',N'Nguyen Dinh Tuan','tuanndps36835@fpt.edu.vn',2)
