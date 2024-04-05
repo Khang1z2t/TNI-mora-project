@@ -609,6 +609,8 @@ public class SachForm extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblHinh;
@@ -618,6 +620,8 @@ public class SachForm extends javax.swing.JPanel {
     private javax.swing.JTabbedPane tabSach;
     private javax.swing.JPanel tabThongTin;
     private swing.Table tblList;
+    private javax.swing.JTextField txtFindSach;
+    private javax.swing.JTextField txtFindSach1;
     private javax.swing.JTextArea txtGhiChu;
     private javax.swing.JTextField txtGiasach;
     private javax.swing.JTextField txtMasach;

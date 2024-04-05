@@ -1,5 +1,6 @@
 swing\PasswordField.class
 ui\ThanhToanJFrame$4.class
+form\PhieuNhapForm$1.class
 ui\QuanLySachJDialog$12.class
 ui\MainFrame$15.class
 form\FormTemplate.class
@@ -39,6 +40,7 @@ chart\LegendItem.class
 ui\DangNhapJDialog$4.class
 form\NhanVienForm$2.class
 ui\tacgiaJDialog$11$1.class
+form\KhoForm$4.class
 component\Menu.class
 ui\ThanhToanJFrame.class
 form\NguoiDungForm$8.class
@@ -57,6 +59,7 @@ ui\tacgiaJDialog$10.class
 ui\tacgiaJDialog$4.class
 ui\MainFrame$5.class
 ui\Main$3.class
+form\KhoForm$2.class
 form\TacGiaForm$5.class
 form\TheLoaiForm$5.class
 ui\DatHangJDialog$1.class
@@ -110,8 +113,8 @@ ui\NguoiDungJDialog$4.class
 dao\ThongKeDAO.class
 swing\TextField.class
 ui\MainFrame$2.class
-form\NhapHang.class
 ui\MainFrame$11.class
+form\PhieuNhapForm.class
 swing\TableHeader.class
 form\TheLoaiForm$9.class
 ui\NguoiDungJDialog.class
@@ -173,6 +176,7 @@ ui\TonHangJDialog$1.class
 ui\TonHangJDialog$4$1.class
 utils\GetIcon.class
 model\SeriesSize.class
+form\KhoForm$3.class
 ui\DangNhapJDialog$5.class
 form\NguoiDungForm$4.class
 ui\MainFrame$4.class
@@ -180,6 +184,7 @@ ui\theloaiJDialog.class
 form\TacGiaForm$4.class
 ui\NhanVienJDialog$12.class
 form\SachForm$7.class
+form\NhapHangForm$1.class
 ui\SettingJDialog$1.class
 swing\ListMenu$3.class
 ui\nhaXBJDialog$1$1.class
@@ -209,6 +214,7 @@ swing\FileChooser.class
 ui\DangNhapJDialog$5$1.class
 ui\QuanLySachJDialog$6.class
 ui\QuanLySachJDialog$9.class
+form\NhapHangForm.class
 ui\MainFrame$19.class
 ui\MainFrame$24.class
 form\Form_Home.class
@@ -228,6 +234,7 @@ ui\TonHangJDialog$3.class
 dao\KhoDAO.class
 swing\PasswordField$3.class
 entities\Hoadon.class
+form\NhapHangForm$3.class
 ui\ThanhToanJFrame$1.class
 form\TacGiaForm$6.class
 ui\DocGiaJDialog$1.class
@@ -284,8 +291,10 @@ ui\DocGiaJDialog$1$1.class
 ui\DatHangJDialog.class
 ui\NhanVienJDialog$8.class
 ui\DoiMatKhauJDialog$2.class
+form\NhapHangForm$5.class
 swing\ComboSuggestionUI$Border.class
 ui\NhanVienJDialog$5.class
+form\NhapHangForm$2.class
 form\NhanVienForm$7.class
 ui\QuenMatKhauJDialog$4.class
 dao\NhanVienDAO.class
@@ -300,5 +309,6 @@ ui\QuenMatKhauJDialog$3.class
 ui\NhanVienJDialog$6.class
 utils\XFile.class
 ui\DatHangJDialog$1$1.class
+form\NhapHangForm$4.class
 ui\NguoiDungJDialog$11.class
 ui\theloaiJDialog$4.class

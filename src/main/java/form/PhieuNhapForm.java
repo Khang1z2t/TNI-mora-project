@@ -4,16 +4,18 @@
  */
 package form;
 
+import ui.Main;
+
 /**
  *
  * @author ngocd
  */
-public class NhapHang extends javax.swing.JPanel {
+public class PhieuNhapForm extends javax.swing.JPanel {
 
     /**
-     * Creates new form NhapHang
+     * Creates new form PhieuNhapForm
      */
-    public NhapHang() {
+    public PhieuNhapForm() {
         initComponents();
     }
 
@@ -26,21 +28,43 @@ public class NhapHang extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblBack = new javax.swing.JLabel();
+
         setBackground(new java.awt.Color(229, 229, 229));
+
+        lblBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
+        lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBackMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 551, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(670, Short.MAX_VALUE)
+                .addComponent(lblBack)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 443, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblBack)
+                .addContainerGap(467, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lblBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseClicked
+        // TODO add your handling code here:
+        Main.Instance.setForm(new KhoForm());
+    }//GEN-LAST:event_lblBackMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblBack;
     // End of variables declaration//GEN-END:variables
 }

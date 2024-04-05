@@ -44,8 +44,8 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="spTable" min="-2" pref="336" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="spTable" min="-2" pref="348" max="-2" attributes="0"/>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnNhap" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnPhieuNhap" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -160,6 +160,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Nh&#x1ead;p H&#xe0;ng"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNhapActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPhieuNhap">
       <Properties>
@@ -168,6 +171,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Phi&#x1ebf;u Nh&#x1ead;p"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPhieuNhapActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnExcel">
       <Properties>
@@ -176,6 +182,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t Excel"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcelActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

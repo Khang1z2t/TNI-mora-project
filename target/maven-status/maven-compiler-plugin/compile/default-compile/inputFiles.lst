@@ -1,5 +1,6 @@
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\ComboSuggestionUI.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\TextFieldSuggestion.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\NhapHangForm.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\model\SeriesSize.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\ui\NguoiDungJDialog.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\NguoiDung.java
@@ -79,6 +80,7 @@ E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\model\Co
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\ModernScrollBarUI.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\Giohang.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\ui\QuanLySachJDialog.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\PhieuNhapForm.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\MenuItem.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\ui\ThanhToanJFrame.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\NhaCungCapForm.java
@@ -88,7 +90,6 @@ E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\utils\Mo
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\component\Menu.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\LuongForm.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\ui\DoiMatKhauJDialog.java
-E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\NhapHang.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\TextFieldSuggestionUI.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\NhanVienForm.java
 E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\TableStatus.java
