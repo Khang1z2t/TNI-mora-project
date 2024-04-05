@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mycompany</groupId>
     <artifactId>NhaSach2</artifactId>
@@ -10,7 +11,7 @@
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
     </properties>
-   <dependencies>
+    <dependencies>
         <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
@@ -40,7 +41,7 @@
             <artifactId>javase</artifactId>
             <version>3.3.0</version>
         </dependency>
-    <!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
+        <!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
         <dependency>
             <groupId>com.toedter</groupId>
             <artifactId>jcalendar</artifactId>
@@ -56,7 +57,7 @@
             <groupId>com.jhlabs</groupId>
             <artifactId>filters</artifactId>
             <version>2.0.235</version>
-        </dependency> 
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.jdesktop/swing-worker -->
         <dependency>
             <groupId>org.jdesktop</groupId>
@@ -75,12 +76,12 @@
             <artifactId>timingframework</artifactId>
             <version>1.0</version>
         </dependency>
-      <dependency>
-         <groupId>net.java.timingframework</groupId>
-         <artifactId>timingframework-core</artifactId>
-         <version>5.0.0</version>
-         <type>jar</type>
-      </dependency>
+        <dependency>
+            <groupId>net.java.timingframework</groupId>
+            <artifactId>timingframework-core</artifactId>
+            <version>5.0.0</version>
+            <type>jar</type>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna -->
         <dependency>
             <groupId>net.java.dev.jna</groupId>
@@ -93,6 +94,17 @@
             <artifactId>miglayout-swing</artifactId>
             <version>11.3</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.2</version>
+        </dependency>
 
-   </dependencies>
+
+    </dependencies>
 </project>
