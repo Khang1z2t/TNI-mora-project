@@ -44,7 +44,7 @@ public class Model_Menu {
     private MenuType type;
 
     public Icon toIcon() {
-        return new ImageIcon(System.getProperty("user.dir")+ "/src/main/resources/icon/" + icon + ".png");
+        return new ImageIcon(System.getProperty("user.dir")+ "/src/main/resources/sm/" + icon + ".png");
     }
 
     public static enum MenuType {

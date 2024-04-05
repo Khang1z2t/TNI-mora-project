@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ThanhToanJFrame extends javax.swing.JFrame {
 
-
+    private ThanhToanThanhCongForm success;
     
     ArrayList<Giohang> list = new ArrayList<>();
     int index = -1;
@@ -30,43 +30,38 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
     
     public ThanhToanJFrame() {
         initComponents();
-        for(Giohang gh : list){
-            lblTongTien.setText("Tổng tiền: "+String.valueOf(gh.getSoluong())+" VND");
-        }
         setBackground(new Color(0,0,0,0));
         initTable();
 
         
         //dua cac du lieu gio hang duoc them vao truoc do
         DBtoList();
+        tinhTien();
         fillToTable();
     }
-//    private void tinhTien(){
-//        int tong =0;
-//        for(Giohang it : list){
-//            tong += it.getGia() * it.getSoluong();
-//        }
-//        lblTongTien.setText(String.valueOf("Tổng tiền: "+tong+" VND"));
-//    }
-    private void setForm(JComponent com) {
-        mainPanel.removeAll();
-        mainPanel.add(com);
-        mainPanel.repaint();
-        mainPanel.revalidate();
+    private void tinhTien(){
+        int tong =0;
+        for(Giohang it : list){
+            tong += it.getGia() * it.getSoluong();
+        }
+        lblTongTien.setText(String.valueOf("Tổng tiền: "+tong+" VND"));
     }
     private void successForm(){
         list.clear();
         GiohangDAO ghd = new GiohangDAO();
         ghd.reset();
+    Timer timer = new Timer(10000, (ActionEvent e) -> {
+        // Create an instance of HoaDonForm
         lblThongBao.setText("THANH TOÁN THÀNH CÔNG!");
         lblThongBao.setForeground(Color.green);
-        //timer dong tab
-        Timer timer = new Timer(10000, (ActionEvent e) -> {
-            new HoaDonForm(1);
-            dispose();
-        });
-        timer.setRepeats(false); // Set the timer to only fire once
-        timer.start();
+        this.dispose();
+        
+        // Replace the content of mainPanel with HoaDonForm
+        Main.Instance.setForm(new HoaDonForm());
+        
+    });
+    timer.setRepeats(false); // Set the timer to only fire once
+    timer.start();
     }
     
     private void initTable() {
@@ -170,7 +165,7 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("SẢN PHẨM TRONG GIỎ HÀNG");
 
-        lblTongTien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTongTien.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTongTien.setForeground(new java.awt.Color(0, 0, 0));
 
         lblThongBao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

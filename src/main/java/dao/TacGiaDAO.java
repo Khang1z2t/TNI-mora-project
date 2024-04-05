@@ -22,7 +22,7 @@ public class TacGiaDAO {
                model.getTentg());
    }
    public void update(TacGia model){
-        String sql="UPDATE sach SET tentacgia = ? WHERE matacgia = ?";
+        String sql="UPDATE qltacgia SET tentacgia = ? WHERE matacgia = ?";
         utils.JDBCHelper.update(sql, 
                 model.getTentg(), 
                 model.getMatg());

@@ -88,7 +88,7 @@ public class SachForm extends javax.swing.JPanel {
         cboTacgia.setModel(cboModel);
     }
     void showDetail(int index) {
-        txtMasach.setEditable(false);
+        txtGiasach.setEditable(false);
         Sach sa = list.get(index);
         txtMasach.setText(sa.getMaSach());
         txtTensach.setText(sa.getTenSach());
@@ -172,8 +172,8 @@ public class SachForm extends javax.swing.JPanel {
         cboTheLoai.setSelectedIndex(0);
         txtGhiChu.setText("");
         
-        txtMasach.setEditable(true);
-        txtMasach.requestFocus();
+        txtGiasach.setEditable(true);
+        txtGiasach.requestFocus();
     }
     public Sach readForm(){
         Sach sa = new Sach();
@@ -187,7 +187,7 @@ public class SachForm extends javax.swing.JPanel {
         String ghichu = txtGhiChu.getText();
    
         //valid
-        if(ma.equalsIgnoreCase("") || ten.equalsIgnoreCase("") || namxb == 0 || gia.equals(0) || ghichu.equalsIgnoreCase("") || tentg.equals("") || theloai.equals("")){
+        if(ma.equalsIgnoreCase("") || ten.equalsIgnoreCase("") || namxb == 0 || gia.equals(0) || tentg.equals("") || theloai.equals("")){
             utils.DialogHelper.alert(this, "Vui lòng nhập đủ thông tin!");
         }
         //
@@ -252,23 +252,13 @@ public class SachForm extends javax.swing.JPanel {
         panelBorder1 = new swing.PanelBorder();
         tabSach = new javax.swing.JTabbedPane();
         tabThongTin = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtMasach = new javax.swing.JTextField();
-        txtTensach = new javax.swing.JTextField();
-        txtGiasach = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtNamXB = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtGhiChu = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         lblHinh = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txtNhaXB = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
@@ -279,6 +269,16 @@ public class SachForm extends javax.swing.JPanel {
         btnLast = new javax.swing.JButton();
         cboTheLoai = new model.ComboBoxSuggestion();
         cboTacgia = new model.ComboBoxSuggestion();
+        txtGiasach = new swing.TextFieldSuggestion();
+        txtNamXB = new swing.TextFieldSuggestion();
+        txtMasach = new swing.TextFieldSuggestion();
+        txtTensach = new swing.TextFieldSuggestion();
+        txtNhaXB = new swing.TextFieldSuggestion();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         tabDanhSach = new javax.swing.JPanel();
         spTable = new javax.swing.JScrollPane();
         tblList = new swing.Table();
@@ -288,48 +288,22 @@ public class SachForm extends javax.swing.JPanel {
         panelBorder1.setBackground(new java.awt.Color(229, 229, 229));
 
         tabThongTin.setBackground(new java.awt.Color(255, 255, 255));
-        tabThongTin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Mã sách");
-        tabThongTin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Tên sách");
-        tabThongTin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 69, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Thể loại");
-        tabThongTin.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 128, -1, -1));
-        tabThongTin.add(txtMasach, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 171, 33));
-        tabThongTin.add(txtTensach, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 95, 171, 27));
-
-        txtGiasach.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        tabThongTin.add(txtGiasach, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 95, 171, 27));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Tác giả");
-        tabThongTin.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 128, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("Năm xuất bản");
-        tabThongTin.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 10, -1, -1));
-        tabThongTin.add(txtNamXB, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 31, 171, 32));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Giá sách");
-        tabThongTin.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 69, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 102, 102));
         jLabel8.setText("Ghi Chú");
-        tabThongTin.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
 
         txtGhiChu.setColumns(20);
         txtGhiChu.setRows(5);
         jScrollPane2.setViewportView(txtGhiChu);
-
-        tabThongTin.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 286, 360, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bìa Sách", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(153, 153, 255))); // NOI18N
@@ -356,13 +330,6 @@ public class SachForm extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        tabThongTin.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 6, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setText("Nhà xuất bản");
-        tabThongTin.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 191, -1, -1));
-        tabThongTin.add(txtNhaXB, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 217, 171, 31));
-
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThem.setText("Thêm");
         btnThem.setMaximumSize(new java.awt.Dimension(88, 26));
@@ -373,7 +340,6 @@ public class SachForm extends javax.swing.JPanel {
                 btnThemActionPerformed(evt);
             }
         });
-        tabThongTin.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, 38));
 
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoa.setText("Xóa");
@@ -385,7 +351,6 @@ public class SachForm extends javax.swing.JPanel {
                 btnXoaActionPerformed(evt);
             }
         });
-        tabThongTin.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 80, 38));
 
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSua.setText("Sửa");
@@ -396,7 +361,6 @@ public class SachForm extends javax.swing.JPanel {
                 btnSuaActionPerformed(evt);
             }
         });
-        tabThongTin.add(btnSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 390, 80, 38));
 
         btnMoi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMoi.setText("Làm mới");
@@ -406,7 +370,6 @@ public class SachForm extends javax.swing.JPanel {
                 btnMoiActionPerformed(evt);
             }
         });
-        tabThongTin.add(btnMoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, 89, 38));
 
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/last.png"))); // NOI18N
         btnFirst.addActionListener(new java.awt.event.ActionListener() {
@@ -414,7 +377,6 @@ public class SachForm extends javax.swing.JPanel {
                 btnFirstActionPerformed(evt);
             }
         });
-        tabThongTin.add(btnFirst, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 390, 40, 30));
 
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/next.png"))); // NOI18N
         btnNext.addActionListener(new java.awt.event.ActionListener() {
@@ -422,7 +384,6 @@ public class SachForm extends javax.swing.JPanel {
                 btnNextActionPerformed(evt);
             }
         });
-        tabThongTin.add(btnNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, 47, 30));
 
         btnPre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pre.png"))); // NOI18N
         btnPre.addActionListener(new java.awt.event.ActionListener() {
@@ -430,7 +391,6 @@ public class SachForm extends javax.swing.JPanel {
                 btnPreActionPerformed(evt);
             }
         });
-        tabThongTin.add(btnPre, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 390, 47, 30));
 
         btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/first.png"))); // NOI18N
         btnLast.addActionListener(new java.awt.event.ActionListener() {
@@ -438,9 +398,145 @@ public class SachForm extends javax.swing.JPanel {
                 btnLastActionPerformed(evt);
             }
         });
-        tabThongTin.add(btnLast, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 390, 42, 30));
-        tabThongTin.add(cboTheLoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 170, -1));
-        tabThongTin.add(cboTacgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 170, -1));
+
+        txtGiasach.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        txtNamXB.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        txtMasach.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        txtTensach.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        txtNhaXB.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Giá sách");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Nhà xuất bản");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Tên sách");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Mã sách");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Năm xuất bản");
+
+        javax.swing.GroupLayout tabThongTinLayout = new javax.swing.GroupLayout(tabThongTin);
+        tabThongTin.setLayout(tabThongTinLayout);
+        tabThongTinLayout.setHorizontalGroup(
+            tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabThongTinLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabThongTinLayout.createSequentialGroup()
+                        .addGroup(tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tabThongTinLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(137, 137, 137)
+                                .addComponent(jLabel11))
+                            .addGroup(tabThongTinLayout.createSequentialGroup()
+                                .addComponent(txtMasach, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(txtNamXB, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(tabThongTinLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(133, 133, 133)
+                                .addComponent(jLabel5))
+                            .addGroup(tabThongTinLayout.createSequentialGroup()
+                                .addComponent(txtTensach, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(txtGiasach, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(tabThongTinLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(144, 144, 144)
+                                .addComponent(jLabel4))
+                            .addGroup(tabThongTinLayout.createSequentialGroup()
+                                .addComponent(cboTacgia, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(cboTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel7)
+                            .addComponent(txtNhaXB, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addGroup(tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(tabThongTinLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addComponent(btnPre, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(13, 13, 13)
+                                .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(tabThongTinLayout.createSequentialGroup()
+                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        tabThongTinLayout.setVerticalGroup(
+            tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabThongTinLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabThongTinLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11))
+                        .addGroup(tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMasach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNamXB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)
+                        .addGroup(tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel5))
+                        .addGroup(tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTensach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtGiasach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addGroup(tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel4))
+                        .addGroup(tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboTacgia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, 0)
+                        .addComponent(txtNhaXB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel8)
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabThongTinLayout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addGroup(tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(80, 80, 80)
+                .addGroup(tabThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         tabSach.addTab("CẬP NHẬT", tabThongTin);
 
@@ -463,7 +559,7 @@ public class SachForm extends javax.swing.JPanel {
             tabDanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabDanhSachLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(spTable, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                .addComponent(spTable, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tabDanhSachLayout.setVerticalGroup(
@@ -480,15 +576,17 @@ public class SachForm extends javax.swing.JPanel {
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 688, Short.MAX_VALUE)
+            .addGap(0, 698, Short.MAX_VALUE)
             .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(tabSach, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE))
+                .addComponent(tabSach, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
+            .addGap(0, 589, Short.MAX_VALUE)
             .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(tabSach, javax.swing.GroupLayout.PREFERRED_SIZE, 472, Short.MAX_VALUE))
+                .addGroup(panelBorder1Layout.createSequentialGroup()
+                    .addComponent(tabSach, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -513,7 +611,7 @@ public class SachForm extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             for (Sach sa : list) {
-                if (txtMasach.getText().equalsIgnoreCase(sa.getMaSach())) {
+                if (txtGiasach.getText().equalsIgnoreCase(sa.getMaSach())) {
                     boolean choose = utils.DialogHelper.confirm(this, "Bạn có chắc chắn muốn xóa sách " + sa.getTenSach() + "' không?");
                     if (choose) {
                         delete(sa);
@@ -534,7 +632,7 @@ public class SachForm extends javax.swing.JPanel {
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         // TODO add your handling code here:
         clearform();
-        txtMasach.requestFocus();
+        txtGiasach.requestFocus();
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -601,16 +699,14 @@ public class SachForm extends javax.swing.JPanel {
     private javax.swing.JButton btnXoa;
     private model.ComboBoxSuggestion cboTacgia;
     private model.ComboBoxSuggestion cboTheLoai;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblHinh;
@@ -620,13 +716,11 @@ public class SachForm extends javax.swing.JPanel {
     private javax.swing.JTabbedPane tabSach;
     private javax.swing.JPanel tabThongTin;
     private swing.Table tblList;
-    private javax.swing.JTextField txtFindSach;
-    private javax.swing.JTextField txtFindSach1;
     private javax.swing.JTextArea txtGhiChu;
-    private javax.swing.JTextField txtGiasach;
-    private javax.swing.JTextField txtMasach;
-    private javax.swing.JTextField txtNamXB;
-    private javax.swing.JTextField txtNhaXB;
-    private javax.swing.JTextField txtTensach;
+    private swing.TextFieldSuggestion txtGiasach;
+    private swing.TextFieldSuggestion txtMasach;
+    private swing.TextFieldSuggestion txtNamXB;
+    private swing.TextFieldSuggestion txtNhaXB;
+    private swing.TextFieldSuggestion txtTensach;
     // End of variables declaration//GEN-END:variables
 }

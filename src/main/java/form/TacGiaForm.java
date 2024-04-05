@@ -84,10 +84,10 @@ public class TacGiaForm extends javax.swing.JPanel {
     }
 
     void showDetail(int index) {
-        txtMaTheLoai.setEditable(false);
+        txtMaTacgia.setEditable(false);
         TacGia tg = listTG.get(index);
-        txtMaTheLoai.setText(tg.getMatg());
-        txtTenTheLoai.setText(tg.getTentg());
+        txtMaTacgia.setText(tg.getMatg());
+        txtTenTacgia.setText(tg.getTentg());
     }
     private void fillToTable(List<TacGia> lst) {
         tblModel.setRowCount(0);
@@ -115,14 +115,14 @@ public class TacGiaForm extends javax.swing.JPanel {
     }
 
     private void clearForm() {
-        txtMaTheLoai.setEditable(true);
-        txtMaTheLoai.setText("");
-        txtTenTheLoai.setText("");
+        txtMaTacgia.setEditable(true);
+        txtMaTacgia.setText("");
+        txtTenTacgia.setText("");
    }
     public TacGia readForm(){
         TacGia tl = new TacGia();
-        String ma = txtMaTheLoai.getText();
-        String ten = txtTenTheLoai.getText();
+        String ma = txtMaTacgia.getText();
+        String ten = txtTenTacgia.getText();
         
         if(ma.equals("") || ten.equalsIgnoreCase("")){
             utils.DialogHelper.alert(this, "VUI LÒNG NHẬP ĐẦY ĐỦ THÔNG TIN!");
@@ -160,7 +160,7 @@ public class TacGiaForm extends javax.swing.JPanel {
 
     private void update(TacGia tl) {
         TacGiaDAO tld = new TacGiaDAO();
-        tl.setTentg(txtTenTheLoai.getText());
+        tl.setTentg(txtTenTacgia.getText());
         tld.update(tl);
         DBFillToList();
     }
@@ -175,10 +175,6 @@ public class TacGiaForm extends javax.swing.JPanel {
     private void initComponents() {
 
         panelBorder1 = new swing.PanelBorder();
-        jLabel1 = new javax.swing.JLabel();
-        txtMaTheLoai = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtTenTheLoai = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
@@ -190,19 +186,16 @@ public class TacGiaForm extends javax.swing.JPanel {
         btnLast = new javax.swing.JButton();
         spTable = new javax.swing.JScrollPane();
         tblList = new swing.Table();
+        txtMaTacgia = new swing.TextFieldSuggestion();
+        txtTenTacgia = new swing.TextFieldSuggestion();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setOpaque(false);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelBorder1.setBackground(new java.awt.Color(229, 229, 229));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("MÃ TÁC GIẢ");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("TÊN TÁC GIẢ");
+        panelBorder1.setBackground(new java.awt.Color(255, 255, 255));
+        panelBorder1.setMaximumSize(new java.awt.Dimension(698, 594));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -312,20 +305,28 @@ public class TacGiaForm extends javax.swing.JPanel {
         });
         spTable.setViewportView(tblList);
 
+        txtMaTacgia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        txtTenTacgia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Mã tác giả");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Tên tác giả");
+
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelBorder1Layout.createSequentialGroup()
                         .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3)
-                                .addComponent(txtMaTheLoai, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                                .addComponent(jLabel1)
-                                .addComponent(txtTenTheLoai))
                             .addGroup(panelBorder1Layout.createSequentialGroup()
                                 .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -333,41 +334,41 @@ public class TacGiaForm extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                                .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTenTacgia, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaTacgia, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(261, 261, 261)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelBorder1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1)
+                        .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMaTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtMaTacgia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTenTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addGap(4, 4, 4)
+                        .addComponent(txtTenTacgia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
                         .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnNext, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLast, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                            .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        add(panelBorder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 606, -1));
+        add(panelBorder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 698, 594));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -377,7 +378,7 @@ public class TacGiaForm extends javax.swing.JPanel {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         try {
             for (TacGia tl : listTG) {
-                if (txtMaTheLoai.getText().equalsIgnoreCase(tl.getMatg())) {
+                if (txtMaTacgia.getText().equalsIgnoreCase(tl.getMatg())) {
                     boolean choose = utils.DialogHelper.confirm(this, "Bạn có chắc chắn muốn xóa tác giả '" + tl.getTentg()+ "' không?");
                     if (choose) {
                         delete(tl);
@@ -396,9 +397,9 @@ public class TacGiaForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        for (TacGia tl : listTG) {
-            if (txtMaTheLoai.getText().equals(tl.getMatg())) {
-                update(tl);
+        for (TacGia tg : listTG) {
+            if (txtMaTacgia.getText().equals(tg.getMatg())) {
+                update(tg);
                 utils.DialogHelper.alert(this, "Cập nhật thông tin thành công!");
             }
         }
@@ -407,7 +408,7 @@ public class TacGiaForm extends javax.swing.JPanel {
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         // TODO add your handling code here:
         clearForm();
-        txtMaTheLoai.requestFocus();
+        txtMaTacgia.requestFocus();
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
@@ -434,8 +435,8 @@ public class TacGiaForm extends javax.swing.JPanel {
             index = tblList.getSelectedRow();
             String ma = (String) tblList.getValueAt(index, 0);
             TacGia tg = new TacGiaDAO().selectById(ma);
-            txtMaTheLoai.setText(tg.getMatg());
-            txtTenTheLoai.setText(tg.getTentg());
+            txtMaTacgia.setText(tg.getMatg());
+            txtTenTacgia.setText(tg.getTentg());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_tblListMouseClicked
@@ -450,13 +451,13 @@ public class TacGiaForm extends javax.swing.JPanel {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private swing.PanelBorder panelBorder1;
     private javax.swing.JScrollPane spTable;
     private swing.Table tblList;
-    private javax.swing.JTextField txtMaTheLoai;
-    private javax.swing.JTextField txtTenTheLoai;
+    private swing.TextFieldSuggestion txtMaTacgia;
+    private swing.TextFieldSuggestion txtTenTacgia;
     // End of variables declaration//GEN-END:variables
 }

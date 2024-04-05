@@ -14,7 +14,6 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComponent;
 import javax.swing.table.DefaultTableModel;
 import ui.ThanhToanJFrame;
 
@@ -24,6 +23,7 @@ import ui.ThanhToanJFrame;
  */
 public class HoaDonForm extends javax.swing.JPanel {
      ArrayList<Giohang> list = new ArrayList<>();
+    int index = -1;
     DefaultTableModel tblModel;
     DefaultComboBoxModel cbxModel;
     public HoaDonForm() {
@@ -321,18 +321,12 @@ public class HoaDonForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
-     private void setForm(JComponent com) {
-        mainPanel.removeAll();
-        mainPanel.add(com);
-        mainPanel.repaint();
-        mainPanel.revalidate();
-    }
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
         new ThanhToanJFrame().setVisible(true);
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
-    private javax.swing.JPanel mainPanel;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnThem;
