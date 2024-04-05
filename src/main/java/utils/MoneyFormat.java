@@ -8,4 +8,14 @@ public class MoneyFormat {
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
         return currencyFormat.format(amount);
     }
+
+    public static String format(double amount) {
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return currencyFormat.format(amount);
+    }
+
+    public static String format(float amount) {
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return currencyFormat.format(amount);
+    }
 }
