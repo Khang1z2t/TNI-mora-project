@@ -10,8 +10,10 @@ import dao.*;
 import form.*;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.JComponent;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ThanhToanJFrame extends javax.swing.JFrame {
 
-    private ThanhToanThanhCongForm success;
+
     
     ArrayList<Giohang> list = new ArrayList<>();
     int index = -1;
@@ -56,10 +58,15 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
         list.clear();
         GiohangDAO ghd = new GiohangDAO();
         ghd.reset();
-//        setForm(success);
         lblThongBao.setText("THANH TOÁN THÀNH CÔNG!");
         lblThongBao.setForeground(Color.green);
-        dispose();
+        //timer dong tab
+        Timer timer = new Timer(10000, (ActionEvent e) -> {
+            new HoaDonForm(1);
+            dispose();
+        });
+        timer.setRepeats(false); // Set the timer to only fire once
+        timer.start();
     }
     
     private void initTable() {
@@ -88,7 +95,7 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
             Giohang gh = list.get(i);
             tblModel.addRow(new Object[]{
                 i+1,
-                gh.getMasach(),
+                gh.getTensach(),
                 gh.getSoluong(),
                 gh.getGia(),
             });
