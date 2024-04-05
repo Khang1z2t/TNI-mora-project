@@ -27,17 +27,18 @@ public class Menu extends javax.swing.JPanel {
      * Creates new form Menu
      */
     private EventMenuSelected event;
-
+    
     public void addEventMenuSelected(EventMenuSelected event) {
         this.event = event;
         listMenu1.addEventMenuSelected(event);
     }
+
     public Menu() {
         initComponents();
         setOpaque(false);
         init();
     }
-
+    
     @Override
     protected void paintChildren(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
@@ -51,7 +52,7 @@ public class Menu extends javax.swing.JPanel {
     
     private int x;
     private int y;
-
+    
     public void initMoving(JFrame fram) {
         PanelMoving.addMouseListener(new MouseAdapter() {
             @Override
@@ -59,7 +60,7 @@ public class Menu extends javax.swing.JPanel {
                 x = me.getX();
                 y = me.getY();
             }
-
+            
         });
         PanelMoving.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
@@ -68,6 +69,7 @@ public class Menu extends javax.swing.JPanel {
             }
         });
     }
+
     private void init() {
         listMenu1.addItem(new Model_Menu("1", "Trang chủ", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("2", "Quản lý nhân viên", Model_Menu.MenuType.MENU));
@@ -75,15 +77,20 @@ public class Menu extends javax.swing.JPanel {
         listMenu1.addItem(new Model_Menu("4", "Quản lý sách", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("5", "Quản lý thể loại", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("6", "Quản lý tác giả", Model_Menu.MenuType.MENU));
-
+        listMenu1.addItem(new Model_Menu("eye", "Nhà Cung Cấp", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("eye", "Quản lý Kho", Model_Menu.MenuType.MENU));
+        
+        listMenu1.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
+        
         listMenu1.addItem(new Model_Menu("", "Thông tin", Model_Menu.MenuType.TITLE));
         listMenu1.addItem(new Model_Menu("7", "Đổi mật khẩu", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("8", "Doanh thu", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("9", "Hóa đơn", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("10", "Lương nhân viên", Model_Menu.MenuType.MENU));  
+        listMenu1.addItem(new Model_Menu("10", "Lương nhân viên", Model_Menu.MenuType.MENU));        
         listMenu1.addItem(new Model_Menu("11", "Đăng xuất", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("", "", Model_Menu.MenuType.EMPTY));
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

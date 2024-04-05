@@ -22,8 +22,8 @@ public class PhieuNhapDAO {
         JDBCHelper.update(update_SQL, model.getNgayNhap(), model.getMaNV(), model.getMaNhaCC(), model.getTongTien(), model.getMaNhap());
     }
 
-    public void delete(PhieuNhap model) {
-        JDBCHelper.update(delete_SQL, model.getMaNhap());
+    public void delete(Object key) {
+        JDBCHelper.update(delete_SQL, key);
     }
 
     public List<PhieuNhap> selectAll() {

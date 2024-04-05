@@ -22,8 +22,8 @@ public class NhaCungCapDAO {
         JDBCHelper.update(update_SQL, model.getTenNhaCC(), model.getSDT(), model.getDiaChi(), model.getMaNhaCC());
     }
 
-    public void delete(NhaCungCap model) {
-        JDBCHelper.update(delete_SQL, model.getMaNhaCC());
+    public void delete(Object key) {
+        JDBCHelper.update(delete_SQL, key);
     }
 
     public List<NhaCungCap> selectAll() {
@@ -52,5 +52,11 @@ public class NhaCungCapDAO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<NhaCungCap> selectByKey(String key) {
+        String sql = "select * from NhaCungCap where (MaNhaCC like ? OR TenNhaCC like ? OR SDT like ? OR DiaChi like ?)";
+        String keyword = "%" + key + "%";
+        return selectBySQL(sql, keyword, keyword, keyword, keyword);
     }
 }
