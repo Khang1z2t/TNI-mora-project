@@ -33,7 +33,7 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
         }
         setBackground(new Color(0,0,0,0));
         initTable();
-        success = new ThanhToanThanhCongForm();
+
         
         //dua cac du lieu gio hang duoc them vao truoc do
         DBtoList();
@@ -46,12 +46,12 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
 //        }
 //        lblTongTien.setText(String.valueOf("Tổng tiền: "+tong+" VND"));
 //    }
-//    private void setForm(JComponent com) {
-//        mainPanel.removeAll();
-//        mainPanel.add(com);
-//        mainPanel.repaint();
-//        mainPanel.revalidate();
-//    }
+    private void setForm(JComponent com) {
+        mainPanel.removeAll();
+        mainPanel.add(com);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+    }
     private void successForm(){
         list.clear();
         GiohangDAO ghd = new GiohangDAO();
@@ -88,7 +88,7 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
             Giohang gh = list.get(i);
             tblModel.addRow(new Object[]{
                 i+1,
-                gh.getTensach(),
+                gh.getMasach(),
                 gh.getSoluong(),
                 gh.getGia(),
             });

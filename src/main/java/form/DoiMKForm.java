@@ -15,8 +15,6 @@ import utils.DialogHelper;
  * @author NGUYEN THI NGUYET VY
  */
 public class DoiMKForm extends javax.swing.JPanel {
-    ArrayList<NhanVien> list = new ArrayList<>();
-    String user;
     /**
      * Creates new form FormTemplate
      */
@@ -25,8 +23,8 @@ public class DoiMKForm extends javax.swing.JPanel {
         txtUser.setText(utils.Auth.user.getMaNhanVien());
     }
     private boolean checkForm() {
-        if (String.valueOf(txtConfirmPass.g).trim().length() == 0
-                || String.valueOf(txtNewPass.getPassword()).trim().length() == 0) {
+        if (String.valueOf(txtConfirmPass.getPassword()).trim().isEmpty()
+                || String.valueOf(txtNewPass.getPassword()).trim().isEmpty()) {
             DialogHelper.alert(this, "Vui lòng nhập đầy đủ thông tin!");
             return false;
         }

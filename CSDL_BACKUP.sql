@@ -91,11 +91,13 @@ create table qlTheLoai(
 
 create table giohang(
     magiohang INT PRIMARY KEY IDENTITY(1,1),
-	tensach nvarchar(100) null,
-	gia money null,
+	masach nvarchar(20) null,
+	tensach nvarchar(200) null,
+	gia int null,
 	soluong int null,
 	maNV varchar(20) null
 );
+
 delete from giohang
 select * from giohang
 /*

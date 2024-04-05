@@ -128,8 +128,8 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
             new NhanVienDAO().update(nv);
             utils.DialogHelper.alert(this, "Cập nhật mật khẩu mới thành công!");
             this.dispose();
-            DangNhapJDialog dn = new DangNhapJDialog((java.awt.Frame)getParent(), true);
-            dn.setVisible(true);
+//            DangNhapJDialog dn = new DangNhapJDialog((java.awt.Frame)getParent(), true);
+//            dn.setVisible(true);
         }
     }//GEN-LAST:event_btnDoiMKActionPerformed
 
