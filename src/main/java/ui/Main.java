@@ -34,10 +34,10 @@ public class Main extends javax.swing.JFrame {
     //tao hoa don
     //dang xuat
 
-    public Main(int index) {
+    public Main() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
-
+        setTitle("Phần mềm quản lý cửa hàng sách");
         //khai bao form
         menu1.initMoving(Main.this);
         menu1.addEventMenuSelected(new EventMenuSelected() {
@@ -196,7 +196,7 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main(0).setVisible(true);
+                new Main().setVisible(true);
             }
         });
     }

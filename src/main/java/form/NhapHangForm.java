@@ -5,24 +5,31 @@
 package form;
 
 import dao.ChiTietPhieuNhapDAO;
+import dao.NhaCungCapDAO;
 import dao.PhieuNhapDAO;
 import dao.SachDAO;
 import entities.ChiTietPhieuNhap;
+import entities.NhaCungCap;
 import entities.PhieuNhap;
 import entities.Sach;
+
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.SwingUtilities;
+import java.util.Optional;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
 import ui.Main;
 import ui.ScrollBar;
+import utils.Auth;
 import utils.DialogHelper;
 import utils.MoneyFormat;
 
 /**
- *
  * @author ngocd
  */
 public class NhapHangForm extends javax.swing.JPanel {
@@ -30,35 +37,124 @@ public class NhapHangForm extends javax.swing.JPanel {
     SachDAO sachDAO = new SachDAO();
     PhieuNhapDAO pnDAO = new PhieuNhapDAO();
     ChiTietPhieuNhapDAO ctpnDAO = new ChiTietPhieuNhapDAO();
-    private List<PhieuNhap> listPN = new ArrayList<>();
+    NhaCungCapDAO nccDAO = new NhaCungCapDAO();
+    private List<ChiTietPhieuNhap> listCTPN = new ArrayList<>();
 
     public NhapHangForm() {
         initComponents();
         init();
+        
     }
 
     private void init() {
         fillTableSach();
+        fillCboNCC();
+        initTableNhap();
+        txtMaNhap.setText(createID(pnDAO.selectAll()));
+        txtMaNV.setText(Auth.user.getMaNhanVien());
+
+
     }
-    
+
     private void addPhieuNhap() {
-        
+        try {
+            PhieuNhap pn = getFormPN();
+            pnDAO.insert(pn);
+            for (ChiTietPhieuNhap ctpn : listCTPN) {
+                ctpnDAO.insert(ctpn);
+                Sach sach = sachDAO.selectById(ctpn.getMasach());
+                sach.setSoLuong(sach.getSoLuong() + ctpn.getSoluong());
+                sachDAO.update(sach);
+            }
+            DialogHelper.alert(this, "Nhập hàng thành công!");
+            Main.Instance.setForm(new KhoForm());
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Lỗi nhập hàng!");
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void addSachToPN() {
+        try {
+            int row = tblSach.getSelectedRow();
+            String maNhap = (String) tblSach.getValueAt(row, 0);
+            Sach sach = sachDAO.selectById(maNhap);
+
+            int soLuong = Integer.parseInt(DialogHelper.prompt(this, "Nhập số lượng:"));
+            if (soLuong <= 0) {
+                DialogHelper.alert(this, "Số lượng phải lớn hơn 0!");
+                return;
+            }
+
+            ChiTietPhieuNhap ctpn = new ChiTietPhieuNhap();
+            ctpn.setMaNhap(txtMaNhap.getText());
+            ctpn.setMasach(sach.getMaSach());
+            ctpn.setSoluong(soLuong);
+            ctpn.setGia(sach.getGia());
+
+            // Tìm sách trong danh sách
+            Optional<ChiTietPhieuNhap> optionalCTPN = listCTPN.stream()
+                    .filter(x -> x.getMasach().equals(ctpn.getMasach()))
+                    .findFirst();
+
+            if (optionalCTPN.isPresent()) {
+                // Nếu sách đã tồn tại, cập nhật số lượng
+                ChiTietPhieuNhap existingCTPN = optionalCTPN.get();
+                existingCTPN.setSoluong(existingCTPN.getSoluong() + ctpn.getSoluong());
+            } else {
+                // Nếu sách không tồn tại, thêm sách vào danh sách
+                listCTPN.add(ctpn);
+            }
+
+            fillTableNhap();
+
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Lỗi thêm sách vào phiếu nhập!");
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void editSLPN() {
+        try {
+            int row = tblPhieuNhap.getSelectedRow();
+            int soLuong = Integer.parseInt(DialogHelper.prompt(this, "Nhập số lượng:"));
+            if (soLuong <= 0) {
+                DialogHelper.alert(this, "Số lượng phải lớn hơn 0!");
+                return;
+            }
+            listCTPN.get(row).setSoluong(soLuong);
+            fillTableNhap();
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Lỗi sửa số lượng sách trong phiếu nhập!");
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void deleteSachtoPN() {
+        try {
+            int row = tblPhieuNhap.getSelectedRow();
+            listCTPN.remove(row);
+            fillTableNhap();
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Lỗi xoá sách trong phiếu nhập!");
+            throw new RuntimeException(e);
+        }
     }
 
     private void fillTableSach() {
         DefaultTableModel model = (DefaultTableModel) tblSach.getModel();
         model.setColumnIdentifiers(new Object[]{
-            "Mã Sách", "Tên Sách", "Giá", "Số Lượng",});
+                "Mã Sách", "Tên Sách", "Giá", "Số Lượng",});
         model.setRowCount(0);
         try {
             String keyword = txtFindSach.getText();
             List<Sach> list = sachDAO.selectByKeyword(keyword);
             for (Sach sach : list) {
                 model.addRow(new Object[]{
-                    sach.getMaSach(),
-                    sach.getTenSach(),
-                    MoneyFormat.format(sach.getGia()),
-                    sach.getSoLuong(),});
+                        sach.getMaSach(),
+                        sach.getTenSach(),
+                        MoneyFormat.format(sach.getGia()),
+                        sach.getSoLuong(),});
             }
         } catch (Exception e) {
             DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
@@ -68,8 +164,83 @@ public class NhapHangForm extends javax.swing.JPanel {
         spTblSach.getVerticalScrollBar().setBackground(Color.white);
         spTblSach.getViewport().setBackground(Color.white);
     }
-    
 
+    private void initTableNhap() {
+        DefaultTableModel model = (DefaultTableModel) tblPhieuNhap.getModel();
+        model.setColumnIdentifiers(new Object[]{
+                "STT", "Mã Sách", "Tên Sách", "Số Lượng", "Giá", "Thành Tiền"
+        });
+        model.setRowCount(0);
+    }
+
+    private void fillTableNhap() {
+        DefaultTableModel model = (DefaultTableModel) tblPhieuNhap.getModel();
+        model.setRowCount(0);
+        double tongTien = 0;
+        int stt = 1;
+        for (ChiTietPhieuNhap ctpn : listCTPN) {
+            Sach sach = sachDAO.selectById(ctpn.getMasach());
+            double thanhTien = ctpn.getSoluong() * ctpn.getGia();
+            tongTien += thanhTien;
+            model.addRow(new Object[]{
+                    stt++,
+                    sach.getMaSach(),
+                    sach.getTenSach(),
+                    ctpn.getSoluong(),
+                    MoneyFormat.format(ctpn.getGia()),
+                    MoneyFormat.format(thanhTien)});
+        }
+        lblTongTien.setText(MoneyFormat.format(tongTien));
+        spTblNhap.setVerticalScrollBar(new ScrollBar());
+        spTblNhap.getVerticalScrollBar().setBackground(Color.white);
+        spTblNhap.getViewport().setBackground(Color.white);
+    }
+
+    private void fillCboNCC() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboNcc.getModel();
+        model.removeAllElements();
+        try {
+            List<NhaCungCap> list = nccDAO.selectAll();
+            for (NhaCungCap ncc : list) {
+                model.addElement(ncc);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private PhieuNhap getFormPN() {
+        PhieuNhap pn = new PhieuNhap();
+        pn.setMaNhap(txtMaNhap.getText());
+        pn.setMaNV(Auth.user.getMaNhanVien());
+        pn.setMaNhaCC(((NhaCungCap) cboNcc.getSelectedItem()).getMaNhaCC());
+        pn.setCTPhieuNhap(listCTPN);
+        return pn;
+    }
+
+
+    private String createID(List<PhieuNhap> pnList) {
+        int id = pnList.size() + 1;
+        String checkID = "";
+        for (PhieuNhap pn : pnList) {
+            if (pn.getMaNhap().equals("PN" + id)) {
+                checkID = pn.getMaNhap();
+            }
+        }
+        while (!checkID.isEmpty()) {
+            String check = checkID;
+            id++;
+            for (int i = 0; i < pnList.size(); i++) {
+                if (pnList.get(i).getMaNhap().equals("PN" + id)) {
+                    checkID = pnList.get(i).getMaNhap();
+                }
+            }
+            if (check.equals(checkID)) {
+                checkID = "";
+            }
+        }
+        return "PN" + id;
+    }
 
     private void showPopupSach(MouseEvent e) {
         if (SwingUtilities.isRightMouseButton(e)) {
@@ -120,6 +291,11 @@ public class NhapHangForm extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
 
         pAdd.setText("Thêm");
+        pAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pAddActionPerformed(evt);
+            }
+        });
         popupMenuSach.add(pAdd);
 
         pEdit.setText("Sửa");
@@ -131,6 +307,11 @@ public class NhapHangForm extends javax.swing.JPanel {
         popupMenuNhap.add(pEdit);
 
         pDelete.setText("Xoá");
+        pDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pDeleteActionPerformed(evt);
+            }
+        });
         popupMenuNhap.add(pDelete);
 
         setBackground(new java.awt.Color(229, 229, 229));
@@ -221,6 +402,7 @@ public class NhapHangForm extends javax.swing.JPanel {
         lblBack2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblBack2.setText("Mã Phiếu Nhập");
 
+        txtMaNhap.setEditable(false);
         txtMaNhap.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         lblBack3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -231,6 +413,7 @@ public class NhapHangForm extends javax.swing.JPanel {
 
         cboNcc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        txtMaNV.setEditable(false);
         txtMaNV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         tblPhieuNhap.setBackground(new java.awt.Color(229, 229, 229));
@@ -260,6 +443,11 @@ public class NhapHangForm extends javax.swing.JPanel {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("Nhập Hàng");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -309,9 +497,9 @@ public class NhapHangForm extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(lblTongTien)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(lblTongTien))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         tabs.addTab("NHẬP HÀNG", jPanel1);
@@ -366,7 +554,23 @@ public class NhapHangForm extends javax.swing.JPanel {
 
     private void pEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pEditActionPerformed
         // TODO add your handling code here:
+        editSLPN();
     }//GEN-LAST:event_pEditActionPerformed
+
+    private void pAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pAddActionPerformed
+        // TODO add your handling code here:
+        addSachToPN();
+    }//GEN-LAST:event_pAddActionPerformed
+
+    private void pDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pDeleteActionPerformed
+        // TODO add your handling code here:
+        deleteSachtoPN();
+    }//GEN-LAST:event_pDeleteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:    
+        addPhieuNhap();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

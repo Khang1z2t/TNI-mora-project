@@ -312,8 +312,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                     }
                 }
                 utils.Auth.user = nv;
-                new Main(1).setVisible(true);
-                this.setVisible(false);
+                new Main().setVisible(true);
+                this.dispose();
             }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -338,7 +338,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 NhanVien nv = new NhanVienDAO().selectById(user);
                 utils.Auth.user = nv;
                 dispose();
-                new Main(1).setVisible(true);
+                new Main().setVisible(true);
             } catch (IOException | NotFoundException ex) {
                 DialogHelper.alert(this, "Không thể đọc file");
             }

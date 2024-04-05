@@ -12,9 +12,6 @@ import ui.Main;
  */
 public class PhieuNhapForm extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PhieuNhapForm
-     */
     public PhieuNhapForm() {
         initComponents();
     }

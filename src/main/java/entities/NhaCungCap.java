@@ -47,4 +47,11 @@ public class NhaCungCap {
     public void setDiaChi(String diaChi) {
         DiaChi = diaChi;
     }
+
+    @Override
+    public String toString() {
+        return TenNhaCC;
+    }
+    
+    
 }

@@ -1,21 +1,24 @@
 package entities;
 
 import java.util.Date;
+import java.util.List;
 
 public class PhieuNhap {
     private String MaNhap;
     private Date NgayNhap;
     private String MaNV;
+    private List<ChiTietPhieuNhap> CTPhieuNhap;
     private String MaNhaCC;
     private double TongTien;
 
     public PhieuNhap() {
     }
 
-    public PhieuNhap(String maNhap, Date ngayNhap, String maNV, String maNhaCC, double tongTien) {
+    public PhieuNhap(String maNhap, Date ngayNhap, String maNV, List<ChiTietPhieuNhap> CTPhieuNhap, String maNhaCC, double tongTien) {
         MaNhap = maNhap;
         NgayNhap = ngayNhap;
         MaNV = maNV;
+        this.CTPhieuNhap = CTPhieuNhap;
         MaNhaCC = maNhaCC;
         TongTien = tongTien;
     }
@@ -42,6 +45,14 @@ public class PhieuNhap {
 
     public void setMaNV(String maNV) {
         MaNV = maNV;
+    }
+
+    public List<ChiTietPhieuNhap> getCTPhieuNhap() {
+        return CTPhieuNhap;
+    }
+
+    public void setCTPhieuNhap(List<ChiTietPhieuNhap> CTPhieuNhap) {
+        this.CTPhieuNhap = CTPhieuNhap;
     }
 
     public String getMaNhaCC() {
