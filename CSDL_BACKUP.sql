@@ -1,4 +1,5 @@
 ﻿-- Tạo CSDL quản lý nhà sách
+USE master
 CREATE DATABASE QuanLyNhaSach;
 USE QuanLyNhaSach;
 --Tạo bảng userLogin
@@ -36,6 +37,7 @@ CREATE TABLE Sach (
 	namxb int null,
 	nhaXB nvarchar(100) null,
 	gia money,
+	soluong int null,
 	tentacgia nvarchar(200) null,
 	theloai nvarchar(200) null,
 	ghichu nvarchar(250) null,
@@ -43,6 +45,7 @@ CREATE TABLE Sach (
 	matheloai nvarchar(20) null,
 	matacgia nvarchar(20) null,
 );
+
 
 -- Tạo bảng đọc giả
 CREATE TABLE DocGia (
@@ -143,13 +146,16 @@ add constraint FK_Sach_qltacgia foreign key (matacgia) references qltacgia(matac
 
 alter table sach
 add constraint FK_Sach_qltheloai foreign key (matheloai) references qltheloai(matheloai)
--- 
+
+alter table sach
+add constraint [DF_Sach_SoLuong] default ((0)) for [SoLuong]
+/*
 alter table khosach
 add constraint FK_khosach_Sach foreign key (masach) references sach(masach)
 
 alter table khosach
 add constraint FK_khosach_NhanVien foreign key (maNV) references nhanvien(maNV)
-
+*/
 alter table ChiTietHoaDon
 add constraint FK_chitiethoadon_hoadon foreign key (mahoadon) references hoadon(mahoadon)
 
@@ -204,6 +210,7 @@ INSERT INTO qlTheLoai (matheloai, tentheloai) VALUES
 ('TL18', N'Tự nhiên'),
 ('TL19', N'Tình cảm'),
 ('TL20', N'Khoa học viễn tưởng');
+
 -- Thêm dữ liệu vào bảng qltacgia
 INSERT INTO qltacgia (matacgia, tentacgia) VALUES
 ('TG1', N'Nguyễn Nhật Ánh'),
@@ -227,8 +234,16 @@ INSERT INTO qltacgia (matacgia, tentacgia) VALUES
 ('TG19', N'Hồ Chí Minh'),
 ('TG20', N'Michelangelo');
 
+insert into NhaCungCap(MaNhaCC, TenNhaCC, SDT, DiaChi) values
+('FHS',N'Công ty cổ phần Phát hành sách TP Hồ Chí Minh - FAHASA','02838225798',N'60-62 Lê Lợi, P. Bến Nghé, Q. 1, Tp. Hồ Chí Minh (TPHCM)'),
+('NSTT',N'Công Ty Cổ Phần Sách & Thiết Bị Giáo Dục Trí Tuệ','02438515567',N'187 Giảng Võ, Q. Đống Đa, Hà Nội'),
+('VLB',N'Công Ty TNHH Văn Hóa Việt Long','02838452708',N'14/35, Đào Duy Anh, P.9, Q. Phú Nhuận, Tp. Hồ Chí Minh (TPHCM)'),
+('SGDHN',N'Công Ty Cổ Phần Sách Giáo Dục Tại Thành Phố Hà Nội','02462534308',N'289A Khuất Duy Tiến, P. Trung Hòa, Q. Cầu Giấy, Hà Nội')
+go
+
 ALTER TABLE NhanVien
 ADD IsSuperAdmin BIT DEFAULT 0 null;
+
 UPDATE NhanVien
 SET IsSuperAdmin = 1
 
