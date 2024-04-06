@@ -17,7 +17,6 @@ import javax.mail.internet.InternetAddress;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import ui.NguoiDungJDialog;
 import utils.DialogHelper;
 
 /**

@@ -44,6 +44,7 @@ E:\DUAN1\NhaSach2\src\main\java\model\Model_Card.java
 E:\DUAN1\NhaSach2\src\main\java\form\DoiMKForm.java
 E:\DUAN1\NhaSach2\src\main\java\dao\GiohangDAO.java
 E:\DUAN1\NhaSach2\src\main\java\component\Chart.java
+E:\DUAN1\NhaSach2\src\main\java\swing\PasswordFieldSuggestionUI.java
 E:\DUAN1\NhaSach2\src\main\java\utils\MoneyFormat.java
 E:\DUAN1\NhaSach2\src\main\java\dao\ChiTietPhieuNhapDAO.java
 E:\DUAN1\NhaSach2\src\main\java\form\NhapHangForm.java
@@ -87,6 +88,7 @@ E:\DUAN1\NhaSach2\src\main\java\ui\TonHangJDialog.java
 E:\DUAN1\NhaSach2\src\main\java\ui\theloaiJDialog.java
 E:\DUAN1\NhaSach2\src\main\java\form\ThanhToanThanhCongForm.java
 E:\DUAN1\NhaSach2\src\main\java\form\SachForm.java
+E:\DUAN1\NhaSach2\src\main\java\swing\PasswordFieldSuggestion.java
 E:\DUAN1\NhaSach2\src\main\java\utils\Auth.java
 E:\DUAN1\NhaSach2\src\main\java\form\KhoForm.java
 E:\DUAN1\NhaSach2\src\main\java\entities\NhaCungCap.java

@@ -10,22 +10,22 @@ package entities;
  * @author NGUYEN THI NGUYET VY
  */
 public class TacGia {
-    private String matg;
+    private int matg;
     private String tentg;
 
     public TacGia() {
     }
 
-    public TacGia(String matg, String tentg) {
+    public TacGia(int matg, String tentg) {
         this.matg = matg;
         this.tentg = tentg;
     }
 
-    public String getMatg() {
+    public int getMatg() {
         return matg;
     }
 
-    public void setMatg(String matg) {
+    public void setMatg(int matg) {
         this.matg = matg;
     }
 
@@ -36,6 +36,7 @@ public class TacGia {
     public void setTentg(String tentg) {
         this.tentg = tentg;
     }
+
     // Inside TacGia class
 @Override
 public String toString() {

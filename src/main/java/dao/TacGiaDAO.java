@@ -27,12 +27,12 @@ public class TacGiaDAO {
                 model.getTentg(), 
                 model.getMatg());
                 }
-    public void delete(TacGia tg){
+    public void delete(int ma){
         String sql="DELETE FROM qltacgia WHERE matacgia = ?";
-        utils.JDBCHelper.update(sql, tg);
+        utils.JDBCHelper.update(sql, ma);
     }
     
-    public TacGia selectById(String matg){
+    public TacGia selectById(int matg){
         String sql = "SELECT * FROM qltacgia WHERE matacgia = ?";
         List<TacGia> list = this.SelectBySQL(sql, matg);
         return list.size() > 0 ? list.get(0) : null;
@@ -51,7 +51,7 @@ public class TacGiaDAO {
                 rs = utils.JDBCHelper.query(sql, args);
                 while (rs.next()) {
                     TacGia st = new TacGia();
-                    st.setMatg(rs.getString(1));
+                    st.setMatg(rs.getInt(1));
                     st.setTentg(rs.getString(2));
                     listtl.add(st);
                 }

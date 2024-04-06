@@ -11,12 +11,12 @@ package entities;
  */
 public class TheLoai {
     private String tenTheLoai;
-    private String maTheLoai;
+    private int maTheLoai;
 
     public TheLoai() {
     }
 
-    public TheLoai(String tenTheLoai, String maTheLoai) {
+    public TheLoai(String tenTheLoai, int maTheLoai) {
         this.tenTheLoai = tenTheLoai;
         this.maTheLoai = maTheLoai;
     }
@@ -29,15 +29,16 @@ public class TheLoai {
         this.tenTheLoai = tenTheLoai;
     }
 
-    public String getMaTheLoai() {
+    public int getMaTheLoai() {
         return maTheLoai;
     }
 
-    public void setMaTheLoai(String maTheLoai) {
+    public void setMaTheLoai(int maTheLoai) {
         this.maTheLoai = maTheLoai;
     }
-@Override
-public String toString() {
-    return getTenTheLoai(); // Assuming you have a method like getTenTheLoai() in your TheLoai class
-}
+
+    @Override
+    public String toString() {
+        return getTenTheLoai(); // Assuming you have a method like getTenTheLoai() in your TheLoai class
+    }
 }

@@ -27,12 +27,12 @@ public class TheLoaiDAO {
                 model.getTenTheLoai(), 
                 model.getMaTheLoai());
                 }
-    public void delete(TheLoai tl){
+    public void delete(int ma){
         String sql="DELETE FROM qltheloai WHERE matheloai = ?";
-        utils.JDBCHelper.update(sql, tl);
+        utils.JDBCHelper.update(sql, ma);
     }
     
-    public TheLoai selectById(String matl){
+    public TheLoai selectById(int matl){
         String sql = "SELECT * FROM qltheloai WHERE matheloai = ?";
         List<TheLoai> list = this.SelectBySQL(sql, matl);
         return list.size() > 0 ? list.get(0) : null;
@@ -51,7 +51,7 @@ public class TheLoaiDAO {
                 rs = utils.JDBCHelper.query(sql, args);
                 while (rs.next()) {
                     TheLoai st = new TheLoai();
-                    st.setMaTheLoai(rs.getString(1));
+                    st.setMaTheLoai(rs.getInt(1));
                     st.setTenTheLoai(rs.getString(2));
                     listtl.add(st);
                 }

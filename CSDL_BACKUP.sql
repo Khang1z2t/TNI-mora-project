@@ -41,10 +41,9 @@ CREATE TABLE Sach (
 	theloai nvarchar(200) null,
 	ghichu nvarchar(250) null,
 	hinh varchar(50) null,
-	matheloai nvarchar(20) null,
-	matacgia nvarchar(20) null,
+	matheloai int null,
+	matacgia int null,
 );
-
 
 -- Tạo bảng đọc giả
 CREATE TABLE DocGia (
@@ -94,25 +93,14 @@ CREATE TABLE ChiTietPhieuNhap(
 	primary key(MaNhap,MaSach)
 );
 
-/* bỏ 
--- Tạo bảng kho sách
-CREATE TABLE KhoSach (
-	makho nvarchar(100) primary key,
-	maSach nvarchar(20) null,
-	tensach nvarchar(100) null,
-	soluong int null,
-	ghichu nvarchar(100),
-	maNV varchar(20) null,
-	ngayton date null
-	drop table KhoSach
-);*/
 
 create table qltacgia(
-	matacgia nvarchar(20) primary key,
+	matacgia int primary key,
 	tentacgia nvarchar(100) null
 );
+
 create table qlTheLoai(
-	matheloai nvarchar(20) primary key,
+	matheloai int primary key,
 	tentheloai nvarchar(100) null
 );
 
@@ -148,13 +136,7 @@ add constraint FK_Sach_qltheloai foreign key (matheloai) references qltheloai(ma
 
 alter table sach
 add constraint [DF_Sach_SoLuong] default ((0)) for [SoLuong]
-/*
-alter table khosach
-add constraint FK_khosach_Sach foreign key (masach) references sach(masach)
 
-alter table khosach
-add constraint FK_khosach_NhanVien foreign key (maNV) references nhanvien(maNV)
-*/
 alter table ChiTietHoaDon
 add constraint FK_chitiethoadon_hoadon foreign key (mahoadon) references hoadon(mahoadon)
 
@@ -188,50 +170,50 @@ insert into luong values
 ('O1','5000000'),
 ('O2','10000000')
 -- Thêm dữ liệu vào bảng qlTheLoai
-INSERT INTO qlTheLoai (matheloai, tentheloai) VALUES
-('TL1', N'Trinh thám'),
-('TL2', N'Khoa học'),
-('TL3', N'Tâm lý học'),
-('TL4', N'Kỹ năng sống'),
-('TL5', N'Tiểu thuyết'),
-('TL6', N'Sử thi'),
-('TL7', N'Ngôn tình'),
-('TL8', N'Tiểu sử'),
-('TL9', N'Văn hóa'),
-('TL10', N'Kinh tế'),
-('TL11', N'Chính trị'),
-('TL12', N'Tôn giáo'),
-('TL13', N'Thể thao'),
-('TL14', N'Âm nhạc'),
-('TL15', N'Manga'),
-('TL16', N'Kiến thức tổng hợp'),
-('TL17', N'Du lịch'),
-('TL18', N'Tự nhiên'),
-('TL19', N'Tình cảm'),
-('TL20', N'Khoa học viễn tưởng');
+INSERT INTO qlTheLoai (tentheloai) VALUES
+('1',N'Trinh thám'),
+('2',N'Khoa học'),
+('3',N'Tâm lý học'),
+('4',N'Kỹ năng sống'),
+('5',N'Tiểu thuyết'),
+('6',N'Sử thi'),
+('7',N'Ngôn tình'),
+('8',N'Tiểu sử'),
+('9',N'Văn hóa'),
+('10',N'Kinh tế'),
+('11',N'Chính trị'),
+('12',N'Tôn giáo'),
+('13',N'Thể thao'),
+('14',N'Âm nhạc'),
+('15',N'Manga'),
+('16',N'Kiến thức tổng hợp'),
+('17',N'Du lịch'),
+('18',N'Tự nhiên'),
+('19',N'Tình cảm'),
+('20',N'Khoa học viễn tưởng');
 
 -- Thêm dữ liệu vào bảng qltacgia
-INSERT INTO qltacgia (matacgia, tentacgia) VALUES
-('TG1', N'Nguyễn Nhật Ánh'),
-('TG2', N'Tô Hoài'),
-('TG3', N'Trí Tuệ Việt Nam'),
-('TG4', N'Paulo Coelho'),
-('TG5', N'Haruki Murakami'),
-('TG6', N'George Orwell'),
-('TG7', N'Jane Austen'),
-('TG8', N'Dan Brown'),
-('TG9', N'Agatha Christie'),
-('TG10', N'Tranquilize'),
-('TG11', N'J.K. Rowling'),
-('TG12', N'Victor Hugo'),
-('TG13', N'Mark Twain'),
-('TG14', N'Stephen King'),
-('TG15', N'Tolstoy'),
-('TG16', N'Hạnh Phúc'),
-('TG17', N'Dale Carnegie'),
-('TG18', N'Maya Angelou'),
-('TG19', N'Hồ Chí Minh'),
-('TG20', N'Michelangelo');
+INSERT INTO qltacgia (tentacgia) VALUES
+('1',N'Nguyễn Nhật Ánh'),
+('2',N'Tô Hoài'),
+('3',N'Trí Tuệ Việt Nam'),
+('4',N'Paulo Coelho'),
+('5',N'Haruki Murakami'),
+('6',N'George Orwell'),
+('7',N'Jane Austen'),
+('8',N'Dan Brown'),
+('9',N'Agatha Christie'),
+('10',N'Tranquilize'),
+('11',N'J.K. Rowling'),
+('12',N'Victor Hugo'),
+('13',N'Mark Twain'),
+('14',N'Stephen King'),
+('15',N'Tolstoy'),
+('16',N'Kanehito Yamada'),
+('17',N'Dale Carnegie'),
+('18',N'Aya kitou'),
+('19',N'Hồ Chí Minh'),
+('20',N'Michelangelo');
 
 insert into NhaCungCap(MaNhaCC, TenNhaCC, SDT, DiaChi) values
 ('FHS',N'Công ty cổ phần Phát hành sách TP Hồ Chí Minh - FAHASA','02838225798',N'60-62 Lê Lợi, P. Bến Nghé, Q. 1, Tp. Hồ Chí Minh (TPHCM)'),
@@ -248,40 +230,7 @@ SET IsSuperAdmin = 1
 
 WHERE VAITRO = 2;
 
-/****CREATE PROCEDURE sp_HangTon
-    @SoLuong INT,
-    @NgayTon DATE
-AS
-BEGIN
-    -- Your logic to save the inventory goes here
-    -- For example, you might want to insert the data into a table named HangTon
-    INSERT INTO HangTon (SoLuong, NgayTon)
-    VALUES (@SoLuong, @NgayTon)
-END****/
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC [dbo].[sp_HangTon](@ngayton date)
-AS BEGIN
-	SELECT
-		sach.masach AS MaSach,
-		sach.tensach AS TenSach,
-		sach.soluong AS SoLuong
-	FROM sach
-	where sach.ngayton = @ngayton
-END
-GO
-SELECT masach,tensach,soluong,ngayton from sach;
-
-
-update sach
-set soluong = null ,ngayton = getdate()
-
-DECLARE @NgayTon DATE = '2024-02-24';
-EXEC sp_HangTon @ngayton = @NgayTon;
-
+/**
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -302,6 +251,7 @@ BEGIN
     SELECT @TongTien AS TongTienGioHang;
 END
 GO
+**/
 /*****************************************************************************************/
 SET ANSI_NULLS ON
 GO
