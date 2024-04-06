@@ -13,7 +13,7 @@ import entities.NhaCungCap;
 import entities.PhieuNhap;
 import entities.Sach;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -26,13 +26,12 @@ import javax.swing.table.DefaultTableModel;
 
 import ui.Main;
 import ui.ScrollBar;
-import utils.Auth;
-import utils.DialogHelper;
-import utils.MoneyFormat;
+import utils.*;
 
 /**
  * @author ngocd
  */
+@SuppressWarnings("ALL")
 public class NhapHangForm extends javax.swing.JPanel {
 
     SachDAO sachDAO = new SachDAO();
@@ -44,7 +43,7 @@ public class NhapHangForm extends javax.swing.JPanel {
     public NhapHangForm() {
         initComponents();
         init();
-        
+
     }
 
     private void init() {
@@ -67,7 +66,14 @@ public class NhapHangForm extends javax.swing.JPanel {
                 sach.setSoLuong(sach.getSoLuong() + ctpn.getSoluong());
                 sachDAO.update(sach);
             }
-            DialogHelper.alert(this, "Nhập hàng thành công!");
+            if(DialogHelper.confirm(this, "Nhập hàng thành công! Xuất file PDF không?")) {
+                PrintReport.printPhieuNhapPDF(tblPhieuNhap,
+                        pn.getMaNhap(),
+                        pn.getNgayNhap(),
+                        Auth.user.getMaNhanVien(),
+                        ((NhaCungCap) cboNcc.getSelectedItem()).getTenNhaCC(),
+                        pn.getTongTien());
+            }
             Main.Instance.setForm(new KhoForm());
         } catch (Exception e) {
             DialogHelper.alert(this, "Lỗi nhập hàng!");
@@ -81,11 +87,11 @@ public class NhapHangForm extends javax.swing.JPanel {
             String maNhap = (String) tblSach.getValueAt(row, 0);
             Sach sach = sachDAO.selectById(maNhap);
 
-            int soLuong = Integer.parseInt(DialogHelper.prompt(this, "Nhập số lượng:"));
-            if (soLuong <= 0) {
-                DialogHelper.alert(this, "Số lượng phải lớn hơn 0!");
+            String slg = DialogHelper.prompt(this, "Nhập số lượng:");
+            if (!checkSL(slg)) {
                 return;
             }
+            int soLuong = Integer.parseInt(slg);
 
             ChiTietPhieuNhap ctpn = new ChiTietPhieuNhap();
             ctpn.setMaNhap(txtMaNhap.getText());
@@ -94,9 +100,7 @@ public class NhapHangForm extends javax.swing.JPanel {
             ctpn.setGia(sach.getGia());
 
             // Tìm sách trong danh sách
-            Optional<ChiTietPhieuNhap> optionalCTPN = listCTPN.stream()
-                    .filter(x -> x.getMasach().equals(ctpn.getMasach()))
-                    .findFirst();
+            Optional<ChiTietPhieuNhap> optionalCTPN = listCTPN.stream().filter(x -> x.getMasach().equals(ctpn.getMasach())).findFirst();
 
             if (optionalCTPN.isPresent()) {
                 // Nếu sách đã tồn tại, cập nhật số lượng
@@ -108,7 +112,6 @@ public class NhapHangForm extends javax.swing.JPanel {
             }
 
             fillTableNhap();
-
         } catch (Exception e) {
             DialogHelper.alert(this, "Lỗi thêm sách vào phiếu nhập!");
             throw new RuntimeException(e);
@@ -118,11 +121,13 @@ public class NhapHangForm extends javax.swing.JPanel {
     private void editSLPN() {
         try {
             int row = tblPhieuNhap.getSelectedRow();
-            int soLuong = Integer.parseInt(DialogHelper.prompt(this, "Nhập số lượng:"));
-            if (soLuong <= 0) {
-                DialogHelper.alert(this, "Số lượng phải lớn hơn 0!");
+
+            String slg = DialogHelper.prompt(this, "Nhập số lượng:");
+            if (!checkSL(slg)) {
                 return;
             }
+
+            int soLuong = Integer.parseInt(slg);
             listCTPN.get(row).setSoluong(soLuong);
             fillTableNhap();
         } catch (Exception e) {
@@ -144,18 +149,13 @@ public class NhapHangForm extends javax.swing.JPanel {
 
     private void fillTableSach() {
         DefaultTableModel model = (DefaultTableModel) tblSach.getModel();
-        model.setColumnIdentifiers(new Object[]{
-                "Mã Sách", "Tên Sách", "Giá", "Số Lượng",});
+        model.setColumnIdentifiers(new Object[]{"Mã Sách", "Tên Sách", "Giá", "Số Lượng",});
         model.setRowCount(0);
         try {
             String keyword = txtFindSach.getText();
             List<Sach> list = sachDAO.selectByKeyword(keyword);
             for (Sach sach : list) {
-                model.addRow(new Object[]{
-                        sach.getMaSach(),
-                        sach.getTenSach(),
-                        MoneyFormat.format(sach.getGia()),
-                        sach.getSoLuong(),});
+                model.addRow(new Object[]{sach.getMaSach(), sach.getTenSach(), MoneyFormat.format(sach.getGia()), sach.getSoLuong(),});
             }
         } catch (Exception e) {
             DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
@@ -168,9 +168,7 @@ public class NhapHangForm extends javax.swing.JPanel {
 
     private void initTableNhap() {
         DefaultTableModel model = (DefaultTableModel) tblPhieuNhap.getModel();
-        model.setColumnIdentifiers(new Object[]{
-                "STT", "Mã Sách", "Tên Sách", "Số Lượng", "Giá", "Thành Tiền"
-        });
+        model.setColumnIdentifiers(new Object[]{"STT", "Mã Sách", "Tên Sách", "Số Lượng", "Giá", "Thành Tiền"});
         model.setRowCount(0);
     }
 
@@ -183,15 +181,10 @@ public class NhapHangForm extends javax.swing.JPanel {
             Sach sach = sachDAO.selectById(ctpn.getMasach());
             double thanhTien = ctpn.getSoluong() * ctpn.getGia();
             tongTien += thanhTien;
-            model.addRow(new Object[]{
-                    stt++,
-                    sach.getMaSach(),
-                    sach.getTenSach(),
-                    ctpn.getSoluong(),
-                    MoneyFormat.format(ctpn.getGia()),
-                    MoneyFormat.format(thanhTien)});
+            model.addRow(new Object[]{stt++, sach.getMaSach(), sach.getTenSach(), ctpn.getSoluong(), MoneyFormat.format(ctpn.getGia()), MoneyFormat.format(thanhTien)});
         }
         lblTongTien.setText(MoneyFormat.format(tongTien));
+        lblTongTien.setToolTipText(String.valueOf(tongTien));
         spTblNhap.setVerticalScrollBar(new ScrollBar());
         spTblNhap.getVerticalScrollBar().setBackground(Color.white);
         spTblNhap.getViewport().setBackground(Color.white);
@@ -213,11 +206,11 @@ public class NhapHangForm extends javax.swing.JPanel {
     private PhieuNhap getFormPN() {
         PhieuNhap pn = new PhieuNhap();
         pn.setMaNhap(txtMaNhap.getText());
-        pn.setNgayNhap(new Date());
+        pn.setNgayNhap(XDate.now());
         pn.setMaNV(Auth.user.getMaNhanVien());
         pn.setMaNhaCC(((NhaCungCap) cboNcc.getSelectedItem()).getMaNhaCC());
         pn.setCTPhieuNhap(listCTPN);
-        pn.setTongTien(Double.parseDouble(lblTongTien.getText().replace(" đ", "")));
+        pn.setTongTien(Double.parseDouble(lblTongTien.getToolTipText()));
         return pn;
     }
 
@@ -243,6 +236,27 @@ public class NhapHangForm extends javax.swing.JPanel {
             }
         }
         return "PN" + id;
+    }
+
+
+    private boolean checkSL(String slg) {
+        if (slg == null || slg.isEmpty()) {
+            return false;
+        }
+        if (slg.matches("[a-zA-Z]+")) {
+            DialogHelper.alert(this, "Số lượng phải là số!");
+            return false;
+        }
+        if (!slg.matches("\\d+")) {
+            DialogHelper.alert(this, "Số lượng phải là số nguyên!");
+            return false;
+        }
+        if (Integer.parseInt(slg) <= 0) {
+            DialogHelper.alert(this, "Số lượng phải lớn hơn 0!");
+            return false;
+        }
+
+        return true;
     }
 
     private void showPopupSach(MouseEvent e) {
@@ -293,7 +307,7 @@ public class NhapHangForm extends javax.swing.JPanel {
         txtMaNhap = new swing.TextFieldSuggestion();
         txtMaNV = new swing.TextFieldSuggestion();
 
-        pAdd.setText("Thêm");
+        pAdd.setText("Thêm vào phiếu nhập");
         pAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pAddActionPerformed(evt);
@@ -301,7 +315,7 @@ public class NhapHangForm extends javax.swing.JPanel {
         });
         popupMenuSach.add(pAdd);
 
-        pEdit.setText("Sửa");
+        pEdit.setText("Sửa số lượng");
         pEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pEditActionPerformed(evt);
@@ -309,7 +323,7 @@ public class NhapHangForm extends javax.swing.JPanel {
         });
         popupMenuNhap.add(pEdit);
 
-        pDelete.setText("Xoá");
+        pDelete.setText("Xoá khỏi phiếu");
         pDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pDeleteActionPerformed(evt);
@@ -320,7 +334,9 @@ public class NhapHangForm extends javax.swing.JPanel {
         setBackground(new java.awt.Color(229, 229, 229));
 
         lblBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
+        lblBack.setForeground(new java.awt.Color(0, 0, 0));
+        lblBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/prevBtn.png"))); // NOI18N
+        lblBack.setText("Trở lại");
         lblBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -396,7 +412,7 @@ public class NhapHangForm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(spTblSach, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addComponent(spTblSach, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -452,6 +468,12 @@ public class NhapHangForm extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        txtMaNhap.setEditable(false);
+        txtMaNhap.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtMaNV.setEditable(false);
+        txtMaNV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
