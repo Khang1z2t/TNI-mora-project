@@ -25,6 +25,7 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
     private ThanhToanThanhCongForm success;
     
     ArrayList<Giohang> list = new ArrayList<>();
+
     int index = -1;
     DefaultTableModel tblModel;
     

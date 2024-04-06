@@ -31,6 +31,7 @@ public class PhieuNhapForm extends javax.swing.JPanel {
 
         lblBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
+        lblBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBackMouseClicked(evt);

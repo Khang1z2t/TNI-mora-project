@@ -15,6 +15,11 @@ public class NhanVien {
     public NhanVien() {
     }
 
+    @Override
+    public String toString() {
+        return MaNhanVien + "-" + HoVaTen;
+    }
+
     public NhanVien(String MaNhanVien, String MatKhau, String HoVaTen, String Email) {
         this.MaNhanVien = MaNhanVien;
         this.MatKhau = MatKhau;

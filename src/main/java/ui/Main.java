@@ -50,32 +50,28 @@ public class Main extends javax.swing.JFrame {
                         setForm(new NhanVienForm());
                     }
                 } else if (index == 2) {
-                    if (Auth.isManager()) {
-                        setForm(new NguoiDungForm());
-                    }
-                } else if (index == 3) {
                     setForm(new SachForm());
-                } else if (index == 4) {
+                } else if (index == 3) {
                     setForm(new TheLoaiForm());
-                } else if (index == 5) {
+                } else if (index == 4) {
                     setForm(new TacGiaForm());
-                } else if (index == 6) {
+                } else if (index == 5) {
                     setForm(new NhaCungCapForm());
-                } else if (index == 7) {
+                } else if (index == 6) {
                     setForm(new KhoForm());
-                } else if (index == 8) {
+                } else if (index == 7) {
                     setForm(new ThanhVienForm());
-                } else if (index == 9) {
+                } else if (index == 8) {
 
-                } else if (index == 10) {
+                } else if (index == 9) {
                     setForm(new DoiMKForm());
-                } else if (index == 11) {
+                } else if (index == 10) {
                     setForm(new DoanhThuForm());
-                } else if (index == 12) {
+                } else if (index == 11) {
                     setForm(new HoaDonForm());
-                } else if (index == 13) {
+                } else if (index == 12) {
                     setForm(new LuongForm());
-                } else if (index == 14) {
+                } else if (index == 13) {
                     Auth.clear();
                     Main.this.dispose();
                     new DangNhapJDialog((Frame) getOwner(), true).setVisible(true);

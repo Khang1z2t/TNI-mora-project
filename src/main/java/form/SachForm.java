@@ -551,6 +551,11 @@ public class SachForm extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblListMouseClicked(evt);
+            }
+        });
         spTable.setViewportView(tblList);
 
         javax.swing.GroupLayout tabDanhSachLayout = new javax.swing.GroupLayout(tabDanhSach);
@@ -611,7 +616,7 @@ public class SachForm extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             for (Sach sa : list) {
-                if (txtGiasach.getText().equalsIgnoreCase(sa.getMaSach())) {
+                if (txtMasach.getText().equalsIgnoreCase(sa.getMaSach())) {
                     boolean choose = utils.DialogHelper.confirm(this, "Bạn có chắc chắn muốn xóa sách " + sa.getTenSach() + "' không?");
                     if (choose) {
                         delete(sa);
@@ -686,6 +691,32 @@ public class SachForm extends javax.swing.JPanel {
             lblHinh.setToolTipText(selectedFile.getName());
         }
     }//GEN-LAST:event_lblHinhMouseClicked
+
+    private void tblListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListMouseClicked
+        try {
+            index = tblList.getSelectedRow();
+            String ma = (String) tblList.getValueAt(index, 0);
+            Sach s = new SachDAO().selectById(ma);
+            txtMasach.setText(s.getMaSach());
+            txtTensach.setText(s.getTenSach());
+            txtNhaXB.setText(s.getNhaXB());
+            txtNamXB.setText(String.valueOf(s.getNamXB()));
+            txtGiasach.setText(String.valueOf(s.getGia()));
+            txtGhiChu.setText(s.getGhiChu());
+        TacGia selectedTacGia = (TacGia) cboTacgia.getSelectedItem();
+        TheLoai selectedTheLoai = (TheLoai) cboTheLoai.getSelectedItem();
+        selectedTacGia.setTentg(s.getTentacgia());
+        selectedTheLoai.setTenTheLoai(s.getTheloai());
+        cboTacgia.setSelectedItem(selectedTacGia.getTentg());
+        cboTheLoai.setSelectedItem(selectedTheLoai.getTenTheLoai());
+        if (!s.getHinh().equals("")) {
+            lblHinh.setIcon(XImage.read(s.getHinh(), lblHinh.getWidth(), lblHinh.getHeight()));
+            lblHinh.setToolTipText(s.getHinh());
+        }
+            tabSach.setSelectedIndex(0);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_tblListMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

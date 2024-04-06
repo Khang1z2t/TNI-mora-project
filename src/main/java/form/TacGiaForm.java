@@ -401,7 +401,7 @@ public class TacGiaForm extends javax.swing.JPanel {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         for (TacGia tg : listTG) {
-            if (txtMaTacgia.getText().equals(tg.getMatg())) {
+            if (Integer.parseInt(txtMaTacgia.getText())==tg.getMatg()) {
                 update(tg);
                 utils.DialogHelper.alert(this, "Cập nhật thông tin thành công!");
             }

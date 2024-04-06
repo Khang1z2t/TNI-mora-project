@@ -17,6 +17,7 @@ import javax.mail.internet.InternetAddress;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import ui.Main;
 import utils.DialogHelper;
 
 /**
@@ -260,6 +261,7 @@ public class NhanVienForm extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        lblNextPage = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
@@ -336,6 +338,17 @@ public class NhanVienForm extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Mật khẩu");
 
+        lblNextPage.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNextPage.setForeground(new java.awt.Color(0, 0, 0));
+        lblNextPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/nextBtn.png"))); // NOI18N
+        lblNextPage.setText("CHI TIẾT");
+        lblNextPage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNextPage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNextPageMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -359,12 +372,18 @@ public class NhanVienForm extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblNextPage)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(8, 8, 8)
+                .addComponent(lblNextPage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -387,7 +406,7 @@ public class NhanVienForm extends javax.swing.JPanel {
                     .addComponent(rdoNhanVien))
                 .addGap(12, 12, 12)
                 .addComponent(lblQRCode)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -664,6 +683,11 @@ public class NhanVienForm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMatKhauActionPerformed
 
+    private void lblNextPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNextPageMouseClicked
+        // TODO add your handling code here:
+        Main.Instance.setForm(new NguoiDungForm());
+    }//GEN-LAST:event_lblNextPageMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -684,6 +708,7 @@ public class NhanVienForm extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblNextPage;
     private javax.swing.JLabel lblQRCode;
     private swing.PanelBorder panelBorder1;
     private javax.swing.JRadioButton rdoNhanVien;
