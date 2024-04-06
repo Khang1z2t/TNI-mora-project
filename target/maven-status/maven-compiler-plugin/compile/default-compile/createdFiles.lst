@@ -1,11 +1,13 @@
 swing\PasswordField.class
 ui\ThanhToanJFrame$4.class
+form\NhanVienForm$13.class
 form\TacGiaForm$9.class
 form\PhieuNhapForm$1.class
 form\SachForm$2.class
 swing\ComboSuggestionUI$ComboSuggestionPopup.class
 ui\QuenMatKhauJDialog$2.class
 ui\ScrollBar.class
+form\ThanhVienForm$3.class
 dao\NhaCungCapDAO.class
 form\NhaCungCapForm$6.class
 form\NhapHangForm$6.class
@@ -47,6 +49,7 @@ entities\ChiTietHoaDon.class
 entities\Sach.class
 model\ComboBoxSuggestion.class
 form\TacGiaForm$3.class
+form\ThanhVienForm$4.class
 ui\ThanhToanJFrame$5.class
 form\NguoiDungForm$5.class
 dao\TacGiaDAO.class
@@ -84,6 +87,7 @@ form\NhanVienForm$12.class
 form\TheLoaiForm$4.class
 swing\TextFieldSuggestionUI$1.class
 form\NhaCungCapForm$8.class
+form\ThanhVienForm$2.class
 swing\PasswordField$4.class
 ui\ThanhToanJFrame$3.class
 swing\PanelBorder.class
@@ -101,6 +105,7 @@ form\DoiMKForm.class
 form\NguoiDungForm$9.class
 dao\HoadonDAO.class
 entities\TacGia.class
+form\ThanhVienForm$1.class
 form\NhaCungCapForm$3.class
 form\ThanhVienForm.class
 chart\ModelChart.class
@@ -117,6 +122,7 @@ ui\ThanhToanJFrame$1.class
 form\TacGiaForm$6.class
 component\Header.class
 component\Card.class
+form\NguoiDungForm$12.class
 ui\DangNhapJDialog.class
 ui\DoiMatKhauJDialog$1.class
 form\LuongForm$1.class
@@ -148,6 +154,7 @@ swing\ScrollBarCustom.class
 component\Menu$1.class
 swing\ComboSuggestionUI$ArrowButton.class
 form\TheLoaiForm$8.class
+form\ThanhVienForm$5.class
 model\Model_Menu$MenuType.class
 form\NguoiDungForm.class
 swing\ListMenu$2.class
@@ -221,7 +228,9 @@ ui\QuenMatKhauJDialog$3.class
 utils\XFile.class
 ui\DoiMatKhauJDialog.class
 form\NhapHangForm$4.class
+form\SachForm$10.class
 swing\TextField$1.class
+form\NguoiDungForm$11.class
 form\NguoiDungForm$2.class
 chart\LabelColor.class
 form\NhaCungCapForm$13.class

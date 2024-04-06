@@ -303,7 +303,6 @@ public class TheLoaiForm extends javax.swing.JPanel {
         });
         spTable.setViewportView(tblList);
 
-        txtMaTheLoai.setEnabled(false);
         txtMaTheLoai.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         txtTenTheLoai.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -404,7 +403,7 @@ public class TheLoaiForm extends javax.swing.JPanel {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         for (TheLoai tl : listTL) {
-            if (txtMaTheLoai.getText().equals(tl.getMaTheLoai())) {
+            if (Integer.parseInt(txtMaTheLoai.getText())==tl.getMaTheLoai()) {
                 update(tl);
                 utils.DialogHelper.alert(this, "Cập nhật thông tin thành công!");
             }

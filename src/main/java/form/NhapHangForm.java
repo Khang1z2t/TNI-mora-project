@@ -282,16 +282,16 @@ public class NhapHangForm extends javax.swing.JPanel {
         tblSach = new swing.Table();
         jPanel1 = new javax.swing.JPanel();
         lblBack2 = new javax.swing.JLabel();
-        txtMaNhap = new javax.swing.JTextField();
         lblBack3 = new javax.swing.JLabel();
         lblBack4 = new javax.swing.JLabel();
         cboNcc = new model.ComboBoxSuggestion();
-        txtMaNV = new javax.swing.JTextField();
         spTblNhap = new javax.swing.JScrollPane();
         tblPhieuNhap = new swing.Table();
         jLabel1 = new javax.swing.JLabel();
         lblTongTien = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        txtMaNhap = new swing.TextFieldSuggestion();
+        txtMaNV = new swing.TextFieldSuggestion();
 
         pAdd.setText("Thêm");
         pAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -321,6 +321,7 @@ public class NhapHangForm extends javax.swing.JPanel {
 
         lblBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
+        lblBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBackMouseClicked(evt);
@@ -328,6 +329,7 @@ public class NhapHangForm extends javax.swing.JPanel {
         });
 
         lblBack1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblBack1.setForeground(new java.awt.Color(0, 0, 0));
         lblBack1.setText("Nhập Hàng");
 
         jPanel2.setBackground(new java.awt.Color(229, 229, 229));
@@ -394,7 +396,7 @@ public class NhapHangForm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(spTblSach, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                .addComponent(spTblSach, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -403,21 +405,18 @@ public class NhapHangForm extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(229, 229, 229));
 
         lblBack2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblBack2.setForeground(new java.awt.Color(0, 0, 0));
         lblBack2.setText("Mã Phiếu Nhập");
 
-        txtMaNhap.setEditable(false);
-        txtMaNhap.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
         lblBack3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblBack3.setForeground(new java.awt.Color(0, 0, 0));
         lblBack3.setText("Nhà Cung Cấp");
 
         lblBack4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblBack4.setForeground(new java.awt.Color(0, 0, 0));
         lblBack4.setText("Người Tạo Phiếu");
 
         cboNcc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtMaNV.setEditable(false);
-        txtMaNV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         tblPhieuNhap.setBackground(new java.awt.Color(229, 229, 229));
         tblPhieuNhap.setModel(new javax.swing.table.DefaultTableModel(
@@ -439,9 +438,11 @@ public class NhapHangForm extends javax.swing.JPanel {
         spTblNhap.setViewportView(tblPhieuNhap);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Tổng Tiền:");
 
         lblTongTien.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTongTien.setForeground(new java.awt.Color(0, 0, 0));
         lblTongTien.setText("000.000.0000 đ");
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -462,16 +463,16 @@ public class NhapHangForm extends javax.swing.JPanel {
                     .addComponent(spTblNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblBack4)
-                        .addGap(9, 9, 9)
-                        .addComponent(txtMaNV))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblBack2)
                             .addComponent(lblBack3))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMaNhap)
-                            .addComponent(cboNcc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cboNcc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtMaNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
@@ -483,15 +484,15 @@ public class NhapHangForm extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBack2)
                     .addComponent(txtMaNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBack3)
                     .addComponent(cboNcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBack4)
                     .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -502,7 +503,7 @@ public class NhapHangForm extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jButton1)
                     .addComponent(lblTongTien))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabs.addTab("NHẬP HÀNG", jPanel1);
@@ -600,7 +601,7 @@ public class NhapHangForm extends javax.swing.JPanel {
     private swing.Table tblPhieuNhap;
     private swing.Table tblSach;
     private javax.swing.JTextField txtFindSach;
-    private javax.swing.JTextField txtMaNV;
-    private javax.swing.JTextField txtMaNhap;
+    private swing.TextFieldSuggestion txtMaNV;
+    private swing.TextFieldSuggestion txtMaNhap;
     // End of variables declaration//GEN-END:variables
 }

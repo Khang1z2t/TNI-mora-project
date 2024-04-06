@@ -45,6 +45,7 @@ public class Header extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
 
         lblExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close.png"))); // NOI18N
+        lblExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblExitMouseClicked(evt);
@@ -52,6 +53,7 @@ public class Header extends javax.swing.JPanel {
         });
 
         lblSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sett.png"))); // NOI18N
+        lblSettings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblSettings.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblSettingsMouseClicked(evt);

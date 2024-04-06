@@ -64,7 +64,7 @@ CREATE TABLE DocGia (
 
 -- Tạo bảng hóa đơn bán sách
 CREATE TABLE HoaDon (
-    MaHoaDon int identity(1,1) PRIMARY KEY,
+    MaHoaDon varchar(20) PRIMARY KEY,
 	masach nvarchar(20) null,
     ngaytao date NULL,
 	madocgia nvarchar(20) null,
@@ -73,7 +73,7 @@ CREATE TABLE HoaDon (
 
 -- Tạo bảng chi tiết hóa đơn bán sách
 CREATE TABLE ChiTietHoaDon (
-    MaHoaDon int primary key,
+    MaHoaDon int,
     SoLuong int,
     gia money
 );
@@ -121,6 +121,8 @@ create table giohang(
 	mathanhvien int null,
 	maNV varchar(20) null
 );
+
+
 delete from giohang
 select * from giohang
 /*

@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ThanhVienDAO {
        public void insert(ThanhVien model){
-       String sql="Insert into giohang values(?,?,?,?,?)";
+       String sql="Insert into ThanhVien values(?,?,?,?,?)";
        utils.JDBCHelper.update(sql, 
                model.getMaTV(),
                model.getTenTV(),
