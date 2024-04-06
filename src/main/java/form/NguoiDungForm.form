@@ -201,7 +201,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="model.ComboBoxSuggestion" name="cbxLevel">
+                <Component class="swing.ComboBoxSuggestion" name="cbxLevel">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="490" y="130" width="170" height="30"/>
@@ -247,7 +247,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="model.ComboBoxSuggestion" name="cbxNV">
+                <Component class="swing.ComboBoxSuggestion" name="cbxNV">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxNVActionPerformed"/>
                   </Events>

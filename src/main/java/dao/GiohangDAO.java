@@ -51,6 +51,12 @@ public class GiohangDAO {
         return list.size() > 0 ? list.get(0) : null;
     }
     
+    public Giohang selectbyMaTV(int ma){
+        String sql = "select * from giohang where mathanhvien = ?";
+        List<Giohang> list = this.SelectBySQL(sql, ma);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+    
     public List<Giohang> SelectBySQL(String sql, Object... args) {
         List<Giohang> listS = new ArrayList<>();
         try {

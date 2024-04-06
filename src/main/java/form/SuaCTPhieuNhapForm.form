@@ -351,7 +351,7 @@
                 <Property name="text" type="java.lang.String" value="Ng&#x1b0;&#x1edd;i T&#x1ea1;o Phi&#x1ebf;u"/>
               </Properties>
             </Component>
-            <Component class="model.ComboBoxSuggestion" name="cboNcc">
+            <Component class="swing.ComboBoxSuggestion" name="cboNcc">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>

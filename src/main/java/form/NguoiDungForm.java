@@ -302,11 +302,11 @@ public class NguoiDungForm extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cbxLevel = new model.ComboBoxSuggestion();
+        cbxLevel = new swing.ComboBoxSuggestion();
         txtDate = new swing.TextFieldSuggestion();
         txtSDT = new swing.TextFieldSuggestion();
         lblNextPage = new javax.swing.JLabel();
-        cbxNV = new model.ComboBoxSuggestion();
+        cbxNV = new swing.ComboBoxSuggestion();
         panelBorder2 = new swing.PanelBorder();
         btnFirst = new javax.swing.JButton();
         btnPre = new javax.swing.JButton();
@@ -693,8 +693,8 @@ public class NguoiDungForm extends javax.swing.JPanel {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
-    private model.ComboBoxSuggestion cbxLevel;
-    private model.ComboBoxSuggestion cbxNV;
+    private swing.ComboBoxSuggestion cbxLevel;
+    private swing.ComboBoxSuggestion cbxNV;
     private javax.swing.ButtonGroup grpGender;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

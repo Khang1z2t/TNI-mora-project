@@ -78,7 +78,7 @@ public class LuongForm extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblList = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        cbxThang = new model.ComboBoxSuggestion();
+        cbxThang = new swing.ComboBoxSuggestion();
 
         setOpaque(false);
 
@@ -147,7 +147,7 @@ public class LuongForm extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private model.ComboBoxSuggestion cbxThang;
+    private swing.ComboBoxSuggestion cbxThang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private swing.PanelBorder panelBorder1;

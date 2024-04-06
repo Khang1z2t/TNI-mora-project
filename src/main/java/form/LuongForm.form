@@ -124,7 +124,7 @@
             <Property name="text" type="java.lang.String" value="TH&#xc1;NG"/>
           </Properties>
         </Component>
-        <Component class="model.ComboBoxSuggestion" name="cbxThang">
+        <Component class="swing.ComboBoxSuggestion" name="cbxThang">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxThangActionPerformed"/>
           </Events>

@@ -267,8 +267,8 @@ public class SachForm extends javax.swing.JPanel {
         btnNext = new javax.swing.JButton();
         btnPre = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
-        cboTheLoai = new model.ComboBoxSuggestion();
-        cboTacgia = new model.ComboBoxSuggestion();
+        cboTheLoai = new swing.ComboBoxSuggestion();
+        cboTacgia = new swing.ComboBoxSuggestion();
         txtGiasach = new swing.TextFieldSuggestion();
         txtNamXB = new swing.TextFieldSuggestion();
         txtMasach = new swing.TextFieldSuggestion();
@@ -728,8 +728,8 @@ public class SachForm extends javax.swing.JPanel {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
-    private model.ComboBoxSuggestion cboTacgia;
-    private model.ComboBoxSuggestion cboTheLoai;
+    private swing.ComboBoxSuggestion cboTacgia;
+    private swing.ComboBoxSuggestion cboTheLoai;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;

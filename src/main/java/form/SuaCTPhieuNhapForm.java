@@ -277,7 +277,7 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
         lblBack2 = new javax.swing.JLabel();
         lblBack3 = new javax.swing.JLabel();
         lblBack4 = new javax.swing.JLabel();
-        cboNcc = new model.ComboBoxSuggestion();
+        cboNcc = new swing.ComboBoxSuggestion();
         spTblNhap = new javax.swing.JScrollPane();
         tblPhieuNhap = new swing.Table();
         jLabel1 = new javax.swing.JLabel();
@@ -579,7 +579,7 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private model.ComboBoxSuggestion cboNcc;
+    private swing.ComboBoxSuggestion cboNcc;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

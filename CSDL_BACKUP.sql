@@ -122,8 +122,6 @@ create table giohang(
 	mathanhvien int null,
 	maNV varchar(20) null
 );
-
-
 delete from giohang
 select * from giohang
 /*
