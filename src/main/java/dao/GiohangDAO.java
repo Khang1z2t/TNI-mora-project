@@ -16,12 +16,13 @@ import java.util.List;
  */
 public class GiohangDAO {
        public void insert(Giohang model){
-       String sql="Insert into giohang values(?,?,?,?,?)";
+       String sql="Insert into giohang values(?,?,?,?,?,?)";
        utils.JDBCHelper.update(sql, 
                model.getMasach(),
                model.getTensach(),
                model.getGia(),
                model.getSoluong(),
+               model.getMaTV(),
                model.getManv());
    }
    public void update(Giohang model){
@@ -63,7 +64,8 @@ public class GiohangDAO {
                     st.setTensach(rs.getString(3));
                     st.setGia(rs.getInt(4));
                     st.setSoluong(rs.getInt(5));
-                    st.setManv(rs.getString(6));
+                    st.setMaTV(rs.getInt(6));
+                    st.setManv(rs.getString(7));
                     listS.add(st);
                 }
             } finally {

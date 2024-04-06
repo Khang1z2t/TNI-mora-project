@@ -45,6 +45,14 @@ CREATE TABLE Sach (
 	matacgia int null,
 );
 
+create table thanhvien(
+	mathanhvien int primary key,
+	tenthanhvien nvarchar(100) null,
+	ngaysinh date null,
+	gioitinh bit default 0,
+	diem int default 0
+);
+
 -- Tạo bảng đọc giả
 CREATE TABLE DocGia (
     MaDocGia nvarchar(20) PRIMARY KEY,
@@ -110,9 +118,9 @@ create table giohang(
 	tensach nvarchar(200) null,
 	gia int null,
 	soluong int null,
+	mathanhvien int null,
 	maNV varchar(20) null
 );
-
 delete from giohang
 select * from giohang
 /*
@@ -143,6 +151,9 @@ add constraint FK_chitiethoadon_hoadon foreign key (mahoadon) references hoadon(
 alter table giohang
 add constraint FK_giohang_sach foreign key (masach) references sach(masach)
 
+alter table giohang
+add constraint FK_giohang_tichdiem foreign key (mathanhvien) references thanhvien(mathanhvien)
+
 alter table docgia
 add constraint FK_docgia_sach foreign key (masach) references sach(masach)
 
@@ -170,7 +181,7 @@ insert into luong values
 ('O1','5000000'),
 ('O2','10000000')
 -- Thêm dữ liệu vào bảng qlTheLoai
-INSERT INTO qlTheLoai (tentheloai) VALUES
+INSERT INTO qlTheLoai (matheloai,tentheloai) VALUES
 ('1',N'Trinh thám'),
 ('2',N'Khoa học'),
 ('3',N'Tâm lý học'),
@@ -193,7 +204,7 @@ INSERT INTO qlTheLoai (tentheloai) VALUES
 ('20',N'Khoa học viễn tưởng');
 
 -- Thêm dữ liệu vào bảng qltacgia
-INSERT INTO qltacgia (tentacgia) VALUES
+INSERT INTO qltacgia (matacgia,tentacgia) VALUES
 ('1',N'Nguyễn Nhật Ánh'),
 ('2',N'Tô Hoài'),
 ('3',N'Trí Tuệ Việt Nam'),

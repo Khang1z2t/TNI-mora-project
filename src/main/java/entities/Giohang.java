@@ -15,17 +15,19 @@ public class Giohang {
     private String tensach;
     private int gia;
     private int soluong;
+    private int maTV;
     private String manv;
 
     public Giohang() {
     }
 
-    public Giohang(int magiohang, String masach, String tensach, int gia, int soluong, String manv) {
+    public Giohang(int magiohang, String masach, String tensach, int gia, int soluong, int maTV, String manv) {
         this.magiohang = magiohang;
         this.masach = masach;
         this.tensach = tensach;
         this.gia = gia;
         this.soluong = soluong;
+        this.maTV = maTV;
         this.manv = manv;
     }
 
@@ -69,6 +71,14 @@ public class Giohang {
         this.soluong = soluong;
     }
 
+    public int getMaTV() {
+        return maTV;
+    }
+
+    public void setMaTV(int maTV) {
+        this.maTV = maTV;
+    }
+
     public String getManv() {
         return manv;
     }
@@ -76,5 +86,6 @@ public class Giohang {
     public void setManv(String manv) {
         this.manv = manv;
     }
+
 
 }

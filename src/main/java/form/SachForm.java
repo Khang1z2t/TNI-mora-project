@@ -88,7 +88,7 @@ public class SachForm extends javax.swing.JPanel {
         cboTacgia.setModel(cboModel);
     }
     void showDetail(int index) {
-        txtGiasach.setEditable(false);
+        txtMasach.setEditable(false);
         Sach sa = list.get(index);
         txtMasach.setText(sa.getMaSach());
         txtTensach.setText(sa.getTenSach());

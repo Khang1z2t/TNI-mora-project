@@ -76,6 +76,7 @@ form\NhapHangForm.class
 form\Form_Home.class
 swing\PasswordField$2.class
 form\NhaCungCapForm$5.class
+dao\ThanhVienDAO.class
 form\TacGiaForm$7.class
 swing\PasswordFieldSuggestion.class
 swing\TextFieldSuggestionUI.class
@@ -100,8 +101,8 @@ form\DoiMKForm.class
 form\NguoiDungForm$9.class
 dao\HoadonDAO.class
 entities\TacGia.class
-dao\KhoDAO.class
 form\NhaCungCapForm$3.class
+form\ThanhVienForm.class
 chart\ModelChart.class
 entities\TheLoai.class
 swing\PasswordField$3.class
@@ -143,7 +144,6 @@ form\NhanVienForm$11.class
 component\Header$2.class
 form\NhaCungCapForm$11.class
 form\NhaCungCapForm.class
-entities\Kho.class
 swing\ScrollBarCustom.class
 component\Menu$1.class
 swing\ComboSuggestionUI$ArrowButton.class
@@ -211,6 +211,7 @@ dao\GiohangDAO.class
 form\NguoiDungForm$3.class
 form\SachForm$4.class
 chart\ModelLegend.class
+entities\ThanhVien.class
 form\TacGiaForm.class
 component\Chart$1.class
 form\NhaCungCapForm$1.class
