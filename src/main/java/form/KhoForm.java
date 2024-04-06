@@ -72,7 +72,7 @@ public class KhoForm extends javax.swing.JPanel {
     }
 
     private void printReport() {
-        FileChooser chooser = new FileChooser("data/");
+        FileChooser chooser = new FileChooser("data/excel/");
         FileNameExtensionFilter filter = new FileNameExtensionFilter("EXCEL FILES", ".xls", ".xlsx", ".xln");
         chooser.setFileFilter(filter);
         chooser.setDialogTitle("Save As");

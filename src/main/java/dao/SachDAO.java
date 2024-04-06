@@ -131,6 +131,8 @@ public class SachDAO {
         String sql = "SELECT * FROM Sach WHERE theloai = ?";
         return SelectBySQL(sql, Matl);
     }
+
+
 //    private List<Object[]> getListOfArray(String sql, String[] cols, Object...args){
 //        try {
 //            List<Object[]> list=new ArrayList<>();

@@ -18,7 +18,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import javax.swing.*;
@@ -213,6 +212,7 @@ public class NhapHangForm extends javax.swing.JPanel {
         pn.setTongTien(Double.parseDouble(lblTongTien.getToolTipText()));
         return pn;
     }
+    
 
 
     private String createID(List<PhieuNhap> pnList) {
