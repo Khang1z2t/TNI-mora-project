@@ -22,6 +22,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableModel;
 import swing.FileChooser;
 import ui.Main;
+import utils.PrintReport;
 
 /**
  * @author ngocd
@@ -50,6 +51,7 @@ public class KhoForm extends javax.swing.JPanel {
             for (Sach sach : list) {
                 model.addRow(new Object[]{
                         sach.getMaSach(),
+
                         sach.getTenSach(),
                         sach.getNamXB(),
                         sach.getNhaXB(),
@@ -68,38 +70,17 @@ public class KhoForm extends javax.swing.JPanel {
         spTable.getVerticalScrollBar().setBackground(Color.white);
         spTable.getViewport().setBackground(Color.white);
     }
-    
-    private void printReport(JTable table, File file) {
-        try {
-            Workbook wb = new XSSFWorkbook();
-            Sheet sheet = wb.createSheet("Report");
-//            tạo header của cột
-            Row r = sheet.createRow(0);
-            TableModel model = table.getModel();
-            for (int i = 0; i < model.getColumnCount(); i++) {
-                Cell cell = r.createCell(i);
-                cell.setCellValue(model.getColumnName(i));
-            }
 
-//            tạo dữ liẹt của bảng
-            for (int i = 0; i < model.getRowCount(); i++) {
-                Row row = sheet.createRow(i + 1);
-                for (int j = 0; j < model.getColumnCount(); j++) {
-                    Cell cell = row.createCell(j);
-                    cell.setCellValue(model.getValueAt(i, j).toString());
-                }
-            }
-            FileOutputStream fos = new FileOutputStream(file + ".xlsx");
-            wb.write(fos);
-            fos.close();
-            wb.close();
+    private void printReport() {
+        FileChooser chooser = new FileChooser("data/excel/");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("EXCEL FILES", ".xls", ".xlsx", ".xln");
+        chooser.setFileFilter(filter);
+        chooser.setDialogTitle("Save As");
 
-            if (DialogHelper.confirm(this, "Lưu thàng công. Bạn có muốn mở file lên không?")) {
-                Desktop.getDesktop().open(new File(file + ".xlsx"));
-            }
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        int value = chooser.showSaveDialog(null);
+        if (value == FileChooser.APPROVE_OPTION) {
+            File file = chooser.getSelectedFile();
+            PrintReport.printExcel(tblSach, file);
         }
     }
 
@@ -206,12 +187,12 @@ public class KhoForm extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNhap)
                     .addComponent(btnPhieuNhap)
                     .addComponent(btnExcel))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -232,16 +213,7 @@ public class KhoForm extends javax.swing.JPanel {
 
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         // TODO add your handling code here:
-        FileChooser chooser = new FileChooser(System.getProperty("user.home") + "/Desktop");
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("EXCEL FILES", ".xls", ".xlsx", ".xln");
-        chooser.setFileFilter(filter);
-        chooser.setDialogTitle("Save As");
-
-        int value = chooser.showSaveDialog(null);
-        if (value == FileChooser.APPROVE_OPTION) {
-            File file = chooser.getSelectedFile();
-            printReport(tblSach, file);
-        }
+        printReport();
     }//GEN-LAST:event_btnExcelActionPerformed
 
 

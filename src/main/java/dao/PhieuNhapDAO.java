@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PhieuNhapDAO {
     String insert_SQL = "insert into PhieuNhap values(?,?,?,?,?)";
-    String update_SQL = "update PhieuNhap set NgayNhap = ?, MaNV = ?, MaNhaCC = ?, TongTien = ? where MaNhap = ?";
+    String update_SQL = "update PhieuNhap set NgayTao = ?, MaNV = ?, MaNhaCC = ?, TongTien = ? where MaNhap = ?";
     String delete_SQL = "delete from PhieuNhap where MaNhap = ?";
     String selectById_SQL = "select * from PhieuNhap where MaNhap = ?";
     String selectAll_SQL = "select * from PhieuNhap";
@@ -42,7 +42,7 @@ public class PhieuNhapDAO {
             while (rs.next()) {
                 PhieuNhap pn = new PhieuNhap();
                 pn.setMaNhap(rs.getString(1));
-                pn.setNgayNhap(rs.getDate(2));
+                pn.setNgayNhap(rs.getTimestamp(2));
                 pn.setMaNV(rs.getString(3));
                 pn.setMaNhaCC(rs.getString(4));
                 pn.setTongTien(rs.getDouble(5));
@@ -53,5 +53,11 @@ public class PhieuNhapDAO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static List<PhieuNhap> selectByKeyword(String keyword) {
+        String sql = "select * from PhieuNhap where (MaNhap like ? OR NgayTao like ? OR MaNV like ? OR MaNhaCC like ? OR TongTien like ?)";
+        String key = "%" + keyword + "%";
+        return new PhieuNhapDAO().selectBySQL(sql, key, key, key, key, key);
     }
 }

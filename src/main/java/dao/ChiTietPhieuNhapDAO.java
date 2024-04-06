@@ -30,9 +30,9 @@ public class ChiTietPhieuNhapDAO {
         return selectBySQL(selectAll_SQL);
     }
 
-    public ChiTietPhieuNhap selectById(String maNhap) {
+    public List<ChiTietPhieuNhap> selectById(String maNhap) {
         List<ChiTietPhieuNhap> list = selectBySQL(selectById_SQL, maNhap);
-        return !list.isEmpty() ? list.get(0) : null;
+        return !list.isEmpty() ? list : null;
     }
 
     public List<ChiTietPhieuNhap> selectBySQL(String sql, Object... args) {
