@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import javax.swing.*;
@@ -212,9 +213,11 @@ public class NhapHangForm extends javax.swing.JPanel {
     private PhieuNhap getFormPN() {
         PhieuNhap pn = new PhieuNhap();
         pn.setMaNhap(txtMaNhap.getText());
+        pn.setNgayNhap(new Date());
         pn.setMaNV(Auth.user.getMaNhanVien());
         pn.setMaNhaCC(((NhaCungCap) cboNcc.getSelectedItem()).getMaNhaCC());
         pn.setCTPhieuNhap(listCTPN);
+        pn.setTongTien(Double.parseDouble(lblTongTien.getText().replace(" đ", "")));
         return pn;
     }
 

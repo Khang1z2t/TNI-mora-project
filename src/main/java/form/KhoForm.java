@@ -50,6 +50,7 @@ public class KhoForm extends javax.swing.JPanel {
             for (Sach sach : list) {
                 model.addRow(new Object[]{
                         sach.getMaSach(),
+
                         sach.getTenSach(),
                         sach.getNamXB(),
                         sach.getNhaXB(),
@@ -232,7 +233,7 @@ public class KhoForm extends javax.swing.JPanel {
 
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         // TODO add your handling code here:
-        FileChooser chooser = new FileChooser(System.getProperty("user.home") + "/Desktop");
+        FileChooser chooser = new FileChooser("excel/");
         FileNameExtensionFilter filter = new FileNameExtensionFilter("EXCEL FILES", ".xls", ".xlsx", ".xln");
         chooser.setFileFilter(filter);
         chooser.setDialogTitle("Save As");

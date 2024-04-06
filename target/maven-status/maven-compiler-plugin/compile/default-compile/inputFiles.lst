@@ -1,105 +1,95 @@
-E:\DUAN1\NhaSach2\src\main\java\ui\QuanLySachJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\ui\NhanVienJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\ui\QuenMatKhauJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\entities\Hoadon.java
-E:\DUAN1\NhaSach2\src\main\java\component\Card.java
-E:\DUAN1\NhaSach2\src\main\java\swing\CellStatus.java
-E:\DUAN1\NhaSach2\src\main\java\form\LuongForm.java
-E:\DUAN1\NhaSach2\src\main\java\swing\PasswordField.java
-E:\DUAN1\NhaSach2\src\main\java\ui\DangNhapJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\model\ComboBoxSuggestion.java
-E:\DUAN1\NhaSach2\src\main\java\ui\tacgiaJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\ui\DoiMatKhauJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\model\BlankPlotChatRender.java
-E:\DUAN1\NhaSach2\src\main\java\entities\DocGia.java
-E:\DUAN1\NhaSach2\src\main\java\utils\XDate.java
-E:\DUAN1\NhaSach2\src\main\java\ui\MainFrame.java
-E:\DUAN1\NhaSach2\src\main\java\ui\nhaXBJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\ui\DocGiaJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\swing\Table.java
-E:\DUAN1\NhaSach2\src\main\java\ui\Main.java
-E:\DUAN1\NhaSach2\src\main\java\form\CaiDatForm.java
-E:\DUAN1\NhaSach2\src\main\java\chart\ModelChart.java
-E:\DUAN1\NhaSach2\src\main\java\swing\TableHeader.java
-E:\DUAN1\NhaSach2\src\main\java\swing\FileChooser.java
-E:\DUAN1\NhaSach2\src\main\java\utils\GetIcon.java
-E:\DUAN1\NhaSach2\src\main\java\utils\JDBCHelper.java
-E:\DUAN1\NhaSach2\src\main\java\dao\SachDAO.java
-E:\DUAN1\NhaSach2\src\main\java\entities\TacGia.java
-E:\DUAN1\NhaSach2\src\main\java\form\NhaCungCapForm.java
-E:\DUAN1\NhaSach2\src\main\java\form\PhieuNhapForm.java
-E:\DUAN1\NhaSach2\src\main\java\dao\PhieuNhapDAO.java
-E:\DUAN1\NhaSach2\src\main\java\ui\ThanhToanJFrame.java
-E:\DUAN1\NhaSach2\src\main\java\model\SeriesSize.java
-E:\DUAN1\NhaSach2\src\main\java\form\NhanVienForm.java
-E:\DUAN1\NhaSach2\src\main\java\dao\NguoiDungDAO.java
-E:\DUAN1\NhaSach2\src\main\java\dao\HoadonDAO.java
-E:\DUAN1\NhaSach2\src\main\java\ui\ThongKeJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\form\TacGiaForm.java
-E:\DUAN1\NhaSach2\src\main\java\swing\searchText.java
-E:\DUAN1\NhaSach2\src\main\java\ui\DatHangJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\entities\Luong.java
-E:\DUAN1\NhaSach2\src\main\java\entities\ChiTietHoaDon.java
-E:\DUAN1\NhaSach2\src\main\java\model\Model_Card.java
-E:\DUAN1\NhaSach2\src\main\java\form\DoiMKForm.java
-E:\DUAN1\NhaSach2\src\main\java\dao\GiohangDAO.java
-E:\DUAN1\NhaSach2\src\main\java\component\Chart.java
-E:\DUAN1\NhaSach2\src\main\java\swing\PasswordFieldSuggestionUI.java
-E:\DUAN1\NhaSach2\src\main\java\utils\MoneyFormat.java
-E:\DUAN1\NhaSach2\src\main\java\dao\ChiTietPhieuNhapDAO.java
-E:\DUAN1\NhaSach2\src\main\java\form\NhapHangForm.java
-E:\DUAN1\NhaSach2\src\main\java\swing\ComboSuggestionUI.java
-E:\DUAN1\NhaSach2\src\main\java\ui\ScrollBar.java
-E:\DUAN1\NhaSach2\src\main\java\utils\DialogHelper.java
-E:\DUAN1\NhaSach2\src\main\java\entities\Sach.java
-E:\DUAN1\NhaSach2\src\main\java\entities\NguoiDung.java
-E:\DUAN1\NhaSach2\src\main\java\form\DoanhThuForm.java
-E:\DUAN1\NhaSach2\src\main\java\form\HoaDonForm.java
-E:\DUAN1\NhaSach2\src\main\java\ui\SettingJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\component\Menu.java
-E:\DUAN1\NhaSach2\src\main\java\model\BlankPlotChart.java
-E:\DUAN1\NhaSach2\src\main\java\component\Header.java
-E:\DUAN1\NhaSach2\src\main\java\entities\Kho.java
-E:\DUAN1\NhaSach2\src\main\java\swing\PanelBorder.java
-E:\DUAN1\NhaSach2\src\main\java\swing\TextFieldSuggestionUI.java
-E:\DUAN1\NhaSach2\src\main\java\chart\ModelLegend.java
-E:\DUAN1\NhaSach2\src\main\java\swing\MenuItem.java
-E:\DUAN1\NhaSach2\src\main\java\entities\Giohang.java
-E:\DUAN1\NhaSach2\src\main\java\form\NguoiDungForm.java
-E:\DUAN1\NhaSach2\src\main\java\swing\TableStatus.java
-E:\DUAN1\NhaSach2\src\main\java\dao\NhaCungCapDAO.java
-E:\DUAN1\NhaSach2\src\main\java\dao\TheLoaiDAO.java
-E:\DUAN1\NhaSach2\src\main\java\chart\LabelColor.java
-E:\DUAN1\NhaSach2\src\main\java\swing\TextField.java
-E:\DUAN1\NhaSach2\src\main\java\entities\PhieuNhap.java
-E:\DUAN1\NhaSach2\src\main\java\model\StatusType.java
-E:\DUAN1\NhaSach2\src\main\java\form\TheLoaiForm.java
-E:\DUAN1\NhaSach2\src\main\java\model\Model_Menu.java
-E:\DUAN1\NhaSach2\src\main\java\utils\XFile.java
-E:\DUAN1\NhaSach2\src\main\java\dao\NhanVienDAO.java
-E:\DUAN1\NhaSach2\src\main\java\chart\LegendItem.java
-E:\DUAN1\NhaSach2\src\main\java\ui\NguoiDungJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\form\Form_Home.java
-E:\DUAN1\NhaSach2\src\main\java\swing\ModernScrollBarUI.java
-E:\DUAN1\NhaSach2\src\main\java\dao\LuongDAO.java
-E:\DUAN1\NhaSach2\src\main\java\dao\ThongKeDAO.java
-E:\DUAN1\NhaSach2\src\main\java\entities\ChiTietPhieuNhap.java
-E:\DUAN1\NhaSach2\src\main\java\ui\TonHangJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\ui\theloaiJDialog.java
-E:\DUAN1\NhaSach2\src\main\java\form\ThanhToanThanhCongForm.java
-E:\DUAN1\NhaSach2\src\main\java\form\SachForm.java
-E:\DUAN1\NhaSach2\src\main\java\swing\PasswordFieldSuggestion.java
-E:\DUAN1\NhaSach2\src\main\java\utils\Auth.java
-E:\DUAN1\NhaSach2\src\main\java\form\KhoForm.java
-E:\DUAN1\NhaSach2\src\main\java\entities\NhaCungCap.java
-E:\DUAN1\NhaSach2\src\main\java\dao\TacGiaDAO.java
-E:\DUAN1\NhaSach2\src\main\java\swing\TextFieldSuggestion.java
-E:\DUAN1\NhaSach2\src\main\java\model\NiceScale.java
-E:\DUAN1\NhaSach2\src\main\java\dao\KhoDAO.java
-E:\DUAN1\NhaSach2\src\main\java\event\EventMenuSelected.java
-E:\DUAN1\NhaSach2\src\main\java\swing\ListMenu.java
-E:\DUAN1\NhaSach2\src\main\java\entities\NhanVien.java
-E:\DUAN1\NhaSach2\src\main\java\utils\XImage.java
-E:\DUAN1\NhaSach2\src\main\java\entities\TheLoai.java
-E:\DUAN1\NhaSach2\src\main\java\form\FormTemplate.java
-E:\DUAN1\NhaSach2\src\main\java\swing\ScrollBarCustom.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\ComboSuggestionUI.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\TextFieldSuggestion.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\NhapHangForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\ChiTietPhieuNhapDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\model\SeriesSize.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\utils\XDate.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\utils\DialogHelper.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\PhieuNhapDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\utils\JDBCHelper.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\NguoiDung.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\NhaCungCapDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\TacGiaForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\ui\DangNhapJDialog.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\model\NiceScale.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\event\EventMenuSelected.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\FormTemplate.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\ListMenu.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\PasswordField.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\ui\Main.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\LuongDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\Luong.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\component\Chart.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\chart\ModelLegend.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\NguoiDungForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\TheLoaiForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\model\Model_Menu.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\ChiTietHoaDon.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\SachDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\ChiTietPhieuNhap.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\chart\LabelColor.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\model\BlankPlotChart.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\searchText.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\TacGia.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\ThanhVienForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\NhaCungCap.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\NguoiDungDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\TextField.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\Form_Home.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\chart\ModelChart.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\NhanVienDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\CaiDatForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\utils\Auth.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\chart\LegendItem.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\PanelBorder.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\Sach.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\ThanhToanThanhCongForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\DoanhThuForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\component\Header.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\ThanhVienDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\HoaDonForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\Hoadon.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\component\Card.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\DocGia.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\model\ComboBoxSuggestion.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\ModernScrollBarUI.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\Giohang.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\SachForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\PasswordFieldSuggestionUI.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\PhieuNhapForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\MenuItem.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\ui\ScrollBar.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\CellStatus.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\ScrollBarCustom.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\ui\ThanhToanJFrame.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\NhaCungCapForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\PasswordFieldSuggestion.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\TheLoaiDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\utils\MoneyFormat.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\model\StatusType.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\component\Menu.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\HoadonDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\LuongForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\NhanVien.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\TacGiaDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\PhieuNhap.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\ui\DoiMatKhauJDialog.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\TextFieldSuggestionUI.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\NhanVienForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\TheLoai.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\ui\QuenMatKhauJDialog.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\TableStatus.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\KhoForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\utils\GetIcon.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\entities\ThanhVien.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\form\DoiMKForm.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\TableHeader.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\utils\XFile.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\GiohangDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\utils\XImage.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\ui\SettingJDialog.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\dao\ThongKeDAO.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\model\BlankPlotChatRender.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\model\Model_Card.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\FileChooser.java
+E:\FPL-IT19101\PRO1041 - Du An 1\Project\TNI-mora-project\src\main\java\swing\Table.java
