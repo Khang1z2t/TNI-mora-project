@@ -1,5 +1,6 @@
 package utils;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,13 +45,14 @@ public class XDate {
         return date;
     }
 
-    public static Date now() {
-        return new Date();
+
+    public static Timestamp now() {
+        return new Timestamp(new Date().getTime());
     }
 
-//    public static String getTime(Date date) {
-//        Locale locale = new Locale("vi", "VN");
-//        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", locale);
-//        return sdf.format(date);
-//    }
+    public static String toString(Timestamp date, String pattern) {
+        formater.applyPattern(pattern);
+        return formater.format(date);
+    }
+
 }

@@ -87,11 +87,12 @@ CREATE TABLE NhaCungCap(
 
 CREATE TABLE PhieuNhap(
 	MaNhap nvarchar(20) primary key,
-	NgayTao date null,
+	NgayTao datetime null,
 	MaNV varchar(20) null,
 	MaNhaCC nvarchar(20) null,
 	Tongtien money
 );
+
 
 CREATE TABLE ChiTietPhieuNhap(
 	MaNhap nvarchar(20),
