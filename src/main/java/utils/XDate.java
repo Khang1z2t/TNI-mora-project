@@ -2,7 +2,9 @@ package utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class XDate {
     static SimpleDateFormat formater = new SimpleDateFormat();
@@ -41,4 +43,14 @@ public class XDate {
         date.setTime(date.getTime() + days*24*60*60*1000);
         return date;
     }
+
+    public static Date now() {
+        return new Date();
+    }
+
+//    public static String getTime(Date date) {
+//        Locale locale = new Locale("vi", "VN");
+//        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", locale);
+//        return sdf.format(date);
+//    }
 }
