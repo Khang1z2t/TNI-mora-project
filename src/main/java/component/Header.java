@@ -5,10 +5,10 @@
  */
 package component;
 
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import ui.SettingJDialog;
 
 /**
  *
@@ -97,7 +97,7 @@ public class Header extends javax.swing.JPanel {
     }//GEN-LAST:event_lblExitMouseClicked
 
     private void lblSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSettingsMouseClicked
-
+//        new SettingJDialog((Frame) getParent(), true).setVisible(true);
     }//GEN-LAST:event_lblSettingsMouseClicked
 
 
