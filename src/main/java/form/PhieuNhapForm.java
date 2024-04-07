@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -78,26 +79,30 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         try {
             DefaultTableModel model = (DefaultTableModel) tblPhieuNhap.getModel();
             model.setColumnIdentifiers(new Object[]{
-                    "STT",
-                    "Mã Phiếu Nhập",
-                    "Nhà Cung Cấp",
-                    "Người tạo",
-                    "Thời gian tạo",
-                    "Tổng Tiền"
+                "STT",
+                "Mã Phiếu Nhập",
+                "Nhà Cung Cấp",
+                "Người tạo",
+                "Thời gian tạo",
+                "Tổng Tiền"
             });
             model.setRowCount(0);
 
             int stt = 1;
             String keyword = txtFindPhieuNhap.getText();
-            List<PhieuNhap> list = pnDAO.selectByKeyword(keyword);
+            String formDate = getDate(txtTuNgay.getDate());
+            String toDate = getDate(txtDenNgay.getDate());
+            String minPrice = txtTuGia.getText();
+            String maxPrice = txtDenGia.getText();
+            List<PhieuNhap> list = pnDAO.selectByKeyword(keyword, formDate, toDate, minPrice, maxPrice);
             for (PhieuNhap pn : list) {
                 model.addRow(new Object[]{
-                        stt++,
-                        pn.getMaNhap(),
-                        nccDAO.selectById(pn.getMaNhaCC()).getTenNhaCC(),
-                        pn.getMaNV(),
-                        XDate.toString(pn.getNgayNhap(), "dd/MM/yyyy HH:mm:ss"),
-                        MoneyFormat.format(pn.getTongTien())
+                    stt++,
+                    pn.getMaNhap(),
+                    nccDAO.selectById(pn.getMaNhaCC()).getTenNhaCC(),
+                    pn.getMaNV(),
+                    XDate.toString(pn.getNgayNhap(), "dd/MM/yyyy HH:mm:ss"),
+                    MoneyFormat.format(pn.getTongTien())
                 });
             }
         } catch (Exception e) {
@@ -107,6 +112,13 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         spTable.setVerticalScrollBar(new ScrollBar());
         spTable.getVerticalScrollBar().setBackground(Color.white);
         spTable.getViewport().setBackground(Color.white);
+    }
+
+    private String getDate(Date date) {
+        if (date == null) {
+            return "";
+        }
+        return XDate.toString(date, "yyyy-MM-dd");
     }
 
     private void printReport() {
@@ -146,11 +158,11 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         tblPhieuNhap = new swing.Table();
         btnExcel = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        txtFindPhieuNhap1 = new javax.swing.JTextField();
-        txtFindPhieuNhap2 = new javax.swing.JTextField();
+        txtTuNgay = new com.toedter.calendar.JDateChooser();
+        txtDenNgay = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
-        txtFindPhieuNhap3 = new javax.swing.JTextField();
-        txtFindPhieuNhap4 = new javax.swing.JTextField();
+        txtTuGia = new javax.swing.JTextField();
+        txtDenGia = new javax.swing.JTextField();
 
         pEdit.setText("Sửa Phiếu Nhập");
         pEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -206,9 +218,8 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtFindPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtFindPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 7, Short.MAX_VALUE))
         );
 
         tblPhieuNhap.setBackground(new java.awt.Color(229, 229, 229));
@@ -241,15 +252,15 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(229, 229, 229));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Theo ngày", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
-        txtFindPhieuNhap1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtFindPhieuNhap1KeyReleased(evt);
+        txtTuNgay.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtTuNgayPropertyChange(evt);
             }
         });
 
-        txtFindPhieuNhap2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtFindPhieuNhap2KeyReleased(evt);
+        txtDenNgay.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtDenNgayPropertyChange(evt);
             }
         });
 
@@ -259,33 +270,32 @@ public class PhieuNhapForm extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtFindPhieuNhap1, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtFindPhieuNhap2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTuNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDenNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFindPhieuNhap1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFindPhieuNhap2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDenNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTuNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(229, 229, 229));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Theo giá", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
-        txtFindPhieuNhap3.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtTuGia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtFindPhieuNhap3KeyReleased(evt);
+                txtTuGiaKeyReleased(evt);
             }
         });
 
-        txtFindPhieuNhap4.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDenGia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtFindPhieuNhap4KeyReleased(evt);
+                txtDenGiaKeyReleased(evt);
             }
         });
 
@@ -295,18 +305,17 @@ public class PhieuNhapForm extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtFindPhieuNhap3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtFindPhieuNhap4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTuGia, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDenGia, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFindPhieuNhap3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFindPhieuNhap4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTuGia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDenGia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -322,7 +331,7 @@ public class PhieuNhapForm extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblBack))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(spTable, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                    .addComponent(spTable)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -345,7 +354,7 @@ public class PhieuNhapForm extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnExcel)
@@ -385,21 +394,27 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblPhieuNhapMouseReleased
 
-    private void txtFindPhieuNhap1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindPhieuNhap1KeyReleased
+    private void txtTuGiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTuGiaKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFindPhieuNhap1KeyReleased
+        fillTableSach();
+    }//GEN-LAST:event_txtTuGiaKeyReleased
 
-    private void txtFindPhieuNhap2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindPhieuNhap2KeyReleased
+    private void txtDenGiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDenGiaKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFindPhieuNhap2KeyReleased
+        fillTableSach();
+    }//GEN-LAST:event_txtDenGiaKeyReleased
 
-    private void txtFindPhieuNhap3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindPhieuNhap3KeyReleased
+    private void txtTuNgayPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtTuNgayPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFindPhieuNhap3KeyReleased
+        fillTableSach();
 
-    private void txtFindPhieuNhap4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindPhieuNhap4KeyReleased
+    }//GEN-LAST:event_txtTuNgayPropertyChange
+
+    private void txtDenNgayPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtDenNgayPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFindPhieuNhap4KeyReleased
+        fillTableSach();
+
+    }//GEN-LAST:event_txtDenNgayPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -414,10 +429,10 @@ public class PhieuNhapForm extends javax.swing.JPanel {
     private javax.swing.JPopupMenu popupMenuPNhap;
     private javax.swing.JScrollPane spTable;
     private swing.Table tblPhieuNhap;
+    private javax.swing.JTextField txtDenGia;
+    private com.toedter.calendar.JDateChooser txtDenNgay;
     private javax.swing.JTextField txtFindPhieuNhap;
-    private javax.swing.JTextField txtFindPhieuNhap1;
-    private javax.swing.JTextField txtFindPhieuNhap2;
-    private javax.swing.JTextField txtFindPhieuNhap3;
-    private javax.swing.JTextField txtFindPhieuNhap4;
+    private javax.swing.JTextField txtTuGia;
+    private com.toedter.calendar.JDateChooser txtTuNgay;
     // End of variables declaration//GEN-END:variables
 }

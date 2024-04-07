@@ -45,6 +45,11 @@ public class XDate {
         return date;
     }
 
+    public static String format(String DString, String pattern) {
+        formater.applyPattern(pattern);
+        return formater.format(DString);
+    }
+
 
     public static Timestamp now() {
         return new Timestamp(new Date().getTime());

@@ -56,7 +56,7 @@
                       <Component id="lblBack" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
-                  <Component id="spTable" alignment="0" pref="688" max="32767" attributes="0"/>
+                  <Component id="spTable" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="btnExcel" min="-2" pref="120" max="-2" attributes="0"/>
@@ -86,7 +86,7 @@
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="spTable" min="-2" pref="325" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnExcel" min="-2" max="-2" attributes="0"/>
@@ -157,9 +157,8 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtFindPhieuNhap" min="-2" pref="22" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="txtFindPhieuNhap" min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -232,20 +231,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtFindPhieuNhap1" pref="152" max="32767" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtFindPhieuNhap2" min="-2" pref="148" max="-2" attributes="0"/>
+                  <Component id="txtTuNgay" min="-2" pref="156" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="txtDenNgay" min="-2" pref="150" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtFindPhieuNhap1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="txtFindPhieuNhap2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtDenNgay" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="txtTuNgay" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -253,14 +251,14 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="txtFindPhieuNhap1">
+        <Component class="com.toedter.calendar.JDateChooser" name="txtTuNgay">
           <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFindPhieuNhap1KeyReleased"/>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="txtTuNgayPropertyChange"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtFindPhieuNhap2">
+        <Component class="com.toedter.calendar.JDateChooser" name="txtDenNgay">
           <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFindPhieuNhap2KeyReleased"/>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="txtDenNgayPropertyChange"/>
           </Events>
         </Component>
       </SubComponents>
@@ -287,20 +285,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtFindPhieuNhap3" max="32767" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtFindPhieuNhap4" min="-2" pref="153" max="-2" attributes="0"/>
+                  <Component id="txtTuGia" min="-2" pref="151" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="txtDenGia" min="-2" pref="159" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtFindPhieuNhap3" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="txtFindPhieuNhap4" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtTuGia" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="txtDenGia" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -308,14 +305,14 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="txtFindPhieuNhap3">
+        <Component class="javax.swing.JTextField" name="txtTuGia">
           <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFindPhieuNhap3KeyReleased"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTuGiaKeyReleased"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtFindPhieuNhap4">
+        <Component class="javax.swing.JTextField" name="txtDenGia">
           <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFindPhieuNhap4KeyReleased"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDenGiaKeyReleased"/>
           </Events>
         </Component>
       </SubComponents>
