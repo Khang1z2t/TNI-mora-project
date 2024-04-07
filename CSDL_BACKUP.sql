@@ -285,14 +285,17 @@ BEGIN
         ND.cap AS 'Cấp',
         L.luong AS 'Lương'
     FROM 
-        NhanVien NV
-    INNER JOIN 
-        NguoiDung ND ON NV.MANV = ND.MANV
+        NguoiDung ND
     INNER JOIN 
         Luong L ON ND.cap = L.cap
+    INNER JOIN 
+        NhanVien NV ON ND.MANV = NV.MANV
     WHERE 
         MONTH(ND.NGAYDK) = @thang
 END;
 
+
 /*****************************************************************************************/
 SELECT DISTINCT MONTH(NGAYDK) MONTH FROM NguoiDung ORDER BY MONTH DESC
+drop proc sp_BangLuong
+exec sp_bangLuong 4

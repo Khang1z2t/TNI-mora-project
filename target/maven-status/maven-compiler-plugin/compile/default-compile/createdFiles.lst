@@ -33,6 +33,7 @@ component\Menu$2.class
 chart\LegendItem.class
 ui\DangNhapJDialog$4.class
 form\NhanVienForm$2.class
+form\HoaDonForm$8.class
 form\KhoForm$4.class
 component\Menu.class
 ui\ThanhToanJFrame.class
@@ -45,6 +46,7 @@ swing\PasswordFieldSuggestion.class
 swing\TextFieldSuggestionUI.class
 form\NhanVienForm$12.class
 swing\TextFieldSuggestionUI$1.class
+form\HoaDonForm$6.class
 form\NhaCungCapForm$8.class
 form\PhieuNhapForm$3.class
 form\ThanhVienForm$2.class
@@ -145,6 +147,7 @@ form\NhapHangForm$6.class
 entities\PhieuNhap.class
 swing\ComboSuggestionUI$2.class
 swing\ComboSuggestionUI.class
+form\HoaDonForm$7.class
 utils\GetIcon.class
 model\SeriesSize.class
 form\KhoForm$3.class
@@ -184,6 +187,7 @@ form\TheLoaiForm$4.class
 form\SuaCTPhieuNhapForm$6.class
 ui\ThanhToanJFrame$3.class
 swing\PanelBorder.class
+form\HoaDonForm$5.class
 form\NhanVienForm$1.class
 swing\MaterialTabbed$MaterialTabbedUI.class
 form\NhaCungCapForm$7.class

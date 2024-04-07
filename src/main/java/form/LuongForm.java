@@ -49,8 +49,8 @@ public class LuongForm extends javax.swing.JPanel {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbxThang.getModel();
         model.removeAllElements();
         List<Integer> lst = new LuongDAO().selectThang();
-        for (Integer year : lst) {
-            model.addElement(year);
+        for (Integer thang : lst) {
+            model.addElement(thang);
         }
         cbxThang.setSelectedIndex(0);
     }
@@ -68,7 +68,9 @@ public class LuongForm extends javax.swing.JPanel {
         }
     }
     private void DBFilltoList(){
-        
+        LuongDAO ld = new LuongDAO();
+        list = (ArrayList<Luong>) ld.SelectAll();
+        fillTable();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
