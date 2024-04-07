@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -78,26 +79,30 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         try {
             DefaultTableModel model = (DefaultTableModel) tblPhieuNhap.getModel();
             model.setColumnIdentifiers(new Object[]{
-                    "STT",
-                    "Mã Phiếu Nhập",
-                    "Nhà Cung Cấp",
-                    "Người tạo",
-                    "Thời gian tạo",
-                    "Tổng Tiền"
+                "STT",
+                "Mã Phiếu Nhập",
+                "Nhà Cung Cấp",
+                "Người tạo",
+                "Thời gian tạo",
+                "Tổng Tiền"
             });
             model.setRowCount(0);
 
             int stt = 1;
             String keyword = txtFindPhieuNhap.getText();
-            List<PhieuNhap> list = pnDAO.selectByKeyword(keyword);
+            String formDate = getDate(txtTuNgay.getDate());
+            String toDate = getDate(txtDenNgay.getDate());
+            String minPrice = txtTuGia.getText();
+            String maxPrice = txtDenGia.getText();
+            List<PhieuNhap> list = pnDAO.selectByKeyword(keyword, formDate, toDate, minPrice, maxPrice);
             for (PhieuNhap pn : list) {
                 model.addRow(new Object[]{
-                        stt++,
-                        pn.getMaNhap(),
-                        nccDAO.selectById(pn.getMaNhaCC()).getTenNhaCC(),
-                        pn.getMaNV(),
-                        XDate.toString(pn.getNgayNhap(), "dd/MM/yyyy HH:mm:ss"),
-                        MoneyFormat.format(pn.getTongTien())
+                    stt++,
+                    pn.getMaNhap(),
+                    nccDAO.selectById(pn.getMaNhaCC()).getTenNhaCC(),
+                    pn.getMaNV(),
+                    XDate.toString(pn.getNgayNhap(), "dd/MM/yyyy HH:mm:ss"),
+                    MoneyFormat.format(pn.getTongTien())
                 });
             }
         } catch (Exception e) {
@@ -107,6 +112,13 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         spTable.setVerticalScrollBar(new ScrollBar());
         spTable.getVerticalScrollBar().setBackground(Color.white);
         spTable.getViewport().setBackground(Color.white);
+    }
+
+    private String getDate(Date date) {
+        if (date == null) {
+            return "";
+        }
+        return XDate.toString(date, "yyyy-MM-dd");
     }
 
     private void printReport() {
@@ -145,6 +157,12 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         spTable = new javax.swing.JScrollPane();
         tblPhieuNhap = new swing.Table();
         btnExcel = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        txtTuNgay = new com.toedter.calendar.JDateChooser();
+        txtDenNgay = new com.toedter.calendar.JDateChooser();
+        jPanel5 = new javax.swing.JPanel();
+        txtTuGia = new javax.swing.JTextField();
+        txtDenGia = new javax.swing.JTextField();
 
         pEdit.setText("Sửa Phiếu Nhập");
         pEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -200,9 +218,8 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtFindPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtFindPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 7, Short.MAX_VALUE))
         );
 
         tblPhieuNhap.setBackground(new java.awt.Color(229, 229, 229));
@@ -232,6 +249,76 @@ public class PhieuNhapForm extends javax.swing.JPanel {
             }
         });
 
+        jPanel4.setBackground(new java.awt.Color(229, 229, 229));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Theo ngày", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        txtTuNgay.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtTuNgayPropertyChange(evt);
+            }
+        });
+
+        txtDenNgay.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtDenNgayPropertyChange(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtTuNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDenNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDenNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTuNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel5.setBackground(new java.awt.Color(229, 229, 229));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Theo giá", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        txtTuGia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTuGiaKeyReleased(evt);
+            }
+        });
+
+        txtDenGia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDenGiaKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtTuGia, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDenGia, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTuGia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDenGia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -244,10 +331,14 @@ public class PhieuNhapForm extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblBack))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(spTable, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                    .addComponent(spTable)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -260,10 +351,14 @@ public class PhieuNhapForm extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnExcel)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -299,10 +394,34 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblPhieuNhapMouseReleased
 
+    private void txtTuGiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTuGiaKeyReleased
+        // TODO add your handling code here:
+        fillTableSach();
+    }//GEN-LAST:event_txtTuGiaKeyReleased
+
+    private void txtDenGiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDenGiaKeyReleased
+        // TODO add your handling code here:
+        fillTableSach();
+    }//GEN-LAST:event_txtDenGiaKeyReleased
+
+    private void txtTuNgayPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtTuNgayPropertyChange
+        // TODO add your handling code here:
+        fillTableSach();
+
+    }//GEN-LAST:event_txtTuNgayPropertyChange
+
+    private void txtDenNgayPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtDenNgayPropertyChange
+        // TODO add your handling code here:
+        fillTableSach();
+
+    }//GEN-LAST:event_txtDenNgayPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExcel;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblBack1;
     private javax.swing.JMenuItem pEdit;
@@ -310,6 +429,10 @@ public class PhieuNhapForm extends javax.swing.JPanel {
     private javax.swing.JPopupMenu popupMenuPNhap;
     private javax.swing.JScrollPane spTable;
     private swing.Table tblPhieuNhap;
+    private javax.swing.JTextField txtDenGia;
+    private com.toedter.calendar.JDateChooser txtDenNgay;
     private javax.swing.JTextField txtFindPhieuNhap;
+    private javax.swing.JTextField txtTuGia;
+    private com.toedter.calendar.JDateChooser txtTuNgay;
     // End of variables declaration//GEN-END:variables
 }

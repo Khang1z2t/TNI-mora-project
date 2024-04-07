@@ -47,6 +47,7 @@
             <artifactId>jcalendar</artifactId>
             <version>1.4</version>
         </dependency>
+
         <dependency>
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
@@ -76,6 +77,7 @@
             <artifactId>timingframework</artifactId>
             <version>1.0</version>
         </dependency>
+
         <dependency>
             <groupId>net.java.timingframework</groupId>
             <artifactId>timingframework-core</artifactId>
@@ -94,20 +96,30 @@
             <artifactId>miglayout-swing</artifactId>
             <version>11.3</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>4.1.2</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>4.1.2</version>
         </dependency>
+
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
             <version>5.5.13</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
+        <dependency>
+            <groupId>com.toedter</groupId>
+            <artifactId>jcalendar</artifactId>
+            <version>1.4</version>
         </dependency>
 
 

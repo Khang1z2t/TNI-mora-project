@@ -45,7 +45,6 @@ public class XDate {
         return date;
     }
 
-
     public static Timestamp now() {
         return new Timestamp(new Date().getTime());
     }

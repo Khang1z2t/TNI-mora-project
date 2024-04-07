@@ -8,6 +8,7 @@ import entities.ChiTietPhieuNhap;
 import entities.NhaCungCap;
 import entities.PhieuNhap;
 import entities.Sach;
+
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.Optional;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+
 import ui.Main;
 import ui.ScrollBar;
 import utils.Auth;
@@ -25,11 +27,10 @@ import utils.PrintReport;
 import utils.XDate;
 
 /**
- *
  * @author ngocd
  */
 public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
-    
+
     SachDAO sachDAO = new SachDAO();
     NhaCungCapDAO nccDAO = new NhaCungCapDAO();
     PhieuNhapDAO pnDAO = new PhieuNhapDAO();
@@ -49,11 +50,12 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
         setForm(pn);
         tabs.setSelectedIndex(1);
     }
-    
+
     private void editPhieuNhap() {
         try {
             PhieuNhap pn = getFormPN();
             pnDAO.update(pn);
+            // Sửa số lượng trong kho tồn
             for (ChiTietPhieuNhap ctpnOld : listCTPNOld) {
                 String maSach = ctpnOld.getMasach();
                 ChiTietPhieuNhap ctpn = listCTPN.stream()
@@ -66,8 +68,10 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
                     Sach sach = sachDAO.selectById(maSach);
                     sach.setSoLuong(sach.getSoLuong() + difference);
                     sachDAO.update(sach);
+                    ctpnDAO.update(ctpn);
                 }
             }
+
             DialogHelper.alert(this, "Sửa phiếu nhập thành công!");
             Main.Instance.setForm(new KhoForm());
         } catch (Exception e) {
@@ -162,13 +166,14 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
     }
 
     private void initTableNhap() {
-        DefaultTableModel model = (DefaultTableModel) tblPhieuNhap.getModel();
-        model.setColumnIdentifiers(new Object[]{"STT", "Mã Sách", "Tên Sách", "Số Lượng", "Giá", "Thành Tiền"});
-        model.setRowCount(0);
+//        DefaultTableModel model = (DefaultTableModel) tblPhieuNhap.getModel();
+//        model.setColumnIdentifiers(new Object[]{"STT", "Mã Sách", "Tên Sách", "Số Lượng", "Giá", "Thành Tiền"});
+//        model.setRowCount(0);
     }
 
     private void fillTableNhap() {
         DefaultTableModel model = (DefaultTableModel) tblPhieuNhap.getModel();
+        model.setColumnIdentifiers(new Object[]{"STT", "Mã Sách", "Tên Sách", "Số Lượng", "Giá", "Thành Tiền"});
         model.setRowCount(0);
         double tongTien = 0;
         int stt = 1;
@@ -379,11 +384,11 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(spTblSach, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(spTblSach, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -441,7 +446,7 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
         lblTongTien.setText("000.000.0000 đ");
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Nhập Hàng");
+        jButton1.setText("Sửa phiếu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -461,7 +466,7 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spTblNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                    .addComponent(spTblNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblBack4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -518,14 +523,14 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
                 .addComponent(lblBack1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblBack)
-                .addContainerGap())
-            .addComponent(tabs)
+                .addGap(14, 14, 14))
+            .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBack1)
                     .addComponent(lblBack))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

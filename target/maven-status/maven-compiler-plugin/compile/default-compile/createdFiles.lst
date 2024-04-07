@@ -127,6 +127,7 @@ chart\ModelLegend.class
 form\TacGiaForm.class
 swing\TextField$2.class
 form\LuongForm.class
+form\PhieuNhapForm$9.class
 ui\DoiMatKhauJDialog.class
 form\SachForm$10.class
 swing\TextField$1.class
