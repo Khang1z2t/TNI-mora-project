@@ -434,9 +434,9 @@ public class NhaCungCapForm extends javax.swing.JPanel {
 
         tabs.addTab("CẬP NHẬT", tabThongTin);
 
-        tabDanhSach.setBackground(new java.awt.Color(229, 229, 229));
+        tabDanhSach.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblNhaCungCap.setBackground(new java.awt.Color(229, 229, 229));
+        tblNhaCungCap.setBackground(new java.awt.Color(255, 255, 255));
         tblNhaCungCap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -455,7 +455,7 @@ public class NhaCungCapForm extends javax.swing.JPanel {
         });
         spTable.setViewportView(tblNhaCungCap);
 
-        jPanel1.setBackground(new java.awt.Color(229, 229, 229));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         txtFindNCC.addKeyListener(new java.awt.event.KeyAdapter() {

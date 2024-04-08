@@ -40,6 +40,15 @@ public class XDate {
 //     * @param days số ngày cần bổ sung váo date
 //     * @return Date kết quả
 //     */
+
+//    nếu ko nập pattern thì trả về pattern mặc định của sql
+    public static String toString(Date date) {
+        if (date == null) {
+            return "";
+        }
+        return XDate.toString(date, "yyyy-MM-dd");
+    }
+
     public static Date addDays(Date date, long days) {
         date.setTime(date.getTime() + days*24*60*60*1000);
         return date;
@@ -53,5 +62,6 @@ public class XDate {
         formater.applyPattern(pattern);
         return formater.format(date);
     }
+
 
 }

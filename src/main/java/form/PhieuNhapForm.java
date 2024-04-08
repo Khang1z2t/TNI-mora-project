@@ -90,8 +90,8 @@ public class PhieuNhapForm extends javax.swing.JPanel {
 
             int stt = 1;
             String keyword = txtFindPhieuNhap.getText();
-            String formDate = getDate(txtTuNgay.getDate());
-            String toDate = getDate(txtDenNgay.getDate());
+            String formDate = XDate.toString(txtTuNgay.getDate());
+            String toDate = XDate.toString(txtDenNgay.getDate());
             String minPrice = txtTuGia.getText();
             String maxPrice = txtDenGia.getText();
             List<PhieuNhap> list = pnDAO.selectByKeyword(keyword, formDate, toDate, minPrice, maxPrice);
@@ -112,13 +112,6 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         spTable.setVerticalScrollBar(new ScrollBar());
         spTable.getVerticalScrollBar().setBackground(Color.white);
         spTable.getViewport().setBackground(Color.white);
-    }
-
-    private String getDate(Date date) {
-        if (date == null) {
-            return "";
-        }
-        return XDate.toString(date, "yyyy-MM-dd");
     }
 
     private void printReport() {
@@ -180,7 +173,7 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         });
         popupMenuPNhap.add(pView);
 
-        setBackground(new java.awt.Color(229, 229, 229));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         lblBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblBack.setForeground(new java.awt.Color(0, 0, 0));
@@ -197,7 +190,7 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         lblBack1.setForeground(new java.awt.Color(0, 0, 0));
         lblBack1.setText("Phiếu Nhập");
 
-        jPanel3.setBackground(new java.awt.Color(229, 229, 229));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         txtFindPhieuNhap.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -222,7 +215,7 @@ public class PhieuNhapForm extends javax.swing.JPanel {
                 .addGap(0, 7, Short.MAX_VALUE))
         );
 
-        tblPhieuNhap.setBackground(new java.awt.Color(229, 229, 229));
+        tblPhieuNhap.setBackground(new java.awt.Color(255, 255, 255));
         tblPhieuNhap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -241,15 +234,18 @@ public class PhieuNhapForm extends javax.swing.JPanel {
         });
         spTable.setViewportView(tblPhieuNhap);
 
+        btnExcel.setBackground(new java.awt.Color(153, 153, 255));
         btnExcel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnExcel.setForeground(new java.awt.Color(0, 0, 0));
         btnExcel.setText("Xuất Excel");
+        btnExcel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcelActionPerformed(evt);
             }
         });
 
-        jPanel4.setBackground(new java.awt.Color(229, 229, 229));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Theo ngày", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         txtTuNgay.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -284,7 +280,7 @@ public class PhieuNhapForm extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(229, 229, 229));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Theo giá", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         txtTuGia.addKeyListener(new java.awt.event.KeyAdapter() {
