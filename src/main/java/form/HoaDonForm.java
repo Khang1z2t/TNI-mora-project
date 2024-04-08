@@ -544,7 +544,6 @@ public class HoaDonForm extends javax.swing.JPanel {
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
         thanhvien();
-        tab.setSelectedIndex(1);
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void txtMaTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaTVActionPerformed
@@ -655,11 +654,19 @@ public class HoaDonForm extends javax.swing.JPanel {
     private void thanhvien(){
         try{
         Giohang gh = new Giohang();
-        String ma = txtThanhVien.getText();
+        String ma = txtMaTV.getText();
         for(ThanhVien tv : ist){
             if(ma.trim().length()==tv.getMaTV()){ 
                 gh.setMaTV(tv.getMaTV());
-            txtThanhVien.setText(tv.getTenTV());
+                txtThanhVien.setText(tv.getTenTV());
+                tab.setSelectedIndex(1);
+                break;
+            }else if(ma.trim().isEmpty()){
+                txtThanhVien.setText("Không tích điểm");
+                tab.setSelectedIndex(1);
+                break;
+            }else if(ma.trim().length()!=tv.getMaTV()){
+                utils.DialogHelper.alert(this, "Thành viên này không tồn tại!");
                 break;
             }
         }
