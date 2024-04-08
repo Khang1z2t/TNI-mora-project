@@ -97,9 +97,9 @@ public class KhoForm extends javax.swing.JPanel {
         btnPhieuNhap = new javax.swing.JButton();
         btnExcel = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(229, 229, 229));
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(229, 229, 229));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         txtFindSach.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -125,7 +125,7 @@ public class KhoForm extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tblSach.setBackground(new java.awt.Color(229, 229, 229));
+        tblSach.setBackground(new java.awt.Color(255, 255, 255));
         tblSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -139,24 +139,33 @@ public class KhoForm extends javax.swing.JPanel {
         ));
         spTable.setViewportView(tblSach);
 
+        btnNhap.setBackground(new java.awt.Color(153, 153, 255));
         btnNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnNhap.setForeground(new java.awt.Color(0, 0, 0));
         btnNhap.setText("Nhập Hàng");
+        btnNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNhapActionPerformed(evt);
             }
         });
 
+        btnPhieuNhap.setBackground(new java.awt.Color(153, 153, 255));
         btnPhieuNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnPhieuNhap.setForeground(new java.awt.Color(0, 0, 0));
         btnPhieuNhap.setText("Phiếu Nhập");
+        btnPhieuNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPhieuNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPhieuNhapActionPerformed(evt);
             }
         });
 
+        btnExcel.setBackground(new java.awt.Color(153, 153, 255));
         btnExcel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnExcel.setForeground(new java.awt.Color(0, 0, 0));
         btnExcel.setText("Xuất Excel");
+        btnExcel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcelActionPerformed(evt);

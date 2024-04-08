@@ -98,7 +98,7 @@ public class XemCTPhieuNhap extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         lblTongTien = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(229, 229, 229));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         lblBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblBack.setForeground(new java.awt.Color(0, 0, 0));
@@ -139,6 +139,7 @@ public class XemCTPhieuNhap extends javax.swing.JPanel {
 
         txtNgayTao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        tblCTPN.setForeground(new java.awt.Color(255, 255, 255));
         tblCTPN.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -152,9 +153,12 @@ public class XemCTPhieuNhap extends javax.swing.JPanel {
         ));
         spTable.setViewportView(tblCTPN);
 
+        btnPrintPDF.setBackground(new java.awt.Color(153, 153, 255));
         btnPrintPDF.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnPrintPDF.setForeground(new java.awt.Color(0, 0, 0));
         btnPrintPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pdf.png"))); // NOI18N
         btnPrintPDF.setText("In PDF");
+        btnPrintPDF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPrintPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintPDFActionPerformed(evt);

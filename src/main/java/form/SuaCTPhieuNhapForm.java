@@ -315,7 +315,7 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
         });
         popupMenuNhap.add(pDelete);
 
-        setBackground(new java.awt.Color(229, 229, 229));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         lblBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblBack.setForeground(new java.awt.Color(0, 0, 0));
@@ -332,9 +332,9 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
         lblBack1.setForeground(new java.awt.Color(0, 0, 0));
         lblBack1.setText("Sửa Chi Tiết Phiếu Nhập");
 
-        jPanel2.setBackground(new java.awt.Color(229, 229, 229));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setBackground(new java.awt.Color(229, 229, 229));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         txtFindSach.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -360,7 +360,7 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tblSach.setBackground(new java.awt.Color(229, 229, 229));
+        tblSach.setBackground(new java.awt.Color(255, 255, 255));
         tblSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -402,7 +402,7 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
 
         tabs.addTab("THÊM", jPanel2);
 
-        jPanel1.setBackground(new java.awt.Color(229, 229, 229));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblBack2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblBack2.setForeground(new java.awt.Color(0, 0, 0));
@@ -418,7 +418,7 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
 
         cboNcc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        tblPhieuNhap.setBackground(new java.awt.Color(229, 229, 229));
+        tblPhieuNhap.setBackground(new java.awt.Color(255, 255, 255));
         tblPhieuNhap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -445,8 +445,11 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
         lblTongTien.setForeground(new java.awt.Color(0, 0, 0));
         lblTongTien.setText("000.000.0000 đ");
 
+        jButton1.setBackground(new java.awt.Color(153, 153, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Sửa phiếu");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -524,7 +527,7 @@ public class SuaCTPhieuNhapForm extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblBack)
                 .addGap(14, 14, 14))
-            .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+            .addComponent(tabs)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
