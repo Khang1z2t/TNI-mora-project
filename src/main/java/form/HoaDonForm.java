@@ -654,7 +654,7 @@ public class HoaDonForm extends javax.swing.JPanel {
         for (Giohang it : list) {
             tong += it.getGia() * it.getSoluong();
         }
-        txtTongTien.setText(String.valueOf(tong));
+        txtTongTien.setText(MoneyFormat.format(tong));
     }
 
     private void DBtoListTV() {
