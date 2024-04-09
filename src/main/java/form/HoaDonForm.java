@@ -50,6 +50,7 @@ public class HoaDonForm extends javax.swing.JPanel {
         initTable();
         if (lblTien.getText().equals("NULL")) {
             lblTien.setText("0");
+            lblTongTien.setText("0");
         }
         txtNV.enableInputMethods(false);
 
