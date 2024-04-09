@@ -24,15 +24,13 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import ui.Main;
 import utils.MoneyFormat;
-import utils.XDate;
 
 /**
  *
  * @author NGUYEN THI NGUYET VY
  */
 public class HoaDonForm extends javax.swing.JPanel {
-    
-    SachDAO sachDAO = new SachDAO();
+
     ArrayList<Giohang> list = new ArrayList<>();
     ArrayList<ThanhVien> ist = new ArrayList<>();
 
@@ -60,13 +58,14 @@ public class HoaDonForm extends javax.swing.JPanel {
     }
 
     private void time() {
-//        update time cho auto run ko cần reload
-        new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                lblTime.setText(XDate.toString(XDate.now(), "hh:mm:ss"));
-            }
-        }).start();
+        Date currentTime = new Date();
+
+        // Định dạng thời gian
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a");
+
+        // Hiển thị thời gian theo định dạng AM/PM
+        String time = formatter.format(currentTime);
+        lblTime.setText(time);
     }
 //    private void initGia(){
 //        
@@ -108,7 +107,6 @@ public class HoaDonForm extends javax.swing.JPanel {
         Giohang gh = new Giohang();
 
         try {
-            String maTV = txtMaTV.getText();
             int soluong = Integer.parseInt(txtSoLuong.getText());
 
             if (soluong <= 0) {
@@ -147,7 +145,7 @@ public class HoaDonForm extends javax.swing.JPanel {
         for (Giohang it : list) {
             tong += it.getGia() * it.getSoluong();
         }
-        lblTien.setText(String.valueOf(tong + " VND"));
+        lblTien.setText(MoneyFormat.format(tong));
     }
 
     private void addCart() {
@@ -260,12 +258,12 @@ public class HoaDonForm extends javax.swing.JPanel {
         lblTongTien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTongTien.setForeground(new java.awt.Color(0, 0, 0));
         lblTongTien.setText("TỔNG TIỀN :");
-        panelBorder2.add(lblTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 482, -1, -1));
+        panelBorder2.add(lblTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, -1, -1));
 
         lblTien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTien.setForeground(new java.awt.Color(255, 153, 102));
         lblTien.setText("NULL");
-        panelBorder2.add(lblTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 482, -1, -1));
+        panelBorder2.add(lblTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, -1, -1));
 
         btnXoa.setBackground(new java.awt.Color(153, 153, 255));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -318,7 +316,7 @@ public class HoaDonForm extends javax.swing.JPanel {
                 btnThanhToanActionPerformed(evt);
             }
         });
-        panelBorder2.add(btnThanhToan, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 472, 180, 37));
+        panelBorder2.add(btnThanhToan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 180, 37));
 
         tab.addTab("Giỏ hàng", new javax.swing.ImageIcon(getClass().getResource("/icon/cart.png")), panelBorder2); // NOI18N
 
@@ -565,16 +563,27 @@ public class HoaDonForm extends javax.swing.JPanel {
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
         GiohangDAO ghd = new GiohangDAO();
-        Giohang gh = new Giohang();
-         String pttt = (String) cbxThanhToan.getSelectedItem();
-        if(pttt.equalsIgnoreCase("tiền mặt") || pttt.equalsIgnoreCase("Thẻ") || 
-         pttt.equalsIgnoreCase("VNPAY") || pttt.equalsIgnoreCase("MOMO")){
-          list.remove(gh);
-          ghd.reset();
-          lblThongBao.setText("Thanh toán thành công");
-          lblThongBao.setForeground(Color.green);
-          tab.setSelectedIndex(0);
-
+        SachDAO sad = new SachDAO();
+//        Giohang gh = new Giohang();
+        int newSL;
+        for (Giohang gh : list) {
+            Sach sa = sad.selectById(gh.getMasach());
+            if(sa.getSoLuong() <= 0) {
+                utils.DialogHelper.alert(this, "Sách"+sa.getTenSach()+" không còn hàng!");
+                return;
+            }
+            newSL = sa.getSoLuong() - gh.getSoluong();
+            sa.setSoLuong(newSL);
+            sad.update(sa);
+            String pttt = (String) cbxThanhToan.getSelectedItem();
+            if (pttt.equalsIgnoreCase("tiền mặt") || pttt.equalsIgnoreCase("Thẻ")
+                    || pttt.equalsIgnoreCase("VNPAY") || pttt.equalsIgnoreCase("MOMO")) {
+                list.remove(gh);
+                ghd.reset();
+                lblThongBao.setText("Thanh toán thành công");
+                lblThongBao.setForeground(Color.green);
+                tab.setSelectedIndex(0);
+            }
             // Thêm Timer
             Timer timer = new Timer(3000, new ActionListener() {
                 @Override
@@ -646,7 +655,7 @@ public class HoaDonForm extends javax.swing.JPanel {
         for (Giohang it : list) {
             tong += it.getGia() * it.getSoluong();
         }
-        txtTongTien.setText(MoneyFormat.format(tong));
+        txtTongTien.setText(String.valueOf(tong));
     }
 
     private void DBtoListTV() {
