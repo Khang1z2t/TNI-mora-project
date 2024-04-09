@@ -7,6 +7,7 @@ package swing;
 
 
 import event.EventMenuSelected;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,6 +17,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import javax.swing.SwingUtilities;
+
 import model.Model_Menu;
 
 public class ListMenu<E extends Object> extends JList<E> {
@@ -42,7 +44,7 @@ public class ListMenu<E extends Object> extends JList<E> {
                         Model_Menu menu = (Model_Menu) o;
                         if (menu.getType() == Model_Menu.MenuType.MENU) {
                             selectedIndex = index;
-                            if(event != null){
+                            if (event != null) {
                                 event.selected(index);
                             }
                         }
@@ -52,6 +54,7 @@ public class ListMenu<E extends Object> extends JList<E> {
                     repaint();
                 }
             }
+
             @Override
             public void mouseExited(MouseEvent me) {
                 overIndex = -1;
@@ -76,7 +79,7 @@ public class ListMenu<E extends Object> extends JList<E> {
                 }
             }
         });
-        
+
     }
 
     @Override

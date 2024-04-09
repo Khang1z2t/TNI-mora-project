@@ -9,12 +9,12 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
 import model.Model_Card;
 import model.StatusType;
 import ui.ScrollBar;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class Form_Home extends javax.swing.JPanel {
@@ -34,9 +34,9 @@ public class Form_Home extends javax.swing.JPanel {
         JPanel p = new JPanel();
         p.setBackground(Color.WHITE);
         spTable.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
-       table.addRow(new Object[]{"1", "ADMIN", "Nguyễn Đình Tuấn", StatusType.GOOD});
-       table.addRow(new Object[]{"2", "NV1", "Trần Đăng Khoa", StatusType.EXELENT});
-       table.addRow(new Object[]{"3", "QL1", "Đinh Quốc Bảo Khang", StatusType.BAD});
+        table.addRow(new Object[]{"1", "ADMIN", "Nguyễn Đình Tuấn", StatusType.GOOD});
+        table.addRow(new Object[]{"2", "NV1", "Trần Đăng Khoa", StatusType.EXELENT});
+        table.addRow(new Object[]{"3", "QL1", "Đinh Quốc Bảo Khang", StatusType.BAD});
     }
 
     /**
@@ -75,12 +75,12 @@ public class Form_Home extends javax.swing.JPanel {
         panelBorder1.setBackground(new java.awt.Color(255, 255, 255));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][]{
 
-            },
-            new String [] {
-                "STT", "Mã NV", "Tên NV", "Đánh giá"
-            }
+                },
+                new String[]{
+                        "STT", "Mã NV", "Tên NV", "Đánh giá"
+                }
         ));
         spTable.setViewportView(table);
 
@@ -91,46 +91,46 @@ public class Form_Home extends javax.swing.JPanel {
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
-            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spTable)
-                    .addGroup(panelBorder1Layout.createSequentialGroup()
-                        .addGap(195, 195, 195)
-                        .addComponent(jLabel1)
-                        .addGap(0, 220, Short.MAX_VALUE)))
-                .addContainerGap())
+                panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(spTable)
+                                        .addGroup(panelBorder1Layout.createSequentialGroup()
+                                                .addGap(195, 195, 195)
+                                                .addComponent(jLabel1)
+                                                .addGap(0, 220, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
         panelBorder1Layout.setVerticalGroup(
-            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
+                panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 

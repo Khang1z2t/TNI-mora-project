@@ -6,7 +6,6 @@
 package entities;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class DocGia {
@@ -66,5 +65,5 @@ public class DocGia {
     public void setSodienthoai(String Sodienthoai) {
         this.Sodienthoai = Sodienthoai;
     }
-    
+
 }

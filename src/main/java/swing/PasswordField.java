@@ -18,6 +18,7 @@ import java.awt.geom.Rectangle2D;
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
+
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;

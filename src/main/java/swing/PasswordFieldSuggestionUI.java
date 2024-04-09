@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.JPasswordField;
 import javax.swing.plaf.basic.BasicPasswordFieldUI;
 import javax.swing.border.EmptyBorder;
+
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 public class PasswordFieldSuggestionUI extends BasicPasswordFieldUI {

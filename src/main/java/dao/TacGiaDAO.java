@@ -6,38 +6,41 @@
 package dao;
 
 import entities.TacGia;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class TacGiaDAO {
-   public void insert(TacGia model){
-       String sql="Insert into qltacgia values(?,?)";
-       utils.JDBCHelper.update(sql, 
-               model.getMatg(),
-               model.getTentg());
-   }
-   public void update(TacGia model){
-        String sql="UPDATE qltacgia SET tentacgia = ? WHERE matacgia = ?";
-        utils.JDBCHelper.update(sql, 
-                model.getTentg(), 
+    public void insert(TacGia model) {
+        String sql = "Insert into qltacgia values(?,?)";
+        utils.JDBCHelper.update(sql,
+                model.getMatg(),
+                model.getTentg());
+    }
+
+    public void update(TacGia model) {
+        String sql = "UPDATE qltacgia SET tentacgia = ? WHERE matacgia = ?";
+        utils.JDBCHelper.update(sql,
+                model.getTentg(),
                 model.getMatg());
-                }
-    public void delete(int ma){
-        String sql="DELETE FROM qltacgia WHERE matacgia = ?";
+    }
+
+    public void delete(int ma) {
+        String sql = "DELETE FROM qltacgia WHERE matacgia = ?";
         utils.JDBCHelper.update(sql, ma);
     }
-    
-    public TacGia selectById(int matg){
+
+    public TacGia selectById(int matg) {
         String sql = "SELECT * FROM qltacgia WHERE matacgia = ?";
         List<TacGia> list = this.SelectBySQL(sql, matg);
         return list.size() > 0 ? list.get(0) : null;
     }
-    public TacGia selectByName(TacGia tentg){
+
+    public TacGia selectByName(TacGia tentg) {
         String sql = "SELECT * FROM qltacgia WHERE tentacgia = ?";
         List<TacGia> list = this.SelectBySQL(sql, tentg);
         return list.size() > 0 ? list.get(0) : null;
@@ -68,7 +71,7 @@ public class TacGiaDAO {
         String sql = "SELECT * FROM qltacgia";
         return SelectBySQL(sql);
     }
-    
+
     public List<TacGia> SelectByKeyword(String keyword) {
         String sql = "SELECT * FROM qltacgia WHERE tentacgia LIKE ?";
         return SelectBySQL(sql, "%" + keyword + "%");

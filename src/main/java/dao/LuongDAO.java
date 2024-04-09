@@ -6,18 +6,19 @@
 package dao;
 
 import entities.Luong;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import utils.JDBCHelper;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class LuongDAO {
-        public Luong selectById(String cap){
+    public Luong selectById(String cap) {
         String sql = "SELECT * FROM luong WHERE cap = ?";
         List<Luong> list = this.SelectBySQL(sql, cap);
         return list.size() > 0 ? list.get(0) : null;
@@ -48,13 +49,14 @@ public class LuongDAO {
         String sql = "SELECT * FROM luong";
         return SelectBySQL(sql);
     }
-    private List<Object[]> getListOfArray(String sql, String[] cols, Object...args){
+
+    private List<Object[]> getListOfArray(String sql, String[] cols, Object... args) {
         try {
-            List<Object[]> list=new ArrayList<>();
+            List<Object[]> list = new ArrayList<>();
             ResultSet rs = JDBCHelper.query(sql, args);
-            while(rs.next()){
+            while (rs.next()) {
                 Object[] vals = new Object[cols.length];
-                for(int i=0; i<cols.length; i++){
+                for (int i = 0; i < cols.length; i++) {
                     vals[i] = rs.getObject(cols[i]);
                 }
                 list.add(vals);
@@ -65,28 +67,27 @@ public class LuongDAO {
             throw new RuntimeException(e);
         }
     }
-    public List<Object[]> getBangLuong(int thang){
+
+    public List<Object[]> getBangLuong(int thang) {
         String sql = "{CALL sp_BangLuong (?)}";
         String[] cols = {"Mã NV", "Tên NV", "Vai Trò", "Cấp", "Lương"};
         return this.getListOfArray(sql, cols, thang);
     }
-    
-    public List<Integer> selectThang(){
+
+    public List<Integer> selectThang() {
         String sql = "SELECT DISTINCT MONTH(NGAYDK) MONTH FROM NguoiDung ORDER BY MONTH DESC";
         List<Integer> list = new ArrayList<>();
         try {
             ResultSet rs = null;
             try {
                 rs = utils.JDBCHelper.query(sql);
-                while(rs.next()){
+                while (rs.next()) {
                     list.add(rs.getInt(1));
                 }
-            } 
-            finally{
+            } finally {
                 rs.getStatement().getConnection().close();
             }
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             throw new RuntimeException(ex);
         }

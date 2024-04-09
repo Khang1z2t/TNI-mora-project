@@ -12,7 +12,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- *
  * @author NAMVAAU
  */
 public class XFile {
@@ -20,7 +19,7 @@ public class XFile {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
         return ois.readObject();
     }
-    
+
     public static void writeObject(String path, Object data) throws FileNotFoundException, IOException {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));
         oos.writeObject(data);

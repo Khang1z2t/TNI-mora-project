@@ -6,10 +6,10 @@
 package swing;
 
 import javax.swing.JComboBox;
+
 import swing.*;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class ComboBoxSuggestion<E> extends JComboBox<E> {

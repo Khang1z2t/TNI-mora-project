@@ -8,7 +8,6 @@ package entities;
 import java.util.Date;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class Hoadon {
@@ -77,5 +76,5 @@ public class Hoadon {
     public void setSdt(String sdt) {
         this.sdt = sdt;
     }
-    
+
 }

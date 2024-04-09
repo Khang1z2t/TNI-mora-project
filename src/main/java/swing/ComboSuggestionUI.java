@@ -24,6 +24,7 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
+
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 public class ComboSuggestionUI extends BasicComboBoxUI {

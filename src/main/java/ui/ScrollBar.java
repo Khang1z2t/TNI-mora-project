@@ -8,6 +8,7 @@ package ui;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JScrollBar;
+
 import swing.ModernScrollBarUI;
 
 public class ScrollBar extends JScrollBar {

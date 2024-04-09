@@ -6,12 +6,12 @@
 package dao;
 
 import entities.NguoiDung;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class NguoiDungDAO {
@@ -19,7 +19,7 @@ public class NguoiDungDAO {
         String sql = "INSERT INTO NGUOIDUNG VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         utils.JDBCHelper.update(sql,
                 nd.getMaNguoiDung(),
-                nd.getTenNguoiDung(), 
+                nd.getTenNguoiDung(),
                 nd.isGioiTinh(),
                 nd.getNgaySinh(),
                 nd.getDienThoai(),
@@ -29,27 +29,27 @@ public class NguoiDungDAO {
         );
 
     }
-    
+
     public void update(NguoiDung nd) {
         String sql = "UPDATE NGUOIDUNG SET HOTEN = ?, GIOITINH= ?, NGAYSINH = ?, DIENTHOAI = ?, CAP = ?,MANV = ? WHERE MAND = ?";
-        
-        utils.JDBCHelper.update(sql, 
-                nd.getTenNguoiDung(), 
+
+        utils.JDBCHelper.update(sql,
+                nd.getTenNguoiDung(),
                 nd.isGioiTinh(),
                 nd.getNgaySinh(),
                 nd.getDienThoai(),
                 nd.getCap(),
                 nd.getMaNhanVien(),
                 nd.getMaNguoiDung()
-                );
+        );
     }
-    
+
     public void delete(NguoiDung nd) {
         String sql = "DELETE FROM NGUOIDUNG WHERE MAND = ?";
         utils.JDBCHelper.update(sql, nd.getMaNguoiDung());
     }
-    
-    public NguoiDung selectById(String maND){
+
+    public NguoiDung selectById(String maND) {
         String sql = "SELECT * FROM NGUOIDUNG WHERE MAND = ?";
         List<NguoiDung> list = this.SelectBySQL(sql, maND);
         return list.size() > 0 ? list.get(0) : null;
@@ -85,10 +85,10 @@ public class NguoiDungDAO {
         String sql = "SELECT * FROM NGUOIDUNG";
         return SelectBySQL(sql);
     }
-    
+
     public List<NguoiDung> SelectByKeyword(String keyword) {
         String sql = "SELECT * FROM NGUOIDUNG WHERE HOTEN LIKE ?";
         return SelectBySQL(sql, "%" + keyword + "%");
     }
-    
+
 }

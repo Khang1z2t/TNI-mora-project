@@ -6,57 +6,61 @@
 package dao;
 
 import entities.Giohang;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class GiohangDAO {
-       public void insert(Giohang model){
-       String sql="Insert into giohang values(?,?,?,?,?,?)";
-       utils.JDBCHelper.update(sql, 
-               model.getMasach(),
-               model.getTensach(),
-               model.getGia(),
-               model.getSoluong(),
-               model.getMaTV(),
-               model.getManv());
-   }
-   public void update(Giohang model){
-       String sql = "update giohang set soluong = ? where masach = ?";
-       utils.JDBCHelper.update(sql, 
-               model.getSoluong(),
-               model.getMasach());
+    public void insert(Giohang model) {
+        String sql = "Insert into giohang values(?,?,?,?,?,?)";
+        utils.JDBCHelper.update(sql,
+                model.getMasach(),
+                model.getTensach(),
+                model.getGia(),
+                model.getSoluong(),
+                model.getMaTV(),
+                model.getManv());
     }
-    public void delete(int magiohang){
-        String sql="DELETE FROM giohang WHERE magiohang = ?";
+
+    public void update(Giohang model) {
+        String sql = "update giohang set soluong = ? where masach = ?";
+        utils.JDBCHelper.update(sql,
+                model.getSoluong(),
+                model.getMasach());
+    }
+
+    public void delete(int magiohang) {
+        String sql = "DELETE FROM giohang WHERE magiohang = ?";
         utils.JDBCHelper.update(sql, magiohang);
     }
-    public void reset(){
-        String sql="delete from giohang";
+
+    public void reset() {
+        String sql = "delete from giohang";
         utils.JDBCHelper.update(sql);
     }
-    public Giohang selectById(int magiohang){
+
+    public Giohang selectById(int magiohang) {
         String sql = "SELECT * FROM Giohang WHERE magiohang = ?";
         List<Giohang> list = this.SelectBySQL(sql, magiohang);
         return list.size() > 0 ? list.get(0) : null;
     }
-    
-    public Giohang selectbyMasach(String masach){
+
+    public Giohang selectbyMasach(String masach) {
         String sql = "select * from giohang where masach = ?";
         List<Giohang> list = this.SelectBySQL(sql, masach);
         return list.size() > 0 ? list.get(0) : null;
     }
-    
-    public Giohang selectbyMaTV(int ma){
+
+    public Giohang selectbyMaTV(int ma) {
         String sql = "select * from giohang where mathanhvien = ?";
         List<Giohang> list = this.SelectBySQL(sql, ma);
         return list.size() > 0 ? list.get(0) : null;
     }
-    
+
     public List<Giohang> SelectBySQL(String sql, Object... args) {
         List<Giohang> listS = new ArrayList<>();
         try {
@@ -82,6 +86,7 @@ public class GiohangDAO {
         }
         return listS;
     }
+
     public List<Giohang> SelectAll() {
         String sql = "SELECT * FROM giohang";
         return SelectBySQL(sql);

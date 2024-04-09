@@ -9,7 +9,8 @@ import java.util.Locale;
 
 public class XDate {
     static SimpleDateFormat formater = new SimpleDateFormat();
-//    /**
+
+    //    /**
 //     * Chuyển đổi String sang Date
 //     * @param date là String cần chuyển
 //     * @param pattern là định dạng thời gian
@@ -19,12 +20,12 @@ public class XDate {
         try {
             formater.applyPattern(pattern);
             return formater.parse(date);
-        } 
-        catch (ParseException ex) {
+        } catch (ParseException ex) {
             throw new RuntimeException(ex);
         }
     }
-//    /**
+
+    //    /**
 //     * Chuyển đổi từ Date sang String
 //     * @param date là Date cần chuyển đổi
 //     * @param pattern là định dạng thời gian
@@ -41,7 +42,7 @@ public class XDate {
 //     * @return Date kết quả
 //     */
 
-//    nếu ko nập pattern thì trả về pattern mặc định của sql
+    //    nếu ko nập pattern thì trả về pattern mặc định của sql
     public static String toString(Date date) {
         if (date == null) {
             return "";
@@ -50,7 +51,7 @@ public class XDate {
     }
 
     public static Date addDays(Date date, long days) {
-        date.setTime(date.getTime() + days*24*60*60*1000);
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
         return date;
     }
 

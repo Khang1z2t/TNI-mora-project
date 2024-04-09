@@ -8,7 +8,6 @@ package entities;
 import java.util.Date;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class ThanhVien {
@@ -68,6 +67,6 @@ public class ThanhVien {
     public void setDiem(int diem) {
         this.diem = diem;
     }
-    
-    
+
+
 }

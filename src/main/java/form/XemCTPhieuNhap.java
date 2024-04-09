@@ -21,11 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author ngocd
  */
 public class XemCTPhieuNhap extends javax.swing.JPanel {
-    
+
     SachDAO sachDAO = new SachDAO();
     PhieuNhapDAO pnDAO = new PhieuNhapDAO();
     NhaCungCapDAO nccDAO = new NhaCungCapDAO();
@@ -36,7 +35,7 @@ public class XemCTPhieuNhap extends javax.swing.JPanel {
         initComponents();
         setForm(pn);
     }
-    
+
     private void setForm(PhieuNhap pn) {
         txtMaPN.setText(pn.getMaNhap());
         txtNguoiTao.setText(pn.getMaNV());
@@ -48,23 +47,23 @@ public class XemCTPhieuNhap extends javax.swing.JPanel {
     }
 
     private void fillTableCTPN() {
-            DefaultTableModel model = (DefaultTableModel) tblCTPN.getModel();
-            model.setColumnIdentifiers(new Object[]{"STT", "Mã Sách", "Tên Sách", "Số Lượng", "Giá", "Thành Tiền"});
-            model.setRowCount(0);
-            double tongTien = 0;
-            int stt = 1;
-            for (ChiTietPhieuNhap ctpn : listCTPN) {
-                Sach sach = sachDAO.selectById(ctpn.getMasach());
-                double thanhTien = ctpn.getSoluong() * ctpn.getGia();
-                tongTien += thanhTien;
-                model.addRow(new Object[]{stt++, sach.getMaSach(), sach.getTenSach(), ctpn.getSoluong(), MoneyFormat.format(ctpn.getGia()), MoneyFormat.format(thanhTien)});
-            }
-            lblTongTien.setText(MoneyFormat.format(tongTien));
-            lblTongTien.setToolTipText(String.valueOf(tongTien));
-            spTable.setVerticalScrollBar(new ScrollBar());
-            spTable.getVerticalScrollBar().setBackground(Color.white);
-            spTable.getViewport().setBackground(Color.white);
-        
+        DefaultTableModel model = (DefaultTableModel) tblCTPN.getModel();
+        model.setColumnIdentifiers(new Object[]{"STT", "Mã Sách", "Tên Sách", "Số Lượng", "Giá", "Thành Tiền"});
+        model.setRowCount(0);
+        double tongTien = 0;
+        int stt = 1;
+        for (ChiTietPhieuNhap ctpn : listCTPN) {
+            Sach sach = sachDAO.selectById(ctpn.getMasach());
+            double thanhTien = ctpn.getSoluong() * ctpn.getGia();
+            tongTien += thanhTien;
+            model.addRow(new Object[]{stt++, sach.getMaSach(), sach.getTenSach(), ctpn.getSoluong(), MoneyFormat.format(ctpn.getGia()), MoneyFormat.format(thanhTien)});
+        }
+        lblTongTien.setText(MoneyFormat.format(tongTien));
+        lblTongTien.setToolTipText(String.valueOf(tongTien));
+        spTable.setVerticalScrollBar(new ScrollBar());
+        spTable.getVerticalScrollBar().setBackground(Color.white);
+        spTable.getViewport().setBackground(Color.white);
+
     }
 
     private void printFilePDF() {
@@ -141,15 +140,15 @@ public class XemCTPhieuNhap extends javax.swing.JPanel {
 
         tblCTPN.setForeground(new java.awt.Color(255, 255, 255));
         tblCTPN.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+                new Object[][]{
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String[]{
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
         ));
         spTable.setViewportView(tblCTPN);
 
@@ -176,69 +175,69 @@ public class XemCTPhieuNhap extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPrintPDF))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblBack1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblBack))
-                    .addComponent(spTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(lblBack2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtMaPN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblBack4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNhaCC, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblBack5)
-                            .addComponent(lblBack3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNguoiTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNgayTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(jLabel1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(lblTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnPrintPDF))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblBack1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(lblBack))
+                                        .addComponent(spTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                                .addComponent(lblBack2)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(txtMaPN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(lblBack4)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(txtNhaCC, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(lblBack5)
+                                                        .addComponent(lblBack3))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txtNguoiTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(txtNgayTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBack)
-                    .addComponent(lblBack1))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblBack2)
-                    .addComponent(lblBack3)
-                    .addComponent(txtNguoiTao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBack4)
-                    .addComponent(txtNhaCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblBack5)
-                    .addComponent(txtNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPrintPDF)
-                    .addComponent(jLabel1)
-                    .addComponent(lblTongTien))
-                .addContainerGap(20, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblBack)
+                                        .addComponent(lblBack1))
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblBack2)
+                                        .addComponent(lblBack3)
+                                        .addComponent(txtNguoiTao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblBack4)
+                                        .addComponent(txtNhaCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblBack5)
+                                        .addComponent(txtNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnPrintPDF)
+                                        .addComponent(jLabel1)
+                                        .addComponent(lblTongTien))
+                                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

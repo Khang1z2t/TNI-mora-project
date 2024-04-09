@@ -8,7 +8,6 @@ package model;
 import javax.swing.Icon;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class Model_Card {

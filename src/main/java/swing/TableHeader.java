@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package swing;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;

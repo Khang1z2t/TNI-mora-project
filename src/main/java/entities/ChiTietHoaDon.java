@@ -6,7 +6,6 @@
 package entities;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class ChiTietHoaDon {
@@ -46,5 +45,5 @@ public class ChiTietHoaDon {
     public void setGia(double gia) {
         this.gia = gia;
     }
-    
+
 }

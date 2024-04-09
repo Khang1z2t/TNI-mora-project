@@ -6,35 +6,38 @@
 package dao;
 
 import entities.Sach;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class SachDAO {
-   public void insert(Sach model){
-       String sql="Insert into sach values(?,?,?,?,?,?,?,?,?,?,?,?)";
-       utils.JDBCHelper.update(sql, 
-               model.getMaSach(),
-               model.getTenSach(),
-               model.getNamXB(),    
-               model.getNhaXB(),
-               model.getGia(),
-               model.getSoLuong(),
-               model.getTentacgia(),
-               model.getTheloai(),
-               model.getGhiChu(),
+
+    public void insert(Sach model) {
+        String sql = "Insert into sach values(?,?,?,?,?,?,?,?,?,?,?,?)";
+        utils.JDBCHelper.update(sql,
+                model.getMaSach(),
+                model.getTenSach(),
+                model.getNamXB(),
+                model.getNhaXB(),
+                model.getGia(),
+                model.getSoLuong(),
+                model.getTentacgia(),
+                model.getTheloai(),
+                model.getGhiChu(),
                 model.getHinh(),
                 model.getMaTheLoai(),
                 model.getMaTacGia());
-   }
-   public void update(Sach model){
-        String sql="UPDATE sach SET tensach = ?, namXB = ?, nhaXB = ?, gia = ?, soluong = ?, tentacgia = ?,theloai =?, GhiChu = ?,hinh = ?,matheloai =?,matacgia=? WHERE masach = ?";
-        utils.JDBCHelper.update(sql, 
-                model.getTenSach(), 
-                model.getNamXB(), 
+    }
+
+    public void update(Sach model) {
+        String sql = "UPDATE sach SET tensach = ?, namXB = ?, nhaXB = ?, gia = ?, soluong = ?, tentacgia = ?,theloai =?, GhiChu = ?,hinh = ?,matheloai =?,matacgia=? WHERE masach = ?";
+        utils.JDBCHelper.update(sql,
+                model.getTenSach(),
+                model.getNamXB(),
                 model.getNhaXB(),
                 model.getGia(),
                 model.getSoLuong(),
@@ -47,6 +50,7 @@ public class SachDAO {
                 //
                 model.getMaSach());
     }
+
     //Update so luong
 //   public void updateSL(Sach model){
 //       String sql = "update sach set soluong = ?,ngayton = getdate() where masach = ?";
@@ -55,12 +59,12 @@ public class SachDAO {
 //               model.getSoluong(),
 //               model.getMaSach());
 //   }
-    public void delete(String MaNV){
-        String sql="DELETE FROM sach WHERE masach = ?";
+    public void delete(String MaNV) {
+        String sql = "DELETE FROM sach WHERE masach = ?";
         utils.JDBCHelper.update(sql, MaNV);
     }
-    
-    public Sach selectById(String masach){
+
+    public Sach selectById(String masach) {
         String sql = "SELECT * FROM sach WHERE masach = ?";
         List<Sach> list = this.SelectBySQL(sql, masach);
         return list.size() > 0 ? list.get(0) : null;
@@ -96,6 +100,7 @@ public class SachDAO {
         }
         return listS;
     }
+
     public List<Sach> SelectAll() {
         String sql = "SELECT * FROM sach";
         return SelectBySQL(sql);
@@ -122,16 +127,17 @@ public class SachDAO {
 //            }
 //            return list;
 //        }
+
     public List<Sach> selectByKeyword(String keyword) {
         String sql = "SELECT * FROM sach WHERE (MaSach LIKE ? OR tensach LIKE ? OR NamXB LIKE ? OR NhaXB LIKE ? OR Gia LIKE ? OR TenTacGia LIKE ? OR TheLoai LIKE ?)";
         String key = "%" + keyword + "%";
         return SelectBySQL(sql, key, key, key, key, key, key, key);
     }
+
     public List<Sach> selectByTheLoai(String Matl) {
         String sql = "SELECT * FROM Sach WHERE theloai = ?";
         return SelectBySQL(sql, Matl);
     }
-
 
 //    private List<Object[]> getListOfArray(String sql, String[] cols, Object...args){
 //        try {

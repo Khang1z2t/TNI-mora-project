@@ -6,44 +6,46 @@
 package dao;
 
 import entities.ThanhVien;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class ThanhVienDAO {
-       public void insert(ThanhVien model){
-       String sql="Insert into ThanhVien values(?,?,?,?,?)";
-       utils.JDBCHelper.update(sql, 
-               model.getMaTV(),
-               model.getTenTV(),
-               model.getNgaysinh(),
-               model.isGioitinh(),
-               model.getDiem());
-   }
-   public void update(ThanhVien model){
-       String sql = "update ThanhVien set tenthanhvien = ?, ngaysinh = ?, gioitinh = ?, diem = ? where mathanhvien = ?";
-       utils.JDBCHelper.update(sql, 
-               model.getTenTV(),
-               model.getNgaysinh(),
-               model.isGioitinh(),
-               model.getDiem(),
-               model.getMaTV());
+    public void insert(ThanhVien model) {
+        String sql = "Insert into ThanhVien values(?,?,?,?,?)";
+        utils.JDBCHelper.update(sql,
+                model.getMaTV(),
+                model.getTenTV(),
+                model.getNgaysinh(),
+                model.isGioitinh(),
+                model.getDiem());
     }
-    public void delete(int ma){
-        String sql="DELETE FROM ThanhVien WHERE maThanhVien = ?";
+
+    public void update(ThanhVien model) {
+        String sql = "update ThanhVien set tenthanhvien = ?, ngaysinh = ?, gioitinh = ?, diem = ? where mathanhvien = ?";
+        utils.JDBCHelper.update(sql,
+                model.getTenTV(),
+                model.getNgaysinh(),
+                model.isGioitinh(),
+                model.getDiem(),
+                model.getMaTV());
+    }
+
+    public void delete(int ma) {
+        String sql = "DELETE FROM ThanhVien WHERE maThanhVien = ?";
         utils.JDBCHelper.update(sql, ma);
     }
-    
-    public ThanhVien selectById(int ma){
+
+    public ThanhVien selectById(int ma) {
         String sql = "SELECT * FROM ThanhVien WHERE mathanhvien = ?";
         List<ThanhVien> list = this.SelectBySQL(sql, ma);
         return list.size() > 0 ? list.get(0) : null;
     }
-    
+
     public List<ThanhVien> SelectBySQL(String sql, Object... args) {
         List<ThanhVien> listS = new ArrayList<>();
         try {
@@ -67,6 +69,7 @@ public class ThanhVienDAO {
         }
         return listS;
     }
+
     public List<ThanhVien> SelectAll() {
         String sql = "SELECT * FROM thanhvien";
         return SelectBySQL(sql);

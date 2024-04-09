@@ -8,6 +8,7 @@ package ui;
 import entities.Giohang;
 import dao.*;
 import form.*;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -17,61 +18,62 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class ThanhToanJFrame extends javax.swing.JFrame {
 
     private ThanhToanThanhCongForm success;
-    
+
     ArrayList<Giohang> list = new ArrayList<>();
 
     int index = -1;
     DefaultTableModel tblModel;
-    
+
     public ThanhToanJFrame() {
         initComponents();
-        setBackground(new Color(0,0,0,0));
+        setBackground(new Color(0, 0, 0, 0));
         initTable();
 
-        
+
         //dua cac du lieu gio hang duoc them vao truoc do
         DBtoList();
         tinhTien();
         fillToTable();
     }
-    private void tinhTien(){
-        int tong =0;
-        for(Giohang it : list){
+
+    private void tinhTien() {
+        int tong = 0;
+        for (Giohang it : list) {
             tong += it.getGia() * it.getSoluong();
         }
-        lblTongTien.setText(String.valueOf("Tổng tiền: "+tong+" VND"));
+        lblTongTien.setText(String.valueOf("Tổng tiền: " + tong + " VND"));
     }
-    private void successForm(){
+
+    private void successForm() {
         list.clear();
         GiohangDAO ghd = new GiohangDAO();
         ghd.reset();
-    Timer timer = new Timer(10000, (ActionEvent e) -> {
-        // Create an instance of HoaDonForm
-        lblThongBao.setText("THANH TOÁN THÀNH CÔNG!");
-        lblThongBao.setForeground(Color.green);
-        this.dispose();
-        
-        // Replace the content of mainPanel with HoaDonForm
-        Main.Instance.setForm(new HoaDonForm());
-        
-    });
-    timer.setRepeats(false); // Set the timer to only fire once
-    timer.start();
+        Timer timer = new Timer(10000, (ActionEvent e) -> {
+            // Create an instance of HoaDonForm
+            lblThongBao.setText("THANH TOÁN THÀNH CÔNG!");
+            lblThongBao.setForeground(Color.green);
+            this.dispose();
+
+            // Replace the content of mainPanel with HoaDonForm
+            Main.Instance.setForm(new HoaDonForm());
+
+        });
+        timer.setRepeats(false); // Set the timer to only fire once
+        timer.start();
     }
-    
+
     private void initTable() {
         tblModel = new DefaultTableModel();
         tblModel.setColumnIdentifiers(new String[]{
-            "STT",
-            "Tên sách",
-            "Số lượng",
-            "Giá",
+                "STT",
+                "Tên sách",
+                "Số lượng",
+                "Giá",
         });
         tblList.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         tblList.getTableHeader().setOpaque(false);
@@ -80,23 +82,26 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
         tblList.setRowHeight(25);
         tblList.setModel(tblModel);
     }
-    private void DBtoList(){
+
+    private void DBtoList() {
         list.clear();
         list.addAll(new GiohangDAO().SelectAll());
-        
+
     }
+
     private void fillToTable() {
         tblModel.setRowCount(0);
-        for (int i=0;i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             Giohang gh = list.get(i);
             tblModel.addRow(new Object[]{
-                i+1,
-                gh.getTensach(),
-                gh.getSoluong(),
-                gh.getGia(),
+                    i + 1,
+                    gh.getTensach(),
+                    gh.getSoluong(),
+                    gh.getGia(),
             });
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -125,12 +130,12 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
         sp.setBorder(null);
 
         tblList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][]{
 
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+                },
+                new String[]{
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
         ));
         sp.setViewportView(tblList);
 
@@ -174,72 +179,72 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(144, 144, 144)
+                mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(mainPanelLayout.createSequentialGroup()
+                                                .addGap(144, 144, 144)
+                                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(mainPanelLayout.createSequentialGroup()
+                                                                .addComponent(Cash)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(CreditCard)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(VNPAY)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(MOMO))
+                                                        .addGroup(mainPanelLayout.createSequentialGroup()
+                                                                .addGap(43, 43, 43)
+                                                                .addComponent(jLabel1))))
+                                        .addGroup(mainPanelLayout.createSequentialGroup()
+                                                .addGap(49, 49, 49)
+                                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(sp, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                                                        .addComponent(lblTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(lblThongBao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addContainerGap(49, Short.MAX_VALUE))
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(Cash)
-                                .addGap(18, 18, 18)
-                                .addComponent(CreditCard)
-                                .addGap(18, 18, 18)
-                                .addComponent(VNPAY)
-                                .addGap(18, 18, 18)
-                                .addComponent(MOMO))
-                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(jLabel1))))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(sp, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
-                            .addComponent(lblTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblThongBao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(49, Short.MAX_VALUE))
-            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                    .addContainerGap(218, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addGap(197, 197, 197)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                                        .addContainerGap(218, Short.MAX_VALUE)
+                                        .addComponent(jLabel2)
+                                        .addGap(197, 197, 197)))
         );
         mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Cash)
-                    .addComponent(CreditCard)
-                    .addComponent(VNPAY)
-                    .addComponent(MOMO))
-                .addGap(21, 21, 21))
-            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(mainPanelLayout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(jLabel2)
-                    .addContainerGap(405, Short.MAX_VALUE)))
+                mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Cash)
+                                        .addComponent(CreditCard)
+                                        .addComponent(VNPAY)
+                                        .addComponent(MOMO))
+                                .addGap(21, 21, 21))
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(mainPanelLayout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jLabel2)
+                                        .addContainerGap(405, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -270,7 +275,7 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

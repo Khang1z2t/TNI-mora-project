@@ -15,14 +15,14 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class searchText extends JTextField {
-        public searchText() {
+    public searchText() {
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setSelectionColor(new Color(220, 204, 182));
     }
+
     private final String hint = "Search here ...";
 
     @Override

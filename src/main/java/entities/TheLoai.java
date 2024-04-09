@@ -6,7 +6,6 @@
 package entities;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class TheLoai {

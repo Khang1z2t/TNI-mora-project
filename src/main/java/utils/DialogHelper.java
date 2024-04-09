@@ -8,7 +8,6 @@ import java.awt.Component;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author NAMVAAU
  */
 public class DialogHelper {

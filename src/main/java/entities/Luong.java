@@ -6,7 +6,6 @@
 package entities;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class Luong {
@@ -15,10 +14,12 @@ public class Luong {
 
     public Luong() {
     }
+
     @Override
     public String toString() {
-        return cap + "-" + luong +" triệu";
+        return cap + "-" + luong + " triệu";
     }
+
     public Luong(String cap, int luong) {
         this.cap = cap;
         this.luong = luong;
@@ -39,5 +40,5 @@ public class Luong {
     public void setLuong(int luong) {
         this.luong = luong;
     }
-    
+
 }

@@ -6,15 +6,15 @@
 package swing;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
+
 import javax.swing.JFileChooser;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 import java.io.File;
 
-public class FileChooser extends JFileChooser{
+public class FileChooser extends JFileChooser {
 
     public FileChooser() {
         super();

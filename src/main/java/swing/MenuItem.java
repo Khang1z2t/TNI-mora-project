@@ -10,17 +10,17 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+
 import model.Model_Menu;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class MenuItem extends javax.swing.JPanel {
 
     private boolean selected;
     private boolean over;
-    
+
     public MenuItem(Model_Menu data) {
         initComponents();
         setOpaque(false);
@@ -29,23 +29,24 @@ public class MenuItem extends javax.swing.JPanel {
             lblName.setText(data.getName());
         } else if (data.getType() == Model_Menu.MenuType.TITLE) {
             lblIcon.setText(data.getName());
-            lblIcon.setForeground(new Color(102,102,255));
+            lblIcon.setForeground(new Color(102, 102, 255));
             lblIcon.setFont(new Font("sansserif", 1, 18));
             lblName.setVisible(false);
         } else {
             lblName.setText(" ");
         }
     }
+
     public void setSelected(boolean selected) {
         this.selected = selected;
         repaint();
     }
-    
+
     public void setOver(boolean over) {
         this.over = over;
         repaint();
     }
-    
+
     @Override
     protected void paintComponent(Graphics grphcs) {
         if (selected || over) {
@@ -60,6 +61,7 @@ public class MenuItem extends javax.swing.JPanel {
         }
         super.paintComponent(grphcs);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -74,21 +76,21 @@ public class MenuItem extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblIcon)
-                .addGap(27, 27, 27)
-                .addComponent(lblName)
-                .addContainerGap(24, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(lblIcon)
+                                .addGap(27, 27, 27)
+                                .addComponent(lblName)
+                                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -6,7 +6,6 @@
 package entities;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class Giohang {
@@ -20,11 +19,12 @@ public class Giohang {
 
     public Giohang() {
     }
-    
+
     @Override
     public String toString() {
         return tensach + "-" + gia + "-" + soluong;
     }
+
     public Giohang(int magiohang, String masach, String tensach, int gia, int soluong, int maTV, String manv) {
         this.magiohang = magiohang;
         this.masach = masach;

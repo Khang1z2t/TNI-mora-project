@@ -9,20 +9,20 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import utils.JDBCHelper;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class ThongKeDAO {
-        private List<Object[]> getListOfArray(String sql, String[] cols, Object...args){
+    private List<Object[]> getListOfArray(String sql, String[] cols, Object... args) {
         try {
-            List<Object[]> list=new ArrayList<>();
+            List<Object[]> list = new ArrayList<>();
             ResultSet rs = JDBCHelper.query(sql, args);
-            while(rs.next()){
+            while (rs.next()) {
                 Object[] vals = new Object[cols.length];
-                for(int i=0; i<cols.length; i++){
+                for (int i = 0; i < cols.length; i++) {
                     vals[i] = rs.getObject(cols[i]);
                 }
                 list.add(vals);
@@ -33,9 +33,10 @@ public class ThongKeDAO {
             throw new RuntimeException(e);
         }
     }
-                public List<Object[]> getHangTon(Date ngayton) {
-            String sql = "{CALL sp_HangTon (?)}";
-            String[] cols = {"masach", "tensach", "soluong"};
-            return this.getListOfArray(sql, cols, ngayton);
-        }
+
+    public List<Object[]> getHangTon(Date ngayton) {
+        String sql = "{CALL sp_HangTon (?)}";
+        String[] cols = {"masach", "tensach", "soluong"};
+        return this.getListOfArray(sql, cols, ngayton);
+    }
 }

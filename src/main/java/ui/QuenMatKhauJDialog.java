@@ -7,6 +7,7 @@ package ui;
 
 import dao.NhanVienDAO;
 import entities.NhanVien;
+
 import java.awt.HeadlessException;
 import java.util.Date;
 import java.util.Properties;
@@ -22,17 +23,18 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JComponent;
+
 import utils.DialogHelper;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class QuenMatKhauJDialog extends javax.swing.JDialog {
-        Random random = new Random();
-        int number;
-        String user;
-        String gmail;
+    Random random = new Random();
+    int number;
+    String user;
+    String gmail;
+
     /**
      * Creates new form QuenMatKhauJDialog
      */
@@ -41,7 +43,8 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
     }
-   public static boolean isValidEmail(String email) {
+
+    public static boolean isValidEmail(String email) {
         boolean isValid = true;
         try {
             InternetAddress internetAddress = new InternetAddress(email);
@@ -51,7 +54,8 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
         }
         return isValid;
     }
-   //validdate
+
+    //validdate
     private boolean checkForm() {
         if (txtCode.getText().trim().length() == 0) {
             DialogHelper.alert(this, "Vui lòng nhập mã xác nhận!");
@@ -59,21 +63,22 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
         }
 
         NhanVien nv = new NhanVienDAO().selectByGmail(txtGmail.getText());
-        
-        if (!txtGmail.getText().equals(nv.getEmail()) || nv==null) {
+
+        if (!txtGmail.getText().equals(nv.getEmail()) || nv == null) {
             utils.DialogHelper.alert(this, "Email không trùng khớp!");
             return false;
         }
-    String to = txtGmail.getText().trim();
+        String to = txtGmail.getText().trim();
 
-    // Validate the email address
-    if (to.isEmpty() || !isValidEmail(to)) {
-        DialogHelper.alert(this, "Vui lòng nhập Email cần gửi mã!");
-        return false;
-    }
-        
+        // Validate the email address
+        if (to.isEmpty() || !isValidEmail(to)) {
+            DialogHelper.alert(this, "Vui lòng nhập Email cần gửi mã!");
+            return false;
+        }
+
         return true;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,79 +129,79 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)
-                        .addGap(117, 117, 117))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(51, 51, 51)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(17, 17, 17))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(btnConfirm)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(22, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel3)
+                                                .addGap(117, 117, 117))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel1)
+                                                        .addComponent(jLabel2))
+                                                .addGap(51, 51, 51)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(txtGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(17, 17, 17))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(146, 146, 146)
+                                .addComponent(btnConfirm)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(txtGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(txtGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel2)
+                                        .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-        try{
-            if(checkForm()){
-                if(Integer.valueOf(txtCode.getText())==number){
+        try {
+            if (checkForm()) {
+                if (Integer.valueOf(txtCode.getText()) == number) {
                     NhanVien nv = new NhanVienDAO().selectByGmail(txtGmail.getText());
                     utils.Auth.user = nv;
-                    
-                    DoiMatKhauJDialog doiMK = new DoiMatKhauJDialog((java.awt.Frame)getParent(),true);
+
+                    DoiMatKhauJDialog doiMK = new DoiMatKhauJDialog((java.awt.Frame) getParent(), true);
                     dispose();
                     doiMK.setVisible(true);
-                }else{
+                } else {
                     utils.DialogHelper.alert(this, "Mã xác nhận không chính xác!");
                 }
             }
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             utils.DialogHelper.alert(this, "Điền vào chỗ trống!");
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
@@ -213,12 +218,12 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
         props.put("mail.smtp.starttls.enable", "true");
         // Phiên làm việc
         Session session = Session.getInstance(props, new Authenticator() {
-            @Override
-            // Create Authenticator
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(from, pass);
-            }
-        }
+                    @Override
+                    // Create Authenticator
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(from, pass);
+                    }
+                }
         );
         // Tạo tin nhắn
         MimeMessage msg = new MimeMessage(session);
@@ -237,12 +242,12 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
 //            msg.setReplyTo(InternetAddress.parse(from,false));
 // Nội dung
 
-msg.setText("Mã xác nhận mật khẩu của bạn là: " + String.valueOf(number), "UTF-8");
+            msg.setText("Mã xác nhận mật khẩu của bạn là: " + String.valueOf(number), "UTF-8");
 // Gửi Email
-Transport.send(msg);
+            Transport.send(msg);
 
-DialogHelper.alert(this, "mã xác nhận mật khẩu vừa được gửi về email của bạn!");
-        } catch (HeadlessException | MessagingException e){
+            DialogHelper.alert(this, "mã xác nhận mật khẩu vừa được gửi về email của bạn!");
+        } catch (HeadlessException | MessagingException e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnSendActionPerformed
@@ -254,7 +259,7 @@ DialogHelper.alert(this, "mã xác nhận mật khẩu vừa được gửi về
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

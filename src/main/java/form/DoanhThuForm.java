@@ -6,10 +6,10 @@
 package form;
 
 import chart.ModelChart;
+
 import java.awt.Color;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class DoanhThuForm extends javax.swing.JPanel {
@@ -26,7 +26,7 @@ public class DoanhThuForm extends javax.swing.JPanel {
         chart.addData(new ModelChart("Tháng 1", new double[]{500, 700, 60, 780}));
         chart.addData(new ModelChart("Tháng 2", new double[]{550, 750, 65, 800}));
         chart.addData(new ModelChart("Tháng 3", new double[]{600, 700, 66.67, 920}));
-        chart.addData(new ModelChart("Tháng 4", new double[]{480, 750, 62.5, 520 }));
+        chart.addData(new ModelChart("Tháng 4", new double[]{480, 750, 62.5, 520}));
         chart.addData(new ModelChart("Tháng 5", new double[]{350, 540, 63.04, 210}));
         chart.addData(new ModelChart("Tháng 6", new double[]{190, 280, 64.29, 220}));
         chart.addData(new ModelChart("Tháng 7", new double[]{190, 280, 65.71, 230}));
@@ -56,29 +56,29 @@ public class DoanhThuForm extends javax.swing.JPanel {
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
-            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
-                .addContainerGap())
+                panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         panelBorder1Layout.setVerticalGroup(
-            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
-                .addContainerGap())
+                panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
