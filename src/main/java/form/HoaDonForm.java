@@ -11,6 +11,7 @@ import dao.ThanhVienDAO;
 import entities.Giohang;
 import entities.Sach;
 import entities.ThanhVien;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -22,11 +23,12 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+
 import ui.Main;
 import utils.MoneyFormat;
+import utils.XDate;
 
 /**
- *
  * @author NGUYEN THI NGUYET VY
  */
 public class HoaDonForm extends javax.swing.JPanel {
@@ -58,14 +60,12 @@ public class HoaDonForm extends javax.swing.JPanel {
     }
 
     private void time() {
-        Date currentTime = new Date();
-
-        // Định dạng thời gian
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a");
-
-        // Hiển thị thời gian theo định dạng AM/PM
-        String time = formatter.format(currentTime);
-        lblTime.setText(time);
+        new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lblTime.setText(XDate.toString(XDate.now(), "hh:mm s"));
+            }
+        }).start();
     }
 //    private void initGia(){
 //        
@@ -75,10 +75,10 @@ public class HoaDonForm extends javax.swing.JPanel {
     private void initTable() {
         tblModel = new DefaultTableModel();
         tblModel.setColumnIdentifiers(new String[]{
-            "STT",
-            "Tên sách",
-            "Số lượng",
-            "Giá",});
+                "STT",
+                "Tên sách",
+                "Số lượng",
+                "Giá",});
         tblList.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         tblList.getTableHeader().setOpaque(false);
         tblList.getTableHeader().setBackground(new Color(32, 136, 203));
@@ -132,10 +132,10 @@ public class HoaDonForm extends javax.swing.JPanel {
         for (int i = 0; i < list.size(); i++) {
             Giohang gh = list.get(i);
             tblModel.addRow(new Object[]{
-                i + 1,
-                gh.getTensach(),
-                gh.getSoluong(),
-                gh.getGia(),});
+                    i + 1,
+                    gh.getTensach(),
+                    gh.getSoluong(),
+                    gh.getGia(),});
         }
     }
 
@@ -296,12 +296,12 @@ public class HoaDonForm extends javax.swing.JPanel {
         panelBorder2.add(txtMaTV, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 155, 307, -1));
 
         tblList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][]{
 
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+                },
+                new String[]{
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
         ));
         spPanel.setViewportView(tblList);
 
@@ -336,22 +336,22 @@ public class HoaDonForm extends javax.swing.JPanel {
         javax.swing.GroupLayout panelBorder4Layout = new javax.swing.GroupLayout(panelBorder4);
         panelBorder4.setLayout(panelBorder4Layout);
         panelBorder4Layout.setHorizontalGroup(
-            panelBorder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder4Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblUser)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addComponent(lblTime)
-                .addGap(31, 31, 31))
+                panelBorder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder4Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(lblUser)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                                .addComponent(lblTime)
+                                .addGap(31, 31, 31))
         );
         panelBorder4Layout.setVerticalGroup(
-            panelBorder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder4Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(panelBorder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUser)
-                    .addComponent(lblTime))
-                .addContainerGap())
+                panelBorder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder4Layout.createSequentialGroup()
+                                .addContainerGap(12, Short.MAX_VALUE)
+                                .addGroup(panelBorder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblUser)
+                                        .addComponent(lblTime))
+                                .addContainerGap())
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -415,88 +415,88 @@ public class HoaDonForm extends javax.swing.JPanel {
         javax.swing.GroupLayout panelBorder3Layout = new javax.swing.GroupLayout(panelBorder3);
         panelBorder3.setLayout(panelBorder3Layout);
         panelBorder3Layout.setHorizontalGroup(
-            panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder3Layout.createSequentialGroup()
-                .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(panelBorder4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel2)
-                        .addGap(13, 13, 13)
-                        .addComponent(cbxHang, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel5)
-                        .addGap(15, 15, 15)
-                        .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel6)
-                        .addGap(25, 25, 25)
-                        .addComponent(txtTongGiamGia1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel4)
-                        .addGap(38, 38, 38)
-                        .addComponent(txtThanhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel3))
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel7)
-                        .addGap(15, 15, 15)
-                        .addComponent(cbxThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(btnConfirm)))
-                .addGap(51, 51, 51))
+                panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(panelBorder4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addComponent(jLabel2)
+                                                .addGap(13, 13, 13)
+                                                .addComponent(cbxHang, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addComponent(jLabel5)
+                                                .addGap(15, 15, 15)
+                                                .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addComponent(jLabel6)
+                                                .addGap(25, 25, 25)
+                                                .addComponent(txtTongGiamGia1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addComponent(jLabel4)
+                                                .addGap(38, 38, 38)
+                                                .addComponent(txtThanhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(20, 20, 20)
+                                                .addComponent(jLabel3))
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addComponent(jLabel7)
+                                                .addGap(15, 15, 15)
+                                                .addComponent(cbxThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(40, 40, 40)
+                                                .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(170, 170, 170)
+                                                .addComponent(btnConfirm)))
+                                .addGap(51, 51, 51))
         );
         panelBorder3Layout.setVerticalGroup(
-            panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder3Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(panelBorder4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel2))
-                    .addComponent(cbxHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel5))
-                    .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel6))
-                    .addComponent(txtTongGiamGia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel4))
-                    .addComponent(txtThanhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel3)))
-                .addGap(4, 4, 4)
-                .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBorder3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel7))
-                    .addComponent(cbxThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(panelBorder4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel2))
+                                        .addComponent(cbxHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel5))
+                                        .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(14, 14, 14)
+                                .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel6))
+                                        .addComponent(txtTongGiamGia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(14, 14, 14)
+                                .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel4))
+                                        .addComponent(txtThanhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(30, 30, 30)
+                                                .addComponent(jLabel3)))
+                                .addGap(4, 4, 4)
+                                .addGroup(panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel7))
+                                        .addComponent(cbxThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
 
         tab.addTab("Thanh Toán", new javax.swing.ImageIcon(getClass().getResource("/icon/buy.png")), panelBorder3); // NOI18N
@@ -506,12 +506,12 @@ public class HoaDonForm extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -568,8 +568,8 @@ public class HoaDonForm extends javax.swing.JPanel {
         int newSL;
         for (Giohang gh : list) {
             Sach sa = sad.selectById(gh.getMasach());
-            if(sa.getSoLuong() <= 0) {
-                utils.DialogHelper.alert(this, "Sách"+sa.getTenSach()+" không còn hàng!");
+            if (sa.getSoLuong() <= 0) {
+                utils.DialogHelper.alert(this, "Sách" + sa.getTenSach() + " không còn hàng!");
                 return;
             }
             newSL = sa.getSoLuong() - gh.getSoluong();
@@ -578,18 +578,17 @@ public class HoaDonForm extends javax.swing.JPanel {
             String pttt = (String) cbxThanhToan.getSelectedItem();
             if (pttt.equalsIgnoreCase("tiền mặt") || pttt.equalsIgnoreCase("Thẻ")
                     || pttt.equalsIgnoreCase("VNPAY") || pttt.equalsIgnoreCase("MOMO")) {
-                list.remove(gh);
-                ghd.reset();
                 lblThongBao.setText("Thanh toán thành công");
                 lblThongBao.setForeground(Color.green);
                 tab.setSelectedIndex(0);
             }
             // Thêm Timer
-            Timer timer = new Timer(3000, new ActionListener() {
+            Timer timer = new Timer(1000, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // Thực hiện khi đến thời gian quy định
                     Main.Instance.setForm(new HoaDonForm());
+                    ghd.reset();
                 }
             });
             timer.setRepeats(false); // Chỉ chạy một lần
