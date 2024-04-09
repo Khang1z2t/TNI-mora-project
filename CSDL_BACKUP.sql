@@ -64,18 +64,20 @@ CREATE TABLE DocGia (
 
 -- Tạo bảng hóa đơn bán sách
 CREATE TABLE HoaDon (
-    MaHoaDon varchar(20) PRIMARY KEY,
-	masach nvarchar(20) null,
-    ngaytao date NULL,
-	madocgia nvarchar(20) null,
-    MaNV nvarchar(20) NULL
+    MaHoaDon nvarchar(20) PRIMARY KEY,
+    ngaytao datetime NULL,
+    MaNV varchar(20) NULL,
+	mathanhvien int null,
+	TongTien money null
 );
 
 -- Tạo bảng chi tiết hóa đơn bán sách
 CREATE TABLE ChiTietHoaDon (
-    MaHoaDon int,
-    SoLuong int,
-    gia money
+    MaHoaDon nvarchar(20),
+	MaSach nvarchar(20),
+	SoLuong int default 0,
+	gia money,
+	primary key(MaHoaDon,MaSach)
 );
 
 CREATE TABLE NhaCungCap(
@@ -152,17 +154,28 @@ add constraint FK_chitiethoadon_hoadon foreign key (mahoadon) references hoadon(
 alter table giohang
 add constraint FK_giohang_sach foreign key (masach) references sach(masach)
 
+/*
 alter table giohang
 add constraint FK_giohang_tichdiem foreign key (mathanhvien) references thanhvien(mathanhvien)
+*/
 
 alter table docgia
 add constraint FK_docgia_sach foreign key (masach) references sach(masach)
 
 alter table hoadon
-add constraint FK_hoadon_sach foreign key (masach) references sach(masach)
+add constraint FK_hoadon_NhanVien foreign key (MaNV) references NhanVien(MaNV)
+
+alter table hoadon
+add constraint FK_hoadon_ThanhVien foreign key (mathanhvien) references thanhvien(mathanhvien)
+
+alter table ChiTietHoaDon
+add constraint FK_ChiTietHoaDon_HoaDon foreign key (MaHoaDon) references HoaDon(MaHoaDon)
+
+alter table ChiTietHoaDon
+add constraint FK_ChiTietHoaDon_Sach foreign key (MaSach) references Sach(MaSach)
 
 alter table PhieuNhap
-add constraint FK_PhieuNhap_NhanNien foreign key (MaNV) references NhanVien(MaNV)
+add constraint FK_PhieuNhap_Nhanvien foreign key (MaNV) references NhanVien(MaNV)
 
 alter table PhieuNhap
 add constraint FK_PhieuNhap_NhaCungCap foreign key (MaNhaCC) references NhaCungCap(MaNhaCC)

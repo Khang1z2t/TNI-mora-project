@@ -9,41 +9,50 @@ package entities;
  * @author NGUYEN THI NGUYET VY
  */
 public class ChiTietHoaDon {
-    int MaHoaDon;
-    int Soluong;
-    double gia;
+    private String maHoaDon;
+    private String maSach;
+    private int soLuong;
+    private double donGia;
 
     public ChiTietHoaDon() {
     }
 
-    public ChiTietHoaDon(int MaHoaDon, int Soluong, double gia) {
-        this.MaHoaDon = MaHoaDon;
-        this.Soluong = Soluong;
-        this.gia = gia;
+    public ChiTietHoaDon(String maHoaDon, String maSach, int soLuong, double donGia) {
+        this.maHoaDon = maHoaDon;
+        this.maSach = maSach;
+        this.soLuong = soLuong;
+        this.donGia = donGia;
     }
 
-    public int getMaHoaDon() {
-        return MaHoaDon;
+    public String getMaHoaDon() {
+        return maHoaDon;
     }
 
-    public void setMaHoaDon(int MaHoaDon) {
-        this.MaHoaDon = MaHoaDon;
+    public void setMaHoaDon(String maHoaDon) {
+        this.maHoaDon = maHoaDon;
     }
 
-    public int getSoluong() {
-        return Soluong;
+    public String getMaSach() {
+        return maSach;
     }
 
-    public void setSoluong(int Soluong) {
-        this.Soluong = Soluong;
+    public void setMaSach(String maSach) {
+        this.maSach = maSach;
     }
 
-    public double getGia() {
-        return gia;
+    public int getSoLuong() {
+        return soLuong;
     }
 
-    public void setGia(double gia) {
-        this.gia = gia;
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
+    public double getDonGia() {
+        return donGia;
+    }
+
+    public void setDonGia(double donGia) {
+        this.donGia = donGia;
+    }
 }

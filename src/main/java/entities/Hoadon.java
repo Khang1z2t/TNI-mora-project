@@ -6,75 +6,77 @@
 package entities;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author NGUYEN THI NGUYET VY
  */
 public class Hoadon {
-    int Mahoadon;
-    String Masach;
-    Date ngaytao = new Date();
-    int MaDocGia;
-    String MaNV;
-    String sdt;
+
+    private String maHoaDon;
+    private Date ngayTao;
+    private String maNV;
+    private String maTV;
+    private List<ChiTietHoaDon> CTHoaDon;
+    private double tongTien;
 
     public Hoadon() {
     }
 
-    public Hoadon(int Mahoadon, String Masach, int MaDocGia, String MaNV, String sdt) {
-        this.Mahoadon = Mahoadon;
-        this.Masach = Masach;
-        this.MaDocGia = MaDocGia;
-        this.MaNV = MaNV;
-        this.sdt = sdt;
+    public Hoadon(String maHoaDon, Date ngayTao, String maNV, String maTV, List<ChiTietHoaDon> CTHoaDon, double tongTien) {
+        this.maHoaDon = maHoaDon;
+        this.ngayTao = ngayTao;
+        this.maNV = maNV;
+        this.maTV = maTV;
+        this.CTHoaDon = CTHoaDon;
+        this.tongTien = tongTien;
     }
 
-    public int getMahoadon() {
-        return Mahoadon;
+    public String getMaHoaDon() {
+        return maHoaDon;
     }
 
-    public void setMahoadon(int Mahoadon) {
-        this.Mahoadon = Mahoadon;
+    public void setMaHoaDon(String maHoaDon) {
+        this.maHoaDon = maHoaDon;
     }
 
-    public String getMasach() {
-        return Masach;
+    public Date getNgayTao() {
+        return ngayTao;
     }
 
-    public void setMasach(String Masach) {
-        this.Masach = Masach;
-    }
-
-    public Date getNgaytao() {
-        return ngaytao;
-    }
-
-    public void setNgaytao(Date ngaytao) {
-        this.ngaytao = ngaytao;
-    }
-
-    public int getMaDocGia() {
-        return MaDocGia;
-    }
-
-    public void setMaDocGia(int MaDocGia) {
-        this.MaDocGia = MaDocGia;
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
     }
 
     public String getMaNV() {
-        return MaNV;
+        return maNV;
     }
 
-    public void setMaNV(String MaNV) {
-        this.MaNV = MaNV;
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
     }
 
-    public String getSdt() {
-        return sdt;
+    public String getMaTV() {
+        return maTV;
     }
 
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
+    public void setMaTV(String maTV) {
+        this.maTV = maTV;
     }
 
+    public List<ChiTietHoaDon> getCTHoaDon() {
+        return CTHoaDon;
+    }
+
+    public void setCTHoaDon(List<ChiTietHoaDon> CTHoaDon) {
+        this.CTHoaDon = CTHoaDon;
+    }
+
+    public double getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(double tongTien) {
+        this.tongTien = tongTien;
+    }
 }
