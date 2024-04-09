@@ -30,12 +30,13 @@ public class GiohangDAO {
         String sql = "update giohang set soluong = ? where masach = ?";
         utils.JDBCHelper.update(sql,
                 model.getSoluong(),
-                model.getMasach());
+                model.getMasach()
+        );
     }
 
-    public void delete(int magiohang) {
-        String sql = "DELETE FROM giohang WHERE magiohang = ?";
-        utils.JDBCHelper.update(sql, magiohang);
+    public void delete(Object key) {
+        String sql = "DELETE FROM giohang WHERE masach = ?";
+        utils.JDBCHelper.update(sql, key);
     }
 
     public void reset() {
@@ -52,7 +53,7 @@ public class GiohangDAO {
     public Giohang selectbyMasach(String masach) {
         String sql = "select * from giohang where masach = ?";
         List<Giohang> list = this.SelectBySQL(sql, masach);
-        return list.size() > 0 ? list.get(0) : null;
+        return !list.isEmpty() ? list.get(0) : null;
     }
 
     public Giohang selectbyMaTV(int ma) {

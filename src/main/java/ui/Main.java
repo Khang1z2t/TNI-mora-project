@@ -68,7 +68,7 @@ public class Main extends javax.swing.JFrame {
                 } else if (index == 10) {
                     setForm(new DoanhThuForm());
                 } else if (index == 11) {
-                    setForm(new HoaDonForm());
+                    setForm(new GioHangForm());
                 } else if (index == 12) {
                     setForm(new LuongForm());
                 } else if (index == 13) {

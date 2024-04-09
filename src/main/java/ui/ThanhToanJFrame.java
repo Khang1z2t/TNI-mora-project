@@ -60,7 +60,7 @@ public class ThanhToanJFrame extends javax.swing.JFrame {
             this.dispose();
 
             // Replace the content of mainPanel with HoaDonForm
-            Main.Instance.setForm(new HoaDonForm());
+            Main.Instance.setForm(new GioHangForm());
 
         });
         timer.setRepeats(false); // Set the timer to only fire once

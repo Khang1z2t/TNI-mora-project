@@ -16,14 +16,14 @@ public class Hoadon {
     private String maHoaDon;
     private Date ngayTao;
     private String maNV;
-    private String maTV;
+    private int maTV;
     private List<ChiTietHoaDon> CTHoaDon;
     private double tongTien;
 
     public Hoadon() {
     }
 
-    public Hoadon(String maHoaDon, Date ngayTao, String maNV, String maTV, List<ChiTietHoaDon> CTHoaDon, double tongTien) {
+    public Hoadon(String maHoaDon, Date ngayTao, String maNV, int maTV, List<ChiTietHoaDon> CTHoaDon, double tongTien) {
         this.maHoaDon = maHoaDon;
         this.ngayTao = ngayTao;
         this.maNV = maNV;
@@ -56,11 +56,11 @@ public class Hoadon {
         this.maNV = maNV;
     }
 
-    public String getMaTV() {
+    public int getMaTV() {
         return maTV;
     }
 
-    public void setMaTV(String maTV) {
+    public void setMaTV(int maTV) {
         this.maTV = maTV;
     }
 
