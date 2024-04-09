@@ -165,8 +165,13 @@ add constraint FK_docgia_sach foreign key (masach) references sach(masach)
 alter table hoadon
 add constraint FK_hoadon_NhanVien foreign key (MaNV) references NhanVien(MaNV)
 
+/* chay cái này là ăn cứt trình 
 alter table hoadon
 add constraint FK_hoadon_ThanhVien foreign key (mathanhvien) references thanhvien(mathanhvien)
+
+ALTER TABLE hoadon
+DROP CONSTRAINT FK_hoadon_ThanhVien
+*/
 
 alter table ChiTietHoaDon
 add constraint FK_ChiTietHoaDon_HoaDon foreign key (MaHoaDon) references HoaDon(MaHoaDon)
