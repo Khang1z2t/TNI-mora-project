@@ -126,6 +126,7 @@ create table giohang(
 );
 delete from giohang
 select * from giohang
+update giohang set soluong = 10 where masach = 'S01'
 /*
 drop table khosach
 drop table ChiTietHoaDon

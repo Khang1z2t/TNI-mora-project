@@ -12,7 +12,7 @@ utils\XImage.class
 entities\NhanVien.class
 form\DoanhThuForm.class
 form\SachForm$8.class
-form\HoaDonForm$1.class
+form\GioHangForm$19.class
 swing\PasswordField$1.class
 form\DoiMKForm$1.class
 utils\JDBCHelper.class
@@ -33,7 +33,6 @@ component\Menu$2.class
 chart\LegendItem.class
 ui\DangNhapJDialog$4.class
 form\NhanVienForm$2.class
-form\HoaDonForm$8.class
 form\KhoForm$4.class
 component\Menu.class
 ui\ThanhToanJFrame.class
@@ -46,12 +45,12 @@ swing\PasswordFieldSuggestion.class
 swing\TextFieldSuggestionUI.class
 form\NhanVienForm$12.class
 swing\TextFieldSuggestionUI$1.class
-form\HoaDonForm$6.class
 form\NhaCungCapForm$8.class
 form\PhieuNhapForm$3.class
 form\ThanhVienForm$2.class
 swing\PasswordField$4.class
 model\NiceScale.class
+form\GioHangForm$17.class
 ui\Main$3.class
 form\KhoForm$2.class
 form\TacGiaForm$5.class
@@ -65,7 +64,6 @@ entities\TacGia.class
 form\ThanhVienForm.class
 chart\ModelChart.class
 entities\TheLoai.class
-form\HoaDonForm$4.class
 utils\XDate.class
 form\NguoiDungForm$1.class
 ui\Main.class
@@ -79,7 +77,6 @@ form\LuongForm$1.class
 swing\Table$2.class
 swing\MenuItem.class
 form\NhaCungCapForm$9.class
-form\HoaDonForm.class
 form\TacGiaForm$1.class
 form\PhieuNhapForm$4.class
 form\NguoiDungForm$7.class
@@ -96,7 +93,6 @@ ui\SettingJDialog$1$1.class
 form\NhaCungCapForm$10.class
 ui\QuenMatKhauJDialog.class
 entities\ChiTietPhieuNhap.class
-form\HoaDonForm$3.class
 model\BlankPlotChart.class
 form\SachForm$6.class
 dao\ThongKeDAO.class
@@ -150,7 +146,6 @@ entities\PhieuNhap.class
 form\PhieuNhapForm$7.class
 swing\ComboSuggestionUI$2.class
 swing\ComboSuggestionUI.class
-form\HoaDonForm$7.class
 utils\GetIcon.class
 model\SeriesSize.class
 form\KhoForm$3.class
@@ -164,7 +159,6 @@ swing\PasswordFieldSuggestionUI.class
 ui\SettingJDialog$1.class
 form\XemCTPhieuNhap.class
 swing\ListMenu$3.class
-form\HoaDonForm$2.class
 form\SuaCTPhieuNhapForm.class
 form\NhanVienForm$3.class
 swing\Table.class
@@ -189,8 +183,8 @@ form\TacGiaForm$7.class
 form\TheLoaiForm$4.class
 form\SuaCTPhieuNhapForm$6.class
 ui\ThanhToanJFrame$3.class
+form\GioHangForm$18.class
 swing\PanelBorder.class
-form\HoaDonForm$5.class
 form\NhanVienForm$1.class
 swing\MaterialTabbed$MaterialTabbedUI.class
 form\NhaCungCapForm$7.class
