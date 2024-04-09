@@ -23,59 +23,63 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import ui.Main;
+import utils.MoneyFormat;
+import utils.XDate;
 
 /**
  *
  * @author NGUYEN THI NGUYET VY
  */
 public class HoaDonForm extends javax.swing.JPanel {
-     ArrayList<Giohang> list = new ArrayList<>();
-     ArrayList<ThanhVien> ist = new ArrayList<>();
-     
+    
+    SachDAO sachDAO = new SachDAO();
+    ArrayList<Giohang> list = new ArrayList<>();
+    ArrayList<ThanhVien> ist = new ArrayList<>();
+
     int index = -1;
     DefaultTableModel tblModel;
     DefaultComboBoxModel cbxModel;
+
     public HoaDonForm() {
         initComponents();
         initCBX();
         time();
         DBToListGH();
-        txtNV.setText(utils.Auth.user.getMaNhanVien()+ "-" + utils.Auth.user.getHoVaTen());
-        lblUser.setText(utils.Auth.user.getMaNhanVien()+ "-" + utils.Auth.user.getHoVaTen());
+        txtNV.setText(utils.Auth.user.getMaNhanVien() + "-" + utils.Auth.user.getHoVaTen());
+        lblUser.setText(utils.Auth.user.getMaNhanVien() + "-" + utils.Auth.user.getHoVaTen());
         initTable();
-        if(lblTien.getText().equals("NULL")){
-                lblTien.setText("0");
+        if (lblTien.getText().equals("NULL")) {
+            lblTien.setText("0");
         }
         txtNV.enableInputMethods(false);
-        
-        //TAB 2 - Thanh Toan
 
+        //TAB 2 - Thanh Toan
         initPTTT();
         initSetTextTab2();
         DBtoListTV();
     }
-    private void time(){
-        Date currentTime = new Date();
-        
-        // Định dạng thời gian
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a");
-        
-        // Hiển thị thời gian theo định dạng AM/PM
-        String time = formatter.format(currentTime);
-        lblTime.setText(time);
+
+    private void time() {
+//        update time cho auto run ko cần reload
+        new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lblTime.setText(XDate.toString(XDate.now(), "hh:mm:ss"));
+            }
+        }).start();
     }
 //    private void initGia(){
 //        
 //        lblTien.setText(Integer.sum(, ABORT));
 //    }
+
     private void initTable() {
         tblModel = new DefaultTableModel();
         tblModel.setColumnIdentifiers(new String[]{
             "STT",
             "Tên sách",
             "Số lượng",
-            "Giá",
-        });
+            "Giá",});
         tblList.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         tblList.getTableHeader().setOpaque(false);
         tblList.getTableHeader().setBackground(new Color(32, 136, 203));
@@ -83,7 +87,7 @@ public class HoaDonForm extends javax.swing.JPanel {
         tblList.setRowHeight(25);
         tblList.setModel(tblModel);
     }
-    
+
     private void initCBX() {
         cbxModel = new DefaultComboBoxModel();
         cbxModel.removeAllElements();
@@ -93,29 +97,28 @@ public class HoaDonForm extends javax.swing.JPanel {
         }
         cbxSach.setModel(cbxModel);
     }
-    
-    private void DBToListGH(){
+
+    private void DBToListGH() {
         GiohangDAO ghd = new GiohangDAO();
         list = (ArrayList<Giohang>) ghd.SelectAll();
     }
-    
+
     public Giohang readForm() {
         Sach sa = (Sach) cbxSach.getSelectedItem();
         Giohang gh = new Giohang();
 
-        try{
-        String maTV = txtMaTV.getText();
-        int soluong = Integer.parseInt(txtSoLuong.getText());
+        try {
+            String maTV = txtMaTV.getText();
+            int soluong = Integer.parseInt(txtSoLuong.getText());
 
-        
-        if(soluong<=0){
-            utils.DialogHelper.alert(this, "Số lượng phải lớn hơn hoặc bằng 1");
-            return null;
-        }
+            if (soluong <= 0) {
+                utils.DialogHelper.alert(this, "Số lượng phải lớn hơn hoặc bằng 1");
+                return null;
+            }
 
-        gh.setSoluong(soluong);
+            gh.setSoluong(soluong);
 
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             lblThongBao.setText("Vui lòng nhập số lượng là số!");
             lblThongBao.setForeground(Color.RED);
         }
@@ -124,47 +127,46 @@ public class HoaDonForm extends javax.swing.JPanel {
         gh.setGia(sa.getGia());
         gh.setManv(utils.Auth.user.getMaNhanVien());
         return gh;
-}
-    
+    }
+
     private void fillToTable() {
         tblModel.setRowCount(0);
-        for (int i=0;i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             Giohang gh = list.get(i);
             tblModel.addRow(new Object[]{
-                i+1,
+                i + 1,
                 gh.getTensach(),
                 gh.getSoluong(),
-                gh.getGia(),
-            });
+                gh.getGia(),});
         }
     }
-    
+
     //thuat thuc tinh tong tien qua java:test 21/3/24
-    private void tinhTien(){
-        int tong =0;
-        for(Giohang it : list){
+    private void tinhTien() {
+        int tong = 0;
+        for (Giohang it : list) {
             tong += it.getGia() * it.getSoluong();
         }
-        lblTien.setText(String.valueOf(tong+" VND"));
+        lblTien.setText(String.valueOf(tong + " VND"));
     }
-    
+
     private void addCart() {
         Giohang gh = readForm();
         GiohangDAO ghd = new GiohangDAO();
         if (gh != null) {
             //Neu them hang ma trung ten thi cap nhat so luong
-            boolean ex =false;
-            for(Giohang it : list){
-                if(it.getMasach().equalsIgnoreCase(gh.getMasach())){
-                    int newSL = it.getSoluong() + gh.getSoluong() ;
+            boolean ex = false;
+            for (Giohang it : list) {
+                if (it.getMasach().equalsIgnoreCase(gh.getMasach())) {
+                    int newSL = it.getSoluong() + gh.getSoluong();
                     it.setSoluong(newSL);
                     ghd.update(it);
-                    ex=true;
+                    ex = true;
                     break;
                     //end
                 }
             }
-            if(!ex){
+            if (!ex) {
                 list.add(gh);
                 ghd.insert(gh);
             }
@@ -174,6 +176,7 @@ public class HoaDonForm extends javax.swing.JPanel {
             //tinh tong tien,setText
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -572,17 +575,17 @@ public class HoaDonForm extends javax.swing.JPanel {
           lblThongBao.setForeground(Color.green);
           tab.setSelectedIndex(0);
 
-          // Thêm Timer
-          Timer timer = new Timer(3000, new ActionListener() {
-              @Override
-              public void actionPerformed(ActionEvent e) {
-                  // Thực hiện khi đến thời gian quy định
-                  Main.Instance.setForm(new HoaDonForm());
-              }
-          });
-          timer.setRepeats(false); // Chỉ chạy một lần
-          timer.start(); // Bắt đầu đếm thời gian
-      }
+            // Thêm Timer
+            Timer timer = new Timer(3000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Thực hiện khi đến thời gian quy định
+                    Main.Instance.setForm(new HoaDonForm());
+                }
+            });
+            timer.setRepeats(false); // Chỉ chạy một lần
+            timer.start(); // Bắt đầu đếm thời gian
+        }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
 
@@ -623,8 +626,7 @@ public class HoaDonForm extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     //TAB 2 - THANH TOAN
-
-    private void initCBXGioHang(){
+    private void initCBXGioHang() {
         cbxModel = new DefaultComboBoxModel();
         cbxModel.removeAllElements();
         List<Giohang> lst = new GiohangDAO().SelectAll();
@@ -633,59 +635,60 @@ public class HoaDonForm extends javax.swing.JPanel {
         }
         cbxHang.setModel(cbxModel);
     }
-    
-    private void initPTTT(){
+
+    private void initPTTT() {
         String[] phuongThucThanhToan = {"Tiền mặt", "Thẻ", "Momo", "VNPay"};
         cbxThanhToan.setModel(new DefaultComboBoxModel(phuongThucThanhToan));
     }
-    
-    private void initSetTextTab2(){
-        int tong =0;
-        for(Giohang it : list){
+
+    private void initSetTextTab2() {
+        int tong = 0;
+        for (Giohang it : list) {
             tong += it.getGia() * it.getSoluong();
         }
-        txtTongTien.setText(String.valueOf(tong));
+        txtTongTien.setText(MoneyFormat.format(tong));
     }
-    
-    private void DBtoListTV(){
+
+    private void DBtoListTV() {
         ThanhVienDAO tvd = new ThanhVienDAO();
         ist = (ArrayList<ThanhVien>) tvd.SelectAll();
     }
-    private void thanhvien(){
-        try{
-        Giohang gh = new Giohang();
-        String ma = txtMaTV.getText();
-        for(ThanhVien tv : ist){
-            if(ma.trim().length()==tv.getMaTV()){ 
-                gh.setMaTV(tv.getMaTV());
-                txtThanhVien.setText(tv.getTenTV());
-                tab.setSelectedIndex(1);
-                break;
-            }else if(ma.trim().isEmpty()){
-                txtThanhVien.setText("Không tích điểm");
-                tab.setSelectedIndex(1);
-                break;
-            }else if(ma.trim().length()!=tv.getMaTV()){
-                utils.DialogHelper.alert(this, "Thành viên này không tồn tại!");
-                break;
+
+    private void thanhvien() {
+        try {
+            Giohang gh = new Giohang();
+            String ma = txtMaTV.getText();
+            for (ThanhVien tv : ist) {
+                if (ma.trim().length() == tv.getMaTV()) {
+                    gh.setMaTV(tv.getMaTV());
+                    txtThanhVien.setText(tv.getTenTV());
+                    tab.setSelectedIndex(1);
+                    break;
+                } else if (ma.trim().isEmpty()) {
+                    txtThanhVien.setText("Không tích điểm");
+                    tab.setSelectedIndex(1);
+                    break;
+                } else if (ma.trim().length() != tv.getMaTV()) {
+                    utils.DialogHelper.alert(this, "Thành viên này không tồn tại!");
+                    break;
+                }
             }
-        }
             initCBXGioHang();
             initSetTextTab2();
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("Lỗi số");
         }
     }
-    
-    private void DBFilltoTable(){
+
+    private void DBFilltoTable() {
         GiohangDAO ghd = new GiohangDAO();
         list = (ArrayList<Giohang>) ghd.SelectAll();
         fillToTable();
     }
-    
-    private void CancelGD(){
-         GiohangDAO ghd = new GiohangDAO();
-         Giohang gh = new Giohang();
+
+    private void CancelGD() {
+        GiohangDAO ghd = new GiohangDAO();
+        Giohang gh = new Giohang();
         ghd.reset();
         list.remove(gh);
         DBFilltoTable();
