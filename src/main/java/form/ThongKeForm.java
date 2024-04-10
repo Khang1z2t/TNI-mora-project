@@ -88,8 +88,9 @@ public class ThongKeForm extends javax.swing.JPanel {
             List<Object[]> lst = tkd.getThongKe();
 
             for (Object[] obj : lst) {
-                obj[2] = MoneyFormat.format(obj[2]);
                 obj[3] = MoneyFormat.format(obj[3]);
+                obj[4] = MoneyFormat.format(obj[4]);
+                obj[5] = MoneyFormat.format(obj[5]);
                 tblModel.addRow(obj);
             }
         } catch (Exception e) {
@@ -99,8 +100,10 @@ public class ThongKeForm extends javax.swing.JPanel {
 private void initThongKe() {
         tblModel = new DefaultTableModel();
         tblModel.setColumnIdentifiers(new String[]{
+                "Tổng số lượng sách đã nhập",
                 "Số lượng sách đã bán",
                 "Số lượng nhân viên",
+                "Tổng tiền đã nhập",
                 "Tổng tiền đã bán",
                 "Tổng tiền đã trả lương NV",
         });
