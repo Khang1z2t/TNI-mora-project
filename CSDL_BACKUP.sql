@@ -370,7 +370,7 @@ BEGIN
         @tongtienNV AS N'Tổng tiền trả lương'; -- Thêm cột @tongtienNV vào SELECT cuối cùng
 END;
 
-call sp_ThongKe()
+EXECUTE sp_ThongKe
 
 drop PROCEDURE [sp_ThongKe]
 /****************************************************************************************/
