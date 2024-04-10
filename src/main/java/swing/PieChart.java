@@ -137,7 +137,7 @@ public class PieChart extends JComponent {
                 double lblSize = size / 2;
                 double lblX = centerX + cosX * lblSize;
                 double lblY = centerY + sinY * lblSize;
-                String detail = format.format(data.getValues()) + " (" + text + ")";
+                String detail = format.format(data.getValues()) + " VNĐ (" + text + ")";
                 drawPopupLabel(g2, size, textAngle, lblX, lblY, data.getName(), detail);
             }
             drawAngle -= angle;
