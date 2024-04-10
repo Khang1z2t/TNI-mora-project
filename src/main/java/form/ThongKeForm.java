@@ -10,6 +10,7 @@ import component.Chart;
 import dao.LuongDAO;
 import dao.ThongKeDAO;
 import entities.Luong;
+import model.ModelPieChart;
 import utils.MoneyFormat;
 
 import java.awt.Color;
@@ -35,8 +36,9 @@ public class ThongKeForm extends javax.swing.JPanel {
         initComponents();
         initTable();
         initCBX();
-        initThongKe();
-        fillTableTK();
+//        initThongKe();
+//        fillTableTK();
+        fillDatatoChar();
     }
 
     private void initTable() {
@@ -80,41 +82,73 @@ public class ThongKeForm extends javax.swing.JPanel {
         }
     }
     
-    private void fillTableTK() {
-        DefaultTableModel tblModel = (DefaultTableModel) tblThongKe.getModel();
-        tblModel.setRowCount(0);
-        try {
-            int thang = (int) cbxThang.getSelectedItem();
-            List<Object[]> lst = tkd.getThongKe();
-
-            for (Object[] obj : lst) {
-                obj[3] = MoneyFormat.format(obj[3]);
-                obj[4] = MoneyFormat.format(obj[4]);
-                obj[5] = MoneyFormat.format(obj[5]);
-                tblModel.addRow(obj);
-            }
-        } catch (Exception e) {
-        }
-    }
+//    private void fillTableTK() {
+//        DefaultTableModel tblModel = (DefaultTableModel) tblThongKe.getModel();
+//        tblModel.setRowCount(0);
+//        try {
+//            int thang = (int) cbxThang.getSelectedItem();
+//            List<Object[]> lst = tkd.getThongKe();
+//
+//            for (Object[] obj : lst) {
+//                obj[3] = MoneyFormat.format(obj[3]);
+//                obj[4] = MoneyFormat.format(obj[4]);
+//                obj[5] = MoneyFormat.format(obj[5]);
+//                tblModel.addRow(obj);
+//            }
+//        } catch (Exception e) {
+//        }
+//    }
     
-private void initThongKe() {
-        tblModel = new DefaultTableModel();
-        tblModel.setColumnIdentifiers(new String[]{
+//private void initThongKe() {
+//        tblModel = new DefaultTableModel();
+//        tblModel.setColumnIdentifiers(new String[]{
+//                "Tổng số lượng sách đã nhập",
+//                "Số lượng sách đã bán",
+//                "Số lượng nhân viên",
+//                "Tổng tiền đã nhập",
+//                "Tổng tiền đã bán",
+//                "Tổng tiền đã trả lương NV",
+//        });
+//        tblThongKe.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        tblThongKe.getTableHeader().setOpaque(false);
+//        tblThongKe.getTableHeader().setBackground(new Color(32, 136, 203));
+//        tblThongKe.getTableHeader().setForeground(new Color(255, 255, 255));
+//        tblThongKe.setRowHeight(25);
+//        tblThongKe.setModel(tblModel);
+//}
+
+    private void fillDatatoChar(){
+        List<Double[]> listTK = tkd.getThongKe();
+
+        String[] name = new String[]{
                 "Tổng số lượng sách đã nhập",
-                "Số lượng sách đã bán",
-                "Số lượng nhân viên",
+                "Tổng số lượng sách đã bán",
+                "Tổng số lượng nhân viên",
                 "Tổng tiền đã nhập",
                 "Tổng tiền đã bán",
-                "Tổng tiền đã trả lương NV",
-        });
-        tblThongKe.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        tblThongKe.getTableHeader().setOpaque(false);
-        tblThongKe.getTableHeader().setBackground(new Color(32, 136, 203));
-        tblThongKe.getTableHeader().setForeground(new Color(255, 255, 255));
-        tblThongKe.setRowHeight(25);
-        tblThongKe.setModel(tblModel);
-}
+                "Tổng tiền đã trả lương NV"
+        };
+        int index = 0;
+        for(Double[] values : listTK){
+            for(Double value : values) {
+                pieChart.addData(new ModelPieChart(name[index], value, getColor(index)));
+                index++;
+            }
+        }
+    }
 
+
+    private Color getColor(int index) {
+        Color[] color = new Color[]{
+                new Color(135, 189, 245),
+                new Color(189, 135, 245),
+                new Color(139, 229, 222),
+                new Color(132, 41, 255),
+                new Color(149, 255, 17),
+                new Color(30, 255, 101),
+        };
+        return color[index];
+    }
     
     private void DBFilltoList() {
         LuongDAO ld = new LuongDAO();
@@ -129,8 +163,7 @@ private void initThongKe() {
         panelBorder1 = new swing.PanelBorder();
         tab = new swing.MaterialTabbed();
         panelBorder2 = new swing.PanelBorder();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblThongKe = new swing.Table();
+        pieChart = new swing.PieChart();
         panelBorder3 = new swing.PanelBorder();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLuong = new swing.Table();
@@ -157,25 +190,17 @@ private void initThongKe() {
 
         panelBorder2.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblThongKe.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(tblThongKe);
-
         javax.swing.GroupLayout panelBorder2Layout = new javax.swing.GroupLayout(panelBorder2);
         panelBorder2.setLayout(panelBorder2Layout);
         panelBorder2Layout.setHorizontalGroup(
             panelBorder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+            .addComponent(pieChart, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
         );
         panelBorder2Layout.setVerticalGroup(
             panelBorder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+            .addGroup(panelBorder2Layout.createSequentialGroup()
+                .addComponent(pieChart, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 19, Short.MAX_VALUE))
         );
 
         tab.addTab("Tổng Thống Kê", panelBorder2);
@@ -327,7 +352,6 @@ private void initThongKe() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.ComboBoxSuggestion cbxThang;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private swing.PanelBorder panelBorder1;
@@ -336,10 +360,10 @@ private void initThongKe() {
     private swing.PanelBorder panelBorder4;
     private swing.PanelBorder panelBorder5;
     private swing.PanelBorder panelBorder6;
+    private swing.PieChart pieChart;
     private swing.MaterialTabbed tab;
     private swing.Table table3;
     private swing.Table tblLuong;
     private swing.Table tblSach;
-    private swing.Table tblThongKe;
     // End of variables declaration//GEN-END:variables
 }

@@ -35,6 +35,24 @@ public class ThongKeDAO {
         }
     }
 
+    private List<Double[]> getListOfArrayDB(String sql, String[] cols, Double... args) {
+        try {
+            List<Double[]> list = new ArrayList<>();
+            ResultSet rs = JDBCHelper.query(sql, args);
+            while (rs.next()) {
+                Double[] vals = new Double[cols.length];
+                for (int i = 0; i < cols.length; i++) {
+                    vals[i] = rs.getDouble(cols[i]);
+                }
+                list.add(vals);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<Integer> selectThang() {
         String sql = "SELECT DISTINCT MONTH(ngaytao) MONTH FROM hoadon ORDER BY MONTH DESC";
         List<Integer> list = new ArrayList<>();
@@ -79,9 +97,9 @@ public class ThongKeDAO {
         return this.getListOfArray(sql, cols);
     }
         
-        public List<Object[]> getThongKe(){
+        public List<Double[]> getThongKe(){
             String sql = "{CALL sp_ThongKe}";
             String[] cols = {"Tổng số lượng sách đã nhập", "Tổng số lượng sách đã bán", "Tổng số lượng Nhân viên", "Tổng tiền đã nhập", "Tổng tiền đã bán", "Tổng tiền trả lương"};
-            return this.getListOfArray(sql, cols);
+            return this.getListOfArrayDB(sql, cols);
         }
 }

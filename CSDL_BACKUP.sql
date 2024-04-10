@@ -328,9 +328,9 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-	DECLARE @TongSoLuongSachNhap INT;
-    DECLARE @TongSoLuongSachDaBan INT;
-    DECLARE @TongSoLuongNhanVien INT;
+	DECLARE @TongSoLuongSachNhap MONEY;
+    DECLARE @TongSoLuongSachDaBan MONEY;
+    DECLARE @TongSoLuongNhanVien MONEY;
 	DECLARE @TongTienDaNhap MONEY;
     DECLARE @TongTienDaBan MONEY;
     DECLARE @tongtienNV MONEY; -- Thêm khai báo biến này
@@ -369,6 +369,10 @@ BEGIN
         @TongTienDaBan AS N'Tổng tiền đã bán',
         @tongtienNV AS N'Tổng tiền trả lương'; -- Thêm cột @tongtienNV vào SELECT cuối cùng
 END;
+
+call sp_ThongKe()
+
+drop PROCEDURE [sp_ThongKe]
 /****************************************************************************************/
 CREATE PROCEDURE [dbo].[sp_TongTienDaBan_TheoThang]
     @thang INT
