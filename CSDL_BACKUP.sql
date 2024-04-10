@@ -70,7 +70,6 @@ CREATE TABLE HoaDon (
 	mathanhvien int null,
 	TongTien money null
 );
-
 -- Tạo bảng chi tiết hóa đơn bán sách
 CREATE TABLE ChiTietHoaDon (
     MaHoaDon nvarchar(20),
@@ -316,5 +315,128 @@ END;
 
 /*****************************************************************************************/
 SELECT DISTINCT MONTH(NGAYDK) MONTH FROM NguoiDung ORDER BY MONTH DESC
-drop proc sp_BangLuong
-exec sp_bangLuong 4
+
+/*THONG KE*/
+/****************************************************************************************/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_ThongKe]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @TongSoLuongSachDaBan INT;
+    DECLARE @TongSoLuongNhanVien INT;
+    DECLARE @TongTienDaBan MONEY;
+    DECLARE @tongtienNV MONEY; -- Thêm khai báo biến này
+
+    -- Tính tổng số lượng sách đã bán
+    SELECT @TongSoLuongSachDaBan = SUM(SoLuong)
+    FROM ChiTietHoaDon;
+
+    -- Tính tổng số lượng nhân viên
+    SELECT @TongSoLuongNhanVien = COUNT(*)
+    FROM NhanVien;
+
+    -- Tính tổng tiền đã bán
+    SELECT @TongTienDaBan = SUM(TongTien)
+    FROM HoaDon;
+
+    -- Tính tổng tiền chi trả lương NV
+    SELECT @tongtienNV = SUM(Luong)
+    FROM NguoiDung nd
+    INNER JOIN Luong l ON ND.cap = l.cap;
+
+    -- Trả về kết quả
+    SELECT 
+        @TongSoLuongSachDaBan AS N'Tổng số lượng sách đã bán',
+        @TongSoLuongNhanVien AS N'Tổng số lượng Nhân viên',
+        @TongTienDaBan AS N'Tổng tiền đã bán',
+        @tongtienNV AS N'Tổng tiền trả lương'; -- Thêm cột @tongtienNV vào SELECT cuối cùng
+END;
+/****************************************************************************************/
+CREATE PROCEDURE [dbo].[sp_TongTienDaBan_TheoThang]
+    @thang INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @TongTienDaBan MONEY;
+
+    -- Tính tổng tiền đã bán theo tháng
+    SELECT @TongTienDaBan = SUM(TongTien)
+    FROM HoaDon
+    WHERE MONTH(ngaytao) = @thang;
+
+    -- Trả về kết quả
+    SELECT @thang as N'Tháng',@TongTienDaBan AS N'Tổng tiền đã bán trong tháng'
+END;
+/*****************************************************************************************
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_TongSoLuongNhanVien]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @TongSoLuongNhanVien INT;
+
+    -- Tính tổng số lượng nhân viên
+    SELECT @TongSoLuongNhanVien = COUNT(*)
+    FROM NhanVien;
+
+    -- Trả về kết quả
+    SELECT @TongSoLuongNhanVien AS N'Tổng số lượng Nhân viên';
+END;
+*****************************************************************************************/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_TongSoLuongSachDaBan_TheoThang]
+    @thang INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @TongSoLuongSachDaBan INT;
+
+    -- Tính tổng số lượng sách đã bán theo tháng
+    SELECT @TongSoLuongSachDaBan = SUM(ChiTietHoaDon.SoLuong)
+    FROM ChiTietHoaDon
+    INNER JOIN HoaDon ON ChiTietHoaDon.MaHoaDon = HoaDon.MaHoaDon
+    WHERE MONTH(HoaDon.ngaytao) = @thang;
+
+    -- Trả về kết quả
+    SELECT @thang as N'Tháng',@TongSoLuongSachDaBan AS N'Tổng số lượng sách đã bán trong tháng' 
+END;
+
+/*****************************************************************************************
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_TongTienDaChiTraLuong]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @TongTienChiTraLuong MONEY;
+
+    -- Tính tổng tiền đã chi trả cho lương của nhân viên
+    SELECT @TongTienChiTraLuong = SUM(Luong)
+    FROM NguoiDung nd
+    Inner join Luong l on ND.cap = l.cap;
+
+    -- Trả về kết quả
+    SELECT @TongTienChiTraLuong AS N'Tổng tiền đã chi trả cho lương nhân viên';
+END;
+***/

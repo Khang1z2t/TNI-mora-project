@@ -5,12 +5,10 @@
  */
 package ui;
 
-import dao.LuongDAO;
 import entities.Luong;
 import form.*;
 import event.EventMenuSelected;
 import form.Form_Home;
-import form.NguoiDungForm;
 import form.NhanVienForm;
 import form.SachForm;
 import form.TacGiaForm;
@@ -19,6 +17,7 @@ import utils.Auth;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 /**
  * @author NGUYEN THI NGUYET VY
@@ -48,6 +47,8 @@ public class Main extends javax.swing.JFrame {
                 } else if (index == 1) {
                     if (Auth.isManager()) {
                         setForm(new NhanVienForm());
+                    }else{
+                        utils.DialogHelper.alert(Main.this, "Không đủ quyền truy cập!");
                     }
                 } else if (index == 2) {
                     setForm(new SachForm());
@@ -66,11 +67,15 @@ public class Main extends javax.swing.JFrame {
                 } else if (index == 9) {
                     setForm(new DoiMKForm());
                 } else if (index == 10) {
+                    if(Auth.isManager()){
                     setForm(new DoanhThuForm());
+                    }else{
+                        utils.DialogHelper.alert(Main.this, "Không đủ quyền truy cập!");
+                    }
                 } else if (index == 11) {
                     setForm(new GioHangForm());
                 } else if (index == 12) {
-                    setForm(new LuongForm());
+                    setForm(new ThongKeForm());
                 } else if (index == 13) {
                     Auth.clear();
                     Main.this.dispose();
