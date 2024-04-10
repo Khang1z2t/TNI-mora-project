@@ -328,10 +328,16 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
+	DECLARE @TongSoLuongSachNhap INT;
     DECLARE @TongSoLuongSachDaBan INT;
     DECLARE @TongSoLuongNhanVien INT;
+	DECLARE @TongTienDaNhap MONEY;
     DECLARE @TongTienDaBan MONEY;
     DECLARE @tongtienNV MONEY; -- Thêm khai báo biến này
+
+	-- Tính tổng số lượng sácg đã nhập
+	select @TongSoLuongSachNhap = SUM(SoLuong)
+	from ChiTietPhieuNhap;
 
     -- Tính tổng số lượng sách đã bán
     SELECT @TongSoLuongSachDaBan = SUM(SoLuong)
@@ -340,6 +346,10 @@ BEGIN
     -- Tính tổng số lượng nhân viên
     SELECT @TongSoLuongNhanVien = COUNT(*)
     FROM NhanVien;
+
+    -- Tính tổng tiền đã nhập
+    select @TongTienDaNhap = SUM(TongTien)
+    from PhieuNhap;
 
     -- Tính tổng tiền đã bán
     SELECT @TongTienDaBan = SUM(TongTien)
@@ -351,9 +361,11 @@ BEGIN
     INNER JOIN Luong l ON ND.cap = l.cap;
 
     -- Trả về kết quả
-    SELECT 
+    SELECT
+        @TongSoLuongSachNhap AS N'Tổng số lượng sách đã nhập',
         @TongSoLuongSachDaBan AS N'Tổng số lượng sách đã bán',
         @TongSoLuongNhanVien AS N'Tổng số lượng Nhân viên',
+        @TongTienDaNhap AS N'Tổng tiền đã nhập',
         @TongTienDaBan AS N'Tổng tiền đã bán',
         @tongtienNV AS N'Tổng tiền trả lương'; -- Thêm cột @tongtienNV vào SELECT cuối cùng
 END;
