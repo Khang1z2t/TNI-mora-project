@@ -18,4 +18,9 @@ public class MoneyFormat {
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
         return currencyFormat.format(amount);
     }
+
+    public static String format(Object amount) {
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return currencyFormat.format(amount);
+    }
 }

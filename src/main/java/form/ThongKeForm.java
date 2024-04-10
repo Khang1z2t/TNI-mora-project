@@ -10,6 +10,7 @@ import component.Chart;
 import dao.LuongDAO;
 import dao.ThongKeDAO;
 import entities.Luong;
+import utils.MoneyFormat;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -47,12 +48,12 @@ public class ThongKeForm extends javax.swing.JPanel {
                 "Cấp nhân viên",
                 "Lương",
         });
-        tblList.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        tblList.getTableHeader().setOpaque(false);
-        tblList.getTableHeader().setBackground(new Color(32, 136, 203));
-        tblList.getTableHeader().setForeground(new Color(255, 255, 255));
-        tblList.setRowHeight(25);
-        tblList.setModel(tblModel);
+        tblLuong.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+        tblLuong.getTableHeader().setOpaque(false);
+        tblLuong.getTableHeader().setBackground(new Color(32, 136, 203));
+        tblLuong.getTableHeader().setForeground(new Color(255, 255, 255));
+        tblLuong.setRowHeight(25);
+        tblLuong.setModel(tblModel);
     }
     private void initCBX() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbxThang.getModel();
@@ -65,14 +66,15 @@ public class ThongKeForm extends javax.swing.JPanel {
     }
 
     private void fillTable() {
-        DefaultTableModel tblModel = (DefaultTableModel) tblList.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel) tblLuong.getModel();
         tblModel.setRowCount(0);
         try {
             int thang = (int) cbxThang.getSelectedItem();
             List<Object[]> lst = new LuongDAO().getBangLuong(thang);
 
-            for (Object[] objects : lst) {
-                tblModel.addRow(objects);
+            for (Object[] obj : lst) {
+                obj[4] = MoneyFormat.format(obj[4]);
+                tblModel.addRow(obj);
             }
         } catch (Exception e) {
         }
@@ -85,8 +87,10 @@ public class ThongKeForm extends javax.swing.JPanel {
             int thang = (int) cbxThang.getSelectedItem();
             List<Object[]> lst = tkd.getThongKe();
 
-            for (Object[] objects : lst) {
-                tblModel.addRow(objects);
+            for (Object[] obj : lst) {
+                obj[2] = MoneyFormat.format(obj[2]);
+                obj[3] = MoneyFormat.format(obj[3]);
+                tblModel.addRow(obj);
             }
         } catch (Exception e) {
         }
@@ -126,7 +130,7 @@ private void initThongKe() {
         tblThongKe = new swing.Table();
         panelBorder3 = new swing.PanelBorder();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblList = new swing.Table();
+        tblLuong = new swing.Table();
         panelBorder5 = new swing.PanelBorder();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblSach = new swing.Table();
@@ -175,7 +179,7 @@ private void initThongKe() {
 
         panelBorder3.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblList.setModel(new javax.swing.table.DefaultTableModel(
+        tblLuong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -183,7 +187,7 @@ private void initThongKe() {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblList);
+        jScrollPane1.setViewportView(tblLuong);
 
         javax.swing.GroupLayout panelBorder3Layout = new javax.swing.GroupLayout(panelBorder3);
         panelBorder3.setLayout(panelBorder3Layout);
@@ -331,7 +335,7 @@ private void initThongKe() {
     private swing.PanelBorder panelBorder6;
     private swing.MaterialTabbed tab;
     private swing.Table table3;
-    private swing.Table tblList;
+    private swing.Table tblLuong;
     private swing.Table tblSach;
     private swing.Table tblThongKe;
     // End of variables declaration//GEN-END:variables
