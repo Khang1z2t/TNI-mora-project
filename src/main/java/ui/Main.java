@@ -13,6 +13,7 @@ import form.NhanVienForm;
 import form.SachForm;
 import form.TacGiaForm;
 import utils.Auth;
+import utils.XImage;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         setTitle("Phần mềm quản lý cửa hàng sách");
+        setIconImage(XImage.getAppIcon());
         //khai bao form
         menu1.initMoving(Main.this);
         menu1.addEventMenuSelected(new EventMenuSelected() {
@@ -65,17 +67,17 @@ public class Main extends javax.swing.JFrame {
                 } else if (index == 8) {
 
                 } else if (index == 9) {
-                    setForm(new DoiMKForm());
+
                 } else if (index == 10) {
-                    if(Auth.isManager()){
-                    setForm(new DoanhThuForm());
-                    }else{
-                        utils.DialogHelper.alert(Main.this, "Không đủ quyền truy cập!");
-                    }
+                    setForm(new DoiMKForm());
                 } else if (index == 11) {
                     setForm(new GioHangForm());
                 } else if (index == 12) {
-                    setForm(new ThongKeForm());
+                    if(Auth.isManager()) {
+                        setForm(new ThongKeForm());
+                    } else {
+                        JOptionPane.showMessageDialog(Main.this, "Không đủ quyền truy cập");
+                    }
                 } else if (index == 13) {
                     Auth.clear();
                     Main.this.dispose();

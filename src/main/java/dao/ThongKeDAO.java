@@ -104,4 +104,37 @@ public class ThongKeDAO {
             String [] cols = {"Tổng số lượng sách đã nhập trong tháng", "Tổng số lượng sách đã bán trong tháng", "Tổng số lượng sách còn trong kho"};
             return this.getListOfArrayDB(sql, cols,thang);
         }
+
+        public Integer getSoLuongDon(String id){
+            String sql = "{CALL sp_SoLuongDonHang (?)}";
+            try {
+                ResultSet rs = JDBCHelper.query(sql, id);
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+            return null;
+        }
+
+        public List<Object[]> getTopDoanhThu() {
+            String sql = "{CALL sp_getTopDoanhThu}";
+            String[] cols = {"TongTienBan", "ThongKe"};
+            return this.getListOfArray(sql, cols);
+        }
+
+        public List<Object[]> getTopNV(){
+            String sql = "{CALL sp_getTopNVBan}";
+            String[] cols = {"TenNV", "SoDon", "TongTien"};
+            return this.getListOfArray(sql, cols);
+        }
+
+        public List<Object[]> getTopSach(){
+            String sql = "{CALL sp_getTopSachBan}";
+            String[] cols = {"TenSach", "SoLuongBan"};
+            return this.getListOfArray(sql, cols);
+        }
+
+
 }

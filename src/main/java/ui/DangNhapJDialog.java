@@ -26,6 +26,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 import utils.XFile;
+import utils.XImage;
 
 /**
  * @author NGUYEN THI NGUYET VY
@@ -44,6 +45,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         initComponents();
         remember();
         setLocationRelativeTo(null);
+        setIconImage(XImage.getAppIcon());
         //Chay icon ,set size de hon voi cac icon oversize
         remember();
 //        autoAdd();
