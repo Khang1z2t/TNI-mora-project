@@ -25,12 +25,23 @@ public class DoiMKForm extends javax.swing.JPanel {
     }
 
     private boolean checkForm() {
+        String mk = utils.Auth.user.getMatKhau();
         if (String.valueOf(txtConfirmPass.getPassword()).trim().isEmpty()
-                || String.valueOf(txtNewPass.getPassword()).trim().isEmpty()) {
+                || String.valueOf(txtNewPass.getPassword()).trim().isEmpty() || String.valueOf(txtOld.getPassword()).trim().isEmpty()) {
             DialogHelper.alert(this, "Vui lòng nhập đầy đủ thông tin!");
             return false;
         }
-
+        
+        if(!String.valueOf(txtOld.getPassword()).trim().equalsIgnoreCase(mk)){
+            DialogHelper.alert(this, "Mật khẩu cũ không trùng khớp");
+            return false;
+        }
+        
+        if(String.valueOf(txtNewPass.getPassword()).trim().equalsIgnoreCase(mk)){
+            DialogHelper.alert(this, "Mật khẩu mới không nên trùng với mật khẩu cũ!");
+            return false;
+        }
+        
         if (!String.valueOf(txtConfirmPass.getPassword()).equals(String.valueOf(txtNewPass.getPassword()))) {
             DialogHelper.alert(this, "Mật khẩu mới không trùng khớp!");
             return false;
@@ -53,6 +64,7 @@ public class DoiMKForm extends javax.swing.JPanel {
         txtUser = new swing.TextFieldSuggestion();
         txtNewPass = new swing.PasswordField();
         txtConfirmPass = new swing.PasswordField();
+        txtOld = new swing.PasswordField();
 
         setOpaque(false);
 
@@ -74,46 +86,51 @@ public class DoiMKForm extends javax.swing.JPanel {
 
         txtConfirmPass.setLabelText("Xác nhận mật khẩu");
 
+        txtOld.setLabelText("Mật khẩu cũ");
+
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
-                panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelBorder1Layout.createSequentialGroup()
-                                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(panelBorder1Layout.createSequentialGroup()
-                                                .addGap(120, 120, 120)
-                                                .addComponent(btnDoiMK, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(panelBorder1Layout.createSequentialGroup()
-                                                .addGap(64, 64, 64)
-                                                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                                                        .addComponent(txtNewPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(txtConfirmPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                .addContainerGap(309, Short.MAX_VALUE))
+            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBorder1Layout.createSequentialGroup()
+                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBorder1Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                            .addComponent(txtNewPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtConfirmPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtOld, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(panelBorder1Layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(btnDoiMK, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         panelBorder1Layout.setVerticalGroup(
-                panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelBorder1Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtConfirmPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)
-                                .addComponent(btnDoiMK, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(323, Short.MAX_VALUE))
+            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBorder1Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtConfirmPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDoiMK, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(267, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,6 +153,7 @@ public class DoiMKForm extends javax.swing.JPanel {
     private swing.PanelBorder panelBorder1;
     private swing.PasswordField txtConfirmPass;
     private swing.PasswordField txtNewPass;
+    private swing.PasswordField txtOld;
     private swing.TextFieldSuggestion txtUser;
     // End of variables declaration//GEN-END:variables
 }

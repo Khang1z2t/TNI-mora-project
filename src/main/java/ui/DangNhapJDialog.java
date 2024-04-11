@@ -6,13 +6,11 @@
 package ui;
 
 import com.google.zxing.BinaryBitmap;
-import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import dao.NhanVienDAO;
 import entities.NhanVien;
 
@@ -21,21 +19,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-import utils.DialogHelper;
 import utils.XFile;
 
 /**
  * @author NGUYEN THI NGUYET VY
  */
 public class DangNhapJDialog extends javax.swing.JDialog {
+
     ArrayList<NhanVien> list = new ArrayList<>();
     String user = null;
     String pass = null;
@@ -49,7 +45,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         remember();
         setLocationRelativeTo(null);
         //Chay icon ,set size de hon voi cac icon oversize
-        initIcon();
         remember();
 //        autoAdd();
         //xet mac dinh la 1 rdo nao do bat ky
@@ -57,40 +52,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             chkRemember.setSelected(true);
         }
     }
-
-    //    void autoAdd(){
-//        NhanVien nv = new NhanVien();
-//        nv.setMaNhanVien("NV1");
-//        nv.setHoVaTen("Nguyen Dinh Tuan");
-//        nv.setMatKhau("123");
-//        nv.setEmail("tuanndps36835@fpt.edu.vn");
-//        nv.setVaiTro(true);
-//        list.add(nv);
-//    }
-    //class doc ma QR cua lib binaryBitMap
-    public static String readQR(String path, String charset,
-                                Map hashMap)
-            throws FileNotFoundException, IOException,
-            NotFoundException {
-        BinaryBitmap binaryBitmap
-                = new BinaryBitmap(new HybridBinarizer(
-                new BufferedImageLuminanceSource(
-                        ImageIO.read(
-                                new FileInputStream(path)))));
-
-        Result result
-                = new MultiFormatReader().decode(binaryBitmap);
-
-        return result.getText();
-    }
-
-    public void initIcon() {
-        lblFB.setIcon(utils.GetIcon.getIcon("facebook.png", 42, 42));
-        lblGmail.setIcon(utils.GetIcon.getIcon("gmail.png", 42, 42));
-        lblQR.setIcon(utils.GetIcon.getIcon("qr-code.png", 42, 42));
-
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,10 +66,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         chkRemember = new javax.swing.JCheckBox();
         lblFP = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        lblFB = new javax.swing.JLabel();
-        lblGmail = new javax.swing.JLabel();
-        lblQR = new javax.swing.JLabel();
         txtUser = new swing.TextField();
         txtPass = new swing.PasswordField();
         jPanel2 = new javax.swing.JPanel();
@@ -154,23 +111,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setText("Hoặc đăng nhập với");
-
-        lblFB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/facebook.png"))); // NOI18N
-        lblFB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        lblGmail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/gmail.png"))); // NOI18N
-        lblGmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        lblQR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/qr-code.png"))); // NOI18N
-        lblQR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblQR.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblQRMouseClicked(evt);
-            }
-        });
-
         txtUser.setBackground(new java.awt.Color(66, 180, 253));
         txtUser.setForeground(new java.awt.Color(255, 255, 255));
         txtUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -184,63 +124,46 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addGap(21, 21, 21)
-                                                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addComponent(chkRemember)
-                                                                .addGap(211, 211, 211)
-                                                                .addComponent(lblFP))))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(133, 133, 133)
-                                                .addComponent(jLabel3))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(170, 170, 170)
-                                                .addComponent(jLabel6))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(145, 145, 145)
-                                                .addComponent(lblFB, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(lblGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(lblQR, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(10, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
-                                .addGap(31, 31, 31))
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(chkRemember)
+                        .addGap(211, 211, 211)
+                        .addComponent(lblFP))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(jLabel3)))
+                .addContainerGap(10, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
         jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3)
-                                .addGap(36, 36, 36)
-                                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24)
-                                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(chkRemember)
-                                        .addComponent(lblFP))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblFB, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblQR, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(36, 36, 36)
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chkRemember)
+                    .addComponent(lblFP))
+                .addGap(31, 31, 31)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         lblHinh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/beeLogin.gif"))); // NOI18N
@@ -248,30 +171,30 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblHinh)
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblHinh)
         );
         jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblHinh, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 1, Short.MAX_VALUE))
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(lblHinh, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -322,34 +245,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    //Doc & Viet Ma QR
-    private void lblQRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQRMouseClicked
-        JFileChooser fileChooser = new JFileChooser("qrcode");
-        int res = fileChooser.showOpenDialog(this);
-        if (res == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            String path = selectedFile.getAbsolutePath();
-            String charset = "UTF-8";
-            Map<EncodeHintType, ErrorCorrectionLevel> hashMap
-                    = new HashMap<>();
-            hashMap.put(EncodeHintType.ERROR_CORRECTION,
-                    ErrorCorrectionLevel.L);
-            String rs;
-            try {
-                rs = readQR(path, charset, hashMap);
-                String[] srs = rs.split(" ");
-                user = srs[0];
-                pass = srs[1];
-                NhanVien nv = new NhanVienDAO().selectById(user);
-                utils.Auth.user = nv;
-                dispose();
-                new Main().setVisible(true);
-            } catch (IOException | NotFoundException ex) {
-                DialogHelper.alert(this, "Không thể đọc file");
-            }
-        }
-    }//GEN-LAST:event_lblQRMouseClicked
 
     /**
      * @param args the command line arguments
@@ -468,14 +363,10 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnLogin;
     private javax.swing.JCheckBox chkRemember;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblFB;
     private javax.swing.JLabel lblFP;
-    private javax.swing.JLabel lblGmail;
     private javax.swing.JLabel lblHinh;
-    private javax.swing.JLabel lblQR;
     private swing.PasswordField txtPass;
     private swing.TextField txtUser;
     // End of variables declaration//GEN-END:variables
