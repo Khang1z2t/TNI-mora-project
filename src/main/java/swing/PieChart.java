@@ -36,6 +36,7 @@ public class PieChart extends JComponent {
     private int hoverIndex = -1;
     private float borderHover = 0.05f;
     private float padding = 0.2f;
+    private String type = "VNĐ";
 
     public PieChart() {
         models = new ArrayList<>();
@@ -137,7 +138,7 @@ public class PieChart extends JComponent {
                 double lblSize = size / 2;
                 double lblX = centerX + cosX * lblSize;
                 double lblY = centerY + sinY * lblSize;
-                String detail = format.format(data.getValues()) + " VNĐ (" + text + ")";
+                String detail = format.format(data.getValues()) + " " + type + " (" + text + ")";
                 drawPopupLabel(g2, size, textAngle, lblX, lblY, data.getName(), detail);
             }
             drawAngle -= angle;
@@ -242,6 +243,14 @@ public class PieChart extends JComponent {
             max += data.getValues();
         }
         return max;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getSelectedIndex() {

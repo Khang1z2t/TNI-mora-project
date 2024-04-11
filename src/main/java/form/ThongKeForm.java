@@ -135,6 +135,7 @@ public class ThongKeForm extends javax.swing.JPanel {
                 index++;
             }
         }
+        pieChart.setType("VNĐ");
     }
 
 
