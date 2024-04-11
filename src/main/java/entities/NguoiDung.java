@@ -16,45 +16,44 @@ public class NguoiDung {
     private boolean GioiTinh;
     private Date ngaySinh;
     private String DienThoai;
-    private String cap;
     private String MaNhanVien;
     private Date NgayDangKi = new Date();
 
     public NguoiDung() {
     }
 
-    public NguoiDung(String MaNguoiDung, String TenNguoiDung, boolean GioiTinh, Date ngaySinh, String DienThoai, String cap, String MaNhanVien) {
-        this.MaNguoiDung = MaNguoiDung;
-        this.TenNguoiDung = TenNguoiDung;
-        this.GioiTinh = GioiTinh;
+    public NguoiDung(String maNguoiDung, String tenNguoiDung, boolean gioiTinh, Date ngaySinh, String dienThoai, String maNhanVien, Date ngayDangKi) {
+        MaNguoiDung = maNguoiDung;
+        TenNguoiDung = tenNguoiDung;
+        GioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
-        this.DienThoai = DienThoai;
-        this.cap = cap;
-        this.MaNhanVien = MaNhanVien;
+        DienThoai = dienThoai;
+        MaNhanVien = maNhanVien;
+        NgayDangKi = ngayDangKi;
     }
 
     public String getMaNguoiDung() {
         return MaNguoiDung;
     }
 
-    public void setMaNguoiDung(String MaNguoiDung) {
-        this.MaNguoiDung = MaNguoiDung;
+    public void setMaNguoiDung(String maNguoiDung) {
+        MaNguoiDung = maNguoiDung;
     }
 
     public String getTenNguoiDung() {
         return TenNguoiDung;
     }
 
-    public void setTenNguoiDung(String TenNguoiDung) {
-        this.TenNguoiDung = TenNguoiDung;
+    public void setTenNguoiDung(String tenNguoiDung) {
+        TenNguoiDung = tenNguoiDung;
     }
 
     public boolean isGioiTinh() {
         return GioiTinh;
     }
 
-    public void setGioiTinh(boolean GioiTinh) {
-        this.GioiTinh = GioiTinh;
+    public void setGioiTinh(boolean gioiTinh) {
+        GioiTinh = gioiTinh;
     }
 
     public Date getNgaySinh() {
@@ -69,32 +68,23 @@ public class NguoiDung {
         return DienThoai;
     }
 
-    public void setDienThoai(String DienThoai) {
-        this.DienThoai = DienThoai;
-    }
-
-    public String getCap() {
-        return cap;
-    }
-
-    public void setCap(String cap) {
-        this.cap = cap;
+    public void setDienThoai(String dienThoai) {
+        DienThoai = dienThoai;
     }
 
     public String getMaNhanVien() {
         return MaNhanVien;
     }
 
-    public void setMaNhanVien(String MaNhanVien) {
-        this.MaNhanVien = MaNhanVien;
+    public void setMaNhanVien(String maNhanVien) {
+        MaNhanVien = maNhanVien;
     }
 
     public Date getNgayDangKi() {
         return NgayDangKi;
     }
 
-    public void setNgayDangKi(Date NgayDangKi) {
-        this.NgayDangKi = NgayDangKi;
+    public void setNgayDangKi(Date ngayDangKi) {
+        NgayDangKi = ngayDangKi;
     }
-
 }

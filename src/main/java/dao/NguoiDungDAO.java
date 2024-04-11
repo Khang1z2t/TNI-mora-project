@@ -16,14 +16,13 @@ import java.util.List;
  */
 public class NguoiDungDAO {
     public void insert(NguoiDung nd) {
-        String sql = "INSERT INTO NGUOIDUNG VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO NGUOIDUNG VALUES (?, ?, ?, ?, ?, ?, ?)";
         utils.JDBCHelper.update(sql,
                 nd.getMaNguoiDung(),
                 nd.getTenNguoiDung(),
                 nd.isGioiTinh(),
                 nd.getNgaySinh(),
                 nd.getDienThoai(),
-                nd.getCap(),
                 nd.getMaNhanVien(),
                 nd.getNgayDangKi()
         );
@@ -31,14 +30,13 @@ public class NguoiDungDAO {
     }
 
     public void update(NguoiDung nd) {
-        String sql = "UPDATE NGUOIDUNG SET HOTEN = ?, GIOITINH= ?, NGAYSINH = ?, DIENTHOAI = ?, CAP = ?,MANV = ? WHERE MAND = ?";
+        String sql = "UPDATE NGUOIDUNG SET HOTEN = ?, GIOITINH= ?, NGAYSINH = ?, DIENTHOAI = ?,MANV = ? WHERE MAND = ?";
 
         utils.JDBCHelper.update(sql,
                 nd.getTenNguoiDung(),
                 nd.isGioiTinh(),
                 nd.getNgaySinh(),
                 nd.getDienThoai(),
-                nd.getCap(),
                 nd.getMaNhanVien(),
                 nd.getMaNguoiDung()
         );
@@ -68,8 +66,7 @@ public class NguoiDungDAO {
                     st.setGioiTinh((rs.getInt(3) != 0));
                     st.setNgaySinh(rs.getDate(4));
                     st.setDienThoai(rs.getString(5));
-                    st.setCap(rs.getString(6));
-                    st.setMaNhanVien(rs.getString(7));
+                    st.setMaNhanVien(rs.getString(6));
                     lstNguoiDung.add(st);
                 }
             } finally {

@@ -13,22 +13,26 @@ import java.util.List;
 
 public class NhanVienDAO {
     public void insert(NhanVien model) {
-        String sql = "INSERT INTO NHANVIEN VALUES (?, ?, ?, ?, ?,?)";
+        String sql = "INSERT INTO NHANVIEN VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         utils.JDBCHelper.update(sql,
                 model.getMaNhanVien(),
                 model.getMatKhau(),
                 model.getHoVaTen(),
                 model.getEmail(),
+                model.getCap(),
+                model.getNgaytraluong(),
                 model.isVaiTro(),
                 model.isSA());
     }
 
     public void update(NhanVien model) {
-        String sql = "UPDATE NHANVIEN SET MATKHAU = ?, HOTEN = ?, EMAIL = ? ,VAITRO = ?,isSuperAdmin =? WHERE MANV = ?";
+        String sql = "UPDATE NHANVIEN SET MATKHAU = ?, HOTEN = ?, EMAIL = ? , CAP = ?, NgayTraluong = ?, VAITRO = ?,isSuperAdmin =? WHERE MANV = ?";
         utils.JDBCHelper.update(sql,
                 model.getMatKhau(),
                 model.getHoVaTen(),
                 model.getEmail(),
+                model.getCap(),
+                model.getNgaytraluong(),
                 model.isVaiTro(),
                 model.isSA(),
                 model.getMaNhanVien());
@@ -68,8 +72,10 @@ public class NhanVienDAO {
                     entity.setMatKhau(rs.getString(2));
                     entity.setHoVaTen(rs.getString(3));
                     entity.setEmail(rs.getString(4));
-                    entity.setVaiTro(rs.getBoolean(5));
-                    entity.setSA(rs.getBoolean(6));
+                    entity.setCap(rs.getString(5));
+                    entity.setNgaytraluong(rs.getTimestamp(6));
+                    entity.setVaiTro(rs.getBoolean(7));
+                    entity.setSA(rs.getBoolean(8));
                     list.add(entity);
                 }
             } finally {

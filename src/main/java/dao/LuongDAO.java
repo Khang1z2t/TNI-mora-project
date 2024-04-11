@@ -75,7 +75,7 @@ public class LuongDAO {
     }
 
     public List<Integer> selectThang() {
-        String sql = "SELECT DISTINCT MONTH(NGAYDK) MONTH FROM NguoiDung ORDER BY MONTH DESC";
+        String sql = "SELECT DISTINCT MONTH(ngaytraluong) MONTH FROM NhanVien ORDER BY MONTH DESC";
         List<Integer> list = new ArrayList<>();
         try {
             ResultSet rs = null;

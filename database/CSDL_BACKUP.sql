@@ -8,6 +8,8 @@ create table NhanVien(
 	MATKHAU VARCHAR(50) NOT NULL,
 	HOTEN NVARCHAR(50) NOT NULL,
 	EMAIL nvarchar(50) not null,
+	cap varchar(10) null,
+	NgayTraLuong DATETIME DEFAULT DATEADD(DAY, 6, DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0)),
 	VAITRO BIT DEFAULT 0
 );
 -- Tạo bảng nhân viên
@@ -17,7 +19,6 @@ CREATE TABLE NguoiDung(
 	GIOITINH BIT DEFAULT 1,
 	NGAYSINH DATE NOT NULL,
 	DIENTHOAI VARCHAR(13) null,
-	cap varchar(10) null,
 	MANV VARCHAR(20) NOT NULL,
 	NGAYDK DATE DEFAULT GETDATE()
 );	
@@ -26,12 +27,8 @@ create table Luong(
 	cap varchar(10) primary key,
 	luong int null,
 );
-ALTER TABLE Luong
-ADD NgayTraLuong DATE;
 
--- Cập nhật dữ liệu để đặt ngày trả lương mặc định là ngày cuối cùng của tháng
-UPDATE Luong
-SET NgayTraLuong = DATEADD(DAY, -1, DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) + 1, 0));
+-- Mặc định ngày trả lương là 7-tháng-năm
 -- Default là 0 -> Thủ thư
 -- 1 là Quản lý
 
@@ -58,7 +55,7 @@ create table thanhvien(
 	gioitinh bit default 0,
 	diem int default 0
 );
-
+/*
 -- Tạo bảng đọc giả
 CREATE TABLE DocGia (
     MaDocGia nvarchar(20) PRIMARY KEY,
@@ -67,7 +64,7 @@ CREATE TABLE DocGia (
 	masach nvarchar(20) null,
     SDT nvarchar(13) NULL
 );
-
+*/
 -- Tạo bảng hóa đơn bán sách
 CREATE TABLE HoaDon (
     MaHoaDon nvarchar(20) PRIMARY KEY,
@@ -142,8 +139,8 @@ ALTER TABLE NGUOIDUNG
 ADD CONSTRAINT FK_NGUOIDUNG_NHANVIEN FOREIGN KEY (MANV) REFERENCES NHANVIEN(MANV)
 -- Phai co Tac gia va the loai truoc moi co thong tin du lieu Tac gia va the loai
 
-alter table nguoidung
-add constraint FK_nguoidung_luong foreign key (cap) references luong(cap)
+alter table NhanVien
+add constraint FK_NhanVien_luong foreign key (cap) references luong(cap)
 
 alter table sach
 add constraint FK_Sach_qltacgia foreign key (matacgia) references qltacgia(matacgia)
@@ -163,11 +160,10 @@ add constraint FK_giohang_sach foreign key (masach) references sach(masach)
 /*
 alter table giohang
 add constraint FK_giohang_tichdiem foreign key (mathanhvien) references thanhvien(mathanhvien)
-*/
 
 alter table docgia
 add constraint FK_docgia_sach foreign key (masach) references sach(masach)
-
+*/
 alter table hoadon
 add constraint FK_hoadon_NhanVien foreign key (MaNV) references NhanVien(MaNV)
 
@@ -198,11 +194,11 @@ alter table ChiTietPhieuNhap
 add constraint FK_ChiTietPhieuNhap_Sach foreign key (MaSach) references Sach(MaSach)
 
 -- Thêm dữ liệu
-insert into NHANVIEN(MANV,MATKHAU,HOTEN,EMAIL,VAITRO) values 
-('ADMIN','ADMIN',N'Nguyen Dinh Tuan','tuanndps36835@fpt.edu.vn',2)
+insert into NHANVIEN(MANV,MATKHAU,HOTEN,EMAIL,CAP,VAITRO) values 
+('ADMIN','ADMIN',N'Nguyễn Đình Tuấn','tuanndps36835@fpt.edu.vn','O1',2)
 INSERT INTO NGUOIDUNG VALUES 
-('ADMIN', N'Nguyen Dinh Tuan', 0, '08-16-2004', '0783955138','O1', 'ADMIN', GETDATE())
-insert into luong values
+('ADMIN', N'Nguyễn Đình Tuấn', 0, '08-16-2004', '0783955138', 'ADMIN', GETDATE())
+insert into luong(cap,luong) values
 ('O1','5000000'),
 ('O2','10000000')
 -- Thêm dữ liệu vào bảng qlTheLoai
@@ -317,21 +313,20 @@ BEGIN
             WHEN NV.VAITRO = 2 THEN N'Nhân viên'
             ELSE 'Khác'
         END AS 'Vai Trò',
-        ND.cap AS 'Cấp',
+        NV.cap AS 'Cấp',
         L.luong AS 'Lương'
     FROM 
-        NguoiDung ND
+        Luong L
     INNER JOIN 
-        Luong L ON ND.cap = L.cap
-    INNER JOIN 
-        NhanVien NV ON ND.MANV = NV.MANV
+        NhanVien NV ON L.cap = NV.cap
     WHERE 
-        MONTH(ND.NGAYDK) = @thang
+        MONTH(NV.NgayTraLuong) = @thang
 END;
 
 
+
 /*****************************************************************************************/
---SELECT DISTINCT MONTH(NGAYDK) MONTH FROM NguoiDung ORDER BY MONTH DESC
+--SELECT DISTINCT MONTH(NGAYDK) MONTH FROM NhanVien ORDER BY MONTH DESC
 
 /*THONG KE*/
 /****************************************************************************************/
@@ -361,9 +356,9 @@ BEGIN
 
     -- Tính tổng tiền trả lương NV trong tháng
     SELECT @TongTienTraLuongNV = SUM(Luong)
-    FROM NguoiDung nd
-    INNER JOIN Luong l ON nd.cap = l.cap
-    WHERE MONTH(l.NgayTraLuong) = @thang;
+    FROM NhanVien nv
+    INNER JOIN Luong l ON nv.cap = l.cap
+    WHERE MONTH(nv.NgayTraLuong) = @thang;
 
     -- Trả về kết quả
     SELECT
@@ -538,3 +533,5 @@ END;
 
 --drop proc sp_getTopSachBan
 /****************************************************************************************/
+select * from NhanVien
+select * from thanhvien

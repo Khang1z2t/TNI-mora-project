@@ -4,6 +4,8 @@
  */
 package entities;
 
+import java.sql.Timestamp;
+
 public class NhanVien {
     private String MaNhanVien;
     private String MatKhau;
@@ -11,6 +13,8 @@ public class NhanVien {
     private String Email;
     private boolean VaiTro = false;
     private boolean SA = false;
+    private String cap;
+    private Timestamp ngaytraluong;
 
     public NhanVien() {
     }
@@ -20,51 +24,55 @@ public class NhanVien {
         return MaNhanVien + "-" + HoVaTen;
     }
 
-    public NhanVien(String MaNhanVien, String MatKhau, String HoVaTen, String Email) {
-        this.MaNhanVien = MaNhanVien;
-        this.MatKhau = MatKhau;
-        this.HoVaTen = HoVaTen;
-        this.Email = Email;
+    public NhanVien(String maNhanVien, String matKhau, String hoVaTen, String email, boolean vaiTro, boolean SA, String cap, Timestamp ngaytraluong) {
+        MaNhanVien = maNhanVien;
+        MatKhau = matKhau;
+        HoVaTen = hoVaTen;
+        Email = email;
+        VaiTro = vaiTro;
+        this.SA = SA;
+        this.cap = cap;
+        this.ngaytraluong = ngaytraluong;
     }
 
     public String getMaNhanVien() {
         return MaNhanVien;
     }
 
-    public void setMaNhanVien(String MaNhanVien) {
-        this.MaNhanVien = MaNhanVien;
+    public void setMaNhanVien(String maNhanVien) {
+        MaNhanVien = maNhanVien;
     }
 
     public String getMatKhau() {
         return MatKhau;
     }
 
-    public void setMatKhau(String MatKhau) {
-        this.MatKhau = MatKhau;
+    public void setMatKhau(String matKhau) {
+        MatKhau = matKhau;
     }
 
     public String getHoVaTen() {
         return HoVaTen;
     }
 
-    public void setHoVaTen(String HoVaTen) {
-        this.HoVaTen = HoVaTen;
+    public void setHoVaTen(String hoVaTen) {
+        HoVaTen = hoVaTen;
     }
 
     public String getEmail() {
         return Email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        Email = email;
     }
 
     public boolean isVaiTro() {
         return VaiTro;
     }
 
-    public void setVaiTro(boolean VaiTro) {
-        this.VaiTro = VaiTro;
+    public void setVaiTro(boolean vaiTro) {
+        VaiTro = vaiTro;
     }
 
     public boolean isSA() {
@@ -75,5 +83,19 @@ public class NhanVien {
         this.SA = SA;
     }
 
+    public String getCap() {
+        return cap;
+    }
 
+    public void setCap(String cap) {
+        this.cap = cap;
+    }
+
+    public Timestamp getNgaytraluong() {
+        return ngaytraluong;
+    }
+
+    public void setNgaytraluong(Timestamp ngaytraluong) {
+        this.ngaytraluong = ngaytraluong;
+    }
 }
