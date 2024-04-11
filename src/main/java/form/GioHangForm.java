@@ -297,7 +297,7 @@ public class GioHangForm extends javax.swing.JPanel {
         btnConfirm = new javax.swing.JButton();
         panelBorder5 = new swing.PanelBorder();
         jPanel3 = new javax.swing.JPanel();
-        txtFindPhieuNhap = new javax.swing.JTextField();
+        txtFindHD = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         txtTuNgay = new com.toedter.calendar.JDateChooser();
         txtDenNgay = new com.toedter.calendar.JDateChooser();
@@ -624,9 +624,9 @@ public class GioHangForm extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
-        txtFindPhieuNhap.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtFindHD.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtFindPhieuNhapKeyReleased(evt);
+                txtFindHDKeyReleased(evt);
             }
         });
 
@@ -636,13 +636,13 @@ public class GioHangForm extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtFindPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                .addComponent(txtFindHD, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(txtFindPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFindHD, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 7, Short.MAX_VALUE))
         );
 
@@ -870,29 +870,29 @@ public class GioHangForm extends javax.swing.JPanel {
         timer.start(); // Bắt đầu đếm thời gian
     }//GEN-LAST:event_btnConfirmActionPerformed
 
-    private void txtFindPhieuNhapKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindPhieuNhapKeyReleased
+    private void txtFindHDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindHDKeyReleased
         // TODO add your handling code here:
-//        fillTableSach();
-    }//GEN-LAST:event_txtFindPhieuNhapKeyReleased
+        fillTableHD();
+    }//GEN-LAST:event_txtFindHDKeyReleased
 
     private void txtTuNgayPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtTuNgayPropertyChange
         // TODO add your handling code here:
-//        fillTableSach();
+        fillTableHD();
     }//GEN-LAST:event_txtTuNgayPropertyChange
 
     private void txtDenNgayPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtDenNgayPropertyChange
         // TODO add your handling code here:
-//        fillTableSach();
+        fillTableHD();
     }//GEN-LAST:event_txtDenNgayPropertyChange
 
     private void txtTuGiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTuGiaKeyReleased
         // TODO add your handling code here:
-//        fillTableSach();
+        fillTableHD();
     }//GEN-LAST:event_txtTuGiaKeyReleased
 
     private void txtDenGiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDenGiaKeyReleased
         // TODO add your handling code here:
-//        fillTableSach();
+        fillTableHD();
     }//GEN-LAST:event_txtDenGiaKeyReleased
 
     private void tblGioHangMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGioHangMouseReleased
@@ -967,7 +967,7 @@ public class GioHangForm extends javax.swing.JPanel {
     private swing.Table tblHoaDon;
     private javax.swing.JTextField txtDenGia;
     private com.toedter.calendar.JDateChooser txtDenNgay;
-    private javax.swing.JTextField txtFindPhieuNhap;
+    private javax.swing.JTextField txtFindHD;
     private swing.TextField txtMaTV;
     private swing.TextField txtNV;
     private swing.TextField txtSoLuong;
@@ -1105,7 +1105,13 @@ public class GioHangForm extends javax.swing.JPanel {
             "Mã hóa đơn", "Nguời tạo", "Mã thành viên", "Ngày tạo", "Tổng tiền"
         });
         model.setRowCount(0);
-        for (Hoadon hd : hdDAO.selectAll()) {
+        String find = txtFindHD.getText();
+        String formDate = XDate.toString(txtTuNgay.getDate());
+        String toDate = XDate.toString(txtDenNgay.getDate());
+        String minPrice = txtTuGia.getText();
+        String maxPrice = txtDenGia.getText();
+        List<Hoadon> hdList = hdDAO.selectByKeyword(find, formDate, toDate, minPrice, maxPrice);
+        for (Hoadon hd : hdList) {
             Object[] row = new Object[]{
                 hd.getMaHoaDon(),
                 hd.getMaNV(),
@@ -1119,7 +1125,7 @@ public class GioHangForm extends javax.swing.JPanel {
         spTblHoaDon.getVerticalScrollBar().setBackground(Color.white);
         spTblHoaDon.getViewport().setBackground(Color.white);
     }
-    
+
     private void XemCTHoaDon() {
         String maHD = (String) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0);
         Hoadon hd = hdDAO.selectById(maHD);

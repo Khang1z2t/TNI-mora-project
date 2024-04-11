@@ -5,10 +5,11 @@
  */
 package component;
 
-
+import form.CaiDatForm;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import ui.Main;
 
 /**
  * @author NGUYEN THI NGUYET VY
@@ -22,7 +23,7 @@ public class Header extends javax.swing.JPanel {
         initComponents();
         setOpaque(false);
     }
-
+    
     @Override
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
@@ -33,7 +34,7 @@ public class Header extends javax.swing.JPanel {
         g2.fillRect(getWidth() - 25, getHeight() - 25, getWidth(), getHeight());
         super.paintComponent(grphcs);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -99,6 +100,7 @@ public class Header extends javax.swing.JPanel {
 
     private void lblSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSettingsMouseClicked
 //        new SettingJDialog((Frame) getParent(), true).setVisible(true);
+        Main.Instance.setForm(new CaiDatForm());
     }//GEN-LAST:event_lblSettingsMouseClicked
 
 

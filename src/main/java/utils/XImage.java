@@ -2,6 +2,7 @@ package utils;
 
 import java.awt.Image;
 import java.io.File;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,8 +13,8 @@ public class XImage {
     // Ảnh biểu tượng của ứng dụng, xuất hiện trên mọi cửa sổ
 
     public static Image getAppIcon() {
-        String file = "/icon/education.png";
-        return new ImageIcon(XImage.class.getResource(file)).getImage();
+        URL url = XImage.class.getResource("/icon/mora.png");
+        return new ImageIcon(url).getImage();
     }
 
     //    /**
