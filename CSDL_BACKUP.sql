@@ -363,7 +363,7 @@ BEGIN
 END;
 
 
-EXECUTE sp_ThongKe
+EXECUTE sp_ThongKe 4
 /****************************************************************************************/
 SET ANSI_NULLS ON
 GO
