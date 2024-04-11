@@ -121,9 +121,9 @@ public class ThongKeForm extends javax.swing.JPanel {
         List<Double[]> listTK = tkd.getThongKe();
 
         String[] name = new String[]{
-                "Tổng số lượng sách đã nhập",
-                "Tổng số lượng sách đã bán",
-                "Tổng số lượng nhân viên",
+//                "Tổng số lượng sách đã nhập",
+//                "Tổng số lượng sách đã bán",
+//                "Tổng số lượng nhân viên",
                 "Tổng tiền đã nhập",
                 "Tổng tiền đã bán",
                 "Tổng tiền đã trả lương NV"

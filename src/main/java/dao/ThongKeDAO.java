@@ -99,7 +99,8 @@ public class ThongKeDAO {
         
         public List<Double[]> getThongKe(){
             String sql = "{CALL sp_ThongKe}";
-            String[] cols = {"Tổng số lượng sách đã nhập", "Tổng số lượng sách đã bán", "Tổng số lượng Nhân viên", "Tổng tiền đã nhập", "Tổng tiền đã bán", "Tổng tiền trả lương"};
+            String[] cols = { "Tổng tiền đã nhập", "Tổng tiền đã bán", "Tổng tiền trả lương"};
             return this.getListOfArrayDB(sql, cols);
         }
+//"Tổng số lượng sách đã nhập", "Tổng số lượng sách đã bán", "Tổng số lượng Nhân viên",
 }
