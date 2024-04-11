@@ -41,7 +41,7 @@ public class ThongKeForm extends javax.swing.JPanel {
 //        fillTableTK();
         fillChartSL();
         fillDatatoChar();
-
+        DBFilltoList();
     }
 
     private void initTable() {
