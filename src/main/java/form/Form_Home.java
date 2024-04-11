@@ -50,12 +50,13 @@ public class Form_Home extends javax.swing.JPanel {
         List<Object[]> topDT = tkdao.getTopDoanhThu();
         List<Object[]> topNV = tkdao.getTopNV();
         List<Object[]> topSach = tkdao.getTopSach();
-        if (topDT != null && topNV != null && topSach != null) {
-            // Lấy dữ liệu từ danh sách
-            Object[] dtData = topDT.get(0);
-            Object[] nvData = topNV.get(0);
-            Object[] sachData = topSach.get(0);
 
+        // Lấy dữ liệu từ danh sách
+        Object[] dtData = topDT.get(0);
+        Object[] nvData = topNV.get(0);
+        Object[] sachData = topSach.get(0);
+
+        if (dtData != null && nvData != null && sachData != null) {
             // Tạo các đối tượng Model_Card
             Model_Card dtCard = new Model_Card(new ImageIcon(getClass().getResource("/icon/8.png")), "Doanh thu", MoneyFormat.format(dtData[0]), dtData[1].toString());
             Model_Card nvCard = new Model_Card(new ImageIcon(getClass().getResource("/icon/2.png")), "Best Staff Tháng", nvData[0].toString(), nvData[1] + " Đơn - " + MoneyFormat.format(nvData[2]));
