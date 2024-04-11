@@ -139,6 +139,7 @@ public class ThongKeForm extends javax.swing.JPanel {
 //        tblThongKe.setModel(tblModel);
 //}
     private void fillDatatoChar() {
+        pieChart.clearData();
         int thang = (int) cbxThangTK.getSelectedItem();
         List<Double[]> listTK = tkd.getThongKe(thang);
 
@@ -161,7 +162,7 @@ public class ThongKeForm extends javax.swing.JPanel {
     }
 
     private void fillChartSL() {
-        int thang = (int) cbxThangTK.getSelectedItem();
+        int thang = (int) cbxThangS.getSelectedItem();
         List<Double[]> ist = tkd.getTKSL(thang);
 
         String[] name = new String[]{
@@ -170,13 +171,15 @@ public class ThongKeForm extends javax.swing.JPanel {
             "Tổng số lượng sách còn trong kho"
         };
         int index = 0;
+        tksl.setType("quyển");
+        tksl.clearData();
         for (Double[] values : ist) {
             for (Double value : values) {
                 tksl.addData(new ModelPieChart(name[index], value, getColor(index)));
                 index++;
             }
         }
-        tksl.setType("Số lượng");
+
     }
 
     private Color getColor(int index) {
@@ -410,6 +413,7 @@ public class ThongKeForm extends javax.swing.JPanel {
 
     private void cbxThangSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangSActionPerformed
         // TODO add your handling code here:
+        fillChartSL();
     }//GEN-LAST:event_cbxThangSActionPerformed
 
     private void cbxThangLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangLActionPerformed
@@ -418,7 +422,7 @@ public class ThongKeForm extends javax.swing.JPanel {
 
     private void cbxThangTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangTKActionPerformed
         // TODO add your handling code here:
-        fillTable();
+        fillDatatoChar();
     }//GEN-LAST:event_cbxThangTKActionPerformed
 
 

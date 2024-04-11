@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
+
 import model.ModelPieChart;
 
 public class PieChart extends JComponent {
@@ -32,7 +33,8 @@ public class PieChart extends JComponent {
     private int hoverIndex = -1;
     private float borderHover = 0.05f;
     private float padding = 0.2f;
-    private String type = "Số lượng";
+    private String type = "";
+    private boolean hasData = true;
 
     public PieChart() {
         models = new ArrayList<>();
@@ -131,7 +133,7 @@ public class PieChart extends JComponent {
                 double labelSize = size / 2;
                 double labelX = centerX + cosX * labelSize;
                 double labelY = centerY + sinY * labelSize;
-                String detail = format.format(data.getValues()) + " " + type + " (" + text + ")";
+                String detail = hasData ? format.format(data.getValues()) + " " + type + " (" + text + ")" : "No data " + type + " (" + text + ")";
                 drawPopupLabel(g2, size, textAngle, labelX, labelY, data.getName(), detail);
             }
             drawAngle -= angle;
@@ -287,15 +289,29 @@ public class PieChart extends JComponent {
     public void setType(String type) {
         this.type = type;
     }
-    
-    
+
+
     public void clearData() {
-        models.clear();
+        if (models.isEmpty()) {
+            noData();
+        } else {
+            models.clear();
+        }
         repaint();
     }
 
     public void addData(ModelPieChart data) {
         models.add(data);
+        hasData = true;
+    }
+
+    public void noData() {
+        if (models.isEmpty()) {
+            ModelPieChart data = new ModelPieChart("No data", 1, Color.GRAY);
+            models.add(data);
+            this.setType("");
+            hasData = false;
+        }
     }
 
     public static enum PeiChartType {

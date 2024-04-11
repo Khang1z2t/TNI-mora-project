@@ -266,6 +266,16 @@ SET IsSuperAdmin = 1
 
 WHERE VAITRO = 2;
 
+-- Cập nhật tháng của Phiếu Nhập 1 về tháng 3
+UPDATE PhieuNhap
+SET NgayTao = DATEADD(MONTH, 3 - MONTH(NgayTao), NgayTao)
+WHERE MaNhap = 'PN1';
+
+-- Cập nhật tháng của Hóa Đơn 1 về tháng 3
+UPDATE HoaDon
+SET ngaytao = DATEADD(MONTH, 3 - MONTH(ngaytao), ngaytao)
+WHERE MaHoaDon = 'HD1';
+
 /**
 SET ANSI_NULLS ON
 GO
@@ -364,6 +374,8 @@ END;
 
 
 EXECUTE sp_ThongKe
+
+drop proc sp_ThongKe
 /****************************************************************************************/
 SET ANSI_NULLS ON
 GO
