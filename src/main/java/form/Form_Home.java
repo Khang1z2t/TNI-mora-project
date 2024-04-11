@@ -51,12 +51,12 @@ public class Form_Home extends javax.swing.JPanel {
         List<Object[]> topNV = tkdao.getTopNV();
         List<Object[]> topSach = tkdao.getTopSach();
 
-        // Lấy dữ liệu từ danh sách
-        Object[] dtData = topDT.get(0);
-        Object[] nvData = topNV.get(0);
-        Object[] sachData = topSach.get(0);
+        if (!topDT.isEmpty() && !topNV.isEmpty() && !topSach.isEmpty()) {
+            // Lấy dữ liệu từ danh sách
+            Object[] dtData = topDT.get(0);
+            Object[] nvData = topNV.get(0);
+            Object[] sachData = topSach.get(0);
 
-        if (dtData != null && nvData != null && sachData != null) {
             // Tạo các đối tượng Model_Card
             Model_Card dtCard = new Model_Card(new ImageIcon(getClass().getResource("/icon/8.png")), "Doanh thu", MoneyFormat.format(dtData[0]), dtData[1].toString());
             Model_Card nvCard = new Model_Card(new ImageIcon(getClass().getResource("/icon/2.png")), "Best Staff Tháng", nvData[0].toString(), nvData[1] + " Đơn - " + MoneyFormat.format(nvData[2]));
@@ -66,7 +66,7 @@ public class Form_Home extends javax.swing.JPanel {
             card1.setData(dtCard);
             card2.setData(nvCard);
             card3.setData(sachCard);
-        } else {
+        } else{
             card1.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/8.png")), "Doanh thu", "$200000", "Tăng nhanh hơn so với 2023"));
             card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/3.png")), "Bán chạy nhất", "Pháp sư tiễn táng Frieren", "10000 Bản"));
             card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/2.png")), "Best Staff Tháng", "Nguyễn Đình Tuấn", "Không sai bill"));
