@@ -331,7 +331,7 @@ END;
 
 
 /*****************************************************************************************/
-SELECT DISTINCT MONTH(NGAYDK) MONTH FROM NguoiDung ORDER BY MONTH DESC
+--SELECT DISTINCT MONTH(NGAYDK) MONTH FROM NguoiDung ORDER BY MONTH DESC
 
 /*THONG KE*/
 /****************************************************************************************/
@@ -373,9 +373,9 @@ BEGIN
 END;
 
 
-EXECUTE sp_ThongKe
+--EXECUTE sp_ThongKe
 
-drop proc sp_ThongKe
+--drop proc sp_ThongKe
 /****************************************************************************************/
 SET ANSI_NULLS ON
 GO
@@ -413,4 +413,128 @@ BEGIN
         @TongSoLuongSachDaBan AS N'Tổng số lượng sách đã bán trong tháng',
         @TongSoLuongSachTrongKho AS N'Tổng số lượng sách còn trong kho';
 END;
-exec sp_TongSLNhapBanTonKho 4
+--exec sp_TongSLNhapBanTonKho 4
+
+/****************************************************************************************/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_SoLuongDonHang]
+    @MaNV VARCHAR(20)
+AS
+BEGIN
+    SELECT COUNT(*) AS SlgDon
+    FROM HoaDon
+    WHERE MaNV = @MaNV;
+END;
+
+--exec sp_SoLuongDonHang 'ADMIN'
+/****************************************************************************************/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE sp_getTopNVBan
+AS
+BEGIN
+    -- Lấy mã nhân viên bán hàng nhiều nhất
+        DECLARE @TopNV VARCHAR(20);
+        DECLARE @TongDon int;
+        SELECT TOP 1 @TopNV = MaNV, @TongDon = COUNT(*)
+        FROM HoaDon hd
+        GROUP BY MaNV
+        ORDER BY COUNT(*) DESC;
+
+        -- Lấy tên Nhân viên
+        DECLARE @TenNV NVARCHAR(50);
+        SELECT @TenNV = HOTEN
+        FROM NhanVien
+        WHERE MANV = @TopNV;
+
+        -- Tính tổng tiền mà nhân viên này đã bán
+        DECLARE @TotalSales MONEY;
+        SELECT @TotalSales = SUM(cthd.SoLuong * s.gia)
+        FROM ChiTietHoaDon cthd
+        INNER JOIN Sach s ON cthd.MaSach = s.masach
+        WHERE cthd.MaHoaDon IN (
+            SELECT MaHoaDon
+            FROM HoaDon
+            WHERE MaNV = @TopNV
+        );
+
+        -- Trả về kết quả
+        SELECT
+            @TenNV AS TenNV,
+            @TongDon AS SoDon,
+            @TotalSales AS TongTien;
+END;
+
+--exec sp_getTopNVBan
+
+--drop proc sp_getTopNVBan
+/****************************************************************************************/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE sp_getTopDoanhThu
+AS
+BEGIN
+    -- Tính tổng tiền đã bán
+    DECLARE @TongTienBan MONEY;
+	DECLARE @TongTienNhap MONEY;
+    DECLARE @ThongKe nvarchar(50);
+    SELECT @TongTienBan = SUM(TongTien)
+    FROM HoaDon;
+
+     -- Tính tổng tiền đã nhập
+    SELECT @TongTienNhap = SUM(Tongtien)
+    FROM PhieuNhap;
+
+    -- So sánh tổng tiền bán và tổng tiền nhập
+    IF @TongTienBan > @TongTienNhap
+        SET @ThongKe = N'Đang phát triển';
+    ELSE
+        SET @ThongKe = N'Có Nguy cơ lỗ vốn';
+
+    SELECT
+        @TongTienBan AS TongTienBan,
+        @ThongKe AS ThongKe
+END;
+
+exec sp_getTopDoanhThu
+
+--drop proc sp_getTopDoanhThu
+/****************************************************************************************/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE sp_getTopSachBan
+AS
+BEGIN
+    -- Lấy sách bán chạy nhất
+    DECLARE @TopSach NVARCHAR(20);
+    DECLARE @SoLuongBan INT;
+    SELECT TOP 1 @TopSach = MaSach, @SoLuongBan = SUM(SoLuong)
+    FROM ChiTietHoaDon cthd
+    GROUP BY MaSach
+    ORDER BY SUM(SoLuong) DESC;
+
+    -- Lấy tên sách
+    DECLARE @TenSach NVARCHAR(200);
+    SELECT @TenSach = tensach
+    FROM Sach
+    WHERE masach = @TopSach;
+
+    -- Trả về kết quả
+    SELECT
+        @TenSach AS TenSach,
+        @SoLuongBan AS SoLuongBan;
+END;
+
+--exec sp_getTopSachBan
+
+--drop proc sp_getTopSachBan
+/****************************************************************************************/
