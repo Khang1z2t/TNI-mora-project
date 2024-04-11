@@ -58,8 +58,8 @@ public class Form_Home extends javax.swing.JPanel {
 
             // Tạo các đối tượng Model_Card
             Model_Card dtCard = new Model_Card(new ImageIcon(getClass().getResource("/icon/8.png")), "Doanh thu", MoneyFormat.format(dtData[0]), dtData[1].toString());
-            Model_Card nvCard = new Model_Card(new ImageIcon(getClass().getResource("/icon/2.png")), "Best Staff Tháng", nvData[0].toString(), nvData[1] + " Đơn");
-            Model_Card sachCard = new Model_Card(new ImageIcon(getClass().getResource("/icon/3.png")), "Bán chạy nhất", sachData[0].toString(), sachData[1] + " Bản");
+            Model_Card nvCard = new Model_Card(new ImageIcon(getClass().getResource("/icon/2.png")), "Best Staff Tháng", nvData[0].toString(), nvData[1] + " Đơn - " + MoneyFormat.format(nvData[2]));
+            Model_Card sachCard = new Model_Card(new ImageIcon(getClass().getResource("/icon/3.png")), "Bán chạy nhất", sachData[0].toString(), "Đã bán được " + sachData[1] + " Bản");
 
             // Điền dữ liệu vào thẻ
             card1.setData(dtCard);
@@ -90,9 +90,6 @@ public class Form_Home extends javax.swing.JPanel {
                     getDanhGia(num)
             });
         }
-        spTable.setVerticalScrollBar(new ScrollBar());
-        spTable.getVerticalScrollBar().setBackground(Color.WHITE);
-        spTable.getViewport().setBackground(Color.WHITE);
     }
 
     private String getDanhGia(int num) {

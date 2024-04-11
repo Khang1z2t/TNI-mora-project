@@ -233,7 +233,7 @@ public class ThongKeForm extends javax.swing.JPanel {
 
         panelBorder2.setBackground(new java.awt.Color(255, 255, 255));
 
-        panelBorder4.setBackground(new java.awt.Color(204, 204, 204));
+        panelBorder4.setBackground(new java.awt.Color(255, 255, 255));
         panelBorder4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÁNG", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(51, 51, 255))); // NOI18N
 
         cbxThangTK.addActionListener(new java.awt.event.ActionListener() {
@@ -292,7 +292,7 @@ public class ThongKeForm extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblLuong);
 
-        panelBorder9.setBackground(new java.awt.Color(204, 204, 204));
+        panelBorder9.setBackground(new java.awt.Color(255, 255, 255));
         panelBorder9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÁNG", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(51, 51, 255))); // NOI18N
 
         cbxThangL.addActionListener(new java.awt.event.ActionListener() {
@@ -341,7 +341,7 @@ public class ThongKeForm extends javax.swing.JPanel {
 
         panelBorder5.setBackground(new java.awt.Color(255, 255, 255));
 
-        panelBorder10.setBackground(new java.awt.Color(204, 204, 204));
+        panelBorder10.setBackground(new java.awt.Color(255, 255, 255));
         panelBorder10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÁNG", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(51, 51, 255))); // NOI18N
 
         cbxThangS.addActionListener(new java.awt.event.ActionListener() {
@@ -427,8 +427,6 @@ public class ThongKeForm extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.ComboBoxSuggestion cbxThang1;
-    private swing.ComboBoxSuggestion cbxThang2;
     private swing.ComboBoxSuggestion cbxThangL;
     private swing.ComboBoxSuggestion cbxThangS;
     private swing.ComboBoxSuggestion cbxThangTK;
@@ -439,8 +437,6 @@ public class ThongKeForm extends javax.swing.JPanel {
     private swing.PanelBorder panelBorder3;
     private swing.PanelBorder panelBorder4;
     private swing.PanelBorder panelBorder5;
-    private swing.PanelBorder panelBorder7;
-    private swing.PanelBorder panelBorder8;
     private swing.PanelBorder panelBorder9;
     private swing.PieChart pieChart;
     private swing.MaterialTabbed tab;

@@ -720,13 +720,23 @@ public class SachForm extends javax.swing.JPanel {
             selectedTheLoai.setTenTheLoai(s.getTheloai());
             cboTacgia.setSelectedItem(selectedTacGia.getTentg());
             cboTheLoai.setSelectedItem(selectedTheLoai.getTenTheLoai());
-            if (!s.getHinh().equals("")) {
+            if (s.getHinh() != null && !s.getHinh().equals("")) {
                 lblHinh.setIcon(XImage.read(s.getHinh(), lblHinh.getWidth(), lblHinh.getHeight()));
                 lblHinh.setToolTipText(s.getHinh());
+            } else {
+                lblHinh.setIcon(null);
+                lblHinh.setToolTipText("");
             }
             tabSach.setSelectedIndex(0);
         } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+//        if (evt.getClickCount() == 2) {
+//            this.index = tblSpecialized.getSelectedRow();
+//            if (this.index >= 0) {
+//                this.edit();
+//            }
+//        }
     }//GEN-LAST:event_tblListMouseClicked
 
 
