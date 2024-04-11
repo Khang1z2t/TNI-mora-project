@@ -23,10 +23,6 @@ import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 import model.ModelPieChart;
 
-/**
- *
- * @author ngocd
- */
 public class PieChart extends JComponent {
 
     private final List<ModelPieChart> models;
@@ -36,11 +32,12 @@ public class PieChart extends JComponent {
     private int hoverIndex = -1;
     private float borderHover = 0.05f;
     private float padding = 0.2f;
+    private String type = "Số lượng";
 
     public PieChart() {
         models = new ArrayList<>();
         setForeground(new Color(60, 60, 60));
-        MouseAdapter mouseEvt = new MouseAdapter() {
+        MouseAdapter mouseEvent = new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
                 int index = checkMouseHover(e.getPoint());
@@ -55,16 +52,18 @@ public class PieChart extends JComponent {
                 if (SwingUtilities.isLeftMouseButton(e)) {
                     int index = checkMouseHover(e.getPoint());
                     if (index != -1) {
-                        selectedIndex = index;
-                    } else {
-                        selectedIndex = -1;
+                        if (index != selectedIndex) {
+                            selectedIndex = index;
+                        } else {
+                            selectedIndex = -1;
+                        }
+                        repaint();
                     }
-                    repaint();
                 }
             }
         };
-        addMouseListener(mouseEvt);
-        addMouseMotionListener(mouseEvt);
+        addMouseListener(mouseEvent);
+        addMouseMotionListener(mouseEvent);
     }
 
     @Override
@@ -83,25 +82,22 @@ public class PieChart extends JComponent {
         double totalValue = getTotalvalue();
         double drawAngle = 90;
         float fontSize = (float) (getFont().getSize() * size * 0.0045f);
-
         if (hoverIndex >= 0) {
             g2.setColor(models.get(hoverIndex).getColor());
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
             g2.fill(createShape(hoverIndex, 0, borderHover));
         }
-
         if (selectedIndex >= 0) {
             g2.setColor(models.get(selectedIndex).getColor());
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
             g2.fill(createShape(selectedIndex, 0.018f, borderHover));
         }
-
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         for (int i = 0; i < models.size(); i++) {
             ModelPieChart data = models.get(i);
             double angle = data.getValues() * 360 / totalValue;
             Area area = new Area(new Arc2D.Double(x, y, size, size, drawAngle, -angle, Arc2D.PIE));
-            if (chartType == PeiChartType.DEFAULT) {
+            if (chartType == PeiChartType.DONUT_CHART) {
                 double s1 = size * 0.5f;
                 double x1 = (width - s1) / 2;
                 double y1 = (height - s1) / 2;
@@ -109,16 +105,15 @@ public class PieChart extends JComponent {
             }
             g2.setColor(data.getColor());
             g2.fill(area);
-            g2.setColor(Color.white);
+            g2.setColor(Color.WHITE);
             g2.draw(area);
             drawAngle -= angle;
         }
         drawAngle = 90;
         for (int i = 0; i < models.size(); i++) {
             ModelPieChart data = models.get(i);
-            double angle = data.getValues() * 300 / totalValue;
-
-            //Vẽ text
+            double angle = data.getValues() * 360 / totalValue;
+            //  Draw Text
             double textSize = size / 2 * 0.75f;
             double textAngle = -(drawAngle - angle / 2);
             double cosX = Math.cos(Math.toRadians(textAngle));
@@ -129,16 +124,15 @@ public class PieChart extends JComponent {
             Rectangle2D r = fm.getStringBounds(text, g2);
             double textX = centerX + cosX * textSize - r.getWidth() / 2;
             double textY = centerY + sinY * textSize + fm.getAscent() / 2;
-            g2.setColor(Color.white);
+            g2.setColor(Color.WHITE);
             g2.drawString(text, (float) textX, (float) textY);
-
-            //Vẽ label
+            //  Draw label
             if (hoverIndex == i) {
-                double lblSize = size / 2;
-                double lblX = centerX + cosX * lblSize;
-                double lblY = centerY + sinY * lblSize;
-                String detail = format.format(data.getValues()) + " VNĐ (" + text + ")";
-                drawPopupLabel(g2, size, textAngle, lblX, lblY, data.getName(), detail);
+                double labelSize = size / 2;
+                double labelX = centerX + cosX * labelSize;
+                double labelY = centerY + sinY * labelSize;
+                String detail = format.format(data.getValues()) + " " + type + " (" + text + ")";
+                drawPopupLabel(g2, size, textAngle, labelX, labelY, data.getName(), detail);
             }
             drawAngle -= angle;
         }
@@ -286,6 +280,15 @@ public class PieChart extends JComponent {
         repaint();
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    
     public void clearData() {
         models.clear();
         repaint();
