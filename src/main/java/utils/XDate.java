@@ -1,5 +1,6 @@
 package utils;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,6 +63,15 @@ public class XDate {
     public static String toString(Timestamp date, String pattern) {
         formater.applyPattern(pattern);
         return formater.format(date);
+    }
+
+    public static Timestamp ngayTraLuong() {
+        Date now = XDate.now();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(now);
+        cal.set(Calendar.DAY_OF_MONTH, 7);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        return new Timestamp(cal.getTimeInMillis());
     }
 
 
