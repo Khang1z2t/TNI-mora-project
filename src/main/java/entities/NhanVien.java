@@ -4,6 +4,8 @@
  */
 package entities;
 
+import utils.XDate;
+
 import java.sql.Timestamp;
 
 public class NhanVien {
@@ -14,7 +16,7 @@ public class NhanVien {
     private boolean VaiTro = false;
     private boolean SA = false;
     private String cap;
-    private Timestamp ngaytraluong;
+    private Timestamp ngaytraluong = XDate.ngayTraLuong();
 
     public NhanVien() {
     }

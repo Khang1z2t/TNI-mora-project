@@ -116,7 +116,7 @@ public class SachForm extends javax.swing.JPanel {
         }
     }
 
-    void previous() {
+    void first() {
         try {
             if (index == 0) {
                 index = list.size();
@@ -138,7 +138,7 @@ public class SachForm extends javax.swing.JPanel {
         }
     }
 
-    void first() {
+    void previous() {
         try {
             index = 0;
             showDetail(index);
