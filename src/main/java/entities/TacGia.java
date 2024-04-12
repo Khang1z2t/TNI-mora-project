@@ -12,6 +12,10 @@ public class TacGia {
     private int matg;
     private String tentg;
 
+    @Override
+    public String toString() {
+        return getTentg(); // Assuming you have a method like getTenTacGia() in your TacGia class
+    }
     public TacGia() {
     }
 
@@ -37,9 +41,6 @@ public class TacGia {
     }
 
     // Inside TacGia class
-    @Override
-    public String toString() {
-        return getTentg(); // Assuming you have a method like getTenTacGia() in your TacGia class
-    }
+
 
 }

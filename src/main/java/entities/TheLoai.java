@@ -11,7 +11,10 @@ package entities;
 public class TheLoai {
     private String tenTheLoai;
     private int maTheLoai;
-
+    @Override
+    public String toString() {
+        return getTenTheLoai(); // Assuming you have a method like getTenTheLoai() in your TheLoai class
+    }
     public TheLoai() {
     }
 
@@ -36,8 +39,4 @@ public class TheLoai {
         this.maTheLoai = maTheLoai;
     }
 
-    @Override
-    public String toString() {
-        return getTenTheLoai(); // Assuming you have a method like getTenTheLoai() in your TheLoai class
-    }
 }
