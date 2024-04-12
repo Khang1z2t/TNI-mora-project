@@ -8,6 +8,7 @@ package form;
 import dao.SachDAO;
 import dao.TacGiaDAO;
 import dao.TheLoaiDAO;
+import entities.PhieuNhap;
 import entities.Sach;
 import entities.TacGia;
 import entities.TheLoai;
@@ -30,6 +31,7 @@ import utils.XImage;
  * @author NGUYEN THI NGUYET VY
  */
 public class SachForm extends javax.swing.JPanel {
+    SachDAO sDAO = new SachDAO();
     ArrayList<Sach> list = new ArrayList<>();
     DefaultComboBoxModel cboModel;
     int index = -1;
@@ -45,7 +47,7 @@ public class SachForm extends javax.swing.JPanel {
         setSelected(0);
         initComboBoxTG();
         initComboBoxTL();
-
+        clearform();
     }
 
     private void initTable() {
@@ -170,7 +172,7 @@ public class SachForm extends javax.swing.JPanel {
     }
 
     private void clearform() {
-        txtMasach.setText("");
+        txtMasach.setText(createID(sDAO.SelectAll()));
         txtTensach.setText("");
         txtNamXB.setText("");
         txtNhaXB.setText("");
@@ -253,6 +255,29 @@ public class SachForm extends javax.swing.JPanel {
         sad.delete(sa.getMaSach());
         list.remove(sa);
         DBFillToList();
+    }
+
+    private String createID(List<Sach> sList){
+        int id = sList.size() + 1;
+        String checkID = "";
+        for (Sach s: sList) {
+            if (s.getMaSach().equals("S" + id)) {
+                checkID = s.getMaSach();
+            }
+        }
+        while (!checkID.isEmpty()) {
+            String check = checkID;
+            id++;
+            for (int i = 0; i < sList.size(); i++) {
+                if (sList.get(i).getMaSach().equals("S" + id)) {
+                    checkID = sList.get(i).getMaSach();
+                }
+            }
+            if (check.equals(checkID)) {
+                checkID = "";
+            }
+        }
+        return "S" + id;
     }
 
     /**
