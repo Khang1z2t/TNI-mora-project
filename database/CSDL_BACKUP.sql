@@ -194,13 +194,17 @@ alter table ChiTietPhieuNhap
 add constraint FK_ChiTietPhieuNhap_Sach foreign key (MaSach) references Sach(MaSach)
 
 -- Thêm dữ liệu
-insert into NHANVIEN(MANV,MATKHAU,HOTEN,EMAIL,CAP,VAITRO) values 
-('ADMIN','ADMIN',N'Nguyễn Đình Tuấn','tuanndps36835@fpt.edu.vn','O1',2)
-INSERT INTO NGUOIDUNG VALUES 
-('ADMIN', N'Nguyễn Đình Tuấn', 0, '08-16-2004', '0783955138', 'ADMIN', GETDATE())
 insert into luong(cap,luong) values
 ('O1','5000000'),
 ('O2','10000000')
+insert into NHANVIEN(MANV,MATKHAU,HOTEN,EMAIL,CAP,VAITRO) values 
+('ADMIN','ADMIN',N'Nguyễn Đình Tuấn','tuanndps36835@fpt.edu.vn','O1',2),
+('Khang','khang',N'Đinh Quốc Bảo Khang','khangdqbps36645@fpt.edu.vn','O2',2),
+('Khoa','khoa',N'Trần Trọng Đăng Khoa','khoattdps36584@fpt.edu.vn','O1',1),
+('Phuc','phuc',N'Nguyễn Hoàng Phúc','phucnhps36595@fpt.edu.vn','O1',1),
+('Loi','loi',N'Phạm Hữu Lợi','loiphps36836@fpt.edu.vn','O1',1)
+INSERT INTO NGUOIDUNG VALUES 
+('ADMIN', N'Nguyễn Đình Tuấn', 0, '08-16-2004', '0783955138', 'ADMIN', GETDATE())
 -- Thêm dữ liệu vào bảng qlTheLoai
 INSERT INTO qlTheLoai (matheloai,tentheloai) VALUES
 ('1',N'Trinh thám'),

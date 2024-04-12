@@ -121,7 +121,7 @@ public class ThongKeDAO {
         public List<Object[]> getTopDoanhThu() {
             String sql = "{CALL sp_getTopDoanhThu}";
             String[] cols = {"TongTienBan", "ThongKe"};
-            return this.getListOfArray(sql, cols);
+            return this.getListOfArray(sql, cols) ;
         }
 
         public List<Object[]> getTopNV(){
