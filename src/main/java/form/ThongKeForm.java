@@ -17,7 +17,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,11 +47,11 @@ public class ThongKeForm extends javax.swing.JPanel {
     private void initTable() {
         tblModel = new DefaultTableModel();
         tblModel.setColumnIdentifiers(new String[]{
-            "Mã Nhân viên",
-            "Tên Nhân viên",
-            "Loại Nhân viên",
-            "Cấp nhân viên",
-            "Lương",});
+                "Mã Nhân viên",
+                "Tên Nhân viên",
+                "Loại Nhân viên",
+                "Cấp nhân viên",
+                "Lương",});
         tblLuong.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         tblLuong.getTableHeader().setOpaque(false);
         tblLuong.getTableHeader().setBackground(new Color(32, 136, 203));
@@ -61,35 +61,47 @@ public class ThongKeForm extends javax.swing.JPanel {
     }
 
     private void initCBX() {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cbxThangL.getModel();
-        model.removeAllElements();
-        List<Integer> lst = new LuongDAO().selectThang();
-        for (Integer thang : lst) {
-            model.addElement(thang);
-        }
-        cbxThangL.setSelectedIndex(0);
+//        DefaultComboBoxModel model = (DefaultComboBoxModel) cbxThangL.getModel();
+//        model.removeAllElements();
+//        List<Integer> lst = new LuongDAO().selectThang();
+//        for (Integer thang : lst) {
+//            model.addElement(thang);
+//        }
+//        cbxThangL.setSelectedIndex(0);
+        fillCboThang(cbxThangL);
     }
-    
-    private void initCBXTK(){
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cbxThangTK.getModel();
-        model.removeAllElements();
-        List<Integer> lst = new ThongKeDAO().selectThangTK();
-        for (Integer thang : lst) {
-            model.addElement(thang);
-        }
-        cbxThangTK.setSelectedIndex(0);   
+
+    private void initCBXTK() {
+//        DefaultComboBoxModel model = (DefaultComboBoxModel) cbxThangTK.getModel();
+//        model.removeAllElements();
+//        List<Integer> lst = new ThongKeDAO().selectThangTK();
+//        for (Integer thang : lst) {
+//            model.addElement(thang);
+//        }
+//        cbxThangTK.setSelectedIndex(0);
+        fillCboThang(cbxThangTK);
     }
-    
-    private void initCBXS(){
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cbxThangS.getModel();
-        model.removeAllElements();
-        List<Integer> lst = new ThongKeDAO().selectThangHD();
-        for (Integer thang : lst) {
-            model.addElement(thang);
-        }
-        cbxThangS.setSelectedIndex(0);   
+
+    private void initCBXS() {
+//        DefaultComboBoxModel model = (DefaultComboBoxModel) cbxThangS.getModel();
+//        model.removeAllElements();
+//        List<Integer> lst = new ThongKeDAO().selectThangHD();
+//        for (Integer thang : lst) {
+//            model.addElement(thang);
+//        }
+//        cbxThangS.setSelectedIndex(0);
+        fillCboThang(cbxThangS);
     }
-    
+
+    private void fillCboThang(JComboBox cbx) {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbx.getModel();
+        model.removeAllElements();
+        for (int i = 1; i <= 12; i++) {
+            model.addElement(i);
+        }
+        cbx.setSelectedIndex(0);
+    }
+
     private void fillTable() {
         DefaultTableModel tblModel = (DefaultTableModel) tblLuong.getModel();
         tblModel.setRowCount(0);
@@ -105,7 +117,7 @@ public class ThongKeForm extends javax.swing.JPanel {
         }
     }
 
-//    private void fillTableTK() {
+    //    private void fillTableTK() {
 //        DefaultTableModel tblModel = (DefaultTableModel) tblThongKe.getModel();
 //        tblModel.setRowCount(0);
 //        try {
@@ -139,44 +151,55 @@ public class ThongKeForm extends javax.swing.JPanel {
 //        tblThongKe.setModel(tblModel);
 //}
     private void fillDatatoChar() {
-        pieChart.clearData();
         int thang = (int) cbxThangTK.getSelectedItem();
         List<Double[]> listTK = tkd.getThongKe(thang);
 
         String[] name = new String[]{
-            //                "Tổng số lượng sách đã nhập",
-            //                "Tổng số lượng sách đã bán",
-            //                "Tổng số lượng nhân viên",
-            "Tổng tiền đã nhập",
-            "Tổng tiền đã bán",
-            "Tổng tiền đã trả lương NV"
+                //                "Tổng số lượng sách đã nhập",
+                //                "Tổng số lượng sách đã bán",
+                //                "Tổng số lượng nhân viên",
+                "Tổng tiền đã nhập",
+                "Tổng tiền đã bán",
+                "Tổng tiền đã trả lương NV"
         };
         int index = 0;
+        pieChart.setType("VNĐ");
+        pieChart.clearData();
         for (Double[] values : listTK) {
             for (Double value : values) {
-                pieChart.addData(new ModelPieChart(name[index], value, getColor(index)));
-                index++;
+                if (value != 0.0) {
+                    pieChart.addData(new ModelPieChart(name[index], value, getColor(index)));
+                    index++;
+                } else {
+                    pieChart.noData();
+                }
+//                System.out.println(value);
+
             }
         }
-        pieChart.setType("VNĐ");
+
     }
 
     private void fillChartSL() {
         int thang = (int) cbxThangS.getSelectedItem();
         List<Double[]> ist = tkd.getTKSL(thang);
-
         String[] name = new String[]{
-            "Tổng số lượng sách đã nhập trong tháng",
-            "Tổng số lượng sách đã bán trong tháng",
-            "Tổng số lượng sách còn trong kho"
+                "Tổng số lượng sách đã nhập trong tháng",
+                "Tổng số lượng sách đã bán trong tháng",
+                "Tổng số lượng sách còn trong kho"
         };
         int index = 0;
         tksl.setType("quyển");
         tksl.clearData();
+
         for (Double[] values : ist) {
             for (Double value : values) {
-                tksl.addData(new ModelPieChart(name[index], value, getColor(index)));
-                index++;
+                if (value != 0.0) {
+                    tksl.addData(new ModelPieChart(name[index], value, getColor(index)));
+                    index++;
+                } else {
+                    tksl.noData();
+                }
             }
         }
 
@@ -184,12 +207,12 @@ public class ThongKeForm extends javax.swing.JPanel {
 
     private Color getColor(int index) {
         Color[] color = new Color[]{
-            new Color(135, 189, 245),
-            new Color(189, 135, 245),
-            new Color(139, 229, 222),
-            new Color(132, 41, 255),
-            new Color(149, 255, 17),
-            new Color(30, 255, 101),};
+                new Color(135, 189, 245),
+                new Color(189, 135, 245),
+                new Color(139, 229, 222),
+                new Color(132, 41, 255),
+                new Color(149, 255, 17),
+                new Color(30, 255, 101),};
         return color[index];
     }
 
@@ -245,37 +268,37 @@ public class ThongKeForm extends javax.swing.JPanel {
         javax.swing.GroupLayout panelBorder4Layout = new javax.swing.GroupLayout(panelBorder4);
         panelBorder4.setLayout(panelBorder4Layout);
         panelBorder4Layout.setHorizontalGroup(
-            panelBorder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cbxThangTK, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                .addContainerGap())
+                panelBorder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder4Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(cbxThangTK, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         panelBorder4Layout.setVerticalGroup(
-            panelBorder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cbxThangTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                panelBorder4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder4Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(cbxThangTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelBorder2Layout = new javax.swing.GroupLayout(panelBorder2);
         panelBorder2.setLayout(panelBorder2Layout);
         panelBorder2Layout.setHorizontalGroup(
-            panelBorder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder2Layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(panelBorder4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(182, Short.MAX_VALUE))
-            .addComponent(pieChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                panelBorder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder2Layout.createSequentialGroup()
+                                .addGap(163, 163, 163)
+                                .addComponent(panelBorder4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(182, Short.MAX_VALUE))
+                        .addComponent(pieChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelBorder2Layout.setVerticalGroup(
-            panelBorder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelBorder4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pieChart, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE))
+                panelBorder2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(panelBorder4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pieChart, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE))
         );
 
         tab.addTab("Tổng Thống Kê", panelBorder2);
@@ -283,12 +306,12 @@ public class ThongKeForm extends javax.swing.JPanel {
         panelBorder3.setBackground(new java.awt.Color(255, 255, 255));
 
         tblLuong.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][]{
 
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+                },
+                new String[]{
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
         ));
         jScrollPane1.setViewportView(tblLuong);
 
@@ -304,37 +327,37 @@ public class ThongKeForm extends javax.swing.JPanel {
         javax.swing.GroupLayout panelBorder9Layout = new javax.swing.GroupLayout(panelBorder9);
         panelBorder9.setLayout(panelBorder9Layout);
         panelBorder9Layout.setHorizontalGroup(
-            panelBorder9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cbxThangL, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                .addContainerGap())
+                panelBorder9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder9Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(cbxThangL, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         panelBorder9Layout.setVerticalGroup(
-            panelBorder9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cbxThangL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                panelBorder9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder9Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(cbxThangL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelBorder3Layout = new javax.swing.GroupLayout(panelBorder3);
         panelBorder3.setLayout(panelBorder3Layout);
         panelBorder3Layout.setHorizontalGroup(
-            panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
-            .addGroup(panelBorder3Layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(panelBorder9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                .addGap(160, 160, 160)
+                                .addComponent(panelBorder9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelBorder3Layout.setVerticalGroup(
-            panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelBorder9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE))
+                panelBorder3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(panelBorder9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE))
         );
 
         tab.addTab("Lương mỗi tháng", panelBorder3);
@@ -353,37 +376,37 @@ public class ThongKeForm extends javax.swing.JPanel {
         javax.swing.GroupLayout panelBorder10Layout = new javax.swing.GroupLayout(panelBorder10);
         panelBorder10.setLayout(panelBorder10Layout);
         panelBorder10Layout.setHorizontalGroup(
-            panelBorder10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cbxThangS, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                .addContainerGap())
+                panelBorder10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder10Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(cbxThangS, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         panelBorder10Layout.setVerticalGroup(
-            panelBorder10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cbxThangS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                panelBorder10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder10Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(cbxThangS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelBorder5Layout = new javax.swing.GroupLayout(panelBorder5);
         panelBorder5.setLayout(panelBorder5Layout);
         panelBorder5Layout.setHorizontalGroup(
-            panelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder5Layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(panelBorder10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(177, Short.MAX_VALUE))
-            .addComponent(tksl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                panelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder5Layout.createSequentialGroup()
+                                .addGap(168, 168, 168)
+                                .addComponent(panelBorder10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(177, Short.MAX_VALUE))
+                        .addComponent(tksl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelBorder5Layout.setVerticalGroup(
-            panelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelBorder10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tksl, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE))
+                panelBorder5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBorder5Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(panelBorder10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tksl, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE))
         );
 
         tab.addTab("Tổng số lượng sách", panelBorder5);
@@ -391,23 +414,23 @@ public class ThongKeForm extends javax.swing.JPanel {
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
-            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelBorder1Layout.setVerticalGroup(
-            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

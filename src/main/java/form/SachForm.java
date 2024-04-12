@@ -172,7 +172,7 @@ public class SachForm extends javax.swing.JPanel {
     }
 
     private void clearform() {
-        txtMasach.setText("");
+        txtMasach.setText(createID(sDAO.SelectAll()));
         txtTensach.setText("");
         txtNamXB.setText("");
         txtNhaXB.setText("");
