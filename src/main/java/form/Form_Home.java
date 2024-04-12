@@ -56,6 +56,7 @@ public class Form_Home extends javax.swing.JPanel {
         Object[] dtData = topDT.get(0);
         Object[] nvData = topNV.get(0);
         Object[] sachData = topSach.get(0);
+        
         if (dtData[0] != null && nvData[0] != null && sachData[0] != null) {
             // Tạo các đối tượng Model_Card
             Model_Card dtCard = new Model_Card(new ImageIcon(getClass().getResource("/icon/8.png")), "Doanh thu", MoneyFormat.format(dtData[0]), dtData[1].toString());

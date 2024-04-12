@@ -25,15 +25,14 @@ import javax.mail.internet.MimeMessage;
 import javax.swing.JComponent;
 
 import utils.DialogHelper;
+import utils.EmailService;
 
 /**
  * @author NGUYEN THI NGUYET VY
  */
 public class QuenMatKhauJDialog extends javax.swing.JDialog {
-    Random random = new Random();
-    int number;
-    String user;
-    String gmail;
+    NhanVienDAO nvDao = new NhanVienDAO();
+    String number;
 
     /**
      * Creates new form QuenMatKhauJDialog
@@ -78,6 +77,38 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
 
         return true;
     }
+
+    private void sendEvt() {
+        String email = txtGmail.getText();
+        NhanVien nv = nvDao.selectByGmail(email);
+        if (nv == null) {
+            DialogHelper.alert(this, "Email không tồn tại!");
+            return;
+        }
+        number = generateOTP();
+        String body = generateBody(number);
+        String subject = number + " là mã xác nhận của bạn";
+        EmailService.sendMail(email, subject, body);
+        DialogHelper.alert(this, "Mã xác nhận đã được gửi đến email của bạn!");
+    }
+
+    private String generateOTP() {
+        Random random = new Random();
+        int otpValue = random.nextInt(900000) + 100000;
+        return String.valueOf(otpValue);
+    }
+
+    private String generateBody(String otp) {
+        String body = "<p style=\"font-family: Arial; font-size: 0.9rem;\"> "
+                + "<strong><span style=\"font-size: 1rem;\">Mora Project</span></strong>.<br><br>"
+                + "Chào bạn,<br><br>"
+                + "Bạn đang hoàn thành xác nhận việc đổi mật khẩu, Mã xác nhận là <strong><span style=\"color:#4ea4dc;font-size: 0.9rem;\">" + otp + "</span></strong>.<br><br>"
+                + "Vui lòng hoàn thành xác nhận trong vòng 30 phút.<br><br>"
+                + "Team None Idea<br><br>"
+                + "<span style=\"color:#777777; font-size: 0.8rem;\">Đây là thư từ hệ thống, vui lòng không trả lời thư.</span></p>";
+        return body;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -190,10 +221,9 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         try {
             if (checkForm()) {
-                if (Integer.valueOf(txtCode.getText()) == number) {
-                    NhanVien nv = new NhanVienDAO().selectByGmail(txtGmail.getText());
+                if (txtCode.getText().trim().equals(number)) {
+                    NhanVien nv = nvDao.selectByGmail(txtGmail.getText());
                     utils.Auth.user = nv;
-
                     DoiMatKhauJDialog doiMK = new DoiMatKhauJDialog((java.awt.Frame) getParent(), true);
                     dispose();
                     doiMK.setVisible(true);
@@ -207,49 +237,7 @@ public class QuenMatKhauJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-        number = random.nextInt(999999);
-        final String from = "tuanndps36835@fpt.edu.vn";
-        final String pass = "tbeithheubjyczyr";
-        final String to = txtGmail.getText();
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587"); // TLS 587 SSL 465
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        // Phiên làm việc
-        Session session = Session.getInstance(props, new Authenticator() {
-                    @Override
-                    // Create Authenticator
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(from, pass);
-                    }
-                }
-        );
-        // Tạo tin nhắn
-        MimeMessage msg = new MimeMessage(session);
-        try {
-            // Kiểu nội dung
-            msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
-            // Người gửi
-            msg.setFrom(new InternetAddress(from));
-            // Người nhận
-            msg.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(to, false));
-            // Tiêu đề email
-            msg.setSubject("Your password had been resetted");
-            // Quy định ngày gửi
-            msg.setSentDate(new Date());
-            // Quy định email nhận phản hồi
-//            msg.setReplyTo(InternetAddress.parse(from,false));
-// Nội dung
-
-            msg.setText("Mã xác nhận mật khẩu của bạn là: " + String.valueOf(number), "UTF-8");
-// Gửi Email
-            Transport.send(msg);
-
-            DialogHelper.alert(this, "mã xác nhận mật khẩu vừa được gửi về email của bạn!");
-        } catch (HeadlessException | MessagingException e) {
-            e.printStackTrace();
-        }
+        sendEvt();
     }//GEN-LAST:event_btnSendActionPerformed
 
     /**

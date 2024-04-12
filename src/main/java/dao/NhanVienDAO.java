@@ -51,13 +51,13 @@ public class NhanVienDAO {
     public NhanVien selectById(String manv) {
         String sql = "SELECT * FROM NHANVIEN WHERE MANV = ?";
         List<NhanVien> list = this.selectBySql(sql, manv);
-        return list.size() > 0 ? list.get(0) : null;
+        return !list.isEmpty() ? list.get(0) : null;
     }
 
     public NhanVien selectByGmail(String gmail) {
         String sql = "select * from Nhanvien where email = ?";
         List<NhanVien> list = this.selectBySql(sql, gmail);
-        return list.size() > 0 ? list.get(0) : null;
+        return !list.isEmpty() ? list.get(0) : null;
     }
 
     protected List<NhanVien> selectBySql(String sql, Object... args) {

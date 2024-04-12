@@ -807,11 +807,6 @@ public class GioHangForm extends javax.swing.JPanel {
         deleteGioHang();
     }//GEN-LAST:event_btnXoaActionPerformed
 
-    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
-        // TODO add your handling code here:
-        thanhvien();
-    }//GEN-LAST:event_btnThanhToanActionPerformed
-
     private void txtMaTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaTVActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaTVActionPerformed
@@ -924,6 +919,11 @@ public class GioHangForm extends javax.swing.JPanel {
         XemCTHoaDon();
     }//GEN-LAST:event_pViewActionPerformed
 
+    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+        // TODO add your handling code here:
+        thanhvien();
+    }//GEN-LAST:event_btnThanhToanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirm;
@@ -1032,8 +1032,9 @@ public class GioHangForm extends javax.swing.JPanel {
             }
             initCBXGioHang();
             initSetTextTab2();
+//            tab.setSelectedIndex(1);
         } catch (NumberFormatException e) {
-            System.out.println("Lỗi số");
+            throw new RuntimeException(e);
         }
     }
 
