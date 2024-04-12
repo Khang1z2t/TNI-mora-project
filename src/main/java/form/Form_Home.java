@@ -51,7 +51,7 @@ public class Form_Home extends javax.swing.JPanel {
         List<Object[]> topNV = tkdao.getTopNV();
         List<Object[]> topSach = tkdao.getTopSach();
 
-        if (!topDT.isEmpty() && !topNV.isEmpty() && !topSach.isEmpty()) {
+        if (topDT == null || topNV == null || topSach == null) {
             // Lấy dữ liệu từ danh sách
             Object[] dtData = topDT.get(0);
             Object[] nvData = topNV.get(0);
