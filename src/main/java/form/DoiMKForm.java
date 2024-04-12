@@ -60,33 +60,41 @@ public class DoiMKForm extends javax.swing.JPanel {
     private void initComponents() {
 
         panelBorder1 = new swing.PanelBorder();
-        btnDoiMK = new javax.swing.JButton();
         txtUser = new swing.TextFieldSuggestion();
         txtNewPass = new swing.PasswordField();
         txtConfirmPass = new swing.PasswordField();
         txtOld = new swing.PasswordField();
+        btnDoiMK = new swing.ButtonSuggestion();
 
         setOpaque(false);
 
-        panelBorder1.setBackground(new java.awt.Color(229, 229, 229));
+        panelBorder1.setBackground(new java.awt.Color(255, 255, 255));
 
+        txtUser.setText("Mã Nhân Viên");
+        txtUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtNewPass.setBackground(new java.awt.Color(255, 255, 255));
+        txtNewPass.setLabelText("Mật khẩu mới");
+
+        txtConfirmPass.setBackground(new java.awt.Color(255, 255, 255));
+        txtConfirmPass.setLabelText("Xác nhận mật khẩu");
+
+        txtOld.setBackground(new java.awt.Color(255, 255, 255));
+        txtOld.setLabelText("Mật khẩu cũ");
+
+        btnDoiMK.setForeground(new java.awt.Color(0, 0, 0));
+        btnDoiMK.setText("XÁC NHẬN");
+        btnDoiMK.setBorderColor(new java.awt.Color(255, 255, 255));
+        btnDoiMK.setColor(new java.awt.Color(153, 153, 255));
+        btnDoiMK.setColorClick(new java.awt.Color(102, 102, 255));
+        btnDoiMK.setColorOver(new java.awt.Color(102, 102, 255));
         btnDoiMK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnDoiMK.setForeground(new java.awt.Color(32, 136, 203));
-        btnDoiMK.setText("Đổi Mật Khẩu");
+        btnDoiMK.setRadius(55);
         btnDoiMK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDoiMKActionPerformed(evt);
             }
         });
-
-        txtUser.setText("Mã Nhân Viên");
-        txtUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
-        txtNewPass.setLabelText("Mật khẩu mới");
-
-        txtConfirmPass.setLabelText("Xác nhận mật khẩu");
-
-        txtOld.setLabelText("Mật khẩu cũ");
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
@@ -95,21 +103,21 @@ public class DoiMKForm extends javax.swing.JPanel {
             .addGroup(panelBorder1Layout.createSequentialGroup()
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBorder1Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
+                        .addGap(167, 167, 167)
                         .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNewPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtConfirmPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtOld, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtOld, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelBorder1Layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(btnDoiMK, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(309, Short.MAX_VALUE))
+                        .addGap(194, 194, 194)
+                        .addComponent(btnDoiMK, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(103, 103, 103)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -117,9 +125,9 @@ public class DoiMKForm extends javax.swing.JPanel {
                 .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtConfirmPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDoiMK, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(btnDoiMK, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -136,9 +144,6 @@ public class DoiMKForm extends javax.swing.JPanel {
 
     private void btnDoiMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMKActionPerformed
         // TODO add your handling code here:
-        //                NhanVien nv = new NhanVienDAO().selectById(txtUser.getText());
-        //                nv.setMatKhau(String.valueOf(number));
-        //                new NhanVienDAO().update(nv);
         if (checkForm()) {
             NhanVien nv = utils.Auth.user;
             nv.setMatKhau(String.valueOf(txtNewPass.getPassword()));
@@ -149,7 +154,7 @@ public class DoiMKForm extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDoiMK;
+    private swing.ButtonSuggestion btnDoiMK;
     private swing.PanelBorder panelBorder1;
     private swing.PasswordField txtConfirmPass;
     private swing.PasswordField txtNewPass;
