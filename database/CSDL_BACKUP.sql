@@ -327,10 +327,9 @@ BEGIN
         MONTH(NV.NgayTraLuong) = @thang
 END;
 
-
-
+exec sp_BangLuong 4
 /*****************************************************************************************/
---SELECT DISTINCT MONTH(NGAYDK) MONTH FROM NhanVien ORDER BY MONTH DESC
+--SELECT DISTINCT MONTH(NgayTraLuong) MONTH FROM NhanVien ORDER BY MONTH DESC
 
 /*THONG KE*/
 /****************************************************************************************/
@@ -372,7 +371,7 @@ BEGIN
 END;
 
 
---EXECUTE sp_ThongKe
+--EXECUTE sp_ThongKe 4
 
 --drop proc sp_ThongKe
 /****************************************************************************************/
@@ -537,5 +536,3 @@ END;
 
 --drop proc sp_getTopSachBan
 /****************************************************************************************/
-select * from NhanVien
-select * from thanhvien

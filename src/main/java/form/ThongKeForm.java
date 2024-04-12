@@ -106,7 +106,7 @@ public class ThongKeForm extends javax.swing.JPanel {
         DefaultTableModel tblModel = (DefaultTableModel) tblLuong.getModel();
         tblModel.setRowCount(0);
         try {
-            int thang = (int) cbxThangTK.getSelectedItem();
+            int thang = (int) cbxThangL.getSelectedItem();
             List<Object[]> lst = new LuongDAO().getBangLuong(thang);
 
             for (Object[] obj : lst) {
@@ -441,6 +441,7 @@ public class ThongKeForm extends javax.swing.JPanel {
 
     private void cbxThangLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangLActionPerformed
         // TODO add your handling code here:
+        fillTable();
     }//GEN-LAST:event_cbxThangLActionPerformed
 
     private void cbxThangTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangTKActionPerformed

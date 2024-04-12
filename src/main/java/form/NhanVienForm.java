@@ -692,9 +692,9 @@ public class NhanVienForm extends javax.swing.JPanel {
             txtMatKhau.setText(nv.getMatKhau());
             txtEmail.setText(nv.getEmail());
             if (nv.isVaiTro()) {
-                rdoNhanVien.setSelected(true);
-            } else {
                 rdoQuanLy.setSelected(true);
+            } else {
+                rdoNhanVien.setSelected(true);
             }
             tabNV.setSelectedIndex(0);
         } catch (Exception e) {
